@@ -1,28 +1,28 @@
 
 /* Drop Tables */
 
-DROP TABLE IF EXISTS sato_kana.m_holiday;
-DROP TABLE IF EXISTS sato_kana.m_code;
-DROP TABLE IF EXISTS sato_kana.t_reservation_detail;
-DROP TABLE IF EXISTS sato_kana.m_course;
-DROP TABLE IF EXISTS sato_kana.m_course_group;
-DROP TABLE IF EXISTS sato_kana.t_shift;
-DROP TABLE IF EXISTS sato_kana.m_working_day;
-DROP TABLE IF EXISTS sato_kana.m_working_day_detail_deff;
-DROP TABLE IF EXISTS sato_kana.m_working_day_deff;
-DROP TABLE IF EXISTS sato_kana.m_working_staff;
-DROP TABLE IF EXISTS sato_kana.t_reservation;
-DROP TABLE IF EXISTS sato_kana.m_shop;
-DROP TABLE IF EXISTS sato_kana.m_company;
-DROP TABLE IF EXISTS sato_kana.m_staff;
-DROP TABLE IF EXISTS sato_kana.m_user;
+DROP TABLE IF EXISTS hora.m_holiday;
+DROP TABLE IF EXISTS hora.m_code;
+DROP TABLE IF EXISTS hora.t_reservation_detail;
+DROP TABLE IF EXISTS hora.m_course;
+DROP TABLE IF EXISTS hora.m_course_group;
+DROP TABLE IF EXISTS hora.t_shift;
+DROP TABLE IF EXISTS hora.m_working_day;
+DROP TABLE IF EXISTS hora.m_working_day_detail_deff;
+DROP TABLE IF EXISTS hora.m_working_day_deff;
+DROP TABLE IF EXISTS hora.m_working_staff;
+DROP TABLE IF EXISTS hora.t_reservation;
+DROP TABLE IF EXISTS hora.m_shop;
+DROP TABLE IF EXISTS hora.m_company;
+DROP TABLE IF EXISTS hora.m_staff;
+DROP TABLE IF EXISTS hora.m_user;
 
 
 
 
 /* Create Tables */
 
-CREATE TABLE sato_kana.m_holiday
+CREATE TABLE hora.m_holiday
 (
 	holiday_id serial NOT NULL,
 	holiday_name text,
@@ -34,7 +34,7 @@ CREATE TABLE sato_kana.m_holiday
 ) WITHOUT OIDS;
 
 
-CREATE TABLE sato_kana.m_code
+CREATE TABLE hora.m_code
 (
 	code_id serial NOT NULL,
 	group_code int,
@@ -48,7 +48,7 @@ CREATE TABLE sato_kana.m_code
 ) WITHOUT OIDS;
 
 
-CREATE TABLE sato_kana.m_company
+CREATE TABLE hora.m_company
 (
 	company_id serial NOT NULL,
 	company_name text,
@@ -59,7 +59,7 @@ CREATE TABLE sato_kana.m_company
 ) WITHOUT OIDS;
 
 
-CREATE TABLE sato_kana.m_course
+CREATE TABLE hora.m_course
 (
 	course_id int NOT NULL,
 	course_group_id int,
@@ -73,7 +73,7 @@ CREATE TABLE sato_kana.m_course
 ) WITHOUT OIDS;
 
 
-CREATE TABLE sato_kana.m_course_group
+CREATE TABLE hora.m_course_group
 (
 	course_group_id serial NOT NULL,
 	shop_id int,
@@ -87,7 +87,7 @@ CREATE TABLE sato_kana.m_course_group
 ) WITHOUT OIDS;
 
 
-CREATE TABLE sato_kana.m_shop
+CREATE TABLE hora.m_shop
 (
 	shop_id serial NOT NULL,
 	company_id int,
@@ -117,7 +117,7 @@ CREATE TABLE sato_kana.m_shop
 ) WITHOUT OIDS;
 
 
-CREATE TABLE sato_kana.m_staff
+CREATE TABLE hora.m_staff
 (
 	staff_id serial NOT NULL,
 	family_name text,
@@ -132,7 +132,7 @@ CREATE TABLE sato_kana.m_staff
 ) WITHOUT OIDS;
 
 
-CREATE TABLE sato_kana.m_user
+CREATE TABLE hora.m_user
 (
 	user_id serial NOT NULL,
 	family_name text,
@@ -162,7 +162,7 @@ CREATE TABLE sato_kana.m_user
 ) WITHOUT OIDS;
 
 
-CREATE TABLE sato_kana.m_working_day
+CREATE TABLE hora.m_working_day
 (
 	working_day_id serial NOT NULL,
 	shop_id int,
@@ -176,7 +176,7 @@ CREATE TABLE sato_kana.m_working_day
 ) WITHOUT OIDS;
 
 
-CREATE TABLE sato_kana.m_working_day_deff
+CREATE TABLE hora.m_working_day_deff
 (
 	m_working_day_deff_id serial NOT NULL,
 	shop_id int NOT NULL,
@@ -188,7 +188,7 @@ CREATE TABLE sato_kana.m_working_day_deff
 ) WITHOUT OIDS;
 
 
-CREATE TABLE sato_kana.m_working_day_detail_deff
+CREATE TABLE hora.m_working_day_detail_deff
 (
 	working_day_detail_deff_id serial NOT NULL,
 	m_working_day_deff_id int NOT NULL,
@@ -218,7 +218,7 @@ CREATE TABLE sato_kana.m_working_day_detail_deff
 ) WITHOUT OIDS;
 
 
-CREATE TABLE sato_kana.m_working_staff
+CREATE TABLE hora.m_working_staff
 (
 	working_staff_id serial NOT NULL,
 	shop_id int,
@@ -230,7 +230,7 @@ CREATE TABLE sato_kana.m_working_staff
 ) WITHOUT OIDS;
 
 
-CREATE TABLE sato_kana.t_reservation
+CREATE TABLE hora.t_reservation
 (
 	reservation_id bigserial NOT NULL,
 	shop_id int,
@@ -252,7 +252,7 @@ CREATE TABLE sato_kana.t_reservation
 ) WITHOUT OIDS;
 
 
-CREATE TABLE sato_kana.t_reservation_detail
+CREATE TABLE hora.t_reservation_detail
 (
 	reservation_detail_id bigserial NOT NULL,
 	reservation_id bigint,
@@ -265,7 +265,7 @@ CREATE TABLE sato_kana.t_reservation_detail
 ) WITHOUT OIDS;
 
 
-CREATE TABLE sato_kana.t_shift
+CREATE TABLE hora.t_shift
 (
 	shift_id serial NOT NULL,
 	working_day_id int,
@@ -282,121 +282,121 @@ CREATE TABLE sato_kana.t_shift
 
 /* Create Foreign Keys */
 
-ALTER TABLE sato_kana.m_shop
+ALTER TABLE hora.m_shop
 	ADD CONSTRAINT idx_m_shop_fk0 FOREIGN KEY (company_id)
-	REFERENCES sato_kana.m_company (company_id)
+	REFERENCES hora.m_company (company_id)
 	ON UPDATE NO ACTION
 	ON DELETE NO ACTION
 ;
 
 
-ALTER TABLE sato_kana.t_reservation_detail
+ALTER TABLE hora.t_reservation_detail
 	ADD CONSTRAINT idx_t_reservation_detail_fk2 FOREIGN KEY (course_id)
-	REFERENCES sato_kana.m_course (course_id)
+	REFERENCES hora.m_course (course_id)
 	ON UPDATE NO ACTION
 	ON DELETE NO ACTION
 ;
 
 
-ALTER TABLE sato_kana.m_course
+ALTER TABLE hora.m_course
 	ADD CONSTRAINT idx_m_course_fk0 FOREIGN KEY (course_group_id)
-	REFERENCES sato_kana.m_course_group (course_group_id)
+	REFERENCES hora.m_course_group (course_group_id)
 	ON UPDATE NO ACTION
 	ON DELETE NO ACTION
 ;
 
 
-ALTER TABLE sato_kana.m_course_group
+ALTER TABLE hora.m_course_group
 	ADD CONSTRAINT idx_m_course_group_fk0 FOREIGN KEY (shop_id)
-	REFERENCES sato_kana.m_shop (shop_id)
+	REFERENCES hora.m_shop (shop_id)
 	ON UPDATE NO ACTION
 	ON DELETE NO ACTION
 ;
 
 
-ALTER TABLE sato_kana.m_working_day
+ALTER TABLE hora.m_working_day
 	ADD CONSTRAINT idx_m_working_day_fk0 FOREIGN KEY (shop_id)
-	REFERENCES sato_kana.m_shop (shop_id)
+	REFERENCES hora.m_shop (shop_id)
 	ON UPDATE NO ACTION
 	ON DELETE NO ACTION
 ;
 
 
-ALTER TABLE sato_kana.m_working_day_deff
+ALTER TABLE hora.m_working_day_deff
 	ADD CONSTRAINT idx_m_working_day_deff_fk0 FOREIGN KEY (shop_id)
-	REFERENCES sato_kana.m_shop (shop_id)
+	REFERENCES hora.m_shop (shop_id)
 	ON UPDATE NO ACTION
 	ON DELETE NO ACTION
 ;
 
 
-ALTER TABLE sato_kana.m_working_staff
+ALTER TABLE hora.m_working_staff
 	ADD CONSTRAINT idx_m_working_staff_fk0 FOREIGN KEY (shop_id)
-	REFERENCES sato_kana.m_shop (shop_id)
+	REFERENCES hora.m_shop (shop_id)
 	ON UPDATE NO ACTION
 	ON DELETE NO ACTION
 ;
 
 
-ALTER TABLE sato_kana.t_reservation
+ALTER TABLE hora.t_reservation
 	ADD CONSTRAINT idx_t_reservation_fk1 FOREIGN KEY (shop_id)
-	REFERENCES sato_kana.m_shop (shop_id)
+	REFERENCES hora.m_shop (shop_id)
 	ON UPDATE NO ACTION
 	ON DELETE NO ACTION
 ;
 
 
-ALTER TABLE sato_kana.m_working_staff
+ALTER TABLE hora.m_working_staff
 	ADD CONSTRAINT idx_m_working_staff_fk1 FOREIGN KEY (staff_id)
-	REFERENCES sato_kana.m_staff (staff_id)
+	REFERENCES hora.m_staff (staff_id)
 	ON UPDATE NO ACTION
 	ON DELETE NO ACTION
 ;
 
 
-ALTER TABLE sato_kana.t_reservation
+ALTER TABLE hora.t_reservation
 	ADD CONSTRAINT idx_t_reservation_fk2 FOREIGN KEY (staff_id)
-	REFERENCES sato_kana.m_staff (staff_id)
+	REFERENCES hora.m_staff (staff_id)
 	ON UPDATE NO ACTION
 	ON DELETE NO ACTION
 ;
 
 
-ALTER TABLE sato_kana.t_shift
+ALTER TABLE hora.t_shift
 	ADD CONSTRAINT idx_t_shift_fk1 FOREIGN KEY (staff_id)
-	REFERENCES sato_kana.m_staff (staff_id)
+	REFERENCES hora.m_staff (staff_id)
 	ON UPDATE NO ACTION
 	ON DELETE NO ACTION
 ;
 
 
-ALTER TABLE sato_kana.t_reservation
+ALTER TABLE hora.t_reservation
 	ADD CONSTRAINT idx_t_reservation_fk0 FOREIGN KEY (user_id)
-	REFERENCES sato_kana.m_user (user_id)
+	REFERENCES hora.m_user (user_id)
 	ON UPDATE NO ACTION
 	ON DELETE NO ACTION
 ;
 
 
-ALTER TABLE sato_kana.t_shift
+ALTER TABLE hora.t_shift
 	ADD CONSTRAINT idx_t_shift_fk0 FOREIGN KEY (working_day_id)
-	REFERENCES sato_kana.m_working_day (working_day_id)
+	REFERENCES hora.m_working_day (working_day_id)
 	ON UPDATE NO ACTION
 	ON DELETE NO ACTION
 ;
 
 
-ALTER TABLE sato_kana.m_working_day_detail_deff
+ALTER TABLE hora.m_working_day_detail_deff
 	ADD CONSTRAINT idx_m_working_day_detail_deff_fk1 FOREIGN KEY (m_working_day_deff_id)
-	REFERENCES sato_kana.m_working_day_deff (m_working_day_deff_id)
+	REFERENCES hora.m_working_day_deff (m_working_day_deff_id)
 	ON UPDATE NO ACTION
 	ON DELETE NO ACTION
 ;
 
 
-ALTER TABLE sato_kana.t_reservation_detail
+ALTER TABLE hora.t_reservation_detail
 	ADD CONSTRAINT idx_t_reservation_detail_fk0 FOREIGN KEY (reservation_id)
-	REFERENCES sato_kana.t_reservation (reservation_id)
+	REFERENCES hora.t_reservation (reservation_id)
 	ON UPDATE NO ACTION
 	ON DELETE NO ACTION
 ;
