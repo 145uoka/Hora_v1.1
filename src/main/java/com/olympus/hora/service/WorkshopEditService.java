@@ -294,134 +294,22 @@ public class WorkshopEditService {
 
                 MWorkingDay mWorkingDayEntity = new MWorkingDay();
 
-                //指定日//
-                if(mWorkingDayDetailDeff.getSpecifiedDay() != null){
-                    //指定日が入力されている場合
-                    if(date.isEqual(mWorkingDayDetailDeff.getSpecifiedDay())){
-                        //指定日と一致した場合
-                        if(mWorkingDayDetailDeff.getWorkingDayFlg()){
+                createMWorkingDay(dto, mWorkingDayStoreList, shopHolidayList, mWorkingDayDetailDeff,
+                        weekFlagList, date, mWorkingDayEntity);
 
-                            //営業Flagがtrueの場合、entityに日付、他のカラムの値をセット。
-                            mWorkingDayEntity.setWorkingDate(date);
-                            setMWorkingDayEntityColumn(mWorkingDayEntity, mWorkingDayDetailDeff, dto.getShopId());
+                if(mWorkingDayEntity.getWorkingDate() != null){
+                    //日付以外のカラムの値をセットする。
+                    Integer workingDayId = mWorkingDayBhv.selectNextVal();
+                    mWorkingDayEntity.setWorkingDayId(workingDayId);
+                    mWorkingDayEntity.setShopId(dto.getShopId());
+                    mWorkingDayEntity.setStartTime(mWorkingDayDetailDeff.getStartTime());
+                    mWorkingDayEntity.setEndTime(mWorkingDayDetailDeff.getEndTime());
 
-                            //同営業日で時間帯の重複がないかをチェックする。
-                            checkOverlapTimeInterval(mWorkingDayEntity, mWorkingDayStoreList);
-                            mWorkingDayStoreList.add(mWorkingDayEntity);
-                            continue;
-
-                        }else{
-                            //営業Flagがfalseの場合、休日リストに日付をセット。
-                            shopHolidayList.add(date);
-                            continue;
-                        }
-                    }
-                }
-
-                //毎月指定日//
-                if(mWorkingDayDetailDeff.getDayOfMonth() != null){
-                    //毎月指定日が入力されている場合
-                    if(date.getDayOfMonth() == mWorkingDayDetailDeff.getDayOfMonth()){
-                        //毎月指定日と一致した場合
-                        if(mWorkingDayDetailDeff.getWorkingDayFlg()){
-
-                            //営業Flagがtrueの場合、entityに日付、他のカラムの値をセット。
-                            mWorkingDayEntity.setWorkingDate(date);
-                            setMWorkingDayEntityColumn(mWorkingDayEntity, mWorkingDayDetailDeff, dto.getShopId());
-
-                            //同営業日で時間帯の重複がないかをチェックする。
-                            checkOverlapTimeInterval(mWorkingDayEntity, mWorkingDayStoreList);
-                            mWorkingDayStoreList.add(mWorkingDayEntity);
-                            continue;
-
-                        }else{
-                            //営業Flagがfalseの場合、休日リストに日付をセット。
-                            shopHolidayList.add(date);
-                            continue;
-                        }
-                    }
-                }
-
-                //祝日Flag//
-                if(mWorkingDayDetailDeff.getHolidayFlg()){
-                    //祝日Flagがtrueの場合、祝日マスタの日付と照会する。
-                    OptionalEntity<MHoliday> mHolidayEntity = findHoliday(date);
-
-                    if(mHolidayEntity.isPresent()){
-                        //祝日日と一致した場合
-                        if(mWorkingDayDetailDeff.getWorkingDayFlg()){
-
-                            //営業Flagがtrueの場合、entityに日付、他のカラムの値をセット。
-                            mWorkingDayEntity.setWorkingDate(date);
-                            setMWorkingDayEntityColumn(mWorkingDayEntity, mWorkingDayDetailDeff, dto.getShopId());
-
-                            //同営業日で時間帯の重複がないかをチェックする。
-                            checkOverlapTimeInterval(mWorkingDayEntity, mWorkingDayStoreList);
-                            mWorkingDayStoreList.add(mWorkingDayEntity);
-                            continue;
-
-                        }else{
-                            //営業Flagがfalseの場合、休日リストに日付をセット。
-                            shopHolidayList.add(date);
-                            continue;
-                        }
-                    }
-                }
-
-                //第ｘ週Flag//
-                boolean isExistWorkingday = false;
-
-                for(int i = 0; i < weekFlagList.size(); i++){
-                    if(weekFlagList.get(i)){
-                      //第x週目の指定曜日と一致した場合
-                        checkDayOfWeekInMonth(mWorkingDayDetailDeff, mWorkingDayEntity, date, (i+1), shopHolidayList);
-
-                        if(mWorkingDayEntity.getWorkingDate() != null){
-                            //営業日がセットされている場合、第ｘ週Flagのチェックループを抜ける。
-                            isExistWorkingday =true;
-                            break;
-
-                        }else if(shopHolidayList.contains(date)){
-                          //休日リストに対象日がセットされている場合、第ｘ週Flagのチェックループを抜ける。
-                            break;
-                        }
-                    }
-                }
-
-                if(isExistWorkingday){
-                    //営業日がセットされている場合、entityに日付、他のカラムの値をセット。
-                    mWorkingDayEntity.setWorkingDate(date);
-                    setMWorkingDayEntityColumn(mWorkingDayEntity, mWorkingDayDetailDeff, dto.getShopId());
-
-                    //同営業日で時間帯の重複がないかをチェックする。
+                    //同営業日で時間帯重複チェック.
                     checkOverlapTimeInterval(mWorkingDayEntity, mWorkingDayStoreList);
-                    mWorkingDayStoreList.add(mWorkingDayEntity);
-                    continue;
-
-                }else if(shopHolidayList.contains(date)){
-                    continue;
                 }
 
-                //曜日Flag//
-                if(!weekFlagList.contains(true)){
-                    //第x週目のいずれも設定されていない、かつ、指定曜日と一致した場合
-                    checkDayOfWeekInMonth(mWorkingDayDetailDeff, mWorkingDayEntity, date, 0, shopHolidayList);
-
-                    if(mWorkingDayEntity.getWorkingDate() != null){
-
-                        //営業Flagがtrueの場合、entityに日付、他のカラムの値をセット。
-                        mWorkingDayEntity.setWorkingDate(date);
-                        setMWorkingDayEntityColumn(mWorkingDayEntity, mWorkingDayDetailDeff, dto.getShopId());
-
-                        //同営業日で時間帯の重複がないかをチェックする。
-                        checkOverlapTimeInterval(mWorkingDayEntity, mWorkingDayStoreList);
-                        mWorkingDayStoreList.add(mWorkingDayEntity);
-                        continue;
-
-                    }else if(shopHolidayList.contains(date)){
-                        continue;
-                    }
-                }
+                mWorkingDayStoreList.add(mWorkingDayEntity);
 
             }
         }
@@ -436,6 +324,99 @@ public class WorkshopEditService {
     }
 
 
+    private void createMWorkingDay(MWorkingDayDeffDto dto, List<MWorkingDay> mWorkingDayStoreList,
+            List<LocalDate> shopHolidayList, MWorkingDayDetailDeff mWorkingDayDetailDeff, List<Boolean> weekFlagList,
+            LocalDate date, MWorkingDay mWorkingDayEntity) {
+
+      //指定日//
+        if(mWorkingDayDetailDeff.getSpecifiedDay() != null){
+            //指定日が入力されている場合
+            if(date.isEqual(mWorkingDayDetailDeff.getSpecifiedDay())){
+                //指定日と一致した場合
+                if(mWorkingDayDetailDeff.getWorkingDayFlg()){
+                    //営業Flagがtrueの場合、entityに日付、他のカラムの値をセット。
+                    mWorkingDayEntity.setWorkingDate(date);
+                    return;
+
+                }else{
+                    //営業Flagがfalseの場合、休日リストに日付をセット。
+                    shopHolidayList.add(date);
+                    return;
+                }
+            }
+        }
+
+        //毎月指定日//
+        if(mWorkingDayDetailDeff.getDayOfMonth() != null){
+            //毎月指定日が入力されている場合
+            if(date.getDayOfMonth() == mWorkingDayDetailDeff.getDayOfMonth()){
+                //毎月指定日と一致した場合
+                if(mWorkingDayDetailDeff.getWorkingDayFlg()){
+                    //営業Flagがtrueの場合、entityに日付、他のカラムの値をセット。
+                    mWorkingDayEntity.setWorkingDate(date);
+                    return;
+
+                }else{
+                    //営業Flagがfalseの場合、休日リストに日付をセット。
+                    shopHolidayList.add(date);
+                    return;
+                }
+            }
+        }
+
+        //祝日Flag//
+        if(mWorkingDayDetailDeff.getHolidayFlg()){
+            //祝日Flagがtrueの場合、祝日マスタの日付と照会する。
+            OptionalEntity<MHoliday> mHolidayEntity = findHoliday(date);
+
+            if(mHolidayEntity.isPresent()){
+                //祝日日と一致した場合
+                if(mWorkingDayDetailDeff.getWorkingDayFlg()){
+                    //営業Flagがtrueの場合、entityに日付、他のカラムの値をセット。
+                    mWorkingDayEntity.setWorkingDate(date);
+                    return;
+
+                }else{
+                    //営業Flagがfalseの場合、休日リストに日付をセット。
+                    shopHolidayList.add(date);
+                    return;
+                }
+            }
+        }
+
+        //第ｘ週Flag//
+        for(int i = 0; i < weekFlagList.size(); i++){
+            if(weekFlagList.get(i)){
+              //第x週目の指定曜日と一致した場合
+                checkDayOfWeekInMonth(mWorkingDayDetailDeff, mWorkingDayEntity, date, (i+1), shopHolidayList);
+
+                if(mWorkingDayEntity.getWorkingDate() != null){
+                    //営業日がセットされている場合、第ｘ週Flagのチェックループを抜ける。
+                    return;
+
+                }else if(shopHolidayList.contains(date)){
+                  //休日リストに対象日がセットされている場合、第ｘ週Flagのチェックループを抜ける。
+                    return;
+                }
+            }
+        }
+
+        //曜日Flag//
+        if(!weekFlagList.contains(true)){
+            //第x週目のいずれも設定されていない、かつ、指定曜日と一致した場合
+            checkDayOfWeekInMonth(mWorkingDayDetailDeff, mWorkingDayEntity, date, 0, shopHolidayList);
+
+            if(mWorkingDayEntity.getWorkingDate() != null){
+
+                //営業Flagがtrueの場合、entityに日付、他のカラムの値をセット。
+                mWorkingDayEntity.setWorkingDate(date);
+                return;
+
+            }else if(shopHolidayList.contains(date)){
+                return;
+            }
+        }
+    }
 
     /**
      * 第x週目の指定曜日と一致すれば、entityにdateをセットする。
@@ -553,21 +534,6 @@ public class WorkshopEditService {
                 }
             }
         }
-    }
-
-    /**
-     * MWorkingDayEntityに日付以外のカラムの値をセットする。
-     *
-     * @param mWorkingDayEntity mWorkingDayEntity
-     * @param mWorkingDayDetailDeff mWorkingDayDetailDeffEntity
-     * @param shopId ショップID
-     */
-    private void setMWorkingDayEntityColumn(MWorkingDay mWorkingDayEntity, MWorkingDayDetailDeff mWorkingDayDetailDeff, Integer shopId){
-        Integer workingDayId = mWorkingDayBhv.selectNextVal();
-        mWorkingDayEntity.setWorkingDayId(workingDayId);
-        mWorkingDayEntity.setShopId(shopId);
-        mWorkingDayEntity.setStartTime(mWorkingDayDetailDeff.getStartTime());
-        mWorkingDayEntity.setEndTime(mWorkingDayDetailDeff.getEndTime());
     }
 
     /**

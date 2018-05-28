@@ -96,30 +96,72 @@ file="/WEB-INF/fragment/taglib-includes.jspf"%>
 									    <td><c:out value="${status.count}"/></td>
 									    <td><form:checkbox path="effectiveFlag[${status.index}]" class="form-control th-checkbox-s-size" value="1" /></td>
 									    <td>
-									    <form:checkbox path="workingDayFlg[${status.index}]" class="form-control th-checkbox-s-size" value="1" onclick="switchDisabled(this,'workingDayFlg',${status.index})"/>
+									    	<form:checkbox path="workingDayFlg[${status.index}]" class="form-control th-checkbox-s-size" value="1"
+									    		 onclick="switchDisabled(this,'workingDayFlg',${status.index})"/>
 									    </td>
-									    <td><form:checkbox path="week1Flag[${status.index}]" class="form-control" value="1" /></td>
-									    <td><form:checkbox path="week2Flag[${status.index}]" class="form-control" value="1" /></td>
-									    <td><form:checkbox path="week3Flag[${status.index}]" class="form-control" value="1" /></td>
-									    <td><form:checkbox path="week4Flag[${status.index}]" class="form-control" value="1" /></td>
-									    <td><form:checkbox path="week5Flag[${status.index}]" class="form-control" value="1" /></td>
-									    <td><form:checkbox path="monFlg[${status.index}]" class="form-control" value="1" /></td>
-									    <td><form:checkbox path="tueFlg[${status.index}]" class="form-control" value="1" /></td>
-									    <td><form:checkbox path="webFlg[${status.index}]" class="form-control" value="1" /></td>
-									    <td><form:checkbox path="thuFlg[${status.index}]" class="form-control" value="1" /></td>
-									    <td><form:checkbox path="friFlg[${status.index}]" class="form-control" value="1" /></td>
-									    <td><form:checkbox path="satFlg[${status.index}]" class="form-control" value="1" /></td>
-									    <td><form:checkbox path="sunFlg[${status.index}]" class="form-control" value="1" /></td>
-									    <td><form:checkbox path="holidayFlg[${status.index}]" class="form-control" value="1" /></td>
+									    <td>
+									    	<form:checkbox path="week1Flag[${status.index}]" class="form-control" value="1"
+									    		onclick="switchDisabled(this,'weekFlag',${status.index})"/>
+									    	</td>
+									    <td>
+									    	<form:checkbox path="week2Flag[${status.index}]" class="form-control" value="1"
+									    		onclick="switchDisabled(this,'weekFlag',${status.index})"/>
+									    </td>
+									    <td>
+									    	<form:checkbox path="week3Flag[${status.index}]" class="form-control" value="1"
+									    		onclick="switchDisabled(this,'weekFlag',${status.index})"/>
+									    </td>
+									    <td>
+									    	<form:checkbox path="week4Flag[${status.index}]" class="form-control" value="1"
+									    		onclick="switchDisabled(this,'weekFlag',${status.index})" />
+									    </td>
+									    <td>
+									    	<form:checkbox path="week5Flag[${status.index}]" class="form-control" value="1"
+									    		onclick="switchDisabled(this,'weekFlag',${status.index})"/>
+									    </td>
+									    <td>
+									    	<form:checkbox path="monFlg[${status.index}]" class="form-control" value="1"
+									    		onclick="switchDisabled(this,'dayOfWeekFlag',${status.index})"/>
+									    </td>
+									    <td>
+									    	<form:checkbox path="tueFlg[${status.index}]" class="form-control" value="1"
+									    		onclick="switchDisabled(this,'dayOfWeekFlag',${status.index})"/>
+									    </td>
+									    <td>
+									    	<form:checkbox path="webFlg[${status.index}]" class="form-control" value="1"
+									    		onclick="switchDisabled(this,'dayOfWeekFlag',${status.index})"/>
+									    </td>
+									    <td>
+									    	<form:checkbox path="thuFlg[${status.index}]" class="form-control" value="1"
+									    		onclick="switchDisabled(this,'dayOfWeekFlag',${status.index})"/>
+									    </td>
+									    <td>
+									    	<form:checkbox path="friFlg[${status.index}]" class="form-control" value="1"
+									    		onclick="switchDisabled(this,'dayOfWeekFlag',${status.index})"/>
+									    </td>
+									    <td>
+									    	<form:checkbox path="satFlg[${status.index}]" class="form-control" value="1"
+									    		onclick="switchDisabled(this,'dayOfWeekFlag',${status.index})"/>
+									    </td>
+									    <td>
+									    	<form:checkbox path="sunFlg[${status.index}]" class="form-control" value="1"
+									    		onclick="switchDisabled(this,'dayOfWeekFlag',${status.index})"/>
+									    </td>
+									    <td>
+									    	<form:checkbox path="holidayFlg[${status.index}]" class="form-control" value="1"
+									    		onclick="switchDisabled(this,'dayOfWeekFlag',${status.index})"/>
+									    </td>
 									    <td>
 									    	<div class="<ext:isErrors path='dayOfMonth[${status.index}]' value='has-error'/> ">
-									    		<form:select path="dayOfMonth[${status.index}]" class="form-control" items="${dateList}" itemLabel="label" itemValue="value" />
+									    		<form:select path="dayOfMonth[${status.index}]" class="form-control" items="${dateList}" itemLabel="label" itemValue="value"
+									    			onChange="switchDisabled2(this,'dayOfMonth',${status.index})"/>
 									    	</div>
 									    </td>
 									    <td>日</td>
 										<td>
 											<div class="input-group date date-ymd <ext:isErrors path='specifiedDay[${status.index}]' value='has-error'/>">
-												<form:input class="form-control" path="specifiedDay[${status.index}]" placeholder="yyyy/MM/dd"/>
+												<form:input class="form-control" path="specifiedDay[${status.index}]" placeholder="yyyy/MM/dd"
+													onclick="switchDisabled2(this,'dayOfWeekFlag',${status.index})"/>
 												<div class="input-group-addon">
 													<i class='glyphicon glyphicon-calendar'></i>
 												</div>
@@ -128,7 +170,7 @@ file="/WEB-INF/fragment/taglib-includes.jspf"%>
 
 										<td>
 											<div class="input-group clockpicker <ext:isErrors path='startTime[${status.index}]' value='has-error'/>">
-												<form:input path="startTime[${status.index}]" class="form-control" placeholder="HH:mm" disabled=""/>
+												<form:input path="startTime[${status.index}]" class="form-control" placeholder="HH:mm"/>
 												<div class="input-group-addon">
 													<i class='glyphicon glyphicon-time'></i>
 												</div>
@@ -137,15 +179,12 @@ file="/WEB-INF/fragment/taglib-includes.jspf"%>
 
 										<td>
 											<div class="input-group clockpicker <ext:isErrors path='endTime[${status.index}]' value='has-error'/>">
-												<form:input path="endTime[${status.index}]" class="form-control" placeholder="HH:mm"  disabled=""/>
+												<form:input path="endTime[${status.index}]" class="form-control" placeholder="HH:mm"/>
 												<div class="input-group-addon">
 													<i class='glyphicon glyphicon-time'></i>
 												</div>
 											</div>
 										</td>
-										<%-- <td><form:input path="specifiedDay[${status.index}]" class="form-control" placeholder="yyyy/MM/dd"/></td> --%>
-									    <%-- <td><form:input path="startTime[${status.index}]" class="form-control" placeholder="HH:mm"/></td> --%>
-									    <%-- <td><form:input path="endTime[${status.index}]" class="form-control" placeholder="HH:mm"/></td> --%>
 									    <td><form:input path="remarks[${status.index}]" class="form-control"/></td>
 									  <tr>
 									  </c:forEach>
@@ -180,42 +219,85 @@ file="/WEB-INF/fragment/taglib-includes.jspf"%>
 	<jsp:include page="../common/footer.jsp" />
 
 	<script type="text/javascript">
+
     function switchDisabled(obj, name, i) {
-    	 var form=document.form;
-        if(form.elements[name+i].checked==true) {
-            /*
-                チェックボックスが選択されている場合は、
-                テキストボックスを有効化（false）
-            */
-        	form.elements["startTime"+i].disabled=false;
-            form.elements["endTime"+i].disabled=false;
+    	var form=document.form;
+        if(obj.checked) {
+        	if(name=='workingDayFlg'){
+        		/* 有効化（false） */
+        		form.elements["startTime"+i].disabled=false;
+            	form.elements["endTime"+i].disabled=false;
+        	}
+
+        	if(name=='weekFlag' || name=='dayOfWeekFlag'){
+        		/* テキストボックスの入力値をクリア */
+        		form.elements["dayOfMonth"+i].value="";
+        		form.elements["specifiedDay"+i].value="";
+
+        		 /* 無効化（true） */
+        		form.elements["dayOfMonth"+i].disabled=true;
+            	form.elements["specifiedDay"+i].disabled=true;
+        	}
+
         } else {
-                /* 無効化する前に、入力値をクリア */
-                if(name=='workingDayFlg'){
-                    /* テキストボックスの場合 */
-                    form.elements["startTime"+i].value="";
-                    form.elements["endTime"+i].value="";
-                    /* チェックボックスの場合 */
-                   /*  frm.elements[name+i].checked=false; */
-                }
+        	if(name=='workingDayFlg'){
+        		/* テキストボックスの入力値をクリア */
+        		form.elements["startTime"+i].value="";
+        		form.elements["endTime"+i].value="";
+
                 /* 無効化（true） */
                 form.elements["startTime"+i].disabled=true;
                 form.elements["endTime"+i].disabled=true;
-        }
-    }
-</script>
+            }
 
-<%-- <form name="form2" action="#">
-    <label for="chk1"><input type="checkbox" id="chk1" name="chk1" value="1" onclick="fchk2(this,'t')" checked="checked" />テキストボックスの無効化・有効化を切替（チェックを外すと無効化）</label><br>
-    <input type="text" name="t1" value="テキストA" size="20" />
-    <input type="text" name="t2" value="テキストB" size="20" />
-    <input type="text" name="t3" value="テキストC" size="20" />
-    <hr />
-    <label for="chk2"><input type="checkbox" id="chk2" name="chk2" value="1" onclick="fchk2(this,'c')" checked="checked" />チェックボックスの無効化・有効化を切替（チェックを外すと無効化）</label><br>
-    <input type="checkbox" name="c1" value="1" />選択肢A<br>
-    <input type="checkbox" name="c2" value="1" />選択肢B<br>
-    <input type="checkbox" name="c3" value="1" />選択肢C
-</form> --%>
+        	if(name=='weekFlag' || name=='dayOfWeekFlag'){
+        		/* 有効化（false） */
+        		form.elements["dayOfMonth"+i].disabled=false;
+        		form.elements["specifiedDay"+i].disabled=false;
+           	}
+        }
+    };
+
+    function switchDisabled2(obj, name, i) {
+    	var form=document.form;
+    	 if(obj.value != null) {
+    		 if(name=='dayOfMonth'){
+        		/* チェックボックスの入力値をクリア */
+        		form.elements["monFlg"+i].checked=false;
+        		form.elements["tueFlg"+i].checked=false;
+        		form.elements["webFlg"+i].checked=false;
+        		form.elements["thuFlg"+i].checked=false;
+        		form.elements["friFlg"+i].checked=false;
+        		form.elements["satFlg"+i].checked=false;
+        		form.elements["sunFlg"+i].checked=false;
+        		form.elements["holidayFlg"+i].checked=false;
+
+        		/* 無効化（true） */
+        		form.elements["monFlg"+i].disabled=true;
+            	form.elements["tueFlg"+i].disabled=true;
+        		form.elements["webFlg"+i].disabled=true;
+        		form.elements["thuFlg"+i].disabled=true;
+        		form.elements["friFlg"+i].disabled=true;
+        		form.elements["satFlg"+i].disabled=true;
+        		form.elements["sunFlg"+i].disabled=true;
+        		form.elements["holidayFlg"+i].disabled=true;
+        	}
+
+        } else {
+        	 if(name=='dayOfMonth'){
+        		/* 有効化（false） */
+        		form.elements["monFlg"+i].disabled=false;
+            	form.elements["tueFlg"+i].disabled=false;
+        		form.elements["webFlg"+i].disabled=false;
+        		form.elements["thuFlg"+i].disabled=false;
+        		form.elements["friFlg"+i].disabled=false;
+        		form.elements["satFlg"+i].disabled=false;
+        		form.elements["sunFlg"+i].disabled=false;
+        		form.elements["holidayFlg"+i].disabled=false;
+        	 }
+    	}
+    };
+	</script>
 
 </body>
 </html>

@@ -17,8 +17,8 @@
 map:{
     ; driver   = org.postgresql.Driver
     #; url      = jdbc:postgresql://192.168.0.18:5432/postgres?currentSchema=ishigouoka_k
-    ; url      = jdbc:postgresql://localhost:5432/postgres?currentSchema=sato_kana
-    ; schema   = sato_kana
+    ; url      = jdbc:postgresql://localhost:5432/postgres?currentSchema=hora
+    ; schema   = hora
     ; user     = postgres
     ; password = postgres
 
