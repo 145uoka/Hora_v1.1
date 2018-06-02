@@ -26,7 +26,7 @@ import com.olympus.hora.dbflute.cbean.*;
  *     shift_id
  *
  * [column]
- *     shift_id, working_day_id, staff_id, start_time, end_time, delete_flag, register_datetime, update_datetime
+ *     shift_id, working_staff_id, working_day_id, start_time, end_time, delete_flag, version_no, register_datetime, update_datetime
  *
  * [sequence]
  *     t_shift_shift_id_seq
@@ -35,16 +35,16 @@ import com.olympus.hora.dbflute.cbean.*;
  *     
  *
  * [version-no]
- *     
+ *     version_no
  *
  * [foreign table]
- *     m_staff, m_working_day
+ *     m_working_day, m_working_staff
  *
  * [referrer table]
  *     
  *
  * [foreign property]
- *     mStaff, mWorkingDay
+ *     mWorkingDay, mWorkingStaff
  *
  * [referrer property]
  *     
@@ -380,20 +380,20 @@ public abstract class BsTShiftBhv extends AbstractBehaviorWritable<TShift, TShif
     //                                                                   Pull out Relation
     //                                                                   =================
     /**
-     * Pull out the list of foreign table 'MStaff'.
-     * @param tShiftList The list of tShift. (NotNull, EmptyAllowed)
-     * @return The list of foreign table. (NotNull, EmptyAllowed, NotNullElement)
-     */
-    public List<MStaff> pulloutMStaff(List<TShift> tShiftList)
-    { return helpPulloutInternally(tShiftList, "mStaff"); }
-
-    /**
      * Pull out the list of foreign table 'MWorkingDay'.
      * @param tShiftList The list of tShift. (NotNull, EmptyAllowed)
      * @return The list of foreign table. (NotNull, EmptyAllowed, NotNullElement)
      */
     public List<MWorkingDay> pulloutMWorkingDay(List<TShift> tShiftList)
     { return helpPulloutInternally(tShiftList, "mWorkingDay"); }
+
+    /**
+     * Pull out the list of foreign table 'MWorkingStaff'.
+     * @param tShiftList The list of tShift. (NotNull, EmptyAllowed)
+     * @return The list of foreign table. (NotNull, EmptyAllowed, NotNullElement)
+     */
+    public List<MWorkingStaff> pulloutMWorkingStaff(List<TShift> tShiftList)
+    { return helpPulloutInternally(tShiftList, "mWorkingStaff"); }
 
     // ===================================================================================
     //                                                                      Extract Column
@@ -431,7 +431,7 @@ public abstract class BsTShiftBhv extends AbstractBehaviorWritable<TShift, TShif
     }
 
     /**
-     * Update the entity modified-only. (ZeroUpdateException, NonExclusiveControl) <br>
+     * Update the entity modified-only. (ZeroUpdateException, ExclusiveControl) <br>
      * By PK as default, and also you can update by unique keys using entity's uniqueOf().
      * <pre>
      * TShift tShift = <span style="color: #70226C">new</span> TShift();
@@ -444,8 +444,8 @@ public abstract class BsTShiftBhv extends AbstractBehaviorWritable<TShift, TShif
      * tShift.<span style="color: #CC4747">setVersionNo</span>(value);
      * <span style="color: #0000C0">tShiftBhv</span>.<span style="color: #CC4747">update</span>(tShift);
      * </pre>
-     * @param tShift The entity of update. (NotNull, PrimaryKeyNotNull)
-     * @throws EntityAlreadyDeletedException When the entity has already been deleted. (not found)
+     * @param tShift The entity of update. (NotNull, PrimaryKeyNotNull, ConcurrencyColumnNotNull)
+     * @throws EntityAlreadyUpdatedException When the entity has already been updated.
      * @throws EntityDuplicatedException When the entity has been duplicated.
      * @throws EntityAlreadyExistsException When the entity already exists. (unique constraint violation)
      */
@@ -454,11 +454,35 @@ public abstract class BsTShiftBhv extends AbstractBehaviorWritable<TShift, TShif
     }
 
     /**
-     * Insert or update the entity modified-only. (DefaultConstraintsEnabled, NonExclusiveControl) <br>
+     * Update the entity non-strictly modified-only. (ZeroUpdateException, NonExclusiveControl) <br>
+     * By PK as default, and also you can update by unique keys using entity's uniqueOf().
+     * <pre>
+     * TShift tShift = <span style="color: #70226C">new</span> TShift();
+     * tShift.setPK...(value); <span style="color: #3F7E5E">// required</span>
+     * tShift.setFoo...(value); <span style="color: #3F7E5E">// you should set only modified columns</span>
+     * <span style="color: #3F7E5E">// you don't need to set values of common columns</span>
+     * <span style="color: #3F7E5E">//tShift.setRegisterUser(value);</span>
+     * <span style="color: #3F7E5E">//tShift.set...;</span>
+     * <span style="color: #3F7E5E">// you don't need to set a value of concurrency column</span>
+     * <span style="color: #3F7E5E">// (auto-increment for version number is valid though non-exclusive control)</span>
+     * <span style="color: #3F7E5E">//tShift.setVersionNo(value);</span>
+     * <span style="color: #0000C0">tShiftBhv</span>.<span style="color: #CC4747">updateNonstrict</span>(tShift);
+     * </pre>
+     * @param tShift The entity of update. (NotNull, PrimaryKeyNotNull)
+     * @throws EntityAlreadyDeletedException When the entity has already been deleted. (not found)
+     * @throws EntityDuplicatedException When the entity has been duplicated.
+     * @throws EntityAlreadyExistsException When the entity already exists. (unique constraint violation)
+     */
+    public void updateNonstrict(TShift tShift) {
+        doUpdateNonstrict(tShift, null);
+    }
+
+    /**
+     * Insert or update the entity modified-only. (DefaultConstraintsEnabled, ExclusiveControl) <br>
      * if (the entity has no PK) { insert() } else { update(), but no data, insert() } <br>
      * <p><span style="color: #994747; font-size: 120%">Also you can update by unique keys using entity's uniqueOf().</span></p>
      * @param tShift The entity of insert or update. (NotNull, ...depends on insert or update)
-     * @throws EntityAlreadyDeletedException When the entity has already been deleted. (not found)
+     * @throws EntityAlreadyUpdatedException When the entity has already been updated.
      * @throws EntityDuplicatedException When the entity has been duplicated.
      * @throws EntityAlreadyExistsException When the entity already exists. (unique constraint violation)
      */
@@ -467,7 +491,20 @@ public abstract class BsTShiftBhv extends AbstractBehaviorWritable<TShift, TShif
     }
 
     /**
-     * Delete the entity. (ZeroUpdateException, NonExclusiveControl) <br>
+     * Insert or update the entity non-strictly modified-only. (DefaultConstraintsEnabled, NonExclusiveControl) <br>
+     * if (the entity has no PK) { insert() } else { update(), but no data, insert() }
+     * <p><span style="color: #994747; font-size: 120%">Also you can update by unique keys using entity's uniqueOf().</span></p>
+     * @param tShift The entity of insert or update. (NotNull, ...depends on insert or update)
+     * @throws EntityAlreadyDeletedException When the entity has already been deleted. (not found)
+     * @throws EntityDuplicatedException When the entity has been duplicated.
+     * @throws EntityAlreadyExistsException When the entity already exists. (unique constraint violation)
+     */
+    public void insertOrUpdateNonstrict(TShift tShift) {
+        doInsertOrUpdateNonstrict(tShift, null, null);
+    }
+
+    /**
+     * Delete the entity. (ZeroUpdateException, ExclusiveControl) <br>
      * By PK as default, and also you can delete by unique keys using entity's uniqueOf().
      * <pre>
      * TShift tShift = <span style="color: #70226C">new</span> TShift();
@@ -480,12 +517,31 @@ public abstract class BsTShiftBhv extends AbstractBehaviorWritable<TShift, TShif
      *     ...
      * }
      * </pre>
-     * @param tShift The entity of delete. (NotNull, PrimaryKeyNotNull)
-     * @throws EntityAlreadyDeletedException When the entity has already been deleted. (not found)
+     * @param tShift The entity of delete. (NotNull, PrimaryKeyNotNull, ConcurrencyColumnNotNull)
+     * @throws EntityAlreadyUpdatedException When the entity has already been updated.
      * @throws EntityDuplicatedException When the entity has been duplicated.
      */
     public void delete(TShift tShift) {
         doDelete(tShift, null);
+    }
+
+    /**
+     * Delete the entity non-strictly. {ZeroUpdateException, NonExclusiveControl} <br>
+     * By PK as default, and also you can delete by unique keys using entity's uniqueOf().
+     * <pre>
+     * TShift tShift = <span style="color: #70226C">new</span> TShift();
+     * tShift.setPK...(value); <span style="color: #3F7E5E">// required</span>
+     * <span style="color: #3F7E5E">// you don't need to set a value of concurrency column</span>
+     * <span style="color: #3F7E5E">// (auto-increment for version number is valid though non-exclusive control)</span>
+     * <span style="color: #3F7E5E">//tShift.setVersionNo(value);</span>
+     * <span style="color: #0000C0">tShiftBhv</span>.<span style="color: #CC4747">deleteNonstrict</span>(tShift);
+     * </pre>
+     * @param tShift The entity of delete. (NotNull, PrimaryKeyNotNull)
+     * @throws EntityAlreadyDeletedException When the entity has already been deleted. (not found)
+     * @throws EntityDuplicatedException When the entity has been duplicated.
+     */
+    public void deleteNonstrict(TShift tShift) {
+        doDeleteNonstrict(tShift, null);
     }
 
     // ===================================================================================
@@ -520,7 +576,7 @@ public abstract class BsTShiftBhv extends AbstractBehaviorWritable<TShift, TShif
     }
 
     /**
-     * Batch-update the entity list modified-only of same-set columns. (NonExclusiveControl) <br>
+     * Batch-update the entity list modified-only of same-set columns. (ExclusiveControl) <br>
      * This method uses executeBatch() of java.sql.PreparedStatement. <br>
      * <span style="color: #CC4747; font-size: 120%">You should specify same-set columns to all entities like this:</span>
      * <pre>
@@ -539,23 +595,62 @@ public abstract class BsTShiftBhv extends AbstractBehaviorWritable<TShift, TShif
      * }
      * <span style="color: #0000C0">tShiftBhv</span>.<span style="color: #CC4747">batchUpdate</span>(tShiftList);
      * </pre>
-     * @param tShiftList The list of the entity. (NotNull, EmptyAllowed, PrimaryKeyNotNull)
+     * @param tShiftList The list of the entity. (NotNull, EmptyAllowed, PrimaryKeyNotNull, ConcurrencyColumnNotNull)
      * @return The array of updated count. (NotNull, EmptyAllowed)
-     * @throws EntityAlreadyDeletedException When the entity has already been deleted. (not found)
+     * @throws BatchEntityAlreadyUpdatedException When the entity has already been updated. This exception extends EntityAlreadyUpdatedException.
      */
     public int[] batchUpdate(List<TShift> tShiftList) {
         return doBatchUpdate(tShiftList, null);
     }
 
     /**
-     * Batch-delete the entity list. (NonExclusiveControl) <br>
+     * Batch-update the entity list non-strictly modified-only of same-set columns. (NonExclusiveControl) <br>
+     * This method uses executeBatch() of java.sql.PreparedStatement. <br>
+     * <span style="color: #CC4747; font-size: 140%">You should specify same-set columns to all entities like this:</span>
+     * <pre>
+     * <span style="color: #70226C">for</span> (... : ...) {
+     *     TShift tShift = <span style="color: #70226C">new</span> TShift();
+     *     tShift.setFooName("foo");
+     *     <span style="color: #70226C">if</span> (...) {
+     *         tShift.setFooPrice(123);
+     *     } <span style="color: #70226C">else</span> {
+     *         tShift.setFooPrice(null); <span style="color: #3F7E5E">// updated as null</span>
+     *         <span style="color: #3F7E5E">//tShift.setFooDate(...); // *not allowed, fragmented</span>
+     *     }
+     *     <span style="color: #3F7E5E">// FOO_NAME and FOO_PRICE (and record meta columns) are updated</span>
+     *     <span style="color: #3F7E5E">// (others are not updated: their values are kept)</span>
+     *     tShiftList.add(tShift);
+     * }
+     * <span style="color: #0000C0">tShiftBhv</span>.<span style="color: #CC4747">batchUpdate</span>(tShiftList);
+     * </pre>
+     * @param tShiftList The list of the entity. (NotNull, EmptyAllowed, PrimaryKeyNotNull)
+     * @return The array of updated count. (NotNull, EmptyAllowed)
+     * @throws EntityAlreadyDeletedException When the entity has already been deleted. (not found)
+     */
+    public int[] batchUpdateNonstrict(List<TShift> tShiftList) {
+        return doBatchUpdateNonstrict(tShiftList, null);
+    }
+
+    /**
+     * Batch-delete the entity list. (ExclusiveControl) <br>
+     * This method uses executeBatch() of java.sql.PreparedStatement.
+     * @param tShiftList The list of the entity. (NotNull, EmptyAllowed, PrimaryKeyNotNull)
+     * @return The array of deleted count. (NotNull, EmptyAllowed)
+     * @throws BatchEntityAlreadyUpdatedException When the entity has already been updated. This exception extends EntityAlreadyUpdatedException.
+     */
+    public int[] batchDelete(List<TShift> tShiftList) {
+        return doBatchDelete(tShiftList, null);
+    }
+
+    /**
+     * Batch-delete the entity list non-strictly. {NonExclusiveControl} <br>
      * This method uses executeBatch() of java.sql.PreparedStatement.
      * @param tShiftList The list of the entity. (NotNull, EmptyAllowed, PrimaryKeyNotNull)
      * @return The array of deleted count. (NotNull, EmptyAllowed)
      * @throws EntityAlreadyDeletedException When the entity has already been deleted. (not found)
      */
-    public int[] batchDelete(List<TShift> tShiftList) {
-        return doBatchDelete(tShiftList, null);
+    public int[] batchDeleteNonstrict(List<TShift> tShiftList) {
+        return doBatchDeleteNonstrict(tShiftList, null);
     }
 
     // ===================================================================================
@@ -662,7 +757,7 @@ public abstract class BsTShiftBhv extends AbstractBehaviorWritable<TShift, TShif
     }
 
     /**
-     * Update the entity with varying requests modified-only. (ZeroUpdateException, NonExclusiveControl) <br>
+     * Update the entity with varying requests modified-only. (ZeroUpdateException, ExclusiveControl) <br>
      * For example, self(selfCalculationSpecification), specify(updateColumnSpecification), disableCommonColumnAutoSetup(). <br>
      * Other specifications are same as update(entity).
      * <pre>
@@ -678,9 +773,9 @@ public abstract class BsTShiftBhv extends AbstractBehaviorWritable<TShift, TShif
      *     }).plus(1); <span style="color: #3F7E5E">// XXX_COUNT = XXX_COUNT + 1</span>
      * });
      * </pre>
-     * @param tShift The entity of update. (NotNull, PrimaryKeyNotNull)
+     * @param tShift The entity of update. (NotNull, PrimaryKeyNotNull, ConcurrencyColumnNotNull)
      * @param opLambda The callback for option of update for varying requests. (NotNull)
-     * @throws EntityAlreadyDeletedException When the entity has already been deleted. (not found)
+     * @throws EntityAlreadyUpdatedException When the entity has already been updated.
      * @throws EntityDuplicatedException When the entity has been duplicated.
      * @throws EntityAlreadyExistsException When the entity already exists. (unique constraint violation)
      */
@@ -689,12 +784,40 @@ public abstract class BsTShiftBhv extends AbstractBehaviorWritable<TShift, TShif
     }
 
     /**
+     * Update the entity with varying requests non-strictly modified-only. (ZeroUpdateException, NonExclusiveControl) <br>
+     * For example, self(selfCalculationSpecification), specify(updateColumnSpecification), disableCommonColumnAutoSetup(). <br>
+     * Other specifications are same as updateNonstrict(entity).
+     * <pre>
+     * <span style="color: #3F7E5E">// ex) you can update by self calculation values</span>
+     * TShift tShift = <span style="color: #70226C">new</span> TShift();
+     * tShift.setPK...(value); <span style="color: #3F7E5E">// required</span>
+     * tShift.setOther...(value); <span style="color: #3F7E5E">// you should set only modified columns</span>
+     * <span style="color: #3F7E5E">// you don't need to set a value of concurrency column</span>
+     * <span style="color: #3F7E5E">// (auto-increment for version number is valid though non-exclusive control)</span>
+     * <span style="color: #3F7E5E">//tShift.setVersionNo(value);</span>
+     * <span style="color: #0000C0">tShiftBhv</span>.<span style="color: #CC4747">varyingUpdateNonstrict</span>(tShift, <span style="color: #553000">op</span> <span style="color: #90226C; font-weight: bold"><span style="font-size: 120%">-</span>&gt;</span> {
+     *     <span style="color: #553000">op</span>.self(<span style="color: #553000">cb</span> <span style="color: #90226C; font-weight: bold"><span style="font-size: 120%">-</span>&gt;</span> {
+     *         <span style="color: #553000">cb</span>.specify().<span style="color: #CC4747">columnXxxCount()</span>;
+     *     }).plus(1); <span style="color: #3F7E5E">// XXX_COUNT = XXX_COUNT + 1</span>
+     * });
+     * </pre>
+     * @param tShift The entity of update. (NotNull, PrimaryKeyNotNull)
+     * @param opLambda The callback for option of update for varying requests. (NotNull)
+     * @throws EntityAlreadyDeletedException When the entity has already been deleted. (not found)
+     * @throws EntityDuplicatedException When the entity has been duplicated.
+     * @throws EntityAlreadyExistsException When the entity already exists. (unique constraint violation)
+     */
+    public void varyingUpdateNonstrict(TShift tShift, WritableOptionCall<TShiftCB, UpdateOption<TShiftCB>> opLambda) {
+        doUpdateNonstrict(tShift, createUpdateOption(opLambda));
+    }
+
+    /**
      * Insert or update the entity with varying requests. (ExclusiveControl: when update) <br>
      * Other specifications are same as insertOrUpdate(entity).
      * @param tShift The entity of insert or update. (NotNull)
      * @param insertOpLambda The callback for option of insert for varying requests. (NotNull)
      * @param updateOpLambda The callback for option of update for varying requests. (NotNull)
-     * @throws EntityAlreadyDeletedException When the entity has already been deleted. (not found)
+     * @throws EntityAlreadyUpdatedException When the entity has already been updated.
      * @throws EntityDuplicatedException When the entity has been duplicated.
      * @throws EntityAlreadyExistsException When the entity already exists. (unique constraint violation)
      */
@@ -703,16 +826,43 @@ public abstract class BsTShiftBhv extends AbstractBehaviorWritable<TShift, TShif
     }
 
     /**
-     * Delete the entity with varying requests. (ZeroUpdateException, NonExclusiveControl) <br>
+     * Insert or update the entity with varying requests non-strictly. (NonExclusiveControl: when update) <br>
+     * Other specifications are same as insertOrUpdateNonstrict(entity).
+     * @param tShift The entity of insert or update. (NotNull)
+     * @param insertOpLambda The callback for option of insert for varying requests. (NotNull)
+     * @param updateOpLambda The callback for option of update for varying requests. (NotNull)
+     * @throws EntityAlreadyDeletedException When the entity has already been deleted. (not found)
+     * @throws EntityDuplicatedException When the entity has been duplicated.
+     * @throws EntityAlreadyExistsException When the entity already exists. (unique constraint violation)
+     */
+    public void varyingInsertOrUpdateNonstrict(TShift tShift, WritableOptionCall<TShiftCB, InsertOption<TShiftCB>> insertOpLambda, WritableOptionCall<TShiftCB, UpdateOption<TShiftCB>> updateOpLambda) {
+        doInsertOrUpdateNonstrict(tShift, createInsertOption(insertOpLambda), createUpdateOption(updateOpLambda));
+    }
+
+    /**
+     * Delete the entity with varying requests. (ZeroUpdateException, ExclusiveControl) <br>
      * Now a valid option does not exist. <br>
      * Other specifications are same as delete(entity).
+     * @param tShift The entity of delete. (NotNull, PrimaryKeyNotNull, ConcurrencyColumnNotNull)
+     * @param opLambda The callback for option of delete for varying requests. (NotNull)
+     * @throws EntityAlreadyUpdatedException When the entity has already been updated.
+     * @throws EntityDuplicatedException When the entity has been duplicated.
+     */
+    public void varyingDelete(TShift tShift, WritableOptionCall<TShiftCB, DeleteOption<TShiftCB>> opLambda) {
+        doDelete(tShift, createDeleteOption(opLambda));
+    }
+
+    /**
+     * Delete the entity with varying requests non-strictly. (ZeroUpdateException, NonExclusiveControl) <br>
+     * Now a valid option does not exist. <br>
+     * Other specifications are same as deleteNonstrict(entity).
      * @param tShift The entity of delete. (NotNull, PrimaryKeyNotNull, ConcurrencyColumnNotNull)
      * @param opLambda The callback for option of delete for varying requests. (NotNull)
      * @throws EntityAlreadyDeletedException When the entity has already been deleted. (not found)
      * @throws EntityDuplicatedException When the entity has been duplicated.
      */
-    public void varyingDelete(TShift tShift, WritableOptionCall<TShiftCB, DeleteOption<TShiftCB>> opLambda) {
-        doDelete(tShift, createDeleteOption(opLambda));
+    public void varyingDeleteNonstrict(TShift tShift, WritableOptionCall<TShiftCB, DeleteOption<TShiftCB>> opLambda) {
+        doDeleteNonstrict(tShift, createDeleteOption(opLambda));
     }
 
     // -----------------------------------------------------
@@ -745,6 +895,19 @@ public abstract class BsTShiftBhv extends AbstractBehaviorWritable<TShift, TShif
     }
 
     /**
+     * Batch-update the list with varying requests non-strictly. <br>
+     * For example, self(selfCalculationSpecification), specify(updateColumnSpecification)
+     * , disableCommonColumnAutoSetup(), limitBatchUpdateLogging(). <br>
+     * Other specifications are same as batchUpdateNonstrict(entityList).
+     * @param tShiftList The list of the entity. (NotNull, EmptyAllowed, PrimaryKeyNotNull)
+     * @param opLambda The callback for option of update for varying requests. (NotNull)
+     * @return The array of updated count. (NotNull, EmptyAllowed)
+     */
+    public int[] varyingBatchUpdateNonstrict(List<TShift> tShiftList, WritableOptionCall<TShiftCB, UpdateOption<TShiftCB>> opLambda) {
+        return doBatchUpdateNonstrict(tShiftList, createUpdateOption(opLambda));
+    }
+
+    /**
      * Batch-delete the list with varying requests. <br>
      * For example, limitBatchDeleteLogging(). <br>
      * Other specifications are same as batchDelete(entityList).
@@ -754,6 +917,18 @@ public abstract class BsTShiftBhv extends AbstractBehaviorWritable<TShift, TShif
      */
     public int[] varyingBatchDelete(List<TShift> tShiftList, WritableOptionCall<TShiftCB, DeleteOption<TShiftCB>> opLambda) {
         return doBatchDelete(tShiftList, createDeleteOption(opLambda));
+    }
+
+    /**
+     * Batch-delete the list with varying requests non-strictly. <br>
+     * For example, limitBatchDeleteLogging(). <br>
+     * Other specifications are same as batchDeleteNonstrict(entityList).
+     * @param tShiftList The list of the entity. (NotNull, EmptyAllowed, PrimaryKeyNotNull)
+     * @param opLambda The callback for option of delete for varying requests. (NotNull)
+     * @return The array of deleted count. (NotNull, EmptyAllowed)
+     */
+    public int[] varyingBatchDeleteNonstrict(List<TShift> tShiftList, WritableOptionCall<TShiftCB, DeleteOption<TShiftCB>> opLambda) {
+        return doBatchDeleteNonstrict(tShiftList, createDeleteOption(opLambda));
     }
 
     // -----------------------------------------------------
@@ -857,6 +1032,12 @@ public abstract class BsTShiftBhv extends AbstractBehaviorWritable<TShift, TShif
     public OutsideSqlAllFacadeExecutor<TShiftBhv> outsideSql() {
         return doOutsideSql();
     }
+
+    // ===================================================================================
+    //                                                                Optimistic Lock Info
+    //                                                                ====================
+    @Override
+    protected boolean hasVersionNoValue(Entity et) { return downcast(et).getVersionNo() != null; }
 
     // ===================================================================================
     //                                                                         Type Helper

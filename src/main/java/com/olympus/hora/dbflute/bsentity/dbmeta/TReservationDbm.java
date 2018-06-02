@@ -45,18 +45,19 @@ public class TReservationDbm extends AbstractDBMeta {
     protected void xsetupEpg() {
         setupEpg(_epgMap, et -> ((TReservation)et).getReservationId(), (et, vl) -> ((TReservation)et).setReservationId(ctl(vl)), "reservationId");
         setupEpg(_epgMap, et -> ((TReservation)et).getShopId(), (et, vl) -> ((TReservation)et).setShopId(cti(vl)), "shopId");
-        setupEpg(_epgMap, et -> ((TReservation)et).getStaffId(), (et, vl) -> ((TReservation)et).setStaffId(cti(vl)), "staffId");
+        setupEpg(_epgMap, et -> ((TReservation)et).getWorkingStaffId(), (et, vl) -> ((TReservation)et).setWorkingStaffId(cti(vl)), "workingStaffId");
+        setupEpg(_epgMap, et -> ((TReservation)et).getUserId(), (et, vl) -> ((TReservation)et).setUserId(cti(vl)), "userId");
         setupEpg(_epgMap, et -> ((TReservation)et).getHistStaffFamilyName(), (et, vl) -> ((TReservation)et).setHistStaffFamilyName((String)vl), "histStaffFamilyName");
         setupEpg(_epgMap, et -> ((TReservation)et).getHistShopName(), (et, vl) -> ((TReservation)et).setHistShopName((String)vl), "histShopName");
         setupEpg(_epgMap, et -> ((TReservation)et).getHistShopAbbreviatedName(), (et, vl) -> ((TReservation)et).setHistShopAbbreviatedName((String)vl), "histShopAbbreviatedName");
         setupEpg(_epgMap, et -> ((TReservation)et).getHistStaffGivenName(), (et, vl) -> ((TReservation)et).setHistStaffGivenName((String)vl), "histStaffGivenName");
         setupEpg(_epgMap, et -> ((TReservation)et).getReservationDate(), (et, vl) -> ((TReservation)et).setReservationDate(ctld(vl)), "reservationDate");
         setupEpg(_epgMap, et -> ((TReservation)et).getReservationTime(), (et, vl) -> ((TReservation)et).setReservationTime(ctlt(vl)), "reservationTime");
-        setupEpg(_epgMap, et -> ((TReservation)et).getUserId(), (et, vl) -> ((TReservation)et).setUserId(cti(vl)), "userId");
         setupEpg(_epgMap, et -> ((TReservation)et).getTotalAmount(), (et, vl) -> ((TReservation)et).setTotalAmount(cti(vl)), "totalAmount");
         setupEpg(_epgMap, et -> ((TReservation)et).getRemarks(), (et, vl) -> ((TReservation)et).setRemarks((String)vl), "remarks");
         setupEpg(_epgMap, et -> ((TReservation)et).getStatus(), (et, vl) -> ((TReservation)et).setStatus(cti(vl)), "status");
         setupEpg(_epgMap, et -> ((TReservation)et).getDeleteFlag(), (et, vl) -> ((TReservation)et).setDeleteFlag((Boolean)vl), "deleteFlag");
+        setupEpg(_epgMap, et -> ((TReservation)et).getVersionNo(), (et, vl) -> ((TReservation)et).setVersionNo(cti(vl)), "versionNo");
         setupEpg(_epgMap, et -> ((TReservation)et).getRegisterDatetime(), (et, vl) -> ((TReservation)et).setRegisterDatetime(ctldt(vl)), "registerDatetime");
         setupEpg(_epgMap, et -> ((TReservation)et).getUpdateDatetime(), (et, vl) -> ((TReservation)et).setUpdateDatetime(ctldt(vl)), "updateDatetime");
     }
@@ -71,8 +72,8 @@ public class TReservationDbm extends AbstractDBMeta {
     @SuppressWarnings("unchecked")
     protected void xsetupEfpg() {
         setupEfpg(_efpgMap, et -> ((TReservation)et).getMShop(), (et, vl) -> ((TReservation)et).setMShop((OptionalEntity<MShop>)vl), "MShop");
-        setupEfpg(_efpgMap, et -> ((TReservation)et).getMStaff(), (et, vl) -> ((TReservation)et).setMStaff((OptionalEntity<MStaff>)vl), "MStaff");
         setupEfpg(_efpgMap, et -> ((TReservation)et).getMUser(), (et, vl) -> ((TReservation)et).setMUser((OptionalEntity<MUser>)vl), "MUser");
+        setupEfpg(_efpgMap, et -> ((TReservation)et).getMWorkingStaff(), (et, vl) -> ((TReservation)et).setMWorkingStaff((OptionalEntity<MWorkingStaff>)vl), "MWorkingStaff");
     }
     public PropertyGateway findForeignPropertyGateway(String prop)
     { return doFindEfpg(_efpgMap, prop); }
@@ -95,18 +96,19 @@ public class TReservationDbm extends AbstractDBMeta {
     //                                                                         ===========
     protected final ColumnInfo _columnReservationId = cci("reservation_id", "reservation_id", null, null, Long.class, "reservationId", null, true, true, true, "bigserial", 19, 0, null, "nextval('t_reservation_reservation_id_seq'::regclass)", false, null, null, null, "TReservationDetailList", null, false);
     protected final ColumnInfo _columnShopId = cci("shop_id", "shop_id", null, null, Integer.class, "shopId", null, false, false, false, "int4", 10, 0, null, null, false, null, null, "MShop", null, null, false);
-    protected final ColumnInfo _columnStaffId = cci("staff_id", "staff_id", null, null, Integer.class, "staffId", null, false, false, true, "int4", 10, 0, null, null, false, null, null, "MStaff", null, null, false);
+    protected final ColumnInfo _columnWorkingStaffId = cci("working_staff_id", "working_staff_id", null, null, Integer.class, "workingStaffId", null, false, false, false, "int4", 10, 0, null, null, false, null, null, "MWorkingStaff", null, null, false);
+    protected final ColumnInfo _columnUserId = cci("user_id", "user_id", null, null, Integer.class, "userId", null, false, false, false, "int4", 10, 0, null, null, false, null, null, "MUser", null, null, false);
     protected final ColumnInfo _columnHistStaffFamilyName = cci("hist_staff_family_name", "hist_staff_family_name", null, null, String.class, "histStaffFamilyName", null, false, false, false, "text", 2147483647, 0, null, null, false, null, null, null, null, null, false);
     protected final ColumnInfo _columnHistShopName = cci("hist_shop_name", "hist_shop_name", null, null, String.class, "histShopName", null, false, false, false, "text", 2147483647, 0, null, null, false, null, null, null, null, null, false);
     protected final ColumnInfo _columnHistShopAbbreviatedName = cci("hist_shop_abbreviated_name", "hist_shop_abbreviated_name", null, null, String.class, "histShopAbbreviatedName", null, false, false, false, "text", 2147483647, 0, null, null, false, null, null, null, null, null, false);
     protected final ColumnInfo _columnHistStaffGivenName = cci("hist_staff_given_name", "hist_staff_given_name", null, null, String.class, "histStaffGivenName", null, false, false, false, "text", 2147483647, 0, null, null, false, null, null, null, null, null, false);
     protected final ColumnInfo _columnReservationDate = cci("reservation_date", "reservation_date", null, null, java.time.LocalDate.class, "reservationDate", null, false, false, false, "date", 13, 0, null, null, false, null, null, null, null, null, false);
     protected final ColumnInfo _columnReservationTime = cci("reservation_time", "reservation_time", null, null, java.time.LocalTime.class, "reservationTime", null, false, false, false, "time", 15, 6, null, null, false, null, null, null, null, null, false);
-    protected final ColumnInfo _columnUserId = cci("user_id", "user_id", null, null, Integer.class, "userId", null, false, false, false, "int4", 10, 0, null, null, false, null, null, "MUser", null, null, false);
     protected final ColumnInfo _columnTotalAmount = cci("total_amount", "total_amount", null, null, Integer.class, "totalAmount", null, false, false, false, "int4", 10, 0, null, null, false, null, null, null, null, null, false);
     protected final ColumnInfo _columnRemarks = cci("remarks", "remarks", null, null, String.class, "remarks", null, false, false, false, "text", 2147483647, 0, null, null, false, null, null, null, null, null, false);
     protected final ColumnInfo _columnStatus = cci("status", "status", null, null, Integer.class, "status", null, false, false, false, "int4", 10, 0, null, null, false, null, null, null, null, null, false);
     protected final ColumnInfo _columnDeleteFlag = cci("delete_flag", "delete_flag", null, null, Boolean.class, "deleteFlag", null, false, false, true, "bool", 1, 0, null, "false", false, null, null, null, null, null, false);
+    protected final ColumnInfo _columnVersionNo = cci("version_no", "version_no", null, null, Integer.class, "versionNo", null, false, false, true, "int4", 10, 0, null, "1", false, OptimisticLockType.VERSION_NO, null, null, null, null, false);
     protected final ColumnInfo _columnRegisterDatetime = cci("register_datetime", "register_datetime", null, null, java.time.LocalDateTime.class, "registerDatetime", null, false, false, true, "timestamp", 26, 3, null, "now()", true, null, null, null, null, null, false);
     protected final ColumnInfo _columnUpdateDatetime = cci("update_datetime", "update_datetime", null, null, java.time.LocalDateTime.class, "updateDatetime", null, false, false, false, "timestamp", 26, 3, null, null, true, null, null, null, null, null, false);
 
@@ -121,10 +123,15 @@ public class TReservationDbm extends AbstractDBMeta {
      */
     public ColumnInfo columnShopId() { return _columnShopId; }
     /**
-     * staff_id: {NotNull, int4(10), FK to m_staff}
+     * working_staff_id: {int4(10), FK to m_working_staff}
      * @return The information object of specified column. (NotNull)
      */
-    public ColumnInfo columnStaffId() { return _columnStaffId; }
+    public ColumnInfo columnWorkingStaffId() { return _columnWorkingStaffId; }
+    /**
+     * user_id: {int4(10), FK to m_user}
+     * @return The information object of specified column. (NotNull)
+     */
+    public ColumnInfo columnUserId() { return _columnUserId; }
     /**
      * hist_staff_family_name: {text(2147483647)}
      * @return The information object of specified column. (NotNull)
@@ -156,11 +163,6 @@ public class TReservationDbm extends AbstractDBMeta {
      */
     public ColumnInfo columnReservationTime() { return _columnReservationTime; }
     /**
-     * user_id: {int4(10), FK to m_user}
-     * @return The information object of specified column. (NotNull)
-     */
-    public ColumnInfo columnUserId() { return _columnUserId; }
-    /**
      * total_amount: {int4(10)}
      * @return The information object of specified column. (NotNull)
      */
@@ -181,6 +183,11 @@ public class TReservationDbm extends AbstractDBMeta {
      */
     public ColumnInfo columnDeleteFlag() { return _columnDeleteFlag; }
     /**
+     * version_no: {NotNull, int4(10), default=[1]}
+     * @return The information object of specified column. (NotNull)
+     */
+    public ColumnInfo columnVersionNo() { return _columnVersionNo; }
+    /**
      * register_datetime: {NotNull, timestamp(26, 3), default=[now()]}
      * @return The information object of specified column. (NotNull)
      */
@@ -195,18 +202,19 @@ public class TReservationDbm extends AbstractDBMeta {
         List<ColumnInfo> ls = newArrayList();
         ls.add(columnReservationId());
         ls.add(columnShopId());
-        ls.add(columnStaffId());
+        ls.add(columnWorkingStaffId());
+        ls.add(columnUserId());
         ls.add(columnHistStaffFamilyName());
         ls.add(columnHistShopName());
         ls.add(columnHistShopAbbreviatedName());
         ls.add(columnHistStaffGivenName());
         ls.add(columnReservationDate());
         ls.add(columnReservationTime());
-        ls.add(columnUserId());
         ls.add(columnTotalAmount());
         ls.add(columnRemarks());
         ls.add(columnStatus());
         ls.add(columnDeleteFlag());
+        ls.add(columnVersionNo());
         ls.add(columnRegisterDatetime());
         ls.add(columnUpdateDatetime());
         return ls;
@@ -241,20 +249,20 @@ public class TReservationDbm extends AbstractDBMeta {
         return cfi("idx_t_reservation_fk1", "MShop", this, MShopDbm.getInstance(), mp, 0, org.dbflute.optional.OptionalEntity.class, false, false, false, false, null, null, false, "TReservationList", false);
     }
     /**
-     * m_staff by my staff_id, named 'MStaff'.
-     * @return The information object of foreign property. (NotNull)
-     */
-    public ForeignInfo foreignMStaff() {
-        Map<ColumnInfo, ColumnInfo> mp = newLinkedHashMap(columnStaffId(), MStaffDbm.getInstance().columnStaffId());
-        return cfi("idx_t_reservation_fk2", "MStaff", this, MStaffDbm.getInstance(), mp, 1, org.dbflute.optional.OptionalEntity.class, false, false, false, false, null, null, false, "TReservationList", false);
-    }
-    /**
      * m_user by my user_id, named 'MUser'.
      * @return The information object of foreign property. (NotNull)
      */
     public ForeignInfo foreignMUser() {
         Map<ColumnInfo, ColumnInfo> mp = newLinkedHashMap(columnUserId(), MUserDbm.getInstance().columnUserId());
-        return cfi("idx_t_reservation_fk0", "MUser", this, MUserDbm.getInstance(), mp, 2, org.dbflute.optional.OptionalEntity.class, false, false, false, false, null, null, false, "TReservationList", false);
+        return cfi("idx_t_reservation_fk0", "MUser", this, MUserDbm.getInstance(), mp, 1, org.dbflute.optional.OptionalEntity.class, false, false, false, false, null, null, false, "TReservationList", false);
+    }
+    /**
+     * m_working_staff by my working_staff_id, named 'MWorkingStaff'.
+     * @return The information object of foreign property. (NotNull)
+     */
+    public ForeignInfo foreignMWorkingStaff() {
+        Map<ColumnInfo, ColumnInfo> mp = newLinkedHashMap(columnWorkingStaffId(), MWorkingStaffDbm.getInstance().columnWorkingStaffId());
+        return cfi("t_reservation_working_staff_id_fkey", "MWorkingStaff", this, MWorkingStaffDbm.getInstance(), mp, 2, org.dbflute.optional.OptionalEntity.class, false, false, false, false, null, null, false, "TReservationList", false);
     }
 
     // -----------------------------------------------------
@@ -276,6 +284,8 @@ public class TReservationDbm extends AbstractDBMeta {
     public String getSequenceName() { return "t_reservation_reservation_id_seq"; }
     public Integer getSequenceIncrementSize() { return 1; }
     public Integer getSequenceCacheSize() { return null; }
+    public boolean hasVersionNo() { return true; }
+    public ColumnInfo getVersionNoColumnInfo() { return _columnVersionNo; }
     public boolean hasCommonColumn() { return true; }
     public List<ColumnInfo> getCommonColumnInfoList()
     { return newArrayList(columnRegisterDatetime(), columnUpdateDatetime()); }

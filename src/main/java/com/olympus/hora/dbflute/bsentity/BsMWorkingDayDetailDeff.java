@@ -14,12 +14,13 @@ import com.olympus.hora.dbflute.exentity.*;
 
 /**
  * The entity of m_working_day_detail_deff as TABLE. <br>
+ * 営業日詳細定義マスタ
  * <pre>
  * [primary-key]
  *     working_day_detail_deff_id
  *
  * [column]
- *     working_day_detail_deff_id, m_working_day_deff_id, effective_flag, working_day_flg, week_1_flag, week_2_flag, week_3_flag, week4_flag, week5_flag, mon_flg, tue_flg, web_flg, thu_flg, fri_flg, sat_flg, sun_flg, holiday_flg, day_of_month, specified_day, start_time, end_time, delete_flag, register_datetime, update_datetime
+ *     working_day_detail_deff_id, m_working_day_deff_id, effective_flag, working_day_flg, week_1_flag, week_2_flag, week_3_flag, week4_flag, week5_flag, mon_flg, tue_flg, web_flg, thu_flg, fri_flg, sat_flg, sun_flg, holiday_flg, day_of_month, specified_day, start_time, end_time, delete_flag, version_no, register_datetime, update_datetime
  *
  * [sequence]
  *     m_working_day_detail_deff_working_day_detail_deff_id_seq
@@ -28,7 +29,7 @@ import com.olympus.hora.dbflute.exentity.*;
  *     
  *
  * [version-no]
- *     
+ *     version_no
  *
  * [foreign table]
  *     m_working_day_deff
@@ -66,6 +67,7 @@ import com.olympus.hora.dbflute.exentity.*;
  * java.time.LocalTime startTime = entity.getStartTime();
  * java.time.LocalTime endTime = entity.getEndTime();
  * Boolean deleteFlag = entity.getDeleteFlag();
+ * Integer versionNo = entity.getVersionNo();
  * java.time.LocalDateTime registerDatetime = entity.getRegisterDatetime();
  * java.time.LocalDateTime updateDatetime = entity.getUpdateDatetime();
  * entity.setWorkingDayDetailDeffId(workingDayDetailDeffId);
@@ -90,6 +92,7 @@ import com.olympus.hora.dbflute.exentity.*;
  * entity.setStartTime(startTime);
  * entity.setEndTime(endTime);
  * entity.setDeleteFlag(deleteFlag);
+ * entity.setVersionNo(versionNo);
  * entity.setRegisterDatetime(registerDatetime);
  * entity.setUpdateDatetime(updateDatetime);
  * = = = = = = = = = =/
@@ -172,6 +175,9 @@ public abstract class BsMWorkingDayDetailDeff extends AbstractEntity implements 
 
     /** delete_flag: {NotNull, bool(1), default=[false]} */
     protected Boolean _deleteFlag;
+
+    /** version_no: {NotNull, int4(10), default=[1]} */
+    protected Integer _versionNo;
 
     /** register_datetime: {NotNull, timestamp(26, 3), default=[now()]} */
     protected java.time.LocalDateTime _registerDatetime;
@@ -290,6 +296,7 @@ public abstract class BsMWorkingDayDetailDeff extends AbstractEntity implements 
         sb.append(dm).append(xfND(_startTime));
         sb.append(dm).append(xfND(_endTime));
         sb.append(dm).append(xfND(_deleteFlag));
+        sb.append(dm).append(xfND(_versionNo));
         sb.append(dm).append(xfND(_registerDatetime));
         sb.append(dm).append(xfND(_updateDatetime));
         if (sb.length() > dm.length()) {
@@ -320,6 +327,7 @@ public abstract class BsMWorkingDayDetailDeff extends AbstractEntity implements 
     //                                                                            ========
     /**
      * [get] working_day_detail_deff_id: {PK, ID, NotNull, serial(10)} <br>
+     * 営業日詳細定義ID : 営業日詳細定義ID
      * @return The value of the column 'working_day_detail_deff_id'. (basically NotNull if selected: for the constraint)
      */
     public Integer getWorkingDayDetailDeffId() {
@@ -329,6 +337,7 @@ public abstract class BsMWorkingDayDetailDeff extends AbstractEntity implements 
 
     /**
      * [set] working_day_detail_deff_id: {PK, ID, NotNull, serial(10)} <br>
+     * 営業日詳細定義ID : 営業日詳細定義ID
      * @param workingDayDetailDeffId The value of the column 'working_day_detail_deff_id'. (basically NotNull if update: for the constraint)
      */
     public void setWorkingDayDetailDeffId(Integer workingDayDetailDeffId) {
@@ -338,6 +347,7 @@ public abstract class BsMWorkingDayDetailDeff extends AbstractEntity implements 
 
     /**
      * [get] m_working_day_deff_id: {NotNull, int4(10), FK to m_working_day_deff} <br>
+     * 営業日定義ID : 営業日定義ID
      * @return The value of the column 'm_working_day_deff_id'. (basically NotNull if selected: for the constraint)
      */
     public Integer getMWorkingDayDeffId() {
@@ -347,6 +357,7 @@ public abstract class BsMWorkingDayDetailDeff extends AbstractEntity implements 
 
     /**
      * [set] m_working_day_deff_id: {NotNull, int4(10), FK to m_working_day_deff} <br>
+     * 営業日定義ID : 営業日定義ID
      * @param mWorkingDayDeffId The value of the column 'm_working_day_deff_id'. (basically NotNull if update: for the constraint)
      */
     public void setMWorkingDayDeffId(Integer mWorkingDayDeffId) {
@@ -356,6 +367,7 @@ public abstract class BsMWorkingDayDetailDeff extends AbstractEntity implements 
 
     /**
      * [get] effective_flag: {NotNull, bool(1)} <br>
+     * 適応フラグ : 適応フラグ
      * @return The value of the column 'effective_flag'. (basically NotNull if selected: for the constraint)
      */
     public Boolean getEffectiveFlag() {
@@ -365,6 +377,7 @@ public abstract class BsMWorkingDayDetailDeff extends AbstractEntity implements 
 
     /**
      * [set] effective_flag: {NotNull, bool(1)} <br>
+     * 適応フラグ : 適応フラグ
      * @param effectiveFlag The value of the column 'effective_flag'. (basically NotNull if update: for the constraint)
      */
     public void setEffectiveFlag(Boolean effectiveFlag) {
@@ -374,6 +387,7 @@ public abstract class BsMWorkingDayDetailDeff extends AbstractEntity implements 
 
     /**
      * [get] working_day_flg: {NotNull, bool(1)} <br>
+     * 営業日Flag : 営業日Flag
      * @return The value of the column 'working_day_flg'. (basically NotNull if selected: for the constraint)
      */
     public Boolean getWorkingDayFlg() {
@@ -383,6 +397,7 @@ public abstract class BsMWorkingDayDetailDeff extends AbstractEntity implements 
 
     /**
      * [set] working_day_flg: {NotNull, bool(1)} <br>
+     * 営業日Flag : 営業日Flag
      * @param workingDayFlg The value of the column 'working_day_flg'. (basically NotNull if update: for the constraint)
      */
     public void setWorkingDayFlg(Boolean workingDayFlg) {
@@ -392,6 +407,7 @@ public abstract class BsMWorkingDayDetailDeff extends AbstractEntity implements 
 
     /**
      * [get] week_1_flag: {bool(1)} <br>
+     * 第1週Flag : 第1週Flag
      * @return The value of the column 'week_1_flag'. (NullAllowed even if selected: for no constraint)
      */
     public Boolean getWeek1Flag() {
@@ -401,6 +417,7 @@ public abstract class BsMWorkingDayDetailDeff extends AbstractEntity implements 
 
     /**
      * [set] week_1_flag: {bool(1)} <br>
+     * 第1週Flag : 第1週Flag
      * @param week1Flag The value of the column 'week_1_flag'. (NullAllowed: null update allowed for no constraint)
      */
     public void setWeek1Flag(Boolean week1Flag) {
@@ -410,6 +427,7 @@ public abstract class BsMWorkingDayDetailDeff extends AbstractEntity implements 
 
     /**
      * [get] week_2_flag: {bool(1)} <br>
+     * 第2週Flag : 第2週Flag
      * @return The value of the column 'week_2_flag'. (NullAllowed even if selected: for no constraint)
      */
     public Boolean getWeek2Flag() {
@@ -419,6 +437,7 @@ public abstract class BsMWorkingDayDetailDeff extends AbstractEntity implements 
 
     /**
      * [set] week_2_flag: {bool(1)} <br>
+     * 第2週Flag : 第2週Flag
      * @param week2Flag The value of the column 'week_2_flag'. (NullAllowed: null update allowed for no constraint)
      */
     public void setWeek2Flag(Boolean week2Flag) {
@@ -428,6 +447,7 @@ public abstract class BsMWorkingDayDetailDeff extends AbstractEntity implements 
 
     /**
      * [get] week_3_flag: {bool(1)} <br>
+     * 第3週Flag : 第3週Flag
      * @return The value of the column 'week_3_flag'. (NullAllowed even if selected: for no constraint)
      */
     public Boolean getWeek3Flag() {
@@ -437,6 +457,7 @@ public abstract class BsMWorkingDayDetailDeff extends AbstractEntity implements 
 
     /**
      * [set] week_3_flag: {bool(1)} <br>
+     * 第3週Flag : 第3週Flag
      * @param week3Flag The value of the column 'week_3_flag'. (NullAllowed: null update allowed for no constraint)
      */
     public void setWeek3Flag(Boolean week3Flag) {
@@ -446,6 +467,7 @@ public abstract class BsMWorkingDayDetailDeff extends AbstractEntity implements 
 
     /**
      * [get] week4_flag: {bool(1)} <br>
+     * 第4週Flag : 第4週Flag
      * @return The value of the column 'week4_flag'. (NullAllowed even if selected: for no constraint)
      */
     public Boolean getWeek4Flag() {
@@ -455,6 +477,7 @@ public abstract class BsMWorkingDayDetailDeff extends AbstractEntity implements 
 
     /**
      * [set] week4_flag: {bool(1)} <br>
+     * 第4週Flag : 第4週Flag
      * @param week4Flag The value of the column 'week4_flag'. (NullAllowed: null update allowed for no constraint)
      */
     public void setWeek4Flag(Boolean week4Flag) {
@@ -464,6 +487,7 @@ public abstract class BsMWorkingDayDetailDeff extends AbstractEntity implements 
 
     /**
      * [get] week5_flag: {bool(1)} <br>
+     * 第5週Flag : 第5週Flag
      * @return The value of the column 'week5_flag'. (NullAllowed even if selected: for no constraint)
      */
     public Boolean getWeek5Flag() {
@@ -473,6 +497,7 @@ public abstract class BsMWorkingDayDetailDeff extends AbstractEntity implements 
 
     /**
      * [set] week5_flag: {bool(1)} <br>
+     * 第5週Flag : 第5週Flag
      * @param week5Flag The value of the column 'week5_flag'. (NullAllowed: null update allowed for no constraint)
      */
     public void setWeek5Flag(Boolean week5Flag) {
@@ -482,6 +507,7 @@ public abstract class BsMWorkingDayDetailDeff extends AbstractEntity implements 
 
     /**
      * [get] mon_flg: {bool(1)} <br>
+     * 月曜日Flag : 月曜日Flag
      * @return The value of the column 'mon_flg'. (NullAllowed even if selected: for no constraint)
      */
     public Boolean getMonFlg() {
@@ -491,6 +517,7 @@ public abstract class BsMWorkingDayDetailDeff extends AbstractEntity implements 
 
     /**
      * [set] mon_flg: {bool(1)} <br>
+     * 月曜日Flag : 月曜日Flag
      * @param monFlg The value of the column 'mon_flg'. (NullAllowed: null update allowed for no constraint)
      */
     public void setMonFlg(Boolean monFlg) {
@@ -500,6 +527,7 @@ public abstract class BsMWorkingDayDetailDeff extends AbstractEntity implements 
 
     /**
      * [get] tue_flg: {bool(1)} <br>
+     * 火曜日Flag : 火曜日Flag
      * @return The value of the column 'tue_flg'. (NullAllowed even if selected: for no constraint)
      */
     public Boolean getTueFlg() {
@@ -509,6 +537,7 @@ public abstract class BsMWorkingDayDetailDeff extends AbstractEntity implements 
 
     /**
      * [set] tue_flg: {bool(1)} <br>
+     * 火曜日Flag : 火曜日Flag
      * @param tueFlg The value of the column 'tue_flg'. (NullAllowed: null update allowed for no constraint)
      */
     public void setTueFlg(Boolean tueFlg) {
@@ -518,6 +547,7 @@ public abstract class BsMWorkingDayDetailDeff extends AbstractEntity implements 
 
     /**
      * [get] web_flg: {bool(1)} <br>
+     * 水曜日Flag : 水曜日Flag
      * @return The value of the column 'web_flg'. (NullAllowed even if selected: for no constraint)
      */
     public Boolean getWebFlg() {
@@ -527,6 +557,7 @@ public abstract class BsMWorkingDayDetailDeff extends AbstractEntity implements 
 
     /**
      * [set] web_flg: {bool(1)} <br>
+     * 水曜日Flag : 水曜日Flag
      * @param webFlg The value of the column 'web_flg'. (NullAllowed: null update allowed for no constraint)
      */
     public void setWebFlg(Boolean webFlg) {
@@ -536,6 +567,7 @@ public abstract class BsMWorkingDayDetailDeff extends AbstractEntity implements 
 
     /**
      * [get] thu_flg: {bool(1)} <br>
+     * 木曜日Flag : 木曜日Flag
      * @return The value of the column 'thu_flg'. (NullAllowed even if selected: for no constraint)
      */
     public Boolean getThuFlg() {
@@ -545,6 +577,7 @@ public abstract class BsMWorkingDayDetailDeff extends AbstractEntity implements 
 
     /**
      * [set] thu_flg: {bool(1)} <br>
+     * 木曜日Flag : 木曜日Flag
      * @param thuFlg The value of the column 'thu_flg'. (NullAllowed: null update allowed for no constraint)
      */
     public void setThuFlg(Boolean thuFlg) {
@@ -554,6 +587,7 @@ public abstract class BsMWorkingDayDetailDeff extends AbstractEntity implements 
 
     /**
      * [get] fri_flg: {bool(1)} <br>
+     * 金曜日Flag : 金曜日Flag
      * @return The value of the column 'fri_flg'. (NullAllowed even if selected: for no constraint)
      */
     public Boolean getFriFlg() {
@@ -563,6 +597,7 @@ public abstract class BsMWorkingDayDetailDeff extends AbstractEntity implements 
 
     /**
      * [set] fri_flg: {bool(1)} <br>
+     * 金曜日Flag : 金曜日Flag
      * @param friFlg The value of the column 'fri_flg'. (NullAllowed: null update allowed for no constraint)
      */
     public void setFriFlg(Boolean friFlg) {
@@ -572,6 +607,7 @@ public abstract class BsMWorkingDayDetailDeff extends AbstractEntity implements 
 
     /**
      * [get] sat_flg: {bool(1)} <br>
+     * 土曜日Flag : 土曜日Flag
      * @return The value of the column 'sat_flg'. (NullAllowed even if selected: for no constraint)
      */
     public Boolean getSatFlg() {
@@ -581,6 +617,7 @@ public abstract class BsMWorkingDayDetailDeff extends AbstractEntity implements 
 
     /**
      * [set] sat_flg: {bool(1)} <br>
+     * 土曜日Flag : 土曜日Flag
      * @param satFlg The value of the column 'sat_flg'. (NullAllowed: null update allowed for no constraint)
      */
     public void setSatFlg(Boolean satFlg) {
@@ -590,6 +627,7 @@ public abstract class BsMWorkingDayDetailDeff extends AbstractEntity implements 
 
     /**
      * [get] sun_flg: {bool(1)} <br>
+     * 日曜日Flag : 日曜日Flag
      * @return The value of the column 'sun_flg'. (NullAllowed even if selected: for no constraint)
      */
     public Boolean getSunFlg() {
@@ -599,6 +637,7 @@ public abstract class BsMWorkingDayDetailDeff extends AbstractEntity implements 
 
     /**
      * [set] sun_flg: {bool(1)} <br>
+     * 日曜日Flag : 日曜日Flag
      * @param sunFlg The value of the column 'sun_flg'. (NullAllowed: null update allowed for no constraint)
      */
     public void setSunFlg(Boolean sunFlg) {
@@ -608,6 +647,7 @@ public abstract class BsMWorkingDayDetailDeff extends AbstractEntity implements 
 
     /**
      * [get] holiday_flg: {bool(1)} <br>
+     * 祝日Flag : 祝日Flag
      * @return The value of the column 'holiday_flg'. (NullAllowed even if selected: for no constraint)
      */
     public Boolean getHolidayFlg() {
@@ -617,6 +657,7 @@ public abstract class BsMWorkingDayDetailDeff extends AbstractEntity implements 
 
     /**
      * [set] holiday_flg: {bool(1)} <br>
+     * 祝日Flag : 祝日Flag
      * @param holidayFlg The value of the column 'holiday_flg'. (NullAllowed: null update allowed for no constraint)
      */
     public void setHolidayFlg(Boolean holidayFlg) {
@@ -626,6 +667,7 @@ public abstract class BsMWorkingDayDetailDeff extends AbstractEntity implements 
 
     /**
      * [get] day_of_month: {int2(5)} <br>
+     * 毎月指定日 : 毎月指定日
      * @return The value of the column 'day_of_month'. (NullAllowed even if selected: for no constraint)
      */
     public Integer getDayOfMonth() {
@@ -635,6 +677,7 @@ public abstract class BsMWorkingDayDetailDeff extends AbstractEntity implements 
 
     /**
      * [set] day_of_month: {int2(5)} <br>
+     * 毎月指定日 : 毎月指定日
      * @param dayOfMonth The value of the column 'day_of_month'. (NullAllowed: null update allowed for no constraint)
      */
     public void setDayOfMonth(Integer dayOfMonth) {
@@ -644,6 +687,7 @@ public abstract class BsMWorkingDayDetailDeff extends AbstractEntity implements 
 
     /**
      * [get] specified_day: {date(13)} <br>
+     * 指定日 : 指定日
      * @return The value of the column 'specified_day'. (NullAllowed even if selected: for no constraint)
      */
     public java.time.LocalDate getSpecifiedDay() {
@@ -653,6 +697,7 @@ public abstract class BsMWorkingDayDetailDeff extends AbstractEntity implements 
 
     /**
      * [set] specified_day: {date(13)} <br>
+     * 指定日 : 指定日
      * @param specifiedDay The value of the column 'specified_day'. (NullAllowed: null update allowed for no constraint)
      */
     public void setSpecifiedDay(java.time.LocalDate specifiedDay) {
@@ -662,6 +707,7 @@ public abstract class BsMWorkingDayDetailDeff extends AbstractEntity implements 
 
     /**
      * [get] start_time: {time(15, 6)} <br>
+     * 営業開始時間 : 営業開始時間
      * @return The value of the column 'start_time'. (NullAllowed even if selected: for no constraint)
      */
     public java.time.LocalTime getStartTime() {
@@ -671,6 +717,7 @@ public abstract class BsMWorkingDayDetailDeff extends AbstractEntity implements 
 
     /**
      * [set] start_time: {time(15, 6)} <br>
+     * 営業開始時間 : 営業開始時間
      * @param startTime The value of the column 'start_time'. (NullAllowed: null update allowed for no constraint)
      */
     public void setStartTime(java.time.LocalTime startTime) {
@@ -680,6 +727,7 @@ public abstract class BsMWorkingDayDetailDeff extends AbstractEntity implements 
 
     /**
      * [get] end_time: {time(15, 6)} <br>
+     * 営業終了時間 : 営業終了時間
      * @return The value of the column 'end_time'. (NullAllowed even if selected: for no constraint)
      */
     public java.time.LocalTime getEndTime() {
@@ -689,6 +737,7 @@ public abstract class BsMWorkingDayDetailDeff extends AbstractEntity implements 
 
     /**
      * [set] end_time: {time(15, 6)} <br>
+     * 営業終了時間 : 営業終了時間
      * @param endTime The value of the column 'end_time'. (NullAllowed: null update allowed for no constraint)
      */
     public void setEndTime(java.time.LocalTime endTime) {
@@ -698,6 +747,7 @@ public abstract class BsMWorkingDayDetailDeff extends AbstractEntity implements 
 
     /**
      * [get] delete_flag: {NotNull, bool(1), default=[false]} <br>
+     * 削除フラグ
      * @return The value of the column 'delete_flag'. (basically NotNull if selected: for the constraint)
      */
     public Boolean getDeleteFlag() {
@@ -707,6 +757,7 @@ public abstract class BsMWorkingDayDetailDeff extends AbstractEntity implements 
 
     /**
      * [set] delete_flag: {NotNull, bool(1), default=[false]} <br>
+     * 削除フラグ
      * @param deleteFlag The value of the column 'delete_flag'. (basically NotNull if update: for the constraint)
      */
     public void setDeleteFlag(Boolean deleteFlag) {
@@ -715,7 +766,28 @@ public abstract class BsMWorkingDayDetailDeff extends AbstractEntity implements 
     }
 
     /**
+     * [get] version_no: {NotNull, int4(10), default=[1]} <br>
+     * version_no
+     * @return The value of the column 'version_no'. (basically NotNull if selected: for the constraint)
+     */
+    public Integer getVersionNo() {
+        checkSpecifiedProperty("versionNo");
+        return _versionNo;
+    }
+
+    /**
+     * [set] version_no: {NotNull, int4(10), default=[1]} <br>
+     * version_no
+     * @param versionNo The value of the column 'version_no'. (basically NotNull if update: for the constraint)
+     */
+    public void setVersionNo(Integer versionNo) {
+        registerModifiedProperty("versionNo");
+        _versionNo = versionNo;
+    }
+
+    /**
      * [get] register_datetime: {NotNull, timestamp(26, 3), default=[now()]} <br>
+     * 登録日時
      * @return The value of the column 'register_datetime'. (basically NotNull if selected: for the constraint)
      */
     public java.time.LocalDateTime getRegisterDatetime() {
@@ -725,6 +797,7 @@ public abstract class BsMWorkingDayDetailDeff extends AbstractEntity implements 
 
     /**
      * [set] register_datetime: {NotNull, timestamp(26, 3), default=[now()]} <br>
+     * 登録日時
      * @param registerDatetime The value of the column 'register_datetime'. (basically NotNull if update: for the constraint)
      */
     public void setRegisterDatetime(java.time.LocalDateTime registerDatetime) {
@@ -734,6 +807,7 @@ public abstract class BsMWorkingDayDetailDeff extends AbstractEntity implements 
 
     /**
      * [get] update_datetime: {timestamp(26, 3)} <br>
+     * 更新日時
      * @return The value of the column 'update_datetime'. (NullAllowed even if selected: for no constraint)
      */
     public java.time.LocalDateTime getUpdateDatetime() {
@@ -743,6 +817,7 @@ public abstract class BsMWorkingDayDetailDeff extends AbstractEntity implements 
 
     /**
      * [set] update_datetime: {timestamp(26, 3)} <br>
+     * 更新日時
      * @param updateDatetime The value of the column 'update_datetime'. (NullAllowed: null update allowed for no constraint)
      */
     public void setUpdateDatetime(java.time.LocalDateTime updateDatetime) {

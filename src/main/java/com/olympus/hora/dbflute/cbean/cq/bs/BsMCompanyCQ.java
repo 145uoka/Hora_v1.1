@@ -82,16 +82,30 @@ public class BsMCompanyCQ extends AbstractBsMCompanyCQ {
     public Map<String, MShopCQ> xdfgetCompanyId_ExistsReferrer_MShopList() { return xgetSQueMap("companyId_ExistsReferrer_MShopList"); }
     public String keepCompanyId_ExistsReferrer_MShopList(MShopCQ sq) { return xkeepSQue("companyId_ExistsReferrer_MShopList", sq); }
 
+    public Map<String, MStaffCQ> xdfgetCompanyId_ExistsReferrer_MStaffList() { return xgetSQueMap("companyId_ExistsReferrer_MStaffList"); }
+    public String keepCompanyId_ExistsReferrer_MStaffList(MStaffCQ sq) { return xkeepSQue("companyId_ExistsReferrer_MStaffList", sq); }
+
     public Map<String, MShopCQ> xdfgetCompanyId_NotExistsReferrer_MShopList() { return xgetSQueMap("companyId_NotExistsReferrer_MShopList"); }
     public String keepCompanyId_NotExistsReferrer_MShopList(MShopCQ sq) { return xkeepSQue("companyId_NotExistsReferrer_MShopList", sq); }
 
+    public Map<String, MStaffCQ> xdfgetCompanyId_NotExistsReferrer_MStaffList() { return xgetSQueMap("companyId_NotExistsReferrer_MStaffList"); }
+    public String keepCompanyId_NotExistsReferrer_MStaffList(MStaffCQ sq) { return xkeepSQue("companyId_NotExistsReferrer_MStaffList", sq); }
+
     public Map<String, MShopCQ> xdfgetCompanyId_SpecifyDerivedReferrer_MShopList() { return xgetSQueMap("companyId_SpecifyDerivedReferrer_MShopList"); }
     public String keepCompanyId_SpecifyDerivedReferrer_MShopList(MShopCQ sq) { return xkeepSQue("companyId_SpecifyDerivedReferrer_MShopList", sq); }
+
+    public Map<String, MStaffCQ> xdfgetCompanyId_SpecifyDerivedReferrer_MStaffList() { return xgetSQueMap("companyId_SpecifyDerivedReferrer_MStaffList"); }
+    public String keepCompanyId_SpecifyDerivedReferrer_MStaffList(MStaffCQ sq) { return xkeepSQue("companyId_SpecifyDerivedReferrer_MStaffList", sq); }
 
     public Map<String, MShopCQ> xdfgetCompanyId_QueryDerivedReferrer_MShopList() { return xgetSQueMap("companyId_QueryDerivedReferrer_MShopList"); }
     public String keepCompanyId_QueryDerivedReferrer_MShopList(MShopCQ sq) { return xkeepSQue("companyId_QueryDerivedReferrer_MShopList", sq); }
     public Map<String, Object> xdfgetCompanyId_QueryDerivedReferrer_MShopListParameter() { return xgetSQuePmMap("companyId_QueryDerivedReferrer_MShopList"); }
     public String keepCompanyId_QueryDerivedReferrer_MShopListParameter(Object pm) { return xkeepSQuePm("companyId_QueryDerivedReferrer_MShopList", pm); }
+
+    public Map<String, MStaffCQ> xdfgetCompanyId_QueryDerivedReferrer_MStaffList() { return xgetSQueMap("companyId_QueryDerivedReferrer_MStaffList"); }
+    public String keepCompanyId_QueryDerivedReferrer_MStaffList(MStaffCQ sq) { return xkeepSQue("companyId_QueryDerivedReferrer_MStaffList", sq); }
+    public Map<String, Object> xdfgetCompanyId_QueryDerivedReferrer_MStaffListParameter() { return xgetSQuePmMap("companyId_QueryDerivedReferrer_MStaffList"); }
+    public String keepCompanyId_QueryDerivedReferrer_MStaffListParameter(Object pm) { return xkeepSQuePm("companyId_QueryDerivedReferrer_MStaffList", pm); }
 
     /**
      * Add order-by as ascend. <br>
@@ -146,6 +160,26 @@ public class BsMCompanyCQ extends AbstractBsMCompanyCQ {
      * @return this. (NotNull)
      */
     public BsMCompanyCQ addOrderBy_DeleteFlag_Desc() { regOBD("delete_flag"); return this; }
+
+    protected ConditionValue _versionNo;
+    public ConditionValue xdfgetVersionNo()
+    { if (_versionNo == null) { _versionNo = nCV(); }
+      return _versionNo; }
+    protected ConditionValue xgetCValueVersionNo() { return xdfgetVersionNo(); }
+
+    /**
+     * Add order-by as ascend. <br>
+     * version_no: {NotNull, int4(10), default=[1]}
+     * @return this. (NotNull)
+     */
+    public BsMCompanyCQ addOrderBy_VersionNo_Asc() { regOBA("version_no"); return this; }
+
+    /**
+     * Add order-by as descend. <br>
+     * version_no: {NotNull, int4(10), default=[1]}
+     * @return this. (NotNull)
+     */
+    public BsMCompanyCQ addOrderBy_VersionNo_Desc() { regOBD("version_no"); return this; }
 
     protected ConditionValue _registerDatetime;
     public ConditionValue xdfgetRegisterDatetime()

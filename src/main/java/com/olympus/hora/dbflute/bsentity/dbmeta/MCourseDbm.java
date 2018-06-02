@@ -49,6 +49,7 @@ public class MCourseDbm extends AbstractDBMeta {
         setupEpg(_epgMap, et -> ((MCourse)et).getCharge(), (et, vl) -> ((MCourse)et).setCharge(cti(vl)), "charge");
         setupEpg(_epgMap, et -> ((MCourse)et).getRequiredTime(), (et, vl) -> ((MCourse)et).setRequiredTime((String)vl), "requiredTime");
         setupEpg(_epgMap, et -> ((MCourse)et).getDeleteFlag(), (et, vl) -> ((MCourse)et).setDeleteFlag((Boolean)vl), "deleteFlag");
+        setupEpg(_epgMap, et -> ((MCourse)et).getVersionNo(), (et, vl) -> ((MCourse)et).setVersionNo(cti(vl)), "versionNo");
         setupEpg(_epgMap, et -> ((MCourse)et).getRegisterDatetime(), (et, vl) -> ((MCourse)et).setRegisterDatetime(ctldt(vl)), "registerDatetime");
         setupEpg(_epgMap, et -> ((MCourse)et).getUpdateDatetime(), (et, vl) -> ((MCourse)et).setUpdateDatetime(ctldt(vl)), "updateDatetime");
     }
@@ -89,6 +90,7 @@ public class MCourseDbm extends AbstractDBMeta {
     protected final ColumnInfo _columnCharge = cci("charge", "charge", null, null, Integer.class, "charge", null, false, false, false, "int4", 10, 0, null, null, false, null, null, null, null, null, false);
     protected final ColumnInfo _columnRequiredTime = cci("required_time", "required_time", null, null, String.class, "requiredTime", null, false, false, false, "interval", 49, 6, null, null, false, null, null, null, null, null, false);
     protected final ColumnInfo _columnDeleteFlag = cci("delete_flag", "delete_flag", null, null, Boolean.class, "deleteFlag", null, false, false, true, "bool", 1, 0, null, "false", false, null, null, null, null, null, false);
+    protected final ColumnInfo _columnVersionNo = cci("version_no", "version_no", null, null, Integer.class, "versionNo", null, false, false, true, "int4", 10, 0, null, "1", false, OptimisticLockType.VERSION_NO, null, null, null, null, false);
     protected final ColumnInfo _columnRegisterDatetime = cci("register_datetime", "register_datetime", null, null, java.time.LocalDateTime.class, "registerDatetime", null, false, false, true, "timestamp", 26, 3, null, "now()", true, null, null, null, null, null, false);
     protected final ColumnInfo _columnUpdateDatetime = cci("update_datetime", "update_datetime", null, null, java.time.LocalDateTime.class, "updateDatetime", null, false, false, false, "timestamp", 26, 3, null, null, true, null, null, null, null, null, false);
 
@@ -123,6 +125,11 @@ public class MCourseDbm extends AbstractDBMeta {
      */
     public ColumnInfo columnDeleteFlag() { return _columnDeleteFlag; }
     /**
+     * version_no: {NotNull, int4(10), default=[1]}
+     * @return The information object of specified column. (NotNull)
+     */
+    public ColumnInfo columnVersionNo() { return _columnVersionNo; }
+    /**
      * register_datetime: {NotNull, timestamp(26, 3), default=[now()]}
      * @return The information object of specified column. (NotNull)
      */
@@ -141,6 +148,7 @@ public class MCourseDbm extends AbstractDBMeta {
         ls.add(columnCharge());
         ls.add(columnRequiredTime());
         ls.add(columnDeleteFlag());
+        ls.add(columnVersionNo());
         ls.add(columnRegisterDatetime());
         ls.add(columnUpdateDatetime());
         return ls;
@@ -190,6 +198,8 @@ public class MCourseDbm extends AbstractDBMeta {
     // ===================================================================================
     //                                                                        Various Info
     //                                                                        ============
+    public boolean hasVersionNo() { return true; }
+    public ColumnInfo getVersionNoColumnInfo() { return _columnVersionNo; }
     public boolean hasCommonColumn() { return true; }
     public List<ColumnInfo> getCommonColumnInfoList()
     { return newArrayList(columnRegisterDatetime(), columnUpdateDatetime()); }

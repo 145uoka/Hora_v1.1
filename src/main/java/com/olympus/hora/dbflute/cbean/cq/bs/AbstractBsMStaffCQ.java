@@ -177,44 +177,6 @@ public abstract class AbstractBsMStaffCQ extends AbstractConditionQuery {
     public abstract String keepStaffId_ExistsReferrer_MWorkingStaffList(MWorkingStaffCQ sq);
 
     /**
-     * Set up ExistsReferrer (correlated sub-query). <br>
-     * {exists (select staff_id from t_reservation where ...)} <br>
-     * t_reservation by staff_id, named 'TReservationAsOne'.
-     * <pre>
-     * cb.query().<span style="color: #CC4747">existsTReservation</span>(reservationCB <span style="color: #90226C; font-weight: bold"><span style="font-size: 120%">-</span>&gt;</span> {
-     *     reservationCB.query().set...
-     * });
-     * </pre>
-     * @param subCBLambda The callback for sub-query of TReservationList for 'exists'. (NotNull)
-     */
-    public void existsTReservation(SubQuery<TReservationCB> subCBLambda) {
-        assertObjectNotNull("subCBLambda", subCBLambda);
-        TReservationCB cb = new TReservationCB(); cb.xsetupForExistsReferrer(this);
-        lockCall(() -> subCBLambda.query(cb)); String pp = keepStaffId_ExistsReferrer_TReservationList(cb.query());
-        registerExistsReferrer(cb.query(), "staff_id", "staff_id", pp, "tReservationList");
-    }
-    public abstract String keepStaffId_ExistsReferrer_TReservationList(TReservationCQ sq);
-
-    /**
-     * Set up ExistsReferrer (correlated sub-query). <br>
-     * {exists (select staff_id from t_shift where ...)} <br>
-     * t_shift by staff_id, named 'TShiftAsOne'.
-     * <pre>
-     * cb.query().<span style="color: #CC4747">existsTShift</span>(shiftCB <span style="color: #90226C; font-weight: bold"><span style="font-size: 120%">-</span>&gt;</span> {
-     *     shiftCB.query().set...
-     * });
-     * </pre>
-     * @param subCBLambda The callback for sub-query of TShiftList for 'exists'. (NotNull)
-     */
-    public void existsTShift(SubQuery<TShiftCB> subCBLambda) {
-        assertObjectNotNull("subCBLambda", subCBLambda);
-        TShiftCB cb = new TShiftCB(); cb.xsetupForExistsReferrer(this);
-        lockCall(() -> subCBLambda.query(cb)); String pp = keepStaffId_ExistsReferrer_TShiftList(cb.query());
-        registerExistsReferrer(cb.query(), "staff_id", "staff_id", pp, "tShiftList");
-    }
-    public abstract String keepStaffId_ExistsReferrer_TShiftList(TShiftCQ sq);
-
-    /**
      * Set up NotExistsReferrer (correlated sub-query). <br>
      * {not exists (select staff_id from m_working_staff where ...)} <br>
      * m_working_staff by staff_id, named 'MWorkingStaffAsOne'.
@@ -233,44 +195,6 @@ public abstract class AbstractBsMStaffCQ extends AbstractConditionQuery {
     }
     public abstract String keepStaffId_NotExistsReferrer_MWorkingStaffList(MWorkingStaffCQ sq);
 
-    /**
-     * Set up NotExistsReferrer (correlated sub-query). <br>
-     * {not exists (select staff_id from t_reservation where ...)} <br>
-     * t_reservation by staff_id, named 'TReservationAsOne'.
-     * <pre>
-     * cb.query().<span style="color: #CC4747">notExistsTReservation</span>(reservationCB <span style="color: #90226C; font-weight: bold"><span style="font-size: 120%">-</span>&gt;</span> {
-     *     reservationCB.query().set...
-     * });
-     * </pre>
-     * @param subCBLambda The callback for sub-query of StaffId_NotExistsReferrer_TReservationList for 'not exists'. (NotNull)
-     */
-    public void notExistsTReservation(SubQuery<TReservationCB> subCBLambda) {
-        assertObjectNotNull("subCBLambda", subCBLambda);
-        TReservationCB cb = new TReservationCB(); cb.xsetupForExistsReferrer(this);
-        lockCall(() -> subCBLambda.query(cb)); String pp = keepStaffId_NotExistsReferrer_TReservationList(cb.query());
-        registerNotExistsReferrer(cb.query(), "staff_id", "staff_id", pp, "tReservationList");
-    }
-    public abstract String keepStaffId_NotExistsReferrer_TReservationList(TReservationCQ sq);
-
-    /**
-     * Set up NotExistsReferrer (correlated sub-query). <br>
-     * {not exists (select staff_id from t_shift where ...)} <br>
-     * t_shift by staff_id, named 'TShiftAsOne'.
-     * <pre>
-     * cb.query().<span style="color: #CC4747">notExistsTShift</span>(shiftCB <span style="color: #90226C; font-weight: bold"><span style="font-size: 120%">-</span>&gt;</span> {
-     *     shiftCB.query().set...
-     * });
-     * </pre>
-     * @param subCBLambda The callback for sub-query of StaffId_NotExistsReferrer_TShiftList for 'not exists'. (NotNull)
-     */
-    public void notExistsTShift(SubQuery<TShiftCB> subCBLambda) {
-        assertObjectNotNull("subCBLambda", subCBLambda);
-        TShiftCB cb = new TShiftCB(); cb.xsetupForExistsReferrer(this);
-        lockCall(() -> subCBLambda.query(cb)); String pp = keepStaffId_NotExistsReferrer_TShiftList(cb.query());
-        registerNotExistsReferrer(cb.query(), "staff_id", "staff_id", pp, "tShiftList");
-    }
-    public abstract String keepStaffId_NotExistsReferrer_TShiftList(TShiftCQ sq);
-
     public void xsderiveMWorkingStaffList(String fn, SubQuery<MWorkingStaffCB> sq, String al, DerivedReferrerOption op) {
         assertObjectNotNull("subQuery", sq);
         MWorkingStaffCB cb = new MWorkingStaffCB(); cb.xsetupForDerivedReferrer(this);
@@ -278,22 +202,6 @@ public abstract class AbstractBsMStaffCQ extends AbstractConditionQuery {
         registerSpecifyDerivedReferrer(fn, cb.query(), "staff_id", "staff_id", pp, "mWorkingStaffList", al, op);
     }
     public abstract String keepStaffId_SpecifyDerivedReferrer_MWorkingStaffList(MWorkingStaffCQ sq);
-
-    public void xsderiveTReservationList(String fn, SubQuery<TReservationCB> sq, String al, DerivedReferrerOption op) {
-        assertObjectNotNull("subQuery", sq);
-        TReservationCB cb = new TReservationCB(); cb.xsetupForDerivedReferrer(this);
-        lockCall(() -> sq.query(cb)); String pp = keepStaffId_SpecifyDerivedReferrer_TReservationList(cb.query());
-        registerSpecifyDerivedReferrer(fn, cb.query(), "staff_id", "staff_id", pp, "tReservationList", al, op);
-    }
-    public abstract String keepStaffId_SpecifyDerivedReferrer_TReservationList(TReservationCQ sq);
-
-    public void xsderiveTShiftList(String fn, SubQuery<TShiftCB> sq, String al, DerivedReferrerOption op) {
-        assertObjectNotNull("subQuery", sq);
-        TShiftCB cb = new TShiftCB(); cb.xsetupForDerivedReferrer(this);
-        lockCall(() -> sq.query(cb)); String pp = keepStaffId_SpecifyDerivedReferrer_TShiftList(cb.query());
-        registerSpecifyDerivedReferrer(fn, cb.query(), "staff_id", "staff_id", pp, "tShiftList", al, op);
-    }
-    public abstract String keepStaffId_SpecifyDerivedReferrer_TShiftList(TShiftCQ sq);
 
     /**
      * Prepare for (Query)DerivedReferrer (correlated sub-query). <br>
@@ -323,60 +231,6 @@ public abstract class AbstractBsMStaffCQ extends AbstractConditionQuery {
     public abstract String keepStaffId_QueryDerivedReferrer_MWorkingStaffListParameter(Object vl);
 
     /**
-     * Prepare for (Query)DerivedReferrer (correlated sub-query). <br>
-     * {FOO &lt;= (select max(BAR) from t_reservation where ...)} <br>
-     * t_reservation by staff_id, named 'TReservationAsOne'.
-     * <pre>
-     * cb.query().<span style="color: #CC4747">derivedTReservation()</span>.<span style="color: #CC4747">max</span>(reservationCB <span style="color: #90226C; font-weight: bold"><span style="font-size: 120%">-</span>&gt;</span> {
-     *     reservationCB.specify().<span style="color: #CC4747">columnFoo...</span> <span style="color: #3F7E5E">// derived column by function</span>
-     *     reservationCB.query().setBar... <span style="color: #3F7E5E">// referrer condition</span>
-     * }).<span style="color: #CC4747">greaterEqual</span>(123); <span style="color: #3F7E5E">// condition to derived column</span>
-     * </pre>
-     * @return The object to set up a function for referrer table. (NotNull)
-     */
-    public HpQDRFunction<TReservationCB> derivedTReservation() {
-        return xcreateQDRFunctionTReservationList();
-    }
-    protected HpQDRFunction<TReservationCB> xcreateQDRFunctionTReservationList() {
-        return xcQDRFunc((fn, sq, rd, vl, op) -> xqderiveTReservationList(fn, sq, rd, vl, op));
-    }
-    public void xqderiveTReservationList(String fn, SubQuery<TReservationCB> sq, String rd, Object vl, DerivedReferrerOption op) {
-        assertObjectNotNull("subQuery", sq);
-        TReservationCB cb = new TReservationCB(); cb.xsetupForDerivedReferrer(this);
-        lockCall(() -> sq.query(cb)); String sqpp = keepStaffId_QueryDerivedReferrer_TReservationList(cb.query()); String prpp = keepStaffId_QueryDerivedReferrer_TReservationListParameter(vl);
-        registerQueryDerivedReferrer(fn, cb.query(), "staff_id", "staff_id", sqpp, "tReservationList", rd, vl, prpp, op);
-    }
-    public abstract String keepStaffId_QueryDerivedReferrer_TReservationList(TReservationCQ sq);
-    public abstract String keepStaffId_QueryDerivedReferrer_TReservationListParameter(Object vl);
-
-    /**
-     * Prepare for (Query)DerivedReferrer (correlated sub-query). <br>
-     * {FOO &lt;= (select max(BAR) from t_shift where ...)} <br>
-     * t_shift by staff_id, named 'TShiftAsOne'.
-     * <pre>
-     * cb.query().<span style="color: #CC4747">derivedTShift()</span>.<span style="color: #CC4747">max</span>(shiftCB <span style="color: #90226C; font-weight: bold"><span style="font-size: 120%">-</span>&gt;</span> {
-     *     shiftCB.specify().<span style="color: #CC4747">columnFoo...</span> <span style="color: #3F7E5E">// derived column by function</span>
-     *     shiftCB.query().setBar... <span style="color: #3F7E5E">// referrer condition</span>
-     * }).<span style="color: #CC4747">greaterEqual</span>(123); <span style="color: #3F7E5E">// condition to derived column</span>
-     * </pre>
-     * @return The object to set up a function for referrer table. (NotNull)
-     */
-    public HpQDRFunction<TShiftCB> derivedTShift() {
-        return xcreateQDRFunctionTShiftList();
-    }
-    protected HpQDRFunction<TShiftCB> xcreateQDRFunctionTShiftList() {
-        return xcQDRFunc((fn, sq, rd, vl, op) -> xqderiveTShiftList(fn, sq, rd, vl, op));
-    }
-    public void xqderiveTShiftList(String fn, SubQuery<TShiftCB> sq, String rd, Object vl, DerivedReferrerOption op) {
-        assertObjectNotNull("subQuery", sq);
-        TShiftCB cb = new TShiftCB(); cb.xsetupForDerivedReferrer(this);
-        lockCall(() -> sq.query(cb)); String sqpp = keepStaffId_QueryDerivedReferrer_TShiftList(cb.query()); String prpp = keepStaffId_QueryDerivedReferrer_TShiftListParameter(vl);
-        registerQueryDerivedReferrer(fn, cb.query(), "staff_id", "staff_id", sqpp, "tShiftList", rd, vl, prpp, op);
-    }
-    public abstract String keepStaffId_QueryDerivedReferrer_TShiftList(TShiftCQ sq);
-    public abstract String keepStaffId_QueryDerivedReferrer_TShiftListParameter(Object vl);
-
-    /**
      * IsNull {is null}. And OnlyOnceRegistered. <br>
      * staff_id: {PK, ID, NotNull, serial(10)}
      */
@@ -390,6 +244,123 @@ public abstract class AbstractBsMStaffCQ extends AbstractConditionQuery {
 
     protected void regStaffId(ConditionKey ky, Object vl) { regQ(ky, vl, xgetCValueStaffId(), "staff_id"); }
     protected abstract ConditionValue xgetCValueStaffId();
+
+    /**
+     * Equal(=). And NullIgnored, OnlyOnceRegistered. <br>
+     * company_id: {NotNull, int4(10), FK to m_company}
+     * @param companyId The value of companyId as equal. (basically NotNull: error as default, or no condition as option)
+     */
+    public void setCompanyId_Equal(Integer companyId) {
+        doSetCompanyId_Equal(companyId);
+    }
+
+    protected void doSetCompanyId_Equal(Integer companyId) {
+        regCompanyId(CK_EQ, companyId);
+    }
+
+    /**
+     * NotEqual(&lt;&gt;). And NullIgnored, OnlyOnceRegistered. <br>
+     * company_id: {NotNull, int4(10), FK to m_company}
+     * @param companyId The value of companyId as notEqual. (basically NotNull: error as default, or no condition as option)
+     */
+    public void setCompanyId_NotEqual(Integer companyId) {
+        doSetCompanyId_NotEqual(companyId);
+    }
+
+    protected void doSetCompanyId_NotEqual(Integer companyId) {
+        regCompanyId(CK_NES, companyId);
+    }
+
+    /**
+     * GreaterThan(&gt;). And NullIgnored, OnlyOnceRegistered. <br>
+     * company_id: {NotNull, int4(10), FK to m_company}
+     * @param companyId The value of companyId as greaterThan. (basically NotNull: error as default, or no condition as option)
+     */
+    public void setCompanyId_GreaterThan(Integer companyId) {
+        regCompanyId(CK_GT, companyId);
+    }
+
+    /**
+     * LessThan(&lt;). And NullIgnored, OnlyOnceRegistered. <br>
+     * company_id: {NotNull, int4(10), FK to m_company}
+     * @param companyId The value of companyId as lessThan. (basically NotNull: error as default, or no condition as option)
+     */
+    public void setCompanyId_LessThan(Integer companyId) {
+        regCompanyId(CK_LT, companyId);
+    }
+
+    /**
+     * GreaterEqual(&gt;=). And NullIgnored, OnlyOnceRegistered. <br>
+     * company_id: {NotNull, int4(10), FK to m_company}
+     * @param companyId The value of companyId as greaterEqual. (basically NotNull: error as default, or no condition as option)
+     */
+    public void setCompanyId_GreaterEqual(Integer companyId) {
+        regCompanyId(CK_GE, companyId);
+    }
+
+    /**
+     * LessEqual(&lt;=). And NullIgnored, OnlyOnceRegistered. <br>
+     * company_id: {NotNull, int4(10), FK to m_company}
+     * @param companyId The value of companyId as lessEqual. (basically NotNull: error as default, or no condition as option)
+     */
+    public void setCompanyId_LessEqual(Integer companyId) {
+        regCompanyId(CK_LE, companyId);
+    }
+
+    /**
+     * RangeOf with various options. (versatile) <br>
+     * {(default) minNumber &lt;= column &lt;= maxNumber} <br>
+     * And NullIgnored, OnlyOnceRegistered. <br>
+     * company_id: {NotNull, int4(10), FK to m_company}
+     * @param minNumber The min number of companyId. (basically NotNull: if op.allowOneSide(), null allowed)
+     * @param maxNumber The max number of companyId. (basically NotNull: if op.allowOneSide(), null allowed)
+     * @param opLambda The callback for option of range-of. (NotNull)
+     */
+    public void setCompanyId_RangeOf(Integer minNumber, Integer maxNumber, ConditionOptionCall<RangeOfOption> opLambda) {
+        setCompanyId_RangeOf(minNumber, maxNumber, xcROOP(opLambda));
+    }
+
+    /**
+     * RangeOf with various options. (versatile) <br>
+     * {(default) minNumber &lt;= column &lt;= maxNumber} <br>
+     * And NullIgnored, OnlyOnceRegistered. <br>
+     * company_id: {NotNull, int4(10), FK to m_company}
+     * @param minNumber The min number of companyId. (basically NotNull: if op.allowOneSide(), null allowed)
+     * @param maxNumber The max number of companyId. (basically NotNull: if op.allowOneSide(), null allowed)
+     * @param rangeOfOption The option of range-of. (NotNull)
+     */
+    protected void setCompanyId_RangeOf(Integer minNumber, Integer maxNumber, RangeOfOption rangeOfOption) {
+        regROO(minNumber, maxNumber, xgetCValueCompanyId(), "company_id", rangeOfOption);
+    }
+
+    /**
+     * InScope {in (1, 2)}. And NullIgnored, NullElementIgnored, SeveralRegistered. <br>
+     * company_id: {NotNull, int4(10), FK to m_company}
+     * @param companyIdList The collection of companyId as inScope. (basically NotNull, NotEmpty: error as default, or no condition as option)
+     */
+    public void setCompanyId_InScope(Collection<Integer> companyIdList) {
+        doSetCompanyId_InScope(companyIdList);
+    }
+
+    protected void doSetCompanyId_InScope(Collection<Integer> companyIdList) {
+        regINS(CK_INS, cTL(companyIdList), xgetCValueCompanyId(), "company_id");
+    }
+
+    /**
+     * NotInScope {not in (1, 2)}. And NullIgnored, NullElementIgnored, SeveralRegistered. <br>
+     * company_id: {NotNull, int4(10), FK to m_company}
+     * @param companyIdList The collection of companyId as notInScope. (basically NotNull, NotEmpty: error as default, or no condition as option)
+     */
+    public void setCompanyId_NotInScope(Collection<Integer> companyIdList) {
+        doSetCompanyId_NotInScope(companyIdList);
+    }
+
+    protected void doSetCompanyId_NotInScope(Collection<Integer> companyIdList) {
+        regINS(CK_NINS, cTL(companyIdList), xgetCValueCompanyId(), "company_id");
+    }
+
+    protected void regCompanyId(ConditionKey ky, Object vl) { regQ(ky, vl, xgetCValueCompanyId(), "company_id"); }
+    protected abstract ConditionValue xgetCValueCompanyId();
 
     /**
      * Equal(=). And NullOrEmptyIgnored, OnlyOnceRegistered. <br>
@@ -1167,6 +1138,123 @@ public abstract class AbstractBsMStaffCQ extends AbstractConditionQuery {
 
     protected void regDeleteFlag(ConditionKey ky, Object vl) { regQ(ky, vl, xgetCValueDeleteFlag(), "delete_flag"); }
     protected abstract ConditionValue xgetCValueDeleteFlag();
+
+    /**
+     * Equal(=). And NullIgnored, OnlyOnceRegistered. <br>
+     * version_no: {NotNull, int4(10), default=[1]}
+     * @param versionNo The value of versionNo as equal. (basically NotNull: error as default, or no condition as option)
+     */
+    public void setVersionNo_Equal(Integer versionNo) {
+        doSetVersionNo_Equal(versionNo);
+    }
+
+    protected void doSetVersionNo_Equal(Integer versionNo) {
+        regVersionNo(CK_EQ, versionNo);
+    }
+
+    /**
+     * NotEqual(&lt;&gt;). And NullIgnored, OnlyOnceRegistered. <br>
+     * version_no: {NotNull, int4(10), default=[1]}
+     * @param versionNo The value of versionNo as notEqual. (basically NotNull: error as default, or no condition as option)
+     */
+    public void setVersionNo_NotEqual(Integer versionNo) {
+        doSetVersionNo_NotEqual(versionNo);
+    }
+
+    protected void doSetVersionNo_NotEqual(Integer versionNo) {
+        regVersionNo(CK_NES, versionNo);
+    }
+
+    /**
+     * GreaterThan(&gt;). And NullIgnored, OnlyOnceRegistered. <br>
+     * version_no: {NotNull, int4(10), default=[1]}
+     * @param versionNo The value of versionNo as greaterThan. (basically NotNull: error as default, or no condition as option)
+     */
+    public void setVersionNo_GreaterThan(Integer versionNo) {
+        regVersionNo(CK_GT, versionNo);
+    }
+
+    /**
+     * LessThan(&lt;). And NullIgnored, OnlyOnceRegistered. <br>
+     * version_no: {NotNull, int4(10), default=[1]}
+     * @param versionNo The value of versionNo as lessThan. (basically NotNull: error as default, or no condition as option)
+     */
+    public void setVersionNo_LessThan(Integer versionNo) {
+        regVersionNo(CK_LT, versionNo);
+    }
+
+    /**
+     * GreaterEqual(&gt;=). And NullIgnored, OnlyOnceRegistered. <br>
+     * version_no: {NotNull, int4(10), default=[1]}
+     * @param versionNo The value of versionNo as greaterEqual. (basically NotNull: error as default, or no condition as option)
+     */
+    public void setVersionNo_GreaterEqual(Integer versionNo) {
+        regVersionNo(CK_GE, versionNo);
+    }
+
+    /**
+     * LessEqual(&lt;=). And NullIgnored, OnlyOnceRegistered. <br>
+     * version_no: {NotNull, int4(10), default=[1]}
+     * @param versionNo The value of versionNo as lessEqual. (basically NotNull: error as default, or no condition as option)
+     */
+    public void setVersionNo_LessEqual(Integer versionNo) {
+        regVersionNo(CK_LE, versionNo);
+    }
+
+    /**
+     * RangeOf with various options. (versatile) <br>
+     * {(default) minNumber &lt;= column &lt;= maxNumber} <br>
+     * And NullIgnored, OnlyOnceRegistered. <br>
+     * version_no: {NotNull, int4(10), default=[1]}
+     * @param minNumber The min number of versionNo. (basically NotNull: if op.allowOneSide(), null allowed)
+     * @param maxNumber The max number of versionNo. (basically NotNull: if op.allowOneSide(), null allowed)
+     * @param opLambda The callback for option of range-of. (NotNull)
+     */
+    public void setVersionNo_RangeOf(Integer minNumber, Integer maxNumber, ConditionOptionCall<RangeOfOption> opLambda) {
+        setVersionNo_RangeOf(minNumber, maxNumber, xcROOP(opLambda));
+    }
+
+    /**
+     * RangeOf with various options. (versatile) <br>
+     * {(default) minNumber &lt;= column &lt;= maxNumber} <br>
+     * And NullIgnored, OnlyOnceRegistered. <br>
+     * version_no: {NotNull, int4(10), default=[1]}
+     * @param minNumber The min number of versionNo. (basically NotNull: if op.allowOneSide(), null allowed)
+     * @param maxNumber The max number of versionNo. (basically NotNull: if op.allowOneSide(), null allowed)
+     * @param rangeOfOption The option of range-of. (NotNull)
+     */
+    protected void setVersionNo_RangeOf(Integer minNumber, Integer maxNumber, RangeOfOption rangeOfOption) {
+        regROO(minNumber, maxNumber, xgetCValueVersionNo(), "version_no", rangeOfOption);
+    }
+
+    /**
+     * InScope {in (1, 2)}. And NullIgnored, NullElementIgnored, SeveralRegistered. <br>
+     * version_no: {NotNull, int4(10), default=[1]}
+     * @param versionNoList The collection of versionNo as inScope. (basically NotNull, NotEmpty: error as default, or no condition as option)
+     */
+    public void setVersionNo_InScope(Collection<Integer> versionNoList) {
+        doSetVersionNo_InScope(versionNoList);
+    }
+
+    protected void doSetVersionNo_InScope(Collection<Integer> versionNoList) {
+        regINS(CK_INS, cTL(versionNoList), xgetCValueVersionNo(), "version_no");
+    }
+
+    /**
+     * NotInScope {not in (1, 2)}. And NullIgnored, NullElementIgnored, SeveralRegistered. <br>
+     * version_no: {NotNull, int4(10), default=[1]}
+     * @param versionNoList The collection of versionNo as notInScope. (basically NotNull, NotEmpty: error as default, or no condition as option)
+     */
+    public void setVersionNo_NotInScope(Collection<Integer> versionNoList) {
+        doSetVersionNo_NotInScope(versionNoList);
+    }
+
+    protected void doSetVersionNo_NotInScope(Collection<Integer> versionNoList) {
+        regINS(CK_NINS, cTL(versionNoList), xgetCValueVersionNo(), "version_no");
+    }
+
+    protected void regVersionNo(ConditionKey ky, Object vl) { regQ(ky, vl, xgetCValueVersionNo(), "version_no"); }
+    protected abstract ConditionValue xgetCValueVersionNo();
 
     /**
      * Equal(=). And NullIgnored, OnlyOnceRegistered. <br>

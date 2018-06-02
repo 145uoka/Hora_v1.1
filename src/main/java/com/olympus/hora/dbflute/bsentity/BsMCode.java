@@ -12,12 +12,13 @@ import com.olympus.hora.dbflute.exentity.*;
 
 /**
  * The entity of m_code as TABLE. <br>
+ * コードマスタ
  * <pre>
  * [primary-key]
  *     code_id
  *
  * [column]
- *     code_id, group_code, code1, code2, name, delete_flag, register_datetime, update_datetime
+ *     code_id, group_code, code1, code2, name, delete_flag, version_no, register_datetime, update_datetime
  *
  * [sequence]
  *     m_code_code_id_seq
@@ -26,7 +27,7 @@ import com.olympus.hora.dbflute.exentity.*;
  *     
  *
  * [version-no]
- *     
+ *     version_no
  *
  * [foreign table]
  *     
@@ -48,6 +49,7 @@ import com.olympus.hora.dbflute.exentity.*;
  * Integer code2 = entity.getCode2();
  * String name = entity.getName();
  * Boolean deleteFlag = entity.getDeleteFlag();
+ * Integer versionNo = entity.getVersionNo();
  * java.time.LocalDateTime registerDatetime = entity.getRegisterDatetime();
  * java.time.LocalDateTime updateDatetime = entity.getUpdateDatetime();
  * entity.setCodeId(codeId);
@@ -56,6 +58,7 @@ import com.olympus.hora.dbflute.exentity.*;
  * entity.setCode2(code2);
  * entity.setName(name);
  * entity.setDeleteFlag(deleteFlag);
+ * entity.setVersionNo(versionNo);
  * entity.setRegisterDatetime(registerDatetime);
  * entity.setUpdateDatetime(updateDatetime);
  * = = = = = = = = = =/
@@ -90,6 +93,9 @@ public abstract class BsMCode extends AbstractEntity implements DomainEntity, En
 
     /** delete_flag: {NotNull, bool(1), default=[false]} */
     protected Boolean _deleteFlag;
+
+    /** version_no: {NotNull, int4(10), default=[1]} */
+    protected Integer _versionNo;
 
     /** register_datetime: {NotNull, timestamp(26, 3), default=[now()]} */
     protected java.time.LocalDateTime _registerDatetime;
@@ -165,6 +171,7 @@ public abstract class BsMCode extends AbstractEntity implements DomainEntity, En
         sb.append(dm).append(xfND(_code2));
         sb.append(dm).append(xfND(_name));
         sb.append(dm).append(xfND(_deleteFlag));
+        sb.append(dm).append(xfND(_versionNo));
         sb.append(dm).append(xfND(_registerDatetime));
         sb.append(dm).append(xfND(_updateDatetime));
         if (sb.length() > dm.length()) {
@@ -189,6 +196,7 @@ public abstract class BsMCode extends AbstractEntity implements DomainEntity, En
     //                                                                            ========
     /**
      * [get] code_id: {PK, ID, NotNull, serial(10)} <br>
+     * コードID : コードID
      * @return The value of the column 'code_id'. (basically NotNull if selected: for the constraint)
      */
     public Integer getCodeId() {
@@ -198,6 +206,7 @@ public abstract class BsMCode extends AbstractEntity implements DomainEntity, En
 
     /**
      * [set] code_id: {PK, ID, NotNull, serial(10)} <br>
+     * コードID : コードID
      * @param codeId The value of the column 'code_id'. (basically NotNull if update: for the constraint)
      */
     public void setCodeId(Integer codeId) {
@@ -207,6 +216,7 @@ public abstract class BsMCode extends AbstractEntity implements DomainEntity, En
 
     /**
      * [get] group_code: {int4(10)} <br>
+     * グループコード : グループコード
      * @return The value of the column 'group_code'. (NullAllowed even if selected: for no constraint)
      */
     public Integer getGroupCode() {
@@ -216,6 +226,7 @@ public abstract class BsMCode extends AbstractEntity implements DomainEntity, En
 
     /**
      * [set] group_code: {int4(10)} <br>
+     * グループコード : グループコード
      * @param groupCode The value of the column 'group_code'. (NullAllowed: null update allowed for no constraint)
      */
     public void setGroupCode(Integer groupCode) {
@@ -225,6 +236,7 @@ public abstract class BsMCode extends AbstractEntity implements DomainEntity, En
 
     /**
      * [get] code1: {int4(10)} <br>
+     * コード1 : コード1
      * @return The value of the column 'code1'. (NullAllowed even if selected: for no constraint)
      */
     public Integer getCode1() {
@@ -234,6 +246,7 @@ public abstract class BsMCode extends AbstractEntity implements DomainEntity, En
 
     /**
      * [set] code1: {int4(10)} <br>
+     * コード1 : コード1
      * @param code1 The value of the column 'code1'. (NullAllowed: null update allowed for no constraint)
      */
     public void setCode1(Integer code1) {
@@ -243,6 +256,7 @@ public abstract class BsMCode extends AbstractEntity implements DomainEntity, En
 
     /**
      * [get] code2: {int4(10)} <br>
+     * コード2 : コード2
      * @return The value of the column 'code2'. (NullAllowed even if selected: for no constraint)
      */
     public Integer getCode2() {
@@ -252,6 +266,7 @@ public abstract class BsMCode extends AbstractEntity implements DomainEntity, En
 
     /**
      * [set] code2: {int4(10)} <br>
+     * コード2 : コード2
      * @param code2 The value of the column 'code2'. (NullAllowed: null update allowed for no constraint)
      */
     public void setCode2(Integer code2) {
@@ -261,6 +276,7 @@ public abstract class BsMCode extends AbstractEntity implements DomainEntity, En
 
     /**
      * [get] name: {text(2147483647)} <br>
+     * 名称 : 名称
      * @return The value of the column 'name'. (NullAllowed even if selected: for no constraint)
      */
     public String getName() {
@@ -270,6 +286,7 @@ public abstract class BsMCode extends AbstractEntity implements DomainEntity, En
 
     /**
      * [set] name: {text(2147483647)} <br>
+     * 名称 : 名称
      * @param name The value of the column 'name'. (NullAllowed: null update allowed for no constraint)
      */
     public void setName(String name) {
@@ -279,6 +296,7 @@ public abstract class BsMCode extends AbstractEntity implements DomainEntity, En
 
     /**
      * [get] delete_flag: {NotNull, bool(1), default=[false]} <br>
+     * 削除フラグ
      * @return The value of the column 'delete_flag'. (basically NotNull if selected: for the constraint)
      */
     public Boolean getDeleteFlag() {
@@ -288,6 +306,7 @@ public abstract class BsMCode extends AbstractEntity implements DomainEntity, En
 
     /**
      * [set] delete_flag: {NotNull, bool(1), default=[false]} <br>
+     * 削除フラグ
      * @param deleteFlag The value of the column 'delete_flag'. (basically NotNull if update: for the constraint)
      */
     public void setDeleteFlag(Boolean deleteFlag) {
@@ -296,7 +315,28 @@ public abstract class BsMCode extends AbstractEntity implements DomainEntity, En
     }
 
     /**
+     * [get] version_no: {NotNull, int4(10), default=[1]} <br>
+     * version_no
+     * @return The value of the column 'version_no'. (basically NotNull if selected: for the constraint)
+     */
+    public Integer getVersionNo() {
+        checkSpecifiedProperty("versionNo");
+        return _versionNo;
+    }
+
+    /**
+     * [set] version_no: {NotNull, int4(10), default=[1]} <br>
+     * version_no
+     * @param versionNo The value of the column 'version_no'. (basically NotNull if update: for the constraint)
+     */
+    public void setVersionNo(Integer versionNo) {
+        registerModifiedProperty("versionNo");
+        _versionNo = versionNo;
+    }
+
+    /**
      * [get] register_datetime: {NotNull, timestamp(26, 3), default=[now()]} <br>
+     * 登録日時
      * @return The value of the column 'register_datetime'. (basically NotNull if selected: for the constraint)
      */
     public java.time.LocalDateTime getRegisterDatetime() {
@@ -306,6 +346,7 @@ public abstract class BsMCode extends AbstractEntity implements DomainEntity, En
 
     /**
      * [set] register_datetime: {NotNull, timestamp(26, 3), default=[now()]} <br>
+     * 登録日時
      * @param registerDatetime The value of the column 'register_datetime'. (basically NotNull if update: for the constraint)
      */
     public void setRegisterDatetime(java.time.LocalDateTime registerDatetime) {
@@ -315,6 +356,7 @@ public abstract class BsMCode extends AbstractEntity implements DomainEntity, En
 
     /**
      * [get] update_datetime: {timestamp(26, 3)} <br>
+     * 更新日時
      * @return The value of the column 'update_datetime'. (NullAllowed even if selected: for no constraint)
      */
     public java.time.LocalDateTime getUpdateDatetime() {
@@ -324,6 +366,7 @@ public abstract class BsMCode extends AbstractEntity implements DomainEntity, En
 
     /**
      * [set] update_datetime: {timestamp(26, 3)} <br>
+     * 更新日時
      * @param updateDatetime The value of the column 'update_datetime'. (NullAllowed: null update allowed for no constraint)
      */
     public void setUpdateDatetime(java.time.LocalDateTime updateDatetime) {

@@ -13,7 +13,7 @@ import com.olympus.hora.dbflute.exentity.*;
  *     code_id
  *
  * [column]
- *     code_id, group_code, code1, code2, name, delete_flag, register_datetime, update_datetime
+ *     code_id, group_code, code1, code2, name, delete_flag, version_no, register_datetime, update_datetime
  *
  * [sequence]
  *     m_code_code_id_seq
@@ -22,7 +22,7 @@ import com.olympus.hora.dbflute.exentity.*;
  *     
  *
  * [version-no]
- *     
+ *     version_no
  *
  * [foreign table]
  *     

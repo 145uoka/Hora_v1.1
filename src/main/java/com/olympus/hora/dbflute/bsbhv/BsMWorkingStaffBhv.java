@@ -26,7 +26,7 @@ import com.olympus.hora.dbflute.cbean.*;
  *     working_staff_id
  *
  * [column]
- *     working_staff_id, shop_id, staff_id, delete_flag, register_datetime, update_datetime
+ *     working_staff_id, shop_id, staff_id, delete_flag, version_no, register_datetime, update_datetime
  *
  * [sequence]
  *     m_working_staff_working_staff_id_seq
@@ -35,19 +35,19 @@ import com.olympus.hora.dbflute.cbean.*;
  *     
  *
  * [version-no]
- *     
+ *     version_no
  *
  * [foreign table]
  *     m_shop, m_staff
  *
  * [referrer table]
- *     
+ *     t_reservation, t_shift
  *
  * [foreign property]
  *     mShop, mStaff
  *
  * [referrer property]
- *     
+ *     tReservationList, tShiftList
  * </pre>
  * @author DBFlute(AutoGenerator)
  */
@@ -376,6 +376,134 @@ public abstract class BsMWorkingStaffBhv extends AbstractBehaviorWritable<MWorki
         loaderLambda.handle(new LoaderOfMWorkingStaff().ready(xnewLRAryLs(mWorkingStaff), _behaviorSelector));
     }
 
+    /**
+     * Load referrer of TReservationList by the set-upper of referrer. <br>
+     * t_reservation by working_staff_id, named 'TReservationList'.
+     * <pre>
+     * <span style="color: #0000C0">mWorkingStaffBhv</span>.<span style="color: #CC4747">loadTReservation</span>(<span style="color: #553000">mWorkingStaffList</span>, <span style="color: #553000">reservationCB</span> <span style="color: #90226C; font-weight: bold"><span style="font-size: 120%">-</span>&gt;</span> {
+     *     <span style="color: #553000">reservationCB</span>.setupSelect...
+     *     <span style="color: #553000">reservationCB</span>.query().set...
+     *     <span style="color: #553000">reservationCB</span>.query().addOrderBy...
+     * }); <span style="color: #3F7E5E">// you can load nested referrer from here</span>
+     * <span style="color: #3F7E5E">//}).withNestedReferrer(referrerList -&gt; {</span>
+     * <span style="color: #3F7E5E">//    ...</span>
+     * <span style="color: #3F7E5E">//});</span>
+     * <span style="color: #70226C">for</span> (MWorkingStaff mWorkingStaff : <span style="color: #553000">mWorkingStaffList</span>) {
+     *     ... = mWorkingStaff.<span style="color: #CC4747">getTReservationList()</span>;
+     * }
+     * </pre>
+     * About internal policy, the value of primary key (and others too) is treated as case-insensitive. <br>
+     * The condition-bean, which the set-upper provides, has settings before callback as follows:
+     * <pre>
+     * cb.query().setWorkingStaffId_InScope(pkList);
+     * cb.query().addOrderBy_WorkingStaffId_Asc();
+     * </pre>
+     * @param mWorkingStaffList The entity list of MWorkingStaff. (NotNull)
+     * @param refCBLambda The callback to set up referrer condition-bean for loading referrer. (NotNull)
+     * @return The callback interface which you can load nested referrer by calling withNestedReferrer(). (NotNull)
+     */
+    public NestedReferrerListGateway<TReservation> loadTReservation(List<MWorkingStaff> mWorkingStaffList, ReferrerConditionSetupper<TReservationCB> refCBLambda) {
+        xassLRArg(mWorkingStaffList, refCBLambda);
+        return doLoadTReservation(mWorkingStaffList, new LoadReferrerOption<TReservationCB, TReservation>().xinit(refCBLambda));
+    }
+
+    /**
+     * Load referrer of TReservationList by the set-upper of referrer. <br>
+     * t_reservation by working_staff_id, named 'TReservationList'.
+     * <pre>
+     * <span style="color: #0000C0">mWorkingStaffBhv</span>.<span style="color: #CC4747">loadTReservation</span>(<span style="color: #553000">mWorkingStaff</span>, <span style="color: #553000">reservationCB</span> <span style="color: #90226C; font-weight: bold"><span style="font-size: 120%">-</span>&gt;</span> {
+     *     <span style="color: #553000">reservationCB</span>.setupSelect...
+     *     <span style="color: #553000">reservationCB</span>.query().set...
+     *     <span style="color: #553000">reservationCB</span>.query().addOrderBy...
+     * }); <span style="color: #3F7E5E">// you can load nested referrer from here</span>
+     * <span style="color: #3F7E5E">//}).withNestedReferrer(referrerList -&gt; {</span>
+     * <span style="color: #3F7E5E">//    ...</span>
+     * <span style="color: #3F7E5E">//});</span>
+     * ... = <span style="color: #553000">mWorkingStaff</span>.<span style="color: #CC4747">getTReservationList()</span>;
+     * </pre>
+     * About internal policy, the value of primary key (and others too) is treated as case-insensitive. <br>
+     * The condition-bean, which the set-upper provides, has settings before callback as follows:
+     * <pre>
+     * cb.query().setWorkingStaffId_InScope(pkList);
+     * cb.query().addOrderBy_WorkingStaffId_Asc();
+     * </pre>
+     * @param mWorkingStaff The entity of MWorkingStaff. (NotNull)
+     * @param refCBLambda The callback to set up referrer condition-bean for loading referrer. (NotNull)
+     * @return The callback interface which you can load nested referrer by calling withNestedReferrer(). (NotNull)
+     */
+    public NestedReferrerListGateway<TReservation> loadTReservation(MWorkingStaff mWorkingStaff, ReferrerConditionSetupper<TReservationCB> refCBLambda) {
+        xassLRArg(mWorkingStaff, refCBLambda);
+        return doLoadTReservation(xnewLRLs(mWorkingStaff), new LoadReferrerOption<TReservationCB, TReservation>().xinit(refCBLambda));
+    }
+
+    protected NestedReferrerListGateway<TReservation> doLoadTReservation(List<MWorkingStaff> mWorkingStaffList, LoadReferrerOption<TReservationCB, TReservation> option) {
+        return helpLoadReferrerInternally(mWorkingStaffList, option, "tReservationList");
+    }
+
+    /**
+     * Load referrer of TShiftList by the set-upper of referrer. <br>
+     * t_shift by working_staff_id, named 'TShiftList'.
+     * <pre>
+     * <span style="color: #0000C0">mWorkingStaffBhv</span>.<span style="color: #CC4747">loadTShift</span>(<span style="color: #553000">mWorkingStaffList</span>, <span style="color: #553000">shiftCB</span> <span style="color: #90226C; font-weight: bold"><span style="font-size: 120%">-</span>&gt;</span> {
+     *     <span style="color: #553000">shiftCB</span>.setupSelect...
+     *     <span style="color: #553000">shiftCB</span>.query().set...
+     *     <span style="color: #553000">shiftCB</span>.query().addOrderBy...
+     * }); <span style="color: #3F7E5E">// you can load nested referrer from here</span>
+     * <span style="color: #3F7E5E">//}).withNestedReferrer(referrerList -&gt; {</span>
+     * <span style="color: #3F7E5E">//    ...</span>
+     * <span style="color: #3F7E5E">//});</span>
+     * <span style="color: #70226C">for</span> (MWorkingStaff mWorkingStaff : <span style="color: #553000">mWorkingStaffList</span>) {
+     *     ... = mWorkingStaff.<span style="color: #CC4747">getTShiftList()</span>;
+     * }
+     * </pre>
+     * About internal policy, the value of primary key (and others too) is treated as case-insensitive. <br>
+     * The condition-bean, which the set-upper provides, has settings before callback as follows:
+     * <pre>
+     * cb.query().setWorkingStaffId_InScope(pkList);
+     * cb.query().addOrderBy_WorkingStaffId_Asc();
+     * </pre>
+     * @param mWorkingStaffList The entity list of MWorkingStaff. (NotNull)
+     * @param refCBLambda The callback to set up referrer condition-bean for loading referrer. (NotNull)
+     * @return The callback interface which you can load nested referrer by calling withNestedReferrer(). (NotNull)
+     */
+    public NestedReferrerListGateway<TShift> loadTShift(List<MWorkingStaff> mWorkingStaffList, ReferrerConditionSetupper<TShiftCB> refCBLambda) {
+        xassLRArg(mWorkingStaffList, refCBLambda);
+        return doLoadTShift(mWorkingStaffList, new LoadReferrerOption<TShiftCB, TShift>().xinit(refCBLambda));
+    }
+
+    /**
+     * Load referrer of TShiftList by the set-upper of referrer. <br>
+     * t_shift by working_staff_id, named 'TShiftList'.
+     * <pre>
+     * <span style="color: #0000C0">mWorkingStaffBhv</span>.<span style="color: #CC4747">loadTShift</span>(<span style="color: #553000">mWorkingStaff</span>, <span style="color: #553000">shiftCB</span> <span style="color: #90226C; font-weight: bold"><span style="font-size: 120%">-</span>&gt;</span> {
+     *     <span style="color: #553000">shiftCB</span>.setupSelect...
+     *     <span style="color: #553000">shiftCB</span>.query().set...
+     *     <span style="color: #553000">shiftCB</span>.query().addOrderBy...
+     * }); <span style="color: #3F7E5E">// you can load nested referrer from here</span>
+     * <span style="color: #3F7E5E">//}).withNestedReferrer(referrerList -&gt; {</span>
+     * <span style="color: #3F7E5E">//    ...</span>
+     * <span style="color: #3F7E5E">//});</span>
+     * ... = <span style="color: #553000">mWorkingStaff</span>.<span style="color: #CC4747">getTShiftList()</span>;
+     * </pre>
+     * About internal policy, the value of primary key (and others too) is treated as case-insensitive. <br>
+     * The condition-bean, which the set-upper provides, has settings before callback as follows:
+     * <pre>
+     * cb.query().setWorkingStaffId_InScope(pkList);
+     * cb.query().addOrderBy_WorkingStaffId_Asc();
+     * </pre>
+     * @param mWorkingStaff The entity of MWorkingStaff. (NotNull)
+     * @param refCBLambda The callback to set up referrer condition-bean for loading referrer. (NotNull)
+     * @return The callback interface which you can load nested referrer by calling withNestedReferrer(). (NotNull)
+     */
+    public NestedReferrerListGateway<TShift> loadTShift(MWorkingStaff mWorkingStaff, ReferrerConditionSetupper<TShiftCB> refCBLambda) {
+        xassLRArg(mWorkingStaff, refCBLambda);
+        return doLoadTShift(xnewLRLs(mWorkingStaff), new LoadReferrerOption<TShiftCB, TShift>().xinit(refCBLambda));
+    }
+
+    protected NestedReferrerListGateway<TShift> doLoadTShift(List<MWorkingStaff> mWorkingStaffList, LoadReferrerOption<TShiftCB, TShift> option) {
+        return helpLoadReferrerInternally(mWorkingStaffList, option, "tShiftList");
+    }
+
     // ===================================================================================
     //                                                                   Pull out Relation
     //                                                                   =================
@@ -431,7 +559,7 @@ public abstract class BsMWorkingStaffBhv extends AbstractBehaviorWritable<MWorki
     }
 
     /**
-     * Update the entity modified-only. (ZeroUpdateException, NonExclusiveControl) <br>
+     * Update the entity modified-only. (ZeroUpdateException, ExclusiveControl) <br>
      * By PK as default, and also you can update by unique keys using entity's uniqueOf().
      * <pre>
      * MWorkingStaff mWorkingStaff = <span style="color: #70226C">new</span> MWorkingStaff();
@@ -444,8 +572,8 @@ public abstract class BsMWorkingStaffBhv extends AbstractBehaviorWritable<MWorki
      * mWorkingStaff.<span style="color: #CC4747">setVersionNo</span>(value);
      * <span style="color: #0000C0">mWorkingStaffBhv</span>.<span style="color: #CC4747">update</span>(mWorkingStaff);
      * </pre>
-     * @param mWorkingStaff The entity of update. (NotNull, PrimaryKeyNotNull)
-     * @throws EntityAlreadyDeletedException When the entity has already been deleted. (not found)
+     * @param mWorkingStaff The entity of update. (NotNull, PrimaryKeyNotNull, ConcurrencyColumnNotNull)
+     * @throws EntityAlreadyUpdatedException When the entity has already been updated.
      * @throws EntityDuplicatedException When the entity has been duplicated.
      * @throws EntityAlreadyExistsException When the entity already exists. (unique constraint violation)
      */
@@ -454,11 +582,35 @@ public abstract class BsMWorkingStaffBhv extends AbstractBehaviorWritable<MWorki
     }
 
     /**
-     * Insert or update the entity modified-only. (DefaultConstraintsEnabled, NonExclusiveControl) <br>
+     * Update the entity non-strictly modified-only. (ZeroUpdateException, NonExclusiveControl) <br>
+     * By PK as default, and also you can update by unique keys using entity's uniqueOf().
+     * <pre>
+     * MWorkingStaff mWorkingStaff = <span style="color: #70226C">new</span> MWorkingStaff();
+     * mWorkingStaff.setPK...(value); <span style="color: #3F7E5E">// required</span>
+     * mWorkingStaff.setFoo...(value); <span style="color: #3F7E5E">// you should set only modified columns</span>
+     * <span style="color: #3F7E5E">// you don't need to set values of common columns</span>
+     * <span style="color: #3F7E5E">//mWorkingStaff.setRegisterUser(value);</span>
+     * <span style="color: #3F7E5E">//mWorkingStaff.set...;</span>
+     * <span style="color: #3F7E5E">// you don't need to set a value of concurrency column</span>
+     * <span style="color: #3F7E5E">// (auto-increment for version number is valid though non-exclusive control)</span>
+     * <span style="color: #3F7E5E">//mWorkingStaff.setVersionNo(value);</span>
+     * <span style="color: #0000C0">mWorkingStaffBhv</span>.<span style="color: #CC4747">updateNonstrict</span>(mWorkingStaff);
+     * </pre>
+     * @param mWorkingStaff The entity of update. (NotNull, PrimaryKeyNotNull)
+     * @throws EntityAlreadyDeletedException When the entity has already been deleted. (not found)
+     * @throws EntityDuplicatedException When the entity has been duplicated.
+     * @throws EntityAlreadyExistsException When the entity already exists. (unique constraint violation)
+     */
+    public void updateNonstrict(MWorkingStaff mWorkingStaff) {
+        doUpdateNonstrict(mWorkingStaff, null);
+    }
+
+    /**
+     * Insert or update the entity modified-only. (DefaultConstraintsEnabled, ExclusiveControl) <br>
      * if (the entity has no PK) { insert() } else { update(), but no data, insert() } <br>
      * <p><span style="color: #994747; font-size: 120%">Also you can update by unique keys using entity's uniqueOf().</span></p>
      * @param mWorkingStaff The entity of insert or update. (NotNull, ...depends on insert or update)
-     * @throws EntityAlreadyDeletedException When the entity has already been deleted. (not found)
+     * @throws EntityAlreadyUpdatedException When the entity has already been updated.
      * @throws EntityDuplicatedException When the entity has been duplicated.
      * @throws EntityAlreadyExistsException When the entity already exists. (unique constraint violation)
      */
@@ -467,7 +619,20 @@ public abstract class BsMWorkingStaffBhv extends AbstractBehaviorWritable<MWorki
     }
 
     /**
-     * Delete the entity. (ZeroUpdateException, NonExclusiveControl) <br>
+     * Insert or update the entity non-strictly modified-only. (DefaultConstraintsEnabled, NonExclusiveControl) <br>
+     * if (the entity has no PK) { insert() } else { update(), but no data, insert() }
+     * <p><span style="color: #994747; font-size: 120%">Also you can update by unique keys using entity's uniqueOf().</span></p>
+     * @param mWorkingStaff The entity of insert or update. (NotNull, ...depends on insert or update)
+     * @throws EntityAlreadyDeletedException When the entity has already been deleted. (not found)
+     * @throws EntityDuplicatedException When the entity has been duplicated.
+     * @throws EntityAlreadyExistsException When the entity already exists. (unique constraint violation)
+     */
+    public void insertOrUpdateNonstrict(MWorkingStaff mWorkingStaff) {
+        doInsertOrUpdateNonstrict(mWorkingStaff, null, null);
+    }
+
+    /**
+     * Delete the entity. (ZeroUpdateException, ExclusiveControl) <br>
      * By PK as default, and also you can delete by unique keys using entity's uniqueOf().
      * <pre>
      * MWorkingStaff mWorkingStaff = <span style="color: #70226C">new</span> MWorkingStaff();
@@ -480,12 +645,31 @@ public abstract class BsMWorkingStaffBhv extends AbstractBehaviorWritable<MWorki
      *     ...
      * }
      * </pre>
-     * @param mWorkingStaff The entity of delete. (NotNull, PrimaryKeyNotNull)
-     * @throws EntityAlreadyDeletedException When the entity has already been deleted. (not found)
+     * @param mWorkingStaff The entity of delete. (NotNull, PrimaryKeyNotNull, ConcurrencyColumnNotNull)
+     * @throws EntityAlreadyUpdatedException When the entity has already been updated.
      * @throws EntityDuplicatedException When the entity has been duplicated.
      */
     public void delete(MWorkingStaff mWorkingStaff) {
         doDelete(mWorkingStaff, null);
+    }
+
+    /**
+     * Delete the entity non-strictly. {ZeroUpdateException, NonExclusiveControl} <br>
+     * By PK as default, and also you can delete by unique keys using entity's uniqueOf().
+     * <pre>
+     * MWorkingStaff mWorkingStaff = <span style="color: #70226C">new</span> MWorkingStaff();
+     * mWorkingStaff.setPK...(value); <span style="color: #3F7E5E">// required</span>
+     * <span style="color: #3F7E5E">// you don't need to set a value of concurrency column</span>
+     * <span style="color: #3F7E5E">// (auto-increment for version number is valid though non-exclusive control)</span>
+     * <span style="color: #3F7E5E">//mWorkingStaff.setVersionNo(value);</span>
+     * <span style="color: #0000C0">mWorkingStaffBhv</span>.<span style="color: #CC4747">deleteNonstrict</span>(mWorkingStaff);
+     * </pre>
+     * @param mWorkingStaff The entity of delete. (NotNull, PrimaryKeyNotNull)
+     * @throws EntityAlreadyDeletedException When the entity has already been deleted. (not found)
+     * @throws EntityDuplicatedException When the entity has been duplicated.
+     */
+    public void deleteNonstrict(MWorkingStaff mWorkingStaff) {
+        doDeleteNonstrict(mWorkingStaff, null);
     }
 
     // ===================================================================================
@@ -520,7 +704,7 @@ public abstract class BsMWorkingStaffBhv extends AbstractBehaviorWritable<MWorki
     }
 
     /**
-     * Batch-update the entity list modified-only of same-set columns. (NonExclusiveControl) <br>
+     * Batch-update the entity list modified-only of same-set columns. (ExclusiveControl) <br>
      * This method uses executeBatch() of java.sql.PreparedStatement. <br>
      * <span style="color: #CC4747; font-size: 120%">You should specify same-set columns to all entities like this:</span>
      * <pre>
@@ -539,23 +723,62 @@ public abstract class BsMWorkingStaffBhv extends AbstractBehaviorWritable<MWorki
      * }
      * <span style="color: #0000C0">mWorkingStaffBhv</span>.<span style="color: #CC4747">batchUpdate</span>(mWorkingStaffList);
      * </pre>
-     * @param mWorkingStaffList The list of the entity. (NotNull, EmptyAllowed, PrimaryKeyNotNull)
+     * @param mWorkingStaffList The list of the entity. (NotNull, EmptyAllowed, PrimaryKeyNotNull, ConcurrencyColumnNotNull)
      * @return The array of updated count. (NotNull, EmptyAllowed)
-     * @throws EntityAlreadyDeletedException When the entity has already been deleted. (not found)
+     * @throws BatchEntityAlreadyUpdatedException When the entity has already been updated. This exception extends EntityAlreadyUpdatedException.
      */
     public int[] batchUpdate(List<MWorkingStaff> mWorkingStaffList) {
         return doBatchUpdate(mWorkingStaffList, null);
     }
 
     /**
-     * Batch-delete the entity list. (NonExclusiveControl) <br>
+     * Batch-update the entity list non-strictly modified-only of same-set columns. (NonExclusiveControl) <br>
+     * This method uses executeBatch() of java.sql.PreparedStatement. <br>
+     * <span style="color: #CC4747; font-size: 140%">You should specify same-set columns to all entities like this:</span>
+     * <pre>
+     * <span style="color: #70226C">for</span> (... : ...) {
+     *     MWorkingStaff mWorkingStaff = <span style="color: #70226C">new</span> MWorkingStaff();
+     *     mWorkingStaff.setFooName("foo");
+     *     <span style="color: #70226C">if</span> (...) {
+     *         mWorkingStaff.setFooPrice(123);
+     *     } <span style="color: #70226C">else</span> {
+     *         mWorkingStaff.setFooPrice(null); <span style="color: #3F7E5E">// updated as null</span>
+     *         <span style="color: #3F7E5E">//mWorkingStaff.setFooDate(...); // *not allowed, fragmented</span>
+     *     }
+     *     <span style="color: #3F7E5E">// FOO_NAME and FOO_PRICE (and record meta columns) are updated</span>
+     *     <span style="color: #3F7E5E">// (others are not updated: their values are kept)</span>
+     *     mWorkingStaffList.add(mWorkingStaff);
+     * }
+     * <span style="color: #0000C0">mWorkingStaffBhv</span>.<span style="color: #CC4747">batchUpdate</span>(mWorkingStaffList);
+     * </pre>
+     * @param mWorkingStaffList The list of the entity. (NotNull, EmptyAllowed, PrimaryKeyNotNull)
+     * @return The array of updated count. (NotNull, EmptyAllowed)
+     * @throws EntityAlreadyDeletedException When the entity has already been deleted. (not found)
+     */
+    public int[] batchUpdateNonstrict(List<MWorkingStaff> mWorkingStaffList) {
+        return doBatchUpdateNonstrict(mWorkingStaffList, null);
+    }
+
+    /**
+     * Batch-delete the entity list. (ExclusiveControl) <br>
+     * This method uses executeBatch() of java.sql.PreparedStatement.
+     * @param mWorkingStaffList The list of the entity. (NotNull, EmptyAllowed, PrimaryKeyNotNull)
+     * @return The array of deleted count. (NotNull, EmptyAllowed)
+     * @throws BatchEntityAlreadyUpdatedException When the entity has already been updated. This exception extends EntityAlreadyUpdatedException.
+     */
+    public int[] batchDelete(List<MWorkingStaff> mWorkingStaffList) {
+        return doBatchDelete(mWorkingStaffList, null);
+    }
+
+    /**
+     * Batch-delete the entity list non-strictly. {NonExclusiveControl} <br>
      * This method uses executeBatch() of java.sql.PreparedStatement.
      * @param mWorkingStaffList The list of the entity. (NotNull, EmptyAllowed, PrimaryKeyNotNull)
      * @return The array of deleted count. (NotNull, EmptyAllowed)
      * @throws EntityAlreadyDeletedException When the entity has already been deleted. (not found)
      */
-    public int[] batchDelete(List<MWorkingStaff> mWorkingStaffList) {
-        return doBatchDelete(mWorkingStaffList, null);
+    public int[] batchDeleteNonstrict(List<MWorkingStaff> mWorkingStaffList) {
+        return doBatchDeleteNonstrict(mWorkingStaffList, null);
     }
 
     // ===================================================================================
@@ -662,7 +885,7 @@ public abstract class BsMWorkingStaffBhv extends AbstractBehaviorWritable<MWorki
     }
 
     /**
-     * Update the entity with varying requests modified-only. (ZeroUpdateException, NonExclusiveControl) <br>
+     * Update the entity with varying requests modified-only. (ZeroUpdateException, ExclusiveControl) <br>
      * For example, self(selfCalculationSpecification), specify(updateColumnSpecification), disableCommonColumnAutoSetup(). <br>
      * Other specifications are same as update(entity).
      * <pre>
@@ -678,9 +901,9 @@ public abstract class BsMWorkingStaffBhv extends AbstractBehaviorWritable<MWorki
      *     }).plus(1); <span style="color: #3F7E5E">// XXX_COUNT = XXX_COUNT + 1</span>
      * });
      * </pre>
-     * @param mWorkingStaff The entity of update. (NotNull, PrimaryKeyNotNull)
+     * @param mWorkingStaff The entity of update. (NotNull, PrimaryKeyNotNull, ConcurrencyColumnNotNull)
      * @param opLambda The callback for option of update for varying requests. (NotNull)
-     * @throws EntityAlreadyDeletedException When the entity has already been deleted. (not found)
+     * @throws EntityAlreadyUpdatedException When the entity has already been updated.
      * @throws EntityDuplicatedException When the entity has been duplicated.
      * @throws EntityAlreadyExistsException When the entity already exists. (unique constraint violation)
      */
@@ -689,12 +912,40 @@ public abstract class BsMWorkingStaffBhv extends AbstractBehaviorWritable<MWorki
     }
 
     /**
+     * Update the entity with varying requests non-strictly modified-only. (ZeroUpdateException, NonExclusiveControl) <br>
+     * For example, self(selfCalculationSpecification), specify(updateColumnSpecification), disableCommonColumnAutoSetup(). <br>
+     * Other specifications are same as updateNonstrict(entity).
+     * <pre>
+     * <span style="color: #3F7E5E">// ex) you can update by self calculation values</span>
+     * MWorkingStaff mWorkingStaff = <span style="color: #70226C">new</span> MWorkingStaff();
+     * mWorkingStaff.setPK...(value); <span style="color: #3F7E5E">// required</span>
+     * mWorkingStaff.setOther...(value); <span style="color: #3F7E5E">// you should set only modified columns</span>
+     * <span style="color: #3F7E5E">// you don't need to set a value of concurrency column</span>
+     * <span style="color: #3F7E5E">// (auto-increment for version number is valid though non-exclusive control)</span>
+     * <span style="color: #3F7E5E">//mWorkingStaff.setVersionNo(value);</span>
+     * <span style="color: #0000C0">mWorkingStaffBhv</span>.<span style="color: #CC4747">varyingUpdateNonstrict</span>(mWorkingStaff, <span style="color: #553000">op</span> <span style="color: #90226C; font-weight: bold"><span style="font-size: 120%">-</span>&gt;</span> {
+     *     <span style="color: #553000">op</span>.self(<span style="color: #553000">cb</span> <span style="color: #90226C; font-weight: bold"><span style="font-size: 120%">-</span>&gt;</span> {
+     *         <span style="color: #553000">cb</span>.specify().<span style="color: #CC4747">columnXxxCount()</span>;
+     *     }).plus(1); <span style="color: #3F7E5E">// XXX_COUNT = XXX_COUNT + 1</span>
+     * });
+     * </pre>
+     * @param mWorkingStaff The entity of update. (NotNull, PrimaryKeyNotNull)
+     * @param opLambda The callback for option of update for varying requests. (NotNull)
+     * @throws EntityAlreadyDeletedException When the entity has already been deleted. (not found)
+     * @throws EntityDuplicatedException When the entity has been duplicated.
+     * @throws EntityAlreadyExistsException When the entity already exists. (unique constraint violation)
+     */
+    public void varyingUpdateNonstrict(MWorkingStaff mWorkingStaff, WritableOptionCall<MWorkingStaffCB, UpdateOption<MWorkingStaffCB>> opLambda) {
+        doUpdateNonstrict(mWorkingStaff, createUpdateOption(opLambda));
+    }
+
+    /**
      * Insert or update the entity with varying requests. (ExclusiveControl: when update) <br>
      * Other specifications are same as insertOrUpdate(entity).
      * @param mWorkingStaff The entity of insert or update. (NotNull)
      * @param insertOpLambda The callback for option of insert for varying requests. (NotNull)
      * @param updateOpLambda The callback for option of update for varying requests. (NotNull)
-     * @throws EntityAlreadyDeletedException When the entity has already been deleted. (not found)
+     * @throws EntityAlreadyUpdatedException When the entity has already been updated.
      * @throws EntityDuplicatedException When the entity has been duplicated.
      * @throws EntityAlreadyExistsException When the entity already exists. (unique constraint violation)
      */
@@ -703,16 +954,43 @@ public abstract class BsMWorkingStaffBhv extends AbstractBehaviorWritable<MWorki
     }
 
     /**
-     * Delete the entity with varying requests. (ZeroUpdateException, NonExclusiveControl) <br>
+     * Insert or update the entity with varying requests non-strictly. (NonExclusiveControl: when update) <br>
+     * Other specifications are same as insertOrUpdateNonstrict(entity).
+     * @param mWorkingStaff The entity of insert or update. (NotNull)
+     * @param insertOpLambda The callback for option of insert for varying requests. (NotNull)
+     * @param updateOpLambda The callback for option of update for varying requests. (NotNull)
+     * @throws EntityAlreadyDeletedException When the entity has already been deleted. (not found)
+     * @throws EntityDuplicatedException When the entity has been duplicated.
+     * @throws EntityAlreadyExistsException When the entity already exists. (unique constraint violation)
+     */
+    public void varyingInsertOrUpdateNonstrict(MWorkingStaff mWorkingStaff, WritableOptionCall<MWorkingStaffCB, InsertOption<MWorkingStaffCB>> insertOpLambda, WritableOptionCall<MWorkingStaffCB, UpdateOption<MWorkingStaffCB>> updateOpLambda) {
+        doInsertOrUpdateNonstrict(mWorkingStaff, createInsertOption(insertOpLambda), createUpdateOption(updateOpLambda));
+    }
+
+    /**
+     * Delete the entity with varying requests. (ZeroUpdateException, ExclusiveControl) <br>
      * Now a valid option does not exist. <br>
      * Other specifications are same as delete(entity).
+     * @param mWorkingStaff The entity of delete. (NotNull, PrimaryKeyNotNull, ConcurrencyColumnNotNull)
+     * @param opLambda The callback for option of delete for varying requests. (NotNull)
+     * @throws EntityAlreadyUpdatedException When the entity has already been updated.
+     * @throws EntityDuplicatedException When the entity has been duplicated.
+     */
+    public void varyingDelete(MWorkingStaff mWorkingStaff, WritableOptionCall<MWorkingStaffCB, DeleteOption<MWorkingStaffCB>> opLambda) {
+        doDelete(mWorkingStaff, createDeleteOption(opLambda));
+    }
+
+    /**
+     * Delete the entity with varying requests non-strictly. (ZeroUpdateException, NonExclusiveControl) <br>
+     * Now a valid option does not exist. <br>
+     * Other specifications are same as deleteNonstrict(entity).
      * @param mWorkingStaff The entity of delete. (NotNull, PrimaryKeyNotNull, ConcurrencyColumnNotNull)
      * @param opLambda The callback for option of delete for varying requests. (NotNull)
      * @throws EntityAlreadyDeletedException When the entity has already been deleted. (not found)
      * @throws EntityDuplicatedException When the entity has been duplicated.
      */
-    public void varyingDelete(MWorkingStaff mWorkingStaff, WritableOptionCall<MWorkingStaffCB, DeleteOption<MWorkingStaffCB>> opLambda) {
-        doDelete(mWorkingStaff, createDeleteOption(opLambda));
+    public void varyingDeleteNonstrict(MWorkingStaff mWorkingStaff, WritableOptionCall<MWorkingStaffCB, DeleteOption<MWorkingStaffCB>> opLambda) {
+        doDeleteNonstrict(mWorkingStaff, createDeleteOption(opLambda));
     }
 
     // -----------------------------------------------------
@@ -745,6 +1023,19 @@ public abstract class BsMWorkingStaffBhv extends AbstractBehaviorWritable<MWorki
     }
 
     /**
+     * Batch-update the list with varying requests non-strictly. <br>
+     * For example, self(selfCalculationSpecification), specify(updateColumnSpecification)
+     * , disableCommonColumnAutoSetup(), limitBatchUpdateLogging(). <br>
+     * Other specifications are same as batchUpdateNonstrict(entityList).
+     * @param mWorkingStaffList The list of the entity. (NotNull, EmptyAllowed, PrimaryKeyNotNull)
+     * @param opLambda The callback for option of update for varying requests. (NotNull)
+     * @return The array of updated count. (NotNull, EmptyAllowed)
+     */
+    public int[] varyingBatchUpdateNonstrict(List<MWorkingStaff> mWorkingStaffList, WritableOptionCall<MWorkingStaffCB, UpdateOption<MWorkingStaffCB>> opLambda) {
+        return doBatchUpdateNonstrict(mWorkingStaffList, createUpdateOption(opLambda));
+    }
+
+    /**
      * Batch-delete the list with varying requests. <br>
      * For example, limitBatchDeleteLogging(). <br>
      * Other specifications are same as batchDelete(entityList).
@@ -754,6 +1045,18 @@ public abstract class BsMWorkingStaffBhv extends AbstractBehaviorWritable<MWorki
      */
     public int[] varyingBatchDelete(List<MWorkingStaff> mWorkingStaffList, WritableOptionCall<MWorkingStaffCB, DeleteOption<MWorkingStaffCB>> opLambda) {
         return doBatchDelete(mWorkingStaffList, createDeleteOption(opLambda));
+    }
+
+    /**
+     * Batch-delete the list with varying requests non-strictly. <br>
+     * For example, limitBatchDeleteLogging(). <br>
+     * Other specifications are same as batchDeleteNonstrict(entityList).
+     * @param mWorkingStaffList The list of the entity. (NotNull, EmptyAllowed, PrimaryKeyNotNull)
+     * @param opLambda The callback for option of delete for varying requests. (NotNull)
+     * @return The array of deleted count. (NotNull, EmptyAllowed)
+     */
+    public int[] varyingBatchDeleteNonstrict(List<MWorkingStaff> mWorkingStaffList, WritableOptionCall<MWorkingStaffCB, DeleteOption<MWorkingStaffCB>> opLambda) {
+        return doBatchDeleteNonstrict(mWorkingStaffList, createDeleteOption(opLambda));
     }
 
     // -----------------------------------------------------
@@ -857,6 +1160,12 @@ public abstract class BsMWorkingStaffBhv extends AbstractBehaviorWritable<MWorki
     public OutsideSqlAllFacadeExecutor<MWorkingStaffBhv> outsideSql() {
         return doOutsideSql();
     }
+
+    // ===================================================================================
+    //                                                                Optimistic Lock Info
+    //                                                                ====================
+    @Override
+    protected boolean hasVersionNoValue(Entity et) { return downcast(et).getVersionNo() != null; }
 
     // ===================================================================================
     //                                                                         Type Helper

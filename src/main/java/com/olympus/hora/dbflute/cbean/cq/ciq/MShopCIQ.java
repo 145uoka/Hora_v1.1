@@ -133,6 +133,7 @@ public class MShopCIQ extends AbstractBsMShopCQ {
     protected ConditionValue xgetCValueAddress2() { return _myCQ.xdfgetAddress2(); }
     protected ConditionValue xgetCValueRemarks() { return _myCQ.xdfgetRemarks(); }
     protected ConditionValue xgetCValueDeleteFlag() { return _myCQ.xdfgetDeleteFlag(); }
+    protected ConditionValue xgetCValueVersionNo() { return _myCQ.xdfgetVersionNo(); }
     protected ConditionValue xgetCValueRegisterDatetime() { return _myCQ.xdfgetRegisterDatetime(); }
     protected ConditionValue xgetCValueUpdateDatetime() { return _myCQ.xdfgetUpdateDatetime(); }
     protected Map<String, Object> xfindFixedConditionDynamicParameterMap(String pp) { return null; }

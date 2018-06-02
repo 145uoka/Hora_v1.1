@@ -14,12 +14,13 @@ import com.olympus.hora.dbflute.exentity.*;
 
 /**
  * The entity of m_working_day as TABLE. <br>
+ * 営業日マスタ
  * <pre>
  * [primary-key]
  *     working_day_id
  *
  * [column]
- *     working_day_id, shop_id, working_date, start_time, end_time, delete_flag, register_datetime, update_datetime
+ *     working_day_id, shop_id, working_date, start_time, end_time, delete_flag, version_no, register_datetime, update_datetime
  *
  * [sequence]
  *     m_working_day_working_day_id_seq
@@ -28,7 +29,7 @@ import com.olympus.hora.dbflute.exentity.*;
  *     
  *
  * [version-no]
- *     
+ *     version_no
  *
  * [foreign table]
  *     m_shop
@@ -50,6 +51,7 @@ import com.olympus.hora.dbflute.exentity.*;
  * java.time.LocalTime startTime = entity.getStartTime();
  * java.time.LocalTime endTime = entity.getEndTime();
  * Boolean deleteFlag = entity.getDeleteFlag();
+ * Integer versionNo = entity.getVersionNo();
  * java.time.LocalDateTime registerDatetime = entity.getRegisterDatetime();
  * java.time.LocalDateTime updateDatetime = entity.getUpdateDatetime();
  * entity.setWorkingDayId(workingDayId);
@@ -58,6 +60,7 @@ import com.olympus.hora.dbflute.exentity.*;
  * entity.setStartTime(startTime);
  * entity.setEndTime(endTime);
  * entity.setDeleteFlag(deleteFlag);
+ * entity.setVersionNo(versionNo);
  * entity.setRegisterDatetime(registerDatetime);
  * entity.setUpdateDatetime(updateDatetime);
  * = = = = = = = = = =/
@@ -92,6 +95,9 @@ public abstract class BsMWorkingDay extends AbstractEntity implements DomainEnti
 
     /** delete_flag: {NotNull, bool(1), default=[false]} */
     protected Boolean _deleteFlag;
+
+    /** version_no: {NotNull, int4(10), default=[1]} */
+    protected Integer _versionNo;
 
     /** register_datetime: {NotNull, timestamp(26, 3), default=[now()]} */
     protected java.time.LocalDateTime _registerDatetime;
@@ -216,6 +222,7 @@ public abstract class BsMWorkingDay extends AbstractEntity implements DomainEnti
         sb.append(dm).append(xfND(_startTime));
         sb.append(dm).append(xfND(_endTime));
         sb.append(dm).append(xfND(_deleteFlag));
+        sb.append(dm).append(xfND(_versionNo));
         sb.append(dm).append(xfND(_registerDatetime));
         sb.append(dm).append(xfND(_updateDatetime));
         if (sb.length() > dm.length()) {
@@ -248,6 +255,7 @@ public abstract class BsMWorkingDay extends AbstractEntity implements DomainEnti
     //                                                                            ========
     /**
      * [get] working_day_id: {PK, ID, NotNull, serial(10)} <br>
+     * 営業日ID : 営業日ID
      * @return The value of the column 'working_day_id'. (basically NotNull if selected: for the constraint)
      */
     public Integer getWorkingDayId() {
@@ -257,6 +265,7 @@ public abstract class BsMWorkingDay extends AbstractEntity implements DomainEnti
 
     /**
      * [set] working_day_id: {PK, ID, NotNull, serial(10)} <br>
+     * 営業日ID : 営業日ID
      * @param workingDayId The value of the column 'working_day_id'. (basically NotNull if update: for the constraint)
      */
     public void setWorkingDayId(Integer workingDayId) {
@@ -266,6 +275,7 @@ public abstract class BsMWorkingDay extends AbstractEntity implements DomainEnti
 
     /**
      * [get] shop_id: {int4(10), FK to m_shop} <br>
+     * 店舗ID : 店舗ID
      * @return The value of the column 'shop_id'. (NullAllowed even if selected: for no constraint)
      */
     public Integer getShopId() {
@@ -275,6 +285,7 @@ public abstract class BsMWorkingDay extends AbstractEntity implements DomainEnti
 
     /**
      * [set] shop_id: {int4(10), FK to m_shop} <br>
+     * 店舗ID : 店舗ID
      * @param shopId The value of the column 'shop_id'. (NullAllowed: null update allowed for no constraint)
      */
     public void setShopId(Integer shopId) {
@@ -284,6 +295,7 @@ public abstract class BsMWorkingDay extends AbstractEntity implements DomainEnti
 
     /**
      * [get] working_date: {date(13)} <br>
+     * 営業日 : 営業日
      * @return The value of the column 'working_date'. (NullAllowed even if selected: for no constraint)
      */
     public java.time.LocalDate getWorkingDate() {
@@ -293,6 +305,7 @@ public abstract class BsMWorkingDay extends AbstractEntity implements DomainEnti
 
     /**
      * [set] working_date: {date(13)} <br>
+     * 営業日 : 営業日
      * @param workingDate The value of the column 'working_date'. (NullAllowed: null update allowed for no constraint)
      */
     public void setWorkingDate(java.time.LocalDate workingDate) {
@@ -302,6 +315,7 @@ public abstract class BsMWorkingDay extends AbstractEntity implements DomainEnti
 
     /**
      * [get] start_time: {time(15, 6)} <br>
+     * 営業開始時間 : 営業開始時間
      * @return The value of the column 'start_time'. (NullAllowed even if selected: for no constraint)
      */
     public java.time.LocalTime getStartTime() {
@@ -311,6 +325,7 @@ public abstract class BsMWorkingDay extends AbstractEntity implements DomainEnti
 
     /**
      * [set] start_time: {time(15, 6)} <br>
+     * 営業開始時間 : 営業開始時間
      * @param startTime The value of the column 'start_time'. (NullAllowed: null update allowed for no constraint)
      */
     public void setStartTime(java.time.LocalTime startTime) {
@@ -320,6 +335,7 @@ public abstract class BsMWorkingDay extends AbstractEntity implements DomainEnti
 
     /**
      * [get] end_time: {time(15, 6)} <br>
+     * 営業終了時間 : 営業終了時間
      * @return The value of the column 'end_time'. (NullAllowed even if selected: for no constraint)
      */
     public java.time.LocalTime getEndTime() {
@@ -329,6 +345,7 @@ public abstract class BsMWorkingDay extends AbstractEntity implements DomainEnti
 
     /**
      * [set] end_time: {time(15, 6)} <br>
+     * 営業終了時間 : 営業終了時間
      * @param endTime The value of the column 'end_time'. (NullAllowed: null update allowed for no constraint)
      */
     public void setEndTime(java.time.LocalTime endTime) {
@@ -338,6 +355,7 @@ public abstract class BsMWorkingDay extends AbstractEntity implements DomainEnti
 
     /**
      * [get] delete_flag: {NotNull, bool(1), default=[false]} <br>
+     * 削除フラグ
      * @return The value of the column 'delete_flag'. (basically NotNull if selected: for the constraint)
      */
     public Boolean getDeleteFlag() {
@@ -347,6 +365,7 @@ public abstract class BsMWorkingDay extends AbstractEntity implements DomainEnti
 
     /**
      * [set] delete_flag: {NotNull, bool(1), default=[false]} <br>
+     * 削除フラグ
      * @param deleteFlag The value of the column 'delete_flag'. (basically NotNull if update: for the constraint)
      */
     public void setDeleteFlag(Boolean deleteFlag) {
@@ -355,7 +374,28 @@ public abstract class BsMWorkingDay extends AbstractEntity implements DomainEnti
     }
 
     /**
+     * [get] version_no: {NotNull, int4(10), default=[1]} <br>
+     * version_no
+     * @return The value of the column 'version_no'. (basically NotNull if selected: for the constraint)
+     */
+    public Integer getVersionNo() {
+        checkSpecifiedProperty("versionNo");
+        return _versionNo;
+    }
+
+    /**
+     * [set] version_no: {NotNull, int4(10), default=[1]} <br>
+     * version_no
+     * @param versionNo The value of the column 'version_no'. (basically NotNull if update: for the constraint)
+     */
+    public void setVersionNo(Integer versionNo) {
+        registerModifiedProperty("versionNo");
+        _versionNo = versionNo;
+    }
+
+    /**
      * [get] register_datetime: {NotNull, timestamp(26, 3), default=[now()]} <br>
+     * 登録日時
      * @return The value of the column 'register_datetime'. (basically NotNull if selected: for the constraint)
      */
     public java.time.LocalDateTime getRegisterDatetime() {
@@ -365,6 +405,7 @@ public abstract class BsMWorkingDay extends AbstractEntity implements DomainEnti
 
     /**
      * [set] register_datetime: {NotNull, timestamp(26, 3), default=[now()]} <br>
+     * 登録日時
      * @param registerDatetime The value of the column 'register_datetime'. (basically NotNull if update: for the constraint)
      */
     public void setRegisterDatetime(java.time.LocalDateTime registerDatetime) {
@@ -374,6 +415,7 @@ public abstract class BsMWorkingDay extends AbstractEntity implements DomainEnti
 
     /**
      * [get] update_datetime: {timestamp(26, 3)} <br>
+     * 更新日時
      * @return The value of the column 'update_datetime'. (NullAllowed even if selected: for no constraint)
      */
     public java.time.LocalDateTime getUpdateDatetime() {
@@ -383,6 +425,7 @@ public abstract class BsMWorkingDay extends AbstractEntity implements DomainEnti
 
     /**
      * [set] update_datetime: {timestamp(26, 3)} <br>
+     * 更新日時
      * @param updateDatetime The value of the column 'update_datetime'. (NullAllowed: null update allowed for no constraint)
      */
     public void setUpdateDatetime(java.time.LocalDateTime updateDatetime) {

@@ -30,8 +30,10 @@ public class MWorkingStaffNss {
     /**
      * With nested relation columns to select clause. <br>
      * m_staff by my staff_id, named 'MStaff'.
+     * @return The set-upper of more nested relation. {...with[nested-relation].with[more-nested-relation]} (NotNull)
      */
-    public void withMStaff() {
+    public MStaffNss withMStaff() {
         _query.xdoNss(() -> _query.queryMStaff());
+        return new MStaffNss(_query.queryMStaff());
     }
 }

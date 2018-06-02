@@ -247,6 +247,312 @@ public abstract class AbstractBsMUserCQ extends AbstractConditionQuery {
 
     /**
      * Equal(=). And NullOrEmptyIgnored, OnlyOnceRegistered. <br>
+     * line_id: {text(2147483647)}
+     * @param lineId The value of lineId as equal. (basically NotNull, NotEmpty: error as default, or no condition as option)
+     */
+    public void setLineId_Equal(String lineId) {
+        doSetLineId_Equal(fRES(lineId));
+    }
+
+    protected void doSetLineId_Equal(String lineId) {
+        regLineId(CK_EQ, lineId);
+    }
+
+    /**
+     * NotEqual(&lt;&gt;). And NullOrEmptyIgnored, OnlyOnceRegistered. <br>
+     * line_id: {text(2147483647)}
+     * @param lineId The value of lineId as notEqual. (basically NotNull, NotEmpty: error as default, or no condition as option)
+     */
+    public void setLineId_NotEqual(String lineId) {
+        doSetLineId_NotEqual(fRES(lineId));
+    }
+
+    protected void doSetLineId_NotEqual(String lineId) {
+        regLineId(CK_NES, lineId);
+    }
+
+    /**
+     * GreaterThan(&gt;). And NullOrEmptyIgnored, OnlyOnceRegistered. <br>
+     * line_id: {text(2147483647)}
+     * @param lineId The value of lineId as greaterThan. (basically NotNull, NotEmpty: error as default, or no condition as option)
+     */
+    public void setLineId_GreaterThan(String lineId) {
+        regLineId(CK_GT, fRES(lineId));
+    }
+
+    /**
+     * LessThan(&lt;). And NullOrEmptyIgnored, OnlyOnceRegistered. <br>
+     * line_id: {text(2147483647)}
+     * @param lineId The value of lineId as lessThan. (basically NotNull, NotEmpty: error as default, or no condition as option)
+     */
+    public void setLineId_LessThan(String lineId) {
+        regLineId(CK_LT, fRES(lineId));
+    }
+
+    /**
+     * GreaterEqual(&gt;=). And NullOrEmptyIgnored, OnlyOnceRegistered. <br>
+     * line_id: {text(2147483647)}
+     * @param lineId The value of lineId as greaterEqual. (basically NotNull, NotEmpty: error as default, or no condition as option)
+     */
+    public void setLineId_GreaterEqual(String lineId) {
+        regLineId(CK_GE, fRES(lineId));
+    }
+
+    /**
+     * LessEqual(&lt;=). And NullOrEmptyIgnored, OnlyOnceRegistered. <br>
+     * line_id: {text(2147483647)}
+     * @param lineId The value of lineId as lessEqual. (basically NotNull, NotEmpty: error as default, or no condition as option)
+     */
+    public void setLineId_LessEqual(String lineId) {
+        regLineId(CK_LE, fRES(lineId));
+    }
+
+    /**
+     * InScope {in ('a', 'b')}. And NullOrEmptyIgnored, NullOrEmptyElementIgnored, SeveralRegistered. <br>
+     * line_id: {text(2147483647)}
+     * @param lineIdList The collection of lineId as inScope. (basically NotNull, NotEmpty: error as default, or no condition as option)
+     */
+    public void setLineId_InScope(Collection<String> lineIdList) {
+        doSetLineId_InScope(lineIdList);
+    }
+
+    protected void doSetLineId_InScope(Collection<String> lineIdList) {
+        regINS(CK_INS, cTL(lineIdList), xgetCValueLineId(), "line_id");
+    }
+
+    /**
+     * NotInScope {not in ('a', 'b')}. And NullOrEmptyIgnored, NullOrEmptyElementIgnored, SeveralRegistered. <br>
+     * line_id: {text(2147483647)}
+     * @param lineIdList The collection of lineId as notInScope. (basically NotNull, NotEmpty: error as default, or no condition as option)
+     */
+    public void setLineId_NotInScope(Collection<String> lineIdList) {
+        doSetLineId_NotInScope(lineIdList);
+    }
+
+    protected void doSetLineId_NotInScope(Collection<String> lineIdList) {
+        regINS(CK_NINS, cTL(lineIdList), xgetCValueLineId(), "line_id");
+    }
+
+    /**
+     * LikeSearch with various options. (versatile) {like '%xxx%' escape ...}. And NullOrEmptyIgnored, SeveralRegistered. <br>
+     * line_id: {text(2147483647)} <br>
+     * <pre>e.g. setLineId_LikeSearch("xxx", op <span style="color: #90226C; font-weight: bold"><span style="font-size: 120%">-</span>&gt;</span> op.<span style="color: #CC4747">likeContain()</span>);</pre>
+     * @param lineId The value of lineId as likeSearch. (basically NotNull, NotEmpty: error as default, or no condition as option)
+     * @param opLambda The callback for option of like-search. (NotNull)
+     */
+    public void setLineId_LikeSearch(String lineId, ConditionOptionCall<LikeSearchOption> opLambda) {
+        setLineId_LikeSearch(lineId, xcLSOP(opLambda));
+    }
+
+    /**
+     * LikeSearch with various options. (versatile) {like '%xxx%' escape ...}. And NullOrEmptyIgnored, SeveralRegistered. <br>
+     * line_id: {text(2147483647)} <br>
+     * <pre>e.g. setLineId_LikeSearch("xxx", new <span style="color: #CC4747">LikeSearchOption</span>().likeContain());</pre>
+     * @param lineId The value of lineId as likeSearch. (basically NotNull, NotEmpty: error as default, or no condition as option)
+     * @param likeSearchOption The option of like-search. (NotNull)
+     */
+    protected void setLineId_LikeSearch(String lineId, LikeSearchOption likeSearchOption) {
+        regLSQ(CK_LS, fRES(lineId), xgetCValueLineId(), "line_id", likeSearchOption);
+    }
+
+    /**
+     * NotLikeSearch with various options. (versatile) {not like 'xxx%' escape ...} <br>
+     * And NullOrEmptyIgnored, SeveralRegistered. <br>
+     * line_id: {text(2147483647)}
+     * @param lineId The value of lineId as notLikeSearch. (basically NotNull, NotEmpty: error as default, or no condition as option)
+     * @param opLambda The callback for option of like-search. (NotNull)
+     */
+    public void setLineId_NotLikeSearch(String lineId, ConditionOptionCall<LikeSearchOption> opLambda) {
+        setLineId_NotLikeSearch(lineId, xcLSOP(opLambda));
+    }
+
+    /**
+     * NotLikeSearch with various options. (versatile) {not like 'xxx%' escape ...} <br>
+     * And NullOrEmptyIgnored, SeveralRegistered. <br>
+     * line_id: {text(2147483647)}
+     * @param lineId The value of lineId as notLikeSearch. (basically NotNull, NotEmpty: error as default, or no condition as option)
+     * @param likeSearchOption The option of not-like-search. (NotNull)
+     */
+    protected void setLineId_NotLikeSearch(String lineId, LikeSearchOption likeSearchOption) {
+        regLSQ(CK_NLS, fRES(lineId), xgetCValueLineId(), "line_id", likeSearchOption);
+    }
+
+    /**
+     * IsNull {is null}. And OnlyOnceRegistered. <br>
+     * line_id: {text(2147483647)}
+     */
+    public void setLineId_IsNull() { regLineId(CK_ISN, DOBJ); }
+
+    /**
+     * IsNullOrEmpty {is null or empty}. And OnlyOnceRegistered. <br>
+     * line_id: {text(2147483647)}
+     */
+    public void setLineId_IsNullOrEmpty() { regLineId(CK_ISNOE, DOBJ); }
+
+    /**
+     * IsNotNull {is not null}. And OnlyOnceRegistered. <br>
+     * line_id: {text(2147483647)}
+     */
+    public void setLineId_IsNotNull() { regLineId(CK_ISNN, DOBJ); }
+
+    protected void regLineId(ConditionKey ky, Object vl) { regQ(ky, vl, xgetCValueLineId(), "line_id"); }
+    protected abstract ConditionValue xgetCValueLineId();
+
+    /**
+     * Equal(=). And NullOrEmptyIgnored, OnlyOnceRegistered. <br>
+     * line_name: {text(2147483647)}
+     * @param lineName The value of lineName as equal. (basically NotNull, NotEmpty: error as default, or no condition as option)
+     */
+    public void setLineName_Equal(String lineName) {
+        doSetLineName_Equal(fRES(lineName));
+    }
+
+    protected void doSetLineName_Equal(String lineName) {
+        regLineName(CK_EQ, lineName);
+    }
+
+    /**
+     * NotEqual(&lt;&gt;). And NullOrEmptyIgnored, OnlyOnceRegistered. <br>
+     * line_name: {text(2147483647)}
+     * @param lineName The value of lineName as notEqual. (basically NotNull, NotEmpty: error as default, or no condition as option)
+     */
+    public void setLineName_NotEqual(String lineName) {
+        doSetLineName_NotEqual(fRES(lineName));
+    }
+
+    protected void doSetLineName_NotEqual(String lineName) {
+        regLineName(CK_NES, lineName);
+    }
+
+    /**
+     * GreaterThan(&gt;). And NullOrEmptyIgnored, OnlyOnceRegistered. <br>
+     * line_name: {text(2147483647)}
+     * @param lineName The value of lineName as greaterThan. (basically NotNull, NotEmpty: error as default, or no condition as option)
+     */
+    public void setLineName_GreaterThan(String lineName) {
+        regLineName(CK_GT, fRES(lineName));
+    }
+
+    /**
+     * LessThan(&lt;). And NullOrEmptyIgnored, OnlyOnceRegistered. <br>
+     * line_name: {text(2147483647)}
+     * @param lineName The value of lineName as lessThan. (basically NotNull, NotEmpty: error as default, or no condition as option)
+     */
+    public void setLineName_LessThan(String lineName) {
+        regLineName(CK_LT, fRES(lineName));
+    }
+
+    /**
+     * GreaterEqual(&gt;=). And NullOrEmptyIgnored, OnlyOnceRegistered. <br>
+     * line_name: {text(2147483647)}
+     * @param lineName The value of lineName as greaterEqual. (basically NotNull, NotEmpty: error as default, or no condition as option)
+     */
+    public void setLineName_GreaterEqual(String lineName) {
+        regLineName(CK_GE, fRES(lineName));
+    }
+
+    /**
+     * LessEqual(&lt;=). And NullOrEmptyIgnored, OnlyOnceRegistered. <br>
+     * line_name: {text(2147483647)}
+     * @param lineName The value of lineName as lessEqual. (basically NotNull, NotEmpty: error as default, or no condition as option)
+     */
+    public void setLineName_LessEqual(String lineName) {
+        regLineName(CK_LE, fRES(lineName));
+    }
+
+    /**
+     * InScope {in ('a', 'b')}. And NullOrEmptyIgnored, NullOrEmptyElementIgnored, SeveralRegistered. <br>
+     * line_name: {text(2147483647)}
+     * @param lineNameList The collection of lineName as inScope. (basically NotNull, NotEmpty: error as default, or no condition as option)
+     */
+    public void setLineName_InScope(Collection<String> lineNameList) {
+        doSetLineName_InScope(lineNameList);
+    }
+
+    protected void doSetLineName_InScope(Collection<String> lineNameList) {
+        regINS(CK_INS, cTL(lineNameList), xgetCValueLineName(), "line_name");
+    }
+
+    /**
+     * NotInScope {not in ('a', 'b')}. And NullOrEmptyIgnored, NullOrEmptyElementIgnored, SeveralRegistered. <br>
+     * line_name: {text(2147483647)}
+     * @param lineNameList The collection of lineName as notInScope. (basically NotNull, NotEmpty: error as default, or no condition as option)
+     */
+    public void setLineName_NotInScope(Collection<String> lineNameList) {
+        doSetLineName_NotInScope(lineNameList);
+    }
+
+    protected void doSetLineName_NotInScope(Collection<String> lineNameList) {
+        regINS(CK_NINS, cTL(lineNameList), xgetCValueLineName(), "line_name");
+    }
+
+    /**
+     * LikeSearch with various options. (versatile) {like '%xxx%' escape ...}. And NullOrEmptyIgnored, SeveralRegistered. <br>
+     * line_name: {text(2147483647)} <br>
+     * <pre>e.g. setLineName_LikeSearch("xxx", op <span style="color: #90226C; font-weight: bold"><span style="font-size: 120%">-</span>&gt;</span> op.<span style="color: #CC4747">likeContain()</span>);</pre>
+     * @param lineName The value of lineName as likeSearch. (basically NotNull, NotEmpty: error as default, or no condition as option)
+     * @param opLambda The callback for option of like-search. (NotNull)
+     */
+    public void setLineName_LikeSearch(String lineName, ConditionOptionCall<LikeSearchOption> opLambda) {
+        setLineName_LikeSearch(lineName, xcLSOP(opLambda));
+    }
+
+    /**
+     * LikeSearch with various options. (versatile) {like '%xxx%' escape ...}. And NullOrEmptyIgnored, SeveralRegistered. <br>
+     * line_name: {text(2147483647)} <br>
+     * <pre>e.g. setLineName_LikeSearch("xxx", new <span style="color: #CC4747">LikeSearchOption</span>().likeContain());</pre>
+     * @param lineName The value of lineName as likeSearch. (basically NotNull, NotEmpty: error as default, or no condition as option)
+     * @param likeSearchOption The option of like-search. (NotNull)
+     */
+    protected void setLineName_LikeSearch(String lineName, LikeSearchOption likeSearchOption) {
+        regLSQ(CK_LS, fRES(lineName), xgetCValueLineName(), "line_name", likeSearchOption);
+    }
+
+    /**
+     * NotLikeSearch with various options. (versatile) {not like 'xxx%' escape ...} <br>
+     * And NullOrEmptyIgnored, SeveralRegistered. <br>
+     * line_name: {text(2147483647)}
+     * @param lineName The value of lineName as notLikeSearch. (basically NotNull, NotEmpty: error as default, or no condition as option)
+     * @param opLambda The callback for option of like-search. (NotNull)
+     */
+    public void setLineName_NotLikeSearch(String lineName, ConditionOptionCall<LikeSearchOption> opLambda) {
+        setLineName_NotLikeSearch(lineName, xcLSOP(opLambda));
+    }
+
+    /**
+     * NotLikeSearch with various options. (versatile) {not like 'xxx%' escape ...} <br>
+     * And NullOrEmptyIgnored, SeveralRegistered. <br>
+     * line_name: {text(2147483647)}
+     * @param lineName The value of lineName as notLikeSearch. (basically NotNull, NotEmpty: error as default, or no condition as option)
+     * @param likeSearchOption The option of not-like-search. (NotNull)
+     */
+    protected void setLineName_NotLikeSearch(String lineName, LikeSearchOption likeSearchOption) {
+        regLSQ(CK_NLS, fRES(lineName), xgetCValueLineName(), "line_name", likeSearchOption);
+    }
+
+    /**
+     * IsNull {is null}. And OnlyOnceRegistered. <br>
+     * line_name: {text(2147483647)}
+     */
+    public void setLineName_IsNull() { regLineName(CK_ISN, DOBJ); }
+
+    /**
+     * IsNullOrEmpty {is null or empty}. And OnlyOnceRegistered. <br>
+     * line_name: {text(2147483647)}
+     */
+    public void setLineName_IsNullOrEmpty() { regLineName(CK_ISNOE, DOBJ); }
+
+    /**
+     * IsNotNull {is not null}. And OnlyOnceRegistered. <br>
+     * line_name: {text(2147483647)}
+     */
+    public void setLineName_IsNotNull() { regLineName(CK_ISNN, DOBJ); }
+
+    protected void regLineName(ConditionKey ky, Object vl) { regQ(ky, vl, xgetCValueLineName(), "line_name"); }
+    protected abstract ConditionValue xgetCValueLineName();
+
+    /**
+     * Equal(=). And NullOrEmptyIgnored, OnlyOnceRegistered. <br>
      * family_name: {text(2147483647)}
      * @param familyName The value of familyName as equal. (basically NotNull, NotEmpty: error as default, or no condition as option)
      */
@@ -3202,6 +3508,123 @@ public abstract class AbstractBsMUserCQ extends AbstractConditionQuery {
 
     protected void regDeleteFlag(ConditionKey ky, Object vl) { regQ(ky, vl, xgetCValueDeleteFlag(), "delete_flag"); }
     protected abstract ConditionValue xgetCValueDeleteFlag();
+
+    /**
+     * Equal(=). And NullIgnored, OnlyOnceRegistered. <br>
+     * version_no: {NotNull, int4(10), default=[1]}
+     * @param versionNo The value of versionNo as equal. (basically NotNull: error as default, or no condition as option)
+     */
+    public void setVersionNo_Equal(Integer versionNo) {
+        doSetVersionNo_Equal(versionNo);
+    }
+
+    protected void doSetVersionNo_Equal(Integer versionNo) {
+        regVersionNo(CK_EQ, versionNo);
+    }
+
+    /**
+     * NotEqual(&lt;&gt;). And NullIgnored, OnlyOnceRegistered. <br>
+     * version_no: {NotNull, int4(10), default=[1]}
+     * @param versionNo The value of versionNo as notEqual. (basically NotNull: error as default, or no condition as option)
+     */
+    public void setVersionNo_NotEqual(Integer versionNo) {
+        doSetVersionNo_NotEqual(versionNo);
+    }
+
+    protected void doSetVersionNo_NotEqual(Integer versionNo) {
+        regVersionNo(CK_NES, versionNo);
+    }
+
+    /**
+     * GreaterThan(&gt;). And NullIgnored, OnlyOnceRegistered. <br>
+     * version_no: {NotNull, int4(10), default=[1]}
+     * @param versionNo The value of versionNo as greaterThan. (basically NotNull: error as default, or no condition as option)
+     */
+    public void setVersionNo_GreaterThan(Integer versionNo) {
+        regVersionNo(CK_GT, versionNo);
+    }
+
+    /**
+     * LessThan(&lt;). And NullIgnored, OnlyOnceRegistered. <br>
+     * version_no: {NotNull, int4(10), default=[1]}
+     * @param versionNo The value of versionNo as lessThan. (basically NotNull: error as default, or no condition as option)
+     */
+    public void setVersionNo_LessThan(Integer versionNo) {
+        regVersionNo(CK_LT, versionNo);
+    }
+
+    /**
+     * GreaterEqual(&gt;=). And NullIgnored, OnlyOnceRegistered. <br>
+     * version_no: {NotNull, int4(10), default=[1]}
+     * @param versionNo The value of versionNo as greaterEqual. (basically NotNull: error as default, or no condition as option)
+     */
+    public void setVersionNo_GreaterEqual(Integer versionNo) {
+        regVersionNo(CK_GE, versionNo);
+    }
+
+    /**
+     * LessEqual(&lt;=). And NullIgnored, OnlyOnceRegistered. <br>
+     * version_no: {NotNull, int4(10), default=[1]}
+     * @param versionNo The value of versionNo as lessEqual. (basically NotNull: error as default, or no condition as option)
+     */
+    public void setVersionNo_LessEqual(Integer versionNo) {
+        regVersionNo(CK_LE, versionNo);
+    }
+
+    /**
+     * RangeOf with various options. (versatile) <br>
+     * {(default) minNumber &lt;= column &lt;= maxNumber} <br>
+     * And NullIgnored, OnlyOnceRegistered. <br>
+     * version_no: {NotNull, int4(10), default=[1]}
+     * @param minNumber The min number of versionNo. (basically NotNull: if op.allowOneSide(), null allowed)
+     * @param maxNumber The max number of versionNo. (basically NotNull: if op.allowOneSide(), null allowed)
+     * @param opLambda The callback for option of range-of. (NotNull)
+     */
+    public void setVersionNo_RangeOf(Integer minNumber, Integer maxNumber, ConditionOptionCall<RangeOfOption> opLambda) {
+        setVersionNo_RangeOf(minNumber, maxNumber, xcROOP(opLambda));
+    }
+
+    /**
+     * RangeOf with various options. (versatile) <br>
+     * {(default) minNumber &lt;= column &lt;= maxNumber} <br>
+     * And NullIgnored, OnlyOnceRegistered. <br>
+     * version_no: {NotNull, int4(10), default=[1]}
+     * @param minNumber The min number of versionNo. (basically NotNull: if op.allowOneSide(), null allowed)
+     * @param maxNumber The max number of versionNo. (basically NotNull: if op.allowOneSide(), null allowed)
+     * @param rangeOfOption The option of range-of. (NotNull)
+     */
+    protected void setVersionNo_RangeOf(Integer minNumber, Integer maxNumber, RangeOfOption rangeOfOption) {
+        regROO(minNumber, maxNumber, xgetCValueVersionNo(), "version_no", rangeOfOption);
+    }
+
+    /**
+     * InScope {in (1, 2)}. And NullIgnored, NullElementIgnored, SeveralRegistered. <br>
+     * version_no: {NotNull, int4(10), default=[1]}
+     * @param versionNoList The collection of versionNo as inScope. (basically NotNull, NotEmpty: error as default, or no condition as option)
+     */
+    public void setVersionNo_InScope(Collection<Integer> versionNoList) {
+        doSetVersionNo_InScope(versionNoList);
+    }
+
+    protected void doSetVersionNo_InScope(Collection<Integer> versionNoList) {
+        regINS(CK_INS, cTL(versionNoList), xgetCValueVersionNo(), "version_no");
+    }
+
+    /**
+     * NotInScope {not in (1, 2)}. And NullIgnored, NullElementIgnored, SeveralRegistered. <br>
+     * version_no: {NotNull, int4(10), default=[1]}
+     * @param versionNoList The collection of versionNo as notInScope. (basically NotNull, NotEmpty: error as default, or no condition as option)
+     */
+    public void setVersionNo_NotInScope(Collection<Integer> versionNoList) {
+        doSetVersionNo_NotInScope(versionNoList);
+    }
+
+    protected void doSetVersionNo_NotInScope(Collection<Integer> versionNoList) {
+        regINS(CK_NINS, cTL(versionNoList), xgetCValueVersionNo(), "version_no");
+    }
+
+    protected void regVersionNo(ConditionKey ky, Object vl) { regQ(ky, vl, xgetCValueVersionNo(), "version_no"); }
+    protected abstract ConditionValue xgetCValueVersionNo();
 
     /**
      * Equal(=). And NullIgnored, OnlyOnceRegistered. <br>

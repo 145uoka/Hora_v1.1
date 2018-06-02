@@ -26,7 +26,7 @@ import com.olympus.hora.dbflute.cbean.*;
  *     holiday_id
  *
  * [column]
- *     holiday_id, holiday_name, holiday, delete_flag, register_datetime, update_datetime
+ *     holiday_id, holiday_name, holiday, delete_flag, version_no, register_datetime, update_datetime
  *
  * [sequence]
  *     m_holiday_holiday_id_seq
@@ -35,7 +35,7 @@ import com.olympus.hora.dbflute.cbean.*;
  *     
  *
  * [version-no]
- *     
+ *     version_no
  *
  * [foreign table]
  *     
@@ -415,7 +415,7 @@ public abstract class BsMHolidayBhv extends AbstractBehaviorWritable<MHoliday, M
     }
 
     /**
-     * Update the entity modified-only. (ZeroUpdateException, NonExclusiveControl) <br>
+     * Update the entity modified-only. (ZeroUpdateException, ExclusiveControl) <br>
      * By PK as default, and also you can update by unique keys using entity's uniqueOf().
      * <pre>
      * MHoliday mHoliday = <span style="color: #70226C">new</span> MHoliday();
@@ -428,8 +428,8 @@ public abstract class BsMHolidayBhv extends AbstractBehaviorWritable<MHoliday, M
      * mHoliday.<span style="color: #CC4747">setVersionNo</span>(value);
      * <span style="color: #0000C0">mHolidayBhv</span>.<span style="color: #CC4747">update</span>(mHoliday);
      * </pre>
-     * @param mHoliday The entity of update. (NotNull, PrimaryKeyNotNull)
-     * @throws EntityAlreadyDeletedException When the entity has already been deleted. (not found)
+     * @param mHoliday The entity of update. (NotNull, PrimaryKeyNotNull, ConcurrencyColumnNotNull)
+     * @throws EntityAlreadyUpdatedException When the entity has already been updated.
      * @throws EntityDuplicatedException When the entity has been duplicated.
      * @throws EntityAlreadyExistsException When the entity already exists. (unique constraint violation)
      */
@@ -438,11 +438,35 @@ public abstract class BsMHolidayBhv extends AbstractBehaviorWritable<MHoliday, M
     }
 
     /**
-     * Insert or update the entity modified-only. (DefaultConstraintsEnabled, NonExclusiveControl) <br>
+     * Update the entity non-strictly modified-only. (ZeroUpdateException, NonExclusiveControl) <br>
+     * By PK as default, and also you can update by unique keys using entity's uniqueOf().
+     * <pre>
+     * MHoliday mHoliday = <span style="color: #70226C">new</span> MHoliday();
+     * mHoliday.setPK...(value); <span style="color: #3F7E5E">// required</span>
+     * mHoliday.setFoo...(value); <span style="color: #3F7E5E">// you should set only modified columns</span>
+     * <span style="color: #3F7E5E">// you don't need to set values of common columns</span>
+     * <span style="color: #3F7E5E">//mHoliday.setRegisterUser(value);</span>
+     * <span style="color: #3F7E5E">//mHoliday.set...;</span>
+     * <span style="color: #3F7E5E">// you don't need to set a value of concurrency column</span>
+     * <span style="color: #3F7E5E">// (auto-increment for version number is valid though non-exclusive control)</span>
+     * <span style="color: #3F7E5E">//mHoliday.setVersionNo(value);</span>
+     * <span style="color: #0000C0">mHolidayBhv</span>.<span style="color: #CC4747">updateNonstrict</span>(mHoliday);
+     * </pre>
+     * @param mHoliday The entity of update. (NotNull, PrimaryKeyNotNull)
+     * @throws EntityAlreadyDeletedException When the entity has already been deleted. (not found)
+     * @throws EntityDuplicatedException When the entity has been duplicated.
+     * @throws EntityAlreadyExistsException When the entity already exists. (unique constraint violation)
+     */
+    public void updateNonstrict(MHoliday mHoliday) {
+        doUpdateNonstrict(mHoliday, null);
+    }
+
+    /**
+     * Insert or update the entity modified-only. (DefaultConstraintsEnabled, ExclusiveControl) <br>
      * if (the entity has no PK) { insert() } else { update(), but no data, insert() } <br>
      * <p><span style="color: #994747; font-size: 120%">Also you can update by unique keys using entity's uniqueOf().</span></p>
      * @param mHoliday The entity of insert or update. (NotNull, ...depends on insert or update)
-     * @throws EntityAlreadyDeletedException When the entity has already been deleted. (not found)
+     * @throws EntityAlreadyUpdatedException When the entity has already been updated.
      * @throws EntityDuplicatedException When the entity has been duplicated.
      * @throws EntityAlreadyExistsException When the entity already exists. (unique constraint violation)
      */
@@ -451,7 +475,20 @@ public abstract class BsMHolidayBhv extends AbstractBehaviorWritable<MHoliday, M
     }
 
     /**
-     * Delete the entity. (ZeroUpdateException, NonExclusiveControl) <br>
+     * Insert or update the entity non-strictly modified-only. (DefaultConstraintsEnabled, NonExclusiveControl) <br>
+     * if (the entity has no PK) { insert() } else { update(), but no data, insert() }
+     * <p><span style="color: #994747; font-size: 120%">Also you can update by unique keys using entity's uniqueOf().</span></p>
+     * @param mHoliday The entity of insert or update. (NotNull, ...depends on insert or update)
+     * @throws EntityAlreadyDeletedException When the entity has already been deleted. (not found)
+     * @throws EntityDuplicatedException When the entity has been duplicated.
+     * @throws EntityAlreadyExistsException When the entity already exists. (unique constraint violation)
+     */
+    public void insertOrUpdateNonstrict(MHoliday mHoliday) {
+        doInsertOrUpdateNonstrict(mHoliday, null, null);
+    }
+
+    /**
+     * Delete the entity. (ZeroUpdateException, ExclusiveControl) <br>
      * By PK as default, and also you can delete by unique keys using entity's uniqueOf().
      * <pre>
      * MHoliday mHoliday = <span style="color: #70226C">new</span> MHoliday();
@@ -464,12 +501,31 @@ public abstract class BsMHolidayBhv extends AbstractBehaviorWritable<MHoliday, M
      *     ...
      * }
      * </pre>
-     * @param mHoliday The entity of delete. (NotNull, PrimaryKeyNotNull)
-     * @throws EntityAlreadyDeletedException When the entity has already been deleted. (not found)
+     * @param mHoliday The entity of delete. (NotNull, PrimaryKeyNotNull, ConcurrencyColumnNotNull)
+     * @throws EntityAlreadyUpdatedException When the entity has already been updated.
      * @throws EntityDuplicatedException When the entity has been duplicated.
      */
     public void delete(MHoliday mHoliday) {
         doDelete(mHoliday, null);
+    }
+
+    /**
+     * Delete the entity non-strictly. {ZeroUpdateException, NonExclusiveControl} <br>
+     * By PK as default, and also you can delete by unique keys using entity's uniqueOf().
+     * <pre>
+     * MHoliday mHoliday = <span style="color: #70226C">new</span> MHoliday();
+     * mHoliday.setPK...(value); <span style="color: #3F7E5E">// required</span>
+     * <span style="color: #3F7E5E">// you don't need to set a value of concurrency column</span>
+     * <span style="color: #3F7E5E">// (auto-increment for version number is valid though non-exclusive control)</span>
+     * <span style="color: #3F7E5E">//mHoliday.setVersionNo(value);</span>
+     * <span style="color: #0000C0">mHolidayBhv</span>.<span style="color: #CC4747">deleteNonstrict</span>(mHoliday);
+     * </pre>
+     * @param mHoliday The entity of delete. (NotNull, PrimaryKeyNotNull)
+     * @throws EntityAlreadyDeletedException When the entity has already been deleted. (not found)
+     * @throws EntityDuplicatedException When the entity has been duplicated.
+     */
+    public void deleteNonstrict(MHoliday mHoliday) {
+        doDeleteNonstrict(mHoliday, null);
     }
 
     // ===================================================================================
@@ -504,7 +560,7 @@ public abstract class BsMHolidayBhv extends AbstractBehaviorWritable<MHoliday, M
     }
 
     /**
-     * Batch-update the entity list modified-only of same-set columns. (NonExclusiveControl) <br>
+     * Batch-update the entity list modified-only of same-set columns. (ExclusiveControl) <br>
      * This method uses executeBatch() of java.sql.PreparedStatement. <br>
      * <span style="color: #CC4747; font-size: 120%">You should specify same-set columns to all entities like this:</span>
      * <pre>
@@ -523,23 +579,62 @@ public abstract class BsMHolidayBhv extends AbstractBehaviorWritable<MHoliday, M
      * }
      * <span style="color: #0000C0">mHolidayBhv</span>.<span style="color: #CC4747">batchUpdate</span>(mHolidayList);
      * </pre>
-     * @param mHolidayList The list of the entity. (NotNull, EmptyAllowed, PrimaryKeyNotNull)
+     * @param mHolidayList The list of the entity. (NotNull, EmptyAllowed, PrimaryKeyNotNull, ConcurrencyColumnNotNull)
      * @return The array of updated count. (NotNull, EmptyAllowed)
-     * @throws EntityAlreadyDeletedException When the entity has already been deleted. (not found)
+     * @throws BatchEntityAlreadyUpdatedException When the entity has already been updated. This exception extends EntityAlreadyUpdatedException.
      */
     public int[] batchUpdate(List<MHoliday> mHolidayList) {
         return doBatchUpdate(mHolidayList, null);
     }
 
     /**
-     * Batch-delete the entity list. (NonExclusiveControl) <br>
+     * Batch-update the entity list non-strictly modified-only of same-set columns. (NonExclusiveControl) <br>
+     * This method uses executeBatch() of java.sql.PreparedStatement. <br>
+     * <span style="color: #CC4747; font-size: 140%">You should specify same-set columns to all entities like this:</span>
+     * <pre>
+     * <span style="color: #70226C">for</span> (... : ...) {
+     *     MHoliday mHoliday = <span style="color: #70226C">new</span> MHoliday();
+     *     mHoliday.setFooName("foo");
+     *     <span style="color: #70226C">if</span> (...) {
+     *         mHoliday.setFooPrice(123);
+     *     } <span style="color: #70226C">else</span> {
+     *         mHoliday.setFooPrice(null); <span style="color: #3F7E5E">// updated as null</span>
+     *         <span style="color: #3F7E5E">//mHoliday.setFooDate(...); // *not allowed, fragmented</span>
+     *     }
+     *     <span style="color: #3F7E5E">// FOO_NAME and FOO_PRICE (and record meta columns) are updated</span>
+     *     <span style="color: #3F7E5E">// (others are not updated: their values are kept)</span>
+     *     mHolidayList.add(mHoliday);
+     * }
+     * <span style="color: #0000C0">mHolidayBhv</span>.<span style="color: #CC4747">batchUpdate</span>(mHolidayList);
+     * </pre>
+     * @param mHolidayList The list of the entity. (NotNull, EmptyAllowed, PrimaryKeyNotNull)
+     * @return The array of updated count. (NotNull, EmptyAllowed)
+     * @throws EntityAlreadyDeletedException When the entity has already been deleted. (not found)
+     */
+    public int[] batchUpdateNonstrict(List<MHoliday> mHolidayList) {
+        return doBatchUpdateNonstrict(mHolidayList, null);
+    }
+
+    /**
+     * Batch-delete the entity list. (ExclusiveControl) <br>
+     * This method uses executeBatch() of java.sql.PreparedStatement.
+     * @param mHolidayList The list of the entity. (NotNull, EmptyAllowed, PrimaryKeyNotNull)
+     * @return The array of deleted count. (NotNull, EmptyAllowed)
+     * @throws BatchEntityAlreadyUpdatedException When the entity has already been updated. This exception extends EntityAlreadyUpdatedException.
+     */
+    public int[] batchDelete(List<MHoliday> mHolidayList) {
+        return doBatchDelete(mHolidayList, null);
+    }
+
+    /**
+     * Batch-delete the entity list non-strictly. {NonExclusiveControl} <br>
      * This method uses executeBatch() of java.sql.PreparedStatement.
      * @param mHolidayList The list of the entity. (NotNull, EmptyAllowed, PrimaryKeyNotNull)
      * @return The array of deleted count. (NotNull, EmptyAllowed)
      * @throws EntityAlreadyDeletedException When the entity has already been deleted. (not found)
      */
-    public int[] batchDelete(List<MHoliday> mHolidayList) {
-        return doBatchDelete(mHolidayList, null);
+    public int[] batchDeleteNonstrict(List<MHoliday> mHolidayList) {
+        return doBatchDeleteNonstrict(mHolidayList, null);
     }
 
     // ===================================================================================
@@ -646,7 +741,7 @@ public abstract class BsMHolidayBhv extends AbstractBehaviorWritable<MHoliday, M
     }
 
     /**
-     * Update the entity with varying requests modified-only. (ZeroUpdateException, NonExclusiveControl) <br>
+     * Update the entity with varying requests modified-only. (ZeroUpdateException, ExclusiveControl) <br>
      * For example, self(selfCalculationSpecification), specify(updateColumnSpecification), disableCommonColumnAutoSetup(). <br>
      * Other specifications are same as update(entity).
      * <pre>
@@ -662,9 +757,9 @@ public abstract class BsMHolidayBhv extends AbstractBehaviorWritable<MHoliday, M
      *     }).plus(1); <span style="color: #3F7E5E">// XXX_COUNT = XXX_COUNT + 1</span>
      * });
      * </pre>
-     * @param mHoliday The entity of update. (NotNull, PrimaryKeyNotNull)
+     * @param mHoliday The entity of update. (NotNull, PrimaryKeyNotNull, ConcurrencyColumnNotNull)
      * @param opLambda The callback for option of update for varying requests. (NotNull)
-     * @throws EntityAlreadyDeletedException When the entity has already been deleted. (not found)
+     * @throws EntityAlreadyUpdatedException When the entity has already been updated.
      * @throws EntityDuplicatedException When the entity has been duplicated.
      * @throws EntityAlreadyExistsException When the entity already exists. (unique constraint violation)
      */
@@ -673,12 +768,40 @@ public abstract class BsMHolidayBhv extends AbstractBehaviorWritable<MHoliday, M
     }
 
     /**
+     * Update the entity with varying requests non-strictly modified-only. (ZeroUpdateException, NonExclusiveControl) <br>
+     * For example, self(selfCalculationSpecification), specify(updateColumnSpecification), disableCommonColumnAutoSetup(). <br>
+     * Other specifications are same as updateNonstrict(entity).
+     * <pre>
+     * <span style="color: #3F7E5E">// ex) you can update by self calculation values</span>
+     * MHoliday mHoliday = <span style="color: #70226C">new</span> MHoliday();
+     * mHoliday.setPK...(value); <span style="color: #3F7E5E">// required</span>
+     * mHoliday.setOther...(value); <span style="color: #3F7E5E">// you should set only modified columns</span>
+     * <span style="color: #3F7E5E">// you don't need to set a value of concurrency column</span>
+     * <span style="color: #3F7E5E">// (auto-increment for version number is valid though non-exclusive control)</span>
+     * <span style="color: #3F7E5E">//mHoliday.setVersionNo(value);</span>
+     * <span style="color: #0000C0">mHolidayBhv</span>.<span style="color: #CC4747">varyingUpdateNonstrict</span>(mHoliday, <span style="color: #553000">op</span> <span style="color: #90226C; font-weight: bold"><span style="font-size: 120%">-</span>&gt;</span> {
+     *     <span style="color: #553000">op</span>.self(<span style="color: #553000">cb</span> <span style="color: #90226C; font-weight: bold"><span style="font-size: 120%">-</span>&gt;</span> {
+     *         <span style="color: #553000">cb</span>.specify().<span style="color: #CC4747">columnXxxCount()</span>;
+     *     }).plus(1); <span style="color: #3F7E5E">// XXX_COUNT = XXX_COUNT + 1</span>
+     * });
+     * </pre>
+     * @param mHoliday The entity of update. (NotNull, PrimaryKeyNotNull)
+     * @param opLambda The callback for option of update for varying requests. (NotNull)
+     * @throws EntityAlreadyDeletedException When the entity has already been deleted. (not found)
+     * @throws EntityDuplicatedException When the entity has been duplicated.
+     * @throws EntityAlreadyExistsException When the entity already exists. (unique constraint violation)
+     */
+    public void varyingUpdateNonstrict(MHoliday mHoliday, WritableOptionCall<MHolidayCB, UpdateOption<MHolidayCB>> opLambda) {
+        doUpdateNonstrict(mHoliday, createUpdateOption(opLambda));
+    }
+
+    /**
      * Insert or update the entity with varying requests. (ExclusiveControl: when update) <br>
      * Other specifications are same as insertOrUpdate(entity).
      * @param mHoliday The entity of insert or update. (NotNull)
      * @param insertOpLambda The callback for option of insert for varying requests. (NotNull)
      * @param updateOpLambda The callback for option of update for varying requests. (NotNull)
-     * @throws EntityAlreadyDeletedException When the entity has already been deleted. (not found)
+     * @throws EntityAlreadyUpdatedException When the entity has already been updated.
      * @throws EntityDuplicatedException When the entity has been duplicated.
      * @throws EntityAlreadyExistsException When the entity already exists. (unique constraint violation)
      */
@@ -687,16 +810,43 @@ public abstract class BsMHolidayBhv extends AbstractBehaviorWritable<MHoliday, M
     }
 
     /**
-     * Delete the entity with varying requests. (ZeroUpdateException, NonExclusiveControl) <br>
+     * Insert or update the entity with varying requests non-strictly. (NonExclusiveControl: when update) <br>
+     * Other specifications are same as insertOrUpdateNonstrict(entity).
+     * @param mHoliday The entity of insert or update. (NotNull)
+     * @param insertOpLambda The callback for option of insert for varying requests. (NotNull)
+     * @param updateOpLambda The callback for option of update for varying requests. (NotNull)
+     * @throws EntityAlreadyDeletedException When the entity has already been deleted. (not found)
+     * @throws EntityDuplicatedException When the entity has been duplicated.
+     * @throws EntityAlreadyExistsException When the entity already exists. (unique constraint violation)
+     */
+    public void varyingInsertOrUpdateNonstrict(MHoliday mHoliday, WritableOptionCall<MHolidayCB, InsertOption<MHolidayCB>> insertOpLambda, WritableOptionCall<MHolidayCB, UpdateOption<MHolidayCB>> updateOpLambda) {
+        doInsertOrUpdateNonstrict(mHoliday, createInsertOption(insertOpLambda), createUpdateOption(updateOpLambda));
+    }
+
+    /**
+     * Delete the entity with varying requests. (ZeroUpdateException, ExclusiveControl) <br>
      * Now a valid option does not exist. <br>
      * Other specifications are same as delete(entity).
+     * @param mHoliday The entity of delete. (NotNull, PrimaryKeyNotNull, ConcurrencyColumnNotNull)
+     * @param opLambda The callback for option of delete for varying requests. (NotNull)
+     * @throws EntityAlreadyUpdatedException When the entity has already been updated.
+     * @throws EntityDuplicatedException When the entity has been duplicated.
+     */
+    public void varyingDelete(MHoliday mHoliday, WritableOptionCall<MHolidayCB, DeleteOption<MHolidayCB>> opLambda) {
+        doDelete(mHoliday, createDeleteOption(opLambda));
+    }
+
+    /**
+     * Delete the entity with varying requests non-strictly. (ZeroUpdateException, NonExclusiveControl) <br>
+     * Now a valid option does not exist. <br>
+     * Other specifications are same as deleteNonstrict(entity).
      * @param mHoliday The entity of delete. (NotNull, PrimaryKeyNotNull, ConcurrencyColumnNotNull)
      * @param opLambda The callback for option of delete for varying requests. (NotNull)
      * @throws EntityAlreadyDeletedException When the entity has already been deleted. (not found)
      * @throws EntityDuplicatedException When the entity has been duplicated.
      */
-    public void varyingDelete(MHoliday mHoliday, WritableOptionCall<MHolidayCB, DeleteOption<MHolidayCB>> opLambda) {
-        doDelete(mHoliday, createDeleteOption(opLambda));
+    public void varyingDeleteNonstrict(MHoliday mHoliday, WritableOptionCall<MHolidayCB, DeleteOption<MHolidayCB>> opLambda) {
+        doDeleteNonstrict(mHoliday, createDeleteOption(opLambda));
     }
 
     // -----------------------------------------------------
@@ -729,6 +879,19 @@ public abstract class BsMHolidayBhv extends AbstractBehaviorWritable<MHoliday, M
     }
 
     /**
+     * Batch-update the list with varying requests non-strictly. <br>
+     * For example, self(selfCalculationSpecification), specify(updateColumnSpecification)
+     * , disableCommonColumnAutoSetup(), limitBatchUpdateLogging(). <br>
+     * Other specifications are same as batchUpdateNonstrict(entityList).
+     * @param mHolidayList The list of the entity. (NotNull, EmptyAllowed, PrimaryKeyNotNull)
+     * @param opLambda The callback for option of update for varying requests. (NotNull)
+     * @return The array of updated count. (NotNull, EmptyAllowed)
+     */
+    public int[] varyingBatchUpdateNonstrict(List<MHoliday> mHolidayList, WritableOptionCall<MHolidayCB, UpdateOption<MHolidayCB>> opLambda) {
+        return doBatchUpdateNonstrict(mHolidayList, createUpdateOption(opLambda));
+    }
+
+    /**
      * Batch-delete the list with varying requests. <br>
      * For example, limitBatchDeleteLogging(). <br>
      * Other specifications are same as batchDelete(entityList).
@@ -738,6 +901,18 @@ public abstract class BsMHolidayBhv extends AbstractBehaviorWritable<MHoliday, M
      */
     public int[] varyingBatchDelete(List<MHoliday> mHolidayList, WritableOptionCall<MHolidayCB, DeleteOption<MHolidayCB>> opLambda) {
         return doBatchDelete(mHolidayList, createDeleteOption(opLambda));
+    }
+
+    /**
+     * Batch-delete the list with varying requests non-strictly. <br>
+     * For example, limitBatchDeleteLogging(). <br>
+     * Other specifications are same as batchDeleteNonstrict(entityList).
+     * @param mHolidayList The list of the entity. (NotNull, EmptyAllowed, PrimaryKeyNotNull)
+     * @param opLambda The callback for option of delete for varying requests. (NotNull)
+     * @return The array of deleted count. (NotNull, EmptyAllowed)
+     */
+    public int[] varyingBatchDeleteNonstrict(List<MHoliday> mHolidayList, WritableOptionCall<MHolidayCB, DeleteOption<MHolidayCB>> opLambda) {
+        return doBatchDeleteNonstrict(mHolidayList, createDeleteOption(opLambda));
     }
 
     // -----------------------------------------------------
@@ -841,6 +1016,12 @@ public abstract class BsMHolidayBhv extends AbstractBehaviorWritable<MHoliday, M
     public OutsideSqlAllFacadeExecutor<MHolidayBhv> outsideSql() {
         return doOutsideSql();
     }
+
+    // ===================================================================================
+    //                                                                Optimistic Lock Info
+    //                                                                ====================
+    @Override
+    protected boolean hasVersionNoValue(Entity et) { return downcast(et).getVersionNo() != null; }
 
     // ===================================================================================
     //                                                                         Type Helper

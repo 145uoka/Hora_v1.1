@@ -64,16 +64,27 @@ public class MCompanyCIQ extends AbstractBsMCompanyCQ {
     protected ConditionValue xgetCValueCompanyId() { return _myCQ.xdfgetCompanyId(); }
     public String keepCompanyId_ExistsReferrer_MShopList(MShopCQ sq)
     { throwIICBOE("ExistsReferrer"); return null; }
+    public String keepCompanyId_ExistsReferrer_MStaffList(MStaffCQ sq)
+    { throwIICBOE("ExistsReferrer"); return null; }
     public String keepCompanyId_NotExistsReferrer_MShopList(MShopCQ sq)
     { throwIICBOE("NotExistsReferrer"); return null; }
+    public String keepCompanyId_NotExistsReferrer_MStaffList(MStaffCQ sq)
+    { throwIICBOE("NotExistsReferrer"); return null; }
     public String keepCompanyId_SpecifyDerivedReferrer_MShopList(MShopCQ sq)
+    { throwIICBOE("(Specify)DerivedReferrer"); return null; }
+    public String keepCompanyId_SpecifyDerivedReferrer_MStaffList(MStaffCQ sq)
     { throwIICBOE("(Specify)DerivedReferrer"); return null; }
     public String keepCompanyId_QueryDerivedReferrer_MShopList(MShopCQ sq)
     { throwIICBOE("(Query)DerivedReferrer"); return null; }
     public String keepCompanyId_QueryDerivedReferrer_MShopListParameter(Object vl)
     { throwIICBOE("(Query)DerivedReferrer"); return null; }
+    public String keepCompanyId_QueryDerivedReferrer_MStaffList(MStaffCQ sq)
+    { throwIICBOE("(Query)DerivedReferrer"); return null; }
+    public String keepCompanyId_QueryDerivedReferrer_MStaffListParameter(Object vl)
+    { throwIICBOE("(Query)DerivedReferrer"); return null; }
     protected ConditionValue xgetCValueCompanyName() { return _myCQ.xdfgetCompanyName(); }
     protected ConditionValue xgetCValueDeleteFlag() { return _myCQ.xdfgetDeleteFlag(); }
+    protected ConditionValue xgetCValueVersionNo() { return _myCQ.xdfgetVersionNo(); }
     protected ConditionValue xgetCValueRegisterDatetime() { return _myCQ.xdfgetRegisterDatetime(); }
     protected ConditionValue xgetCValueUpdateDatetime() { return _myCQ.xdfgetUpdateDatetime(); }
     protected Map<String, Object> xfindFixedConditionDynamicParameterMap(String pp) { return null; }

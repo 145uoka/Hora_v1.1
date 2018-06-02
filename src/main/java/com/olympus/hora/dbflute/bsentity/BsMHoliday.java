@@ -12,12 +12,13 @@ import com.olympus.hora.dbflute.exentity.*;
 
 /**
  * The entity of m_holiday as TABLE. <br>
+ * 祝日マスタ
  * <pre>
  * [primary-key]
  *     holiday_id
  *
  * [column]
- *     holiday_id, holiday_name, holiday, delete_flag, register_datetime, update_datetime
+ *     holiday_id, holiday_name, holiday, delete_flag, version_no, register_datetime, update_datetime
  *
  * [sequence]
  *     m_holiday_holiday_id_seq
@@ -26,7 +27,7 @@ import com.olympus.hora.dbflute.exentity.*;
  *     
  *
  * [version-no]
- *     
+ *     version_no
  *
  * [foreign table]
  *     
@@ -46,12 +47,14 @@ import com.olympus.hora.dbflute.exentity.*;
  * String holidayName = entity.getHolidayName();
  * java.time.LocalDate holiday = entity.getHoliday();
  * Boolean deleteFlag = entity.getDeleteFlag();
+ * Integer versionNo = entity.getVersionNo();
  * java.time.LocalDateTime registerDatetime = entity.getRegisterDatetime();
  * java.time.LocalDateTime updateDatetime = entity.getUpdateDatetime();
  * entity.setHolidayId(holidayId);
  * entity.setHolidayName(holidayName);
  * entity.setHoliday(holiday);
  * entity.setDeleteFlag(deleteFlag);
+ * entity.setVersionNo(versionNo);
  * entity.setRegisterDatetime(registerDatetime);
  * entity.setUpdateDatetime(updateDatetime);
  * = = = = = = = = = =/
@@ -75,11 +78,14 @@ public abstract class BsMHoliday extends AbstractEntity implements DomainEntity,
     /** holiday_name: {text(2147483647)} */
     protected String _holidayName;
 
-    /** holiday: {date(13)} */
+    /** holiday: {NotNull, date(13)} */
     protected java.time.LocalDate _holiday;
 
     /** delete_flag: {NotNull, bool(1), default=[false]} */
     protected Boolean _deleteFlag;
+
+    /** version_no: {NotNull, int4(10), default=[1]} */
+    protected Integer _versionNo;
 
     /** register_datetime: {NotNull, timestamp(26, 3), default=[now()]} */
     protected java.time.LocalDateTime _registerDatetime;
@@ -153,6 +159,7 @@ public abstract class BsMHoliday extends AbstractEntity implements DomainEntity,
         sb.append(dm).append(xfND(_holidayName));
         sb.append(dm).append(xfND(_holiday));
         sb.append(dm).append(xfND(_deleteFlag));
+        sb.append(dm).append(xfND(_versionNo));
         sb.append(dm).append(xfND(_registerDatetime));
         sb.append(dm).append(xfND(_updateDatetime));
         if (sb.length() > dm.length()) {
@@ -177,6 +184,7 @@ public abstract class BsMHoliday extends AbstractEntity implements DomainEntity,
     //                                                                            ========
     /**
      * [get] holiday_id: {PK, ID, NotNull, serial(10)} <br>
+     * 祝日ID
      * @return The value of the column 'holiday_id'. (basically NotNull if selected: for the constraint)
      */
     public Integer getHolidayId() {
@@ -186,6 +194,7 @@ public abstract class BsMHoliday extends AbstractEntity implements DomainEntity,
 
     /**
      * [set] holiday_id: {PK, ID, NotNull, serial(10)} <br>
+     * 祝日ID
      * @param holidayId The value of the column 'holiday_id'. (basically NotNull if update: for the constraint)
      */
     public void setHolidayId(Integer holidayId) {
@@ -195,6 +204,7 @@ public abstract class BsMHoliday extends AbstractEntity implements DomainEntity,
 
     /**
      * [get] holiday_name: {text(2147483647)} <br>
+     * 祝日名
      * @return The value of the column 'holiday_name'. (NullAllowed even if selected: for no constraint)
      */
     public String getHolidayName() {
@@ -204,6 +214,7 @@ public abstract class BsMHoliday extends AbstractEntity implements DomainEntity,
 
     /**
      * [set] holiday_name: {text(2147483647)} <br>
+     * 祝日名
      * @param holidayName The value of the column 'holiday_name'. (NullAllowed: null update allowed for no constraint)
      */
     public void setHolidayName(String holidayName) {
@@ -212,8 +223,9 @@ public abstract class BsMHoliday extends AbstractEntity implements DomainEntity,
     }
 
     /**
-     * [get] holiday: {date(13)} <br>
-     * @return The value of the column 'holiday'. (NullAllowed even if selected: for no constraint)
+     * [get] holiday: {NotNull, date(13)} <br>
+     * 祝日
+     * @return The value of the column 'holiday'. (basically NotNull if selected: for the constraint)
      */
     public java.time.LocalDate getHoliday() {
         checkSpecifiedProperty("holiday");
@@ -221,8 +233,9 @@ public abstract class BsMHoliday extends AbstractEntity implements DomainEntity,
     }
 
     /**
-     * [set] holiday: {date(13)} <br>
-     * @param holiday The value of the column 'holiday'. (NullAllowed: null update allowed for no constraint)
+     * [set] holiday: {NotNull, date(13)} <br>
+     * 祝日
+     * @param holiday The value of the column 'holiday'. (basically NotNull if update: for the constraint)
      */
     public void setHoliday(java.time.LocalDate holiday) {
         registerModifiedProperty("holiday");
@@ -231,6 +244,7 @@ public abstract class BsMHoliday extends AbstractEntity implements DomainEntity,
 
     /**
      * [get] delete_flag: {NotNull, bool(1), default=[false]} <br>
+     * 削除フラグ
      * @return The value of the column 'delete_flag'. (basically NotNull if selected: for the constraint)
      */
     public Boolean getDeleteFlag() {
@@ -240,6 +254,7 @@ public abstract class BsMHoliday extends AbstractEntity implements DomainEntity,
 
     /**
      * [set] delete_flag: {NotNull, bool(1), default=[false]} <br>
+     * 削除フラグ
      * @param deleteFlag The value of the column 'delete_flag'. (basically NotNull if update: for the constraint)
      */
     public void setDeleteFlag(Boolean deleteFlag) {
@@ -248,7 +263,28 @@ public abstract class BsMHoliday extends AbstractEntity implements DomainEntity,
     }
 
     /**
+     * [get] version_no: {NotNull, int4(10), default=[1]} <br>
+     * version_no
+     * @return The value of the column 'version_no'. (basically NotNull if selected: for the constraint)
+     */
+    public Integer getVersionNo() {
+        checkSpecifiedProperty("versionNo");
+        return _versionNo;
+    }
+
+    /**
+     * [set] version_no: {NotNull, int4(10), default=[1]} <br>
+     * version_no
+     * @param versionNo The value of the column 'version_no'. (basically NotNull if update: for the constraint)
+     */
+    public void setVersionNo(Integer versionNo) {
+        registerModifiedProperty("versionNo");
+        _versionNo = versionNo;
+    }
+
+    /**
      * [get] register_datetime: {NotNull, timestamp(26, 3), default=[now()]} <br>
+     * 登録日時
      * @return The value of the column 'register_datetime'. (basically NotNull if selected: for the constraint)
      */
     public java.time.LocalDateTime getRegisterDatetime() {
@@ -258,6 +294,7 @@ public abstract class BsMHoliday extends AbstractEntity implements DomainEntity,
 
     /**
      * [set] register_datetime: {NotNull, timestamp(26, 3), default=[now()]} <br>
+     * 登録日時
      * @param registerDatetime The value of the column 'register_datetime'. (basically NotNull if update: for the constraint)
      */
     public void setRegisterDatetime(java.time.LocalDateTime registerDatetime) {
@@ -267,6 +304,7 @@ public abstract class BsMHoliday extends AbstractEntity implements DomainEntity,
 
     /**
      * [get] update_datetime: {timestamp(26, 3)} <br>
+     * 更新日時
      * @return The value of the column 'update_datetime'. (NullAllowed even if selected: for no constraint)
      */
     public java.time.LocalDateTime getUpdateDatetime() {
@@ -276,6 +314,7 @@ public abstract class BsMHoliday extends AbstractEntity implements DomainEntity,
 
     /**
      * [set] update_datetime: {timestamp(26, 3)} <br>
+     * 更新日時
      * @param updateDatetime The value of the column 'update_datetime'. (NullAllowed: null update allowed for no constraint)
      */
     public void setUpdateDatetime(java.time.LocalDateTime updateDatetime) {

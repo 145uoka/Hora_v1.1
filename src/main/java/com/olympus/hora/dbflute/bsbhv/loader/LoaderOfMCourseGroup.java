@@ -15,7 +15,7 @@ import com.olympus.hora.dbflute.cbean.*;
  *     course_group_id
  *
  * [column]
- *     course_group_id, shop_id, group_name, required_flg, reamarks, delete_flag, register_datetime, update_datetime
+ *     shop_id, group_name, course_group_id, required_flg, reamarks, delete_flag, version_no, register_datetime, update_datetime
  *
  * [sequence]
  *     m_course_group_course_group_id_seq
@@ -24,7 +24,7 @@ import com.olympus.hora.dbflute.cbean.*;
  *     
  *
  * [version-no]
- *     
+ *     version_no
  *
  * [foreign table]
  *     m_shop

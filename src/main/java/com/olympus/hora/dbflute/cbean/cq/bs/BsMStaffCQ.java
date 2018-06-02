@@ -82,44 +82,16 @@ public class BsMStaffCQ extends AbstractBsMStaffCQ {
     public Map<String, MWorkingStaffCQ> xdfgetStaffId_ExistsReferrer_MWorkingStaffList() { return xgetSQueMap("staffId_ExistsReferrer_MWorkingStaffList"); }
     public String keepStaffId_ExistsReferrer_MWorkingStaffList(MWorkingStaffCQ sq) { return xkeepSQue("staffId_ExistsReferrer_MWorkingStaffList", sq); }
 
-    public Map<String, TReservationCQ> xdfgetStaffId_ExistsReferrer_TReservationList() { return xgetSQueMap("staffId_ExistsReferrer_TReservationList"); }
-    public String keepStaffId_ExistsReferrer_TReservationList(TReservationCQ sq) { return xkeepSQue("staffId_ExistsReferrer_TReservationList", sq); }
-
-    public Map<String, TShiftCQ> xdfgetStaffId_ExistsReferrer_TShiftList() { return xgetSQueMap("staffId_ExistsReferrer_TShiftList"); }
-    public String keepStaffId_ExistsReferrer_TShiftList(TShiftCQ sq) { return xkeepSQue("staffId_ExistsReferrer_TShiftList", sq); }
-
     public Map<String, MWorkingStaffCQ> xdfgetStaffId_NotExistsReferrer_MWorkingStaffList() { return xgetSQueMap("staffId_NotExistsReferrer_MWorkingStaffList"); }
     public String keepStaffId_NotExistsReferrer_MWorkingStaffList(MWorkingStaffCQ sq) { return xkeepSQue("staffId_NotExistsReferrer_MWorkingStaffList", sq); }
 
-    public Map<String, TReservationCQ> xdfgetStaffId_NotExistsReferrer_TReservationList() { return xgetSQueMap("staffId_NotExistsReferrer_TReservationList"); }
-    public String keepStaffId_NotExistsReferrer_TReservationList(TReservationCQ sq) { return xkeepSQue("staffId_NotExistsReferrer_TReservationList", sq); }
-
-    public Map<String, TShiftCQ> xdfgetStaffId_NotExistsReferrer_TShiftList() { return xgetSQueMap("staffId_NotExistsReferrer_TShiftList"); }
-    public String keepStaffId_NotExistsReferrer_TShiftList(TShiftCQ sq) { return xkeepSQue("staffId_NotExistsReferrer_TShiftList", sq); }
-
     public Map<String, MWorkingStaffCQ> xdfgetStaffId_SpecifyDerivedReferrer_MWorkingStaffList() { return xgetSQueMap("staffId_SpecifyDerivedReferrer_MWorkingStaffList"); }
     public String keepStaffId_SpecifyDerivedReferrer_MWorkingStaffList(MWorkingStaffCQ sq) { return xkeepSQue("staffId_SpecifyDerivedReferrer_MWorkingStaffList", sq); }
-
-    public Map<String, TReservationCQ> xdfgetStaffId_SpecifyDerivedReferrer_TReservationList() { return xgetSQueMap("staffId_SpecifyDerivedReferrer_TReservationList"); }
-    public String keepStaffId_SpecifyDerivedReferrer_TReservationList(TReservationCQ sq) { return xkeepSQue("staffId_SpecifyDerivedReferrer_TReservationList", sq); }
-
-    public Map<String, TShiftCQ> xdfgetStaffId_SpecifyDerivedReferrer_TShiftList() { return xgetSQueMap("staffId_SpecifyDerivedReferrer_TShiftList"); }
-    public String keepStaffId_SpecifyDerivedReferrer_TShiftList(TShiftCQ sq) { return xkeepSQue("staffId_SpecifyDerivedReferrer_TShiftList", sq); }
 
     public Map<String, MWorkingStaffCQ> xdfgetStaffId_QueryDerivedReferrer_MWorkingStaffList() { return xgetSQueMap("staffId_QueryDerivedReferrer_MWorkingStaffList"); }
     public String keepStaffId_QueryDerivedReferrer_MWorkingStaffList(MWorkingStaffCQ sq) { return xkeepSQue("staffId_QueryDerivedReferrer_MWorkingStaffList", sq); }
     public Map<String, Object> xdfgetStaffId_QueryDerivedReferrer_MWorkingStaffListParameter() { return xgetSQuePmMap("staffId_QueryDerivedReferrer_MWorkingStaffList"); }
     public String keepStaffId_QueryDerivedReferrer_MWorkingStaffListParameter(Object pm) { return xkeepSQuePm("staffId_QueryDerivedReferrer_MWorkingStaffList", pm); }
-
-    public Map<String, TReservationCQ> xdfgetStaffId_QueryDerivedReferrer_TReservationList() { return xgetSQueMap("staffId_QueryDerivedReferrer_TReservationList"); }
-    public String keepStaffId_QueryDerivedReferrer_TReservationList(TReservationCQ sq) { return xkeepSQue("staffId_QueryDerivedReferrer_TReservationList", sq); }
-    public Map<String, Object> xdfgetStaffId_QueryDerivedReferrer_TReservationListParameter() { return xgetSQuePmMap("staffId_QueryDerivedReferrer_TReservationList"); }
-    public String keepStaffId_QueryDerivedReferrer_TReservationListParameter(Object pm) { return xkeepSQuePm("staffId_QueryDerivedReferrer_TReservationList", pm); }
-
-    public Map<String, TShiftCQ> xdfgetStaffId_QueryDerivedReferrer_TShiftList() { return xgetSQueMap("staffId_QueryDerivedReferrer_TShiftList"); }
-    public String keepStaffId_QueryDerivedReferrer_TShiftList(TShiftCQ sq) { return xkeepSQue("staffId_QueryDerivedReferrer_TShiftList", sq); }
-    public Map<String, Object> xdfgetStaffId_QueryDerivedReferrer_TShiftListParameter() { return xgetSQuePmMap("staffId_QueryDerivedReferrer_TShiftList"); }
-    public String keepStaffId_QueryDerivedReferrer_TShiftListParameter(Object pm) { return xkeepSQuePm("staffId_QueryDerivedReferrer_TShiftList", pm); }
 
     /**
      * Add order-by as ascend. <br>
@@ -134,6 +106,26 @@ public class BsMStaffCQ extends AbstractBsMStaffCQ {
      * @return this. (NotNull)
      */
     public BsMStaffCQ addOrderBy_StaffId_Desc() { regOBD("staff_id"); return this; }
+
+    protected ConditionValue _companyId;
+    public ConditionValue xdfgetCompanyId()
+    { if (_companyId == null) { _companyId = nCV(); }
+      return _companyId; }
+    protected ConditionValue xgetCValueCompanyId() { return xdfgetCompanyId(); }
+
+    /**
+     * Add order-by as ascend. <br>
+     * company_id: {NotNull, int4(10), FK to m_company}
+     * @return this. (NotNull)
+     */
+    public BsMStaffCQ addOrderBy_CompanyId_Asc() { regOBA("company_id"); return this; }
+
+    /**
+     * Add order-by as descend. <br>
+     * company_id: {NotNull, int4(10), FK to m_company}
+     * @return this. (NotNull)
+     */
+    public BsMStaffCQ addOrderBy_CompanyId_Desc() { regOBD("company_id"); return this; }
 
     protected ConditionValue _familyName;
     public ConditionValue xdfgetFamilyName()
@@ -255,6 +247,26 @@ public class BsMStaffCQ extends AbstractBsMStaffCQ {
      */
     public BsMStaffCQ addOrderBy_DeleteFlag_Desc() { regOBD("delete_flag"); return this; }
 
+    protected ConditionValue _versionNo;
+    public ConditionValue xdfgetVersionNo()
+    { if (_versionNo == null) { _versionNo = nCV(); }
+      return _versionNo; }
+    protected ConditionValue xgetCValueVersionNo() { return xdfgetVersionNo(); }
+
+    /**
+     * Add order-by as ascend. <br>
+     * version_no: {NotNull, int4(10), default=[1]}
+     * @return this. (NotNull)
+     */
+    public BsMStaffCQ addOrderBy_VersionNo_Asc() { regOBA("version_no"); return this; }
+
+    /**
+     * Add order-by as descend. <br>
+     * version_no: {NotNull, int4(10), default=[1]}
+     * @return this. (NotNull)
+     */
+    public BsMStaffCQ addOrderBy_VersionNo_Desc() { regOBD("version_no"); return this; }
+
     protected ConditionValue _registerDatetime;
     public ConditionValue xdfgetRegisterDatetime()
     { if (_registerDatetime == null) { _registerDatetime = nCV(); }
@@ -334,11 +346,36 @@ public class BsMStaffCQ extends AbstractBsMStaffCQ {
     //                                                                         Union Query
     //                                                                         ===========
     public void reflectRelationOnUnionQuery(ConditionQuery bqs, ConditionQuery uqs) {
+        MStaffCQ bq = (MStaffCQ)bqs;
+        MStaffCQ uq = (MStaffCQ)uqs;
+        if (bq.hasConditionQueryMCompany()) {
+            uq.queryMCompany().reflectRelationOnUnionQuery(bq.queryMCompany(), uq.queryMCompany());
+        }
     }
 
     // ===================================================================================
     //                                                                       Foreign Query
     //                                                                       =============
+    /**
+     * Get the condition-query for relation table. <br>
+     * m_company by my company_id, named 'MCompany'.
+     * @return The instance of condition-query. (NotNull)
+     */
+    public MCompanyCQ queryMCompany() {
+        return xdfgetConditionQueryMCompany();
+    }
+    public MCompanyCQ xdfgetConditionQueryMCompany() {
+        String prop = "mCompany";
+        if (!xhasQueRlMap(prop)) { xregQueRl(prop, xcreateQueryMCompany()); xsetupOuterJoinMCompany(); }
+        return xgetQueRlMap(prop);
+    }
+    protected MCompanyCQ xcreateQueryMCompany() {
+        String nrp = xresolveNRP("m_staff", "mCompany"); String jan = xresolveJAN(nrp, xgetNNLvl());
+        return xinitRelCQ(new MCompanyCQ(this, xgetSqlClause(), jan, xgetNNLvl()), _baseCB, "mCompany", nrp);
+    }
+    protected void xsetupOuterJoinMCompany() { xregOutJo("mCompany"); }
+    public boolean hasConditionQueryMCompany() { return xhasQueRlMap("mCompany"); }
+
     protected Map<String, Object> xfindFixedConditionDynamicParameterMap(String property) {
         return null;
     }

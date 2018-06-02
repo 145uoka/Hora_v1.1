@@ -13,7 +13,7 @@ import com.olympus.hora.dbflute.exentity.*;
  *     holiday_id
  *
  * [column]
- *     holiday_id, holiday_name, holiday, delete_flag, register_datetime, update_datetime
+ *     holiday_id, holiday_name, holiday, delete_flag, version_no, register_datetime, update_datetime
  *
  * [sequence]
  *     m_holiday_holiday_id_seq
@@ -22,7 +22,7 @@ import com.olympus.hora.dbflute.exentity.*;
  *     
  *
  * [version-no]
- *     
+ *     version_no
  *
  * [foreign table]
  *     

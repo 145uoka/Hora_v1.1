@@ -1,0 +1,1074 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN""http://www.w3.org/TR/REC-html40/loose.dtd">
+<html>
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+		<title>ユーザマスタ</title>
+		<link rel="stylesheet" type="text/css" href="../stylesheet.css" title="Style">
+	</head>
+<script>
+function asd() {
+	parent.document.title="ユーザマスタ";
+}
+</script>
+
+	<body onload="asd();">
+
+		<!-- ========== START OF NAVBAR ========== -->
+		<table border="0" width="100%" cellpadding="1" cellspacing="0">
+			<tr>
+				<td colspan="3" class="NavBarCell1">
+					<table border="0" cellpadding="0" cellspacing="3">
+						<tr align="center" valign="top">
+							<td class="NavBarCell1">
+								<a href="../overview-summary.html">概要</a>&nbsp;
+							</td>
+							<td class="NavBarCell1">
+								<a href="package-summary.html">オブジェクトタイプ</a>&nbsp;
+							</td>
+							<td class="NavBarCell1Rev"> &nbsp;
+								テーブル&nbsp;
+							</td>
+							<td class="NavBarCell1">
+								<a href="../help-doc.html">ヘルプ</a>&nbsp;
+							</td>
+						</tr>
+					</table>
+				</td>
+			</tr>
+			<tr>
+				<td class="NavBarCell2">
+					&nbsp;<a HREF="8.html" ><b>前のテーブル</b></a>&nbsp;&nbsp;
+					&nbsp;<a HREF="10.html" ><b>次のテーブル</b></a>&nbsp;&nbsp;
+				</td>
+				<td class="NavBarCell2">
+					<a href="../index.html" target="_top">フレームあり</a>
+					&nbsp;&nbsp;&nbsp;
+					<a href="9.html" target="_top">フレームなし</a>
+					&nbsp;&nbsp;&nbsp;
+					<script>
+					<!--
+						if(window==top) {
+							document.writeln('<a href="../allclasses.html" target="">すべてのオブジェクト</a>');
+						}
+					//-->
+					</script>
+					<noscript>
+						<a href="../allclasses.html" target="">すべてのオブジェクト</a>
+					</noscript>
+				</td>
+			</tr>
+		</table>
+		<!-- =========== END OF NAVBAR =========== -->
+
+		<hr>
+		<a name="main"></a>
+		<h2>テーブル   ユーザマスタ</h2>
+		<hr>
+
+
+<dl>
+	<dt><b>物理名:</b></dt>
+		<dd>m_user<br><br></dd>
+</dl>
+
+<dl>
+	<dt><b>制約:</b></dt>
+		<dd><br><br></dd>
+</dl>
+
+<pre style="font-size:1em;">
+
+</pre>
+
+<p>
+
+<!-- ======== Attribute ======== -->
+
+<a name="attribute_summary"></a>
+
+<table border="1" cellpadding="3" cellspacing="0" width="100%" class="AttributeTable">
+	<tr class="TableHeadingColor">
+		<th colspan="7">属性 の概要</th>
+	</tr>
+	<tr class="TableSubHeadingColor">
+		<th>PK</th>
+		<th>FK</th>
+		<th>論理名</th>
+		<th>物理名</th>
+		<th>型</th>
+		<th>UNIQUE</th>
+		<th>NOT NULL</th>
+	</tr>
+	<tr>
+	<tr>
+	<td align="center"><img src="../image/icons/pkey.gif">&nbsp;</td>
+	<td align="center">&nbsp;</td>
+	<td><a href="#205">ユーザID</a>&nbsp;</td>
+	<td>user_id&nbsp;</td>
+	<td>serial&nbsp;</td>
+	<td align="center">&nbsp;</td>
+	<td align="center">NOT NULL&nbsp;</td>
+</tr>
+<tr>
+	<td align="center">&nbsp;</td>
+	<td align="center">&nbsp;</td>
+	<td><a href="#206">LINE_ID</a>&nbsp;</td>
+	<td>line_id&nbsp;</td>
+	<td>text&nbsp;</td>
+	<td align="center">&nbsp;</td>
+	<td align="center">&nbsp;</td>
+</tr>
+<tr>
+	<td align="center">&nbsp;</td>
+	<td align="center">&nbsp;</td>
+	<td><a href="#207">LINE_表示名</a>&nbsp;</td>
+	<td>LINE_NAME&nbsp;</td>
+	<td>text&nbsp;</td>
+	<td align="center">&nbsp;</td>
+	<td align="center">&nbsp;</td>
+</tr>
+<tr>
+	<td align="center">&nbsp;</td>
+	<td align="center">&nbsp;</td>
+	<td><a href="#208">姓</a>&nbsp;</td>
+	<td>family_name&nbsp;</td>
+	<td>text&nbsp;</td>
+	<td align="center">&nbsp;</td>
+	<td align="center">&nbsp;</td>
+</tr>
+<tr>
+	<td align="center">&nbsp;</td>
+	<td align="center">&nbsp;</td>
+	<td><a href="#209">名</a>&nbsp;</td>
+	<td>given_name&nbsp;</td>
+	<td>text&nbsp;</td>
+	<td align="center">&nbsp;</td>
+	<td align="center">&nbsp;</td>
+</tr>
+<tr>
+	<td align="center">&nbsp;</td>
+	<td align="center">&nbsp;</td>
+	<td><a href="#210">姓（カナ）</a>&nbsp;</td>
+	<td>family_name_kana&nbsp;</td>
+	<td>text&nbsp;</td>
+	<td align="center">&nbsp;</td>
+	<td align="center">&nbsp;</td>
+</tr>
+<tr>
+	<td align="center">&nbsp;</td>
+	<td align="center">&nbsp;</td>
+	<td><a href="#211">名（カナ）</a>&nbsp;</td>
+	<td>given_name_kana&nbsp;</td>
+	<td>text&nbsp;</td>
+	<td align="center">&nbsp;</td>
+	<td align="center">&nbsp;</td>
+</tr>
+<tr>
+	<td align="center">&nbsp;</td>
+	<td align="center">&nbsp;</td>
+	<td><a href="#212">性別</a>&nbsp;</td>
+	<td>sex&nbsp;</td>
+	<td>int&nbsp;</td>
+	<td align="center">&nbsp;</td>
+	<td align="center">&nbsp;</td>
+</tr>
+<tr>
+	<td align="center">&nbsp;</td>
+	<td align="center">&nbsp;</td>
+	<td><a href="#213">生年月日</a>&nbsp;</td>
+	<td>birthday&nbsp;</td>
+	<td>date&nbsp;</td>
+	<td align="center">&nbsp;</td>
+	<td align="center">&nbsp;</td>
+</tr>
+<tr>
+	<td align="center">&nbsp;</td>
+	<td align="center">&nbsp;</td>
+	<td><a href="#214">電話番号1_1</a>&nbsp;</td>
+	<td>phone_first1&nbsp;</td>
+	<td>text&nbsp;</td>
+	<td align="center">&nbsp;</td>
+	<td align="center">&nbsp;</td>
+</tr>
+<tr>
+	<td align="center">&nbsp;</td>
+	<td align="center">&nbsp;</td>
+	<td><a href="#215">電話番号1_2</a>&nbsp;</td>
+	<td>phone_first2&nbsp;</td>
+	<td>text&nbsp;</td>
+	<td align="center">&nbsp;</td>
+	<td align="center">&nbsp;</td>
+</tr>
+<tr>
+	<td align="center">&nbsp;</td>
+	<td align="center">&nbsp;</td>
+	<td><a href="#216">電話番号1_3</a>&nbsp;</td>
+	<td>phone_first3&nbsp;</td>
+	<td>text&nbsp;</td>
+	<td align="center">&nbsp;</td>
+	<td align="center">&nbsp;</td>
+</tr>
+<tr>
+	<td align="center">&nbsp;</td>
+	<td align="center">&nbsp;</td>
+	<td><a href="#217">電話番号2_1</a>&nbsp;</td>
+	<td>phone_second1&nbsp;</td>
+	<td>text&nbsp;</td>
+	<td align="center">&nbsp;</td>
+	<td align="center">&nbsp;</td>
+</tr>
+<tr>
+	<td align="center">&nbsp;</td>
+	<td align="center">&nbsp;</td>
+	<td><a href="#218">電話番号2_2</a>&nbsp;</td>
+	<td>phone_second2&nbsp;</td>
+	<td>text&nbsp;</td>
+	<td align="center">&nbsp;</td>
+	<td align="center">&nbsp;</td>
+</tr>
+<tr>
+	<td align="center">&nbsp;</td>
+	<td align="center">&nbsp;</td>
+	<td><a href="#219">電話番号2_3</a>&nbsp;</td>
+	<td>phone_second3&nbsp;</td>
+	<td>text&nbsp;</td>
+	<td align="center">&nbsp;</td>
+	<td align="center">&nbsp;</td>
+</tr>
+<tr>
+	<td align="center">&nbsp;</td>
+	<td align="center">&nbsp;</td>
+	<td><a href="#220">メールアドレス1</a>&nbsp;</td>
+	<td>email1&nbsp;</td>
+	<td>text&nbsp;</td>
+	<td align="center">&nbsp;</td>
+	<td align="center">&nbsp;</td>
+</tr>
+<tr>
+	<td align="center">&nbsp;</td>
+	<td align="center">&nbsp;</td>
+	<td><a href="#221">メールアドレス2</a>&nbsp;</td>
+	<td>email2&nbsp;</td>
+	<td>text&nbsp;</td>
+	<td align="center">&nbsp;</td>
+	<td align="center">&nbsp;</td>
+</tr>
+<tr>
+	<td align="center">&nbsp;</td>
+	<td align="center">&nbsp;</td>
+	<td><a href="#222">郵便番号</a>&nbsp;</td>
+	<td>postal_code&nbsp;</td>
+	<td>char(7)&nbsp;</td>
+	<td align="center">&nbsp;</td>
+	<td align="center">&nbsp;</td>
+</tr>
+<tr>
+	<td align="center">&nbsp;</td>
+	<td align="center">&nbsp;</td>
+	<td><a href="#223">都道府県</a>&nbsp;</td>
+	<td>prefecture&nbsp;</td>
+	<td>smallint&nbsp;</td>
+	<td align="center">&nbsp;</td>
+	<td align="center">&nbsp;</td>
+</tr>
+<tr>
+	<td align="center">&nbsp;</td>
+	<td align="center">&nbsp;</td>
+	<td><a href="#224">市区町村</a>&nbsp;</td>
+	<td>city&nbsp;</td>
+	<td>text&nbsp;</td>
+	<td align="center">&nbsp;</td>
+	<td align="center">&nbsp;</td>
+</tr>
+<tr>
+	<td align="center">&nbsp;</td>
+	<td align="center">&nbsp;</td>
+	<td><a href="#225">その他住所1</a>&nbsp;</td>
+	<td>address1&nbsp;</td>
+	<td>text&nbsp;</td>
+	<td align="center">&nbsp;</td>
+	<td align="center">&nbsp;</td>
+</tr>
+<tr>
+	<td align="center">&nbsp;</td>
+	<td align="center">&nbsp;</td>
+	<td><a href="#226">その他住所2</a>&nbsp;</td>
+	<td>address2&nbsp;</td>
+	<td>text&nbsp;</td>
+	<td align="center">&nbsp;</td>
+	<td align="center">&nbsp;</td>
+</tr>
+<tr>
+	<td align="center">&nbsp;</td>
+	<td align="center">&nbsp;</td>
+	<td><a href="#227">備考</a>&nbsp;</td>
+	<td>remarks&nbsp;</td>
+	<td>text&nbsp;</td>
+	<td align="center">&nbsp;</td>
+	<td align="center">&nbsp;</td>
+</tr>
+<tr>
+	<td align="center">&nbsp;</td>
+	<td align="center">&nbsp;</td>
+	<td><a href="#143">削除フラグ</a>&nbsp;</td>
+	<td>delete_flag&nbsp;</td>
+	<td>boolean&nbsp;</td>
+	<td align="center">&nbsp;</td>
+	<td align="center">NOT NULL&nbsp;</td>
+</tr>
+<tr>
+	<td align="center">&nbsp;</td>
+	<td align="center">&nbsp;</td>
+	<td><a href="#144">version_no</a>&nbsp;</td>
+	<td>version_no&nbsp;</td>
+	<td>int&nbsp;</td>
+	<td align="center">&nbsp;</td>
+	<td align="center">NOT NULL&nbsp;</td>
+</tr>
+<tr>
+	<td align="center">&nbsp;</td>
+	<td align="center">&nbsp;</td>
+	<td><a href="#145">登録日時</a>&nbsp;</td>
+	<td>register_datetime&nbsp;</td>
+	<td>timestamp(3)&nbsp;</td>
+	<td align="center">&nbsp;</td>
+	<td align="center">NOT NULL&nbsp;</td>
+</tr>
+<tr>
+	<td align="center">&nbsp;</td>
+	<td align="center">&nbsp;</td>
+	<td><a href="#146">更新日時</a>&nbsp;</td>
+	<td>update_datetime&nbsp;</td>
+	<td>timestamp(3)&nbsp;</td>
+	<td align="center">&nbsp;</td>
+	<td align="center">&nbsp;</td>
+</tr>
+
+	</tr>
+</table>
+
+<p>
+
+<!-- ========== FOREIGN KEY =========== -->
+
+<a name="foreign_key"><!-- --></a>
+<table border="1" cellpadding="3" cellspacing="0" width="100%" class="AttributeTable">
+	<tr class="TableHeadingColor">
+		<th colspan="7">外部キー</th>
+	</tr>
+	<tr class="TableSubHeadingColor">
+		<th width="12">属性</th>
+		<th width="28%">参照テーブル</th>
+		<th width="12%">参照キー</th>
+		<th width="12%">ON UPDATE</th>
+		<th width="12%">ON DELETE</th>
+		<th width="12%">親の多重度</th>
+		<th width="12%">子の多重度</th>
+	</tr>
+	
+</table>
+
+<p>
+
+<!-- ========== REFERENCE KEY =========== -->
+
+<a name="reference_key"><!-- --></a>
+<table border="1" cellpadding="3" cellspacing="0" width="100%" class="AttributeTable">
+	<tr class="TableHeadingColor">
+		<th colspan="7">参照キー</th>
+	</tr>
+	<tr class="TableSubHeadingColor">
+		<th width="12">属性</th>
+		<th width="28%">テーブル</th>
+		<th width="12%">外部キー</th>
+		<th width="12%">ON UPDATE</th>
+		<th width="12%">ON DELETE</th>
+		<th width="12%">親の多重度</th>
+		<th width="12%">子の多重度</th>
+	</tr>
+	<tr>
+	<td><a href="#205">ユーザID&nbsp;</a></td>
+	<td><a href="../table/14.html">予約テーブル&nbsp;</a></td>
+	<td><a href="../table/14.html#228">ユーザID&nbsp;</a></td>
+	<td align="center">NO ACTION&nbsp;</td>
+	<td align="center">NO ACTION&nbsp;</td>
+	<td align="center">0..1&nbsp;</td>
+	<td align="center">1..n&nbsp;</td>
+</tr>
+
+</table>
+
+<p>
+
+<!-- ========== Complex Unique Key =========== -->
+
+<a name="complex_unique_key"><!-- --></a>
+<table border="1" cellpadding="3" cellspacing="0" width="100%" class="AttributeTable">
+	<tr class="TableHeadingColor">
+		<th colspan="1">複合一意キー</th>
+	</tr>
+	<tr class="TableSubHeadingColor">
+		<th>&nbsp;</th>
+		
+	</tr>
+	
+</table>
+
+
+
+<p>
+
+<!-- ========== INDEX SUMMARY =========== -->
+
+<a name="index_summary"><!-- --></a>
+<table border="1" cellpadding="3" cellspacing="0" width="100%" class="AttributeTable">
+	<tr class="TableHeadingColor">
+		<th colspan="3">インデックス の概要</th>
+	</tr>
+	<tr class="TableSubHeadingColor">
+		<th>インデックス名</th>
+		<th>タイプ</th>
+		<th>UNIQUE</th>
+	</tr>
+	
+</table>
+
+<p>
+
+
+
+
+
+<p>
+
+<!-- ============ ATTRIBUTE DETAIL =========== -->
+
+<a name="attribute_detail"></a>
+<table border="1" cellpadding="3" cellspacing="0" width="100%" class="AttributeTable">
+	<tr class="TableHeadingColor">
+		<th>属性 の詳細</th>
+	</tr>
+</table>
+
+<a name="205"></a>
+<h3><img src="../image/icons/pkey.gif">  ユーザID</h3>
+
+<dl>
+	<dd>user_id
+	<p>
+	<dd><pre>ユーザID</pre>
+	<p>
+	<dl>
+		<dt><b>UNIQUE : </b>FALSE<br></dt>
+		<dt><b>NOT NULL : </b>TRUE<br></dt>
+		<dt><b>型 : </b>serial<br></dt>
+		<dt><b>AUTO INCREMENT : </b>TRUE<br></dt>
+		<dt><b>デフォルト値 : </b><br></dt>
+		<dt><b>制約 : </b><br></dt>
+	</dl>
+</dl>
+
+<p>
+
+<hr>
+<a name="206"></a>
+<h3>  LINE_ID</h3>
+
+<dl>
+	<dd>line_id
+	<p>
+	<dd><pre></pre>
+	<p>
+	<dl>
+		<dt><b>UNIQUE : </b>FALSE<br></dt>
+		<dt><b>NOT NULL : </b>FALSE<br></dt>
+		<dt><b>型 : </b>text<br></dt>
+		<dt><b>AUTO INCREMENT : </b>FALSE<br></dt>
+		<dt><b>デフォルト値 : </b><br></dt>
+		<dt><b>制約 : </b><br></dt>
+	</dl>
+</dl>
+
+<p>
+
+<hr>
+<a name="207"></a>
+<h3>  LINE_表示名</h3>
+
+<dl>
+	<dd>LINE_NAME
+	<p>
+	<dd><pre></pre>
+	<p>
+	<dl>
+		<dt><b>UNIQUE : </b>FALSE<br></dt>
+		<dt><b>NOT NULL : </b>FALSE<br></dt>
+		<dt><b>型 : </b>text<br></dt>
+		<dt><b>AUTO INCREMENT : </b>FALSE<br></dt>
+		<dt><b>デフォルト値 : </b><br></dt>
+		<dt><b>制約 : </b><br></dt>
+	</dl>
+</dl>
+
+<p>
+
+<hr>
+<a name="208"></a>
+<h3>  姓</h3>
+
+<dl>
+	<dd>family_name
+	<p>
+	<dd><pre>姓</pre>
+	<p>
+	<dl>
+		<dt><b>UNIQUE : </b>FALSE<br></dt>
+		<dt><b>NOT NULL : </b>FALSE<br></dt>
+		<dt><b>型 : </b>text<br></dt>
+		<dt><b>AUTO INCREMENT : </b>FALSE<br></dt>
+		<dt><b>デフォルト値 : </b><br></dt>
+		<dt><b>制約 : </b><br></dt>
+	</dl>
+</dl>
+
+<p>
+
+<hr>
+<a name="209"></a>
+<h3>  名</h3>
+
+<dl>
+	<dd>given_name
+	<p>
+	<dd><pre>名</pre>
+	<p>
+	<dl>
+		<dt><b>UNIQUE : </b>FALSE<br></dt>
+		<dt><b>NOT NULL : </b>FALSE<br></dt>
+		<dt><b>型 : </b>text<br></dt>
+		<dt><b>AUTO INCREMENT : </b>FALSE<br></dt>
+		<dt><b>デフォルト値 : </b><br></dt>
+		<dt><b>制約 : </b><br></dt>
+	</dl>
+</dl>
+
+<p>
+
+<hr>
+<a name="210"></a>
+<h3>  姓（カナ）</h3>
+
+<dl>
+	<dd>family_name_kana
+	<p>
+	<dd><pre>姓（カナ）</pre>
+	<p>
+	<dl>
+		<dt><b>UNIQUE : </b>FALSE<br></dt>
+		<dt><b>NOT NULL : </b>FALSE<br></dt>
+		<dt><b>型 : </b>text<br></dt>
+		<dt><b>AUTO INCREMENT : </b>FALSE<br></dt>
+		<dt><b>デフォルト値 : </b><br></dt>
+		<dt><b>制約 : </b><br></dt>
+	</dl>
+</dl>
+
+<p>
+
+<hr>
+<a name="211"></a>
+<h3>  名（カナ）</h3>
+
+<dl>
+	<dd>given_name_kana
+	<p>
+	<dd><pre>名（カナ）</pre>
+	<p>
+	<dl>
+		<dt><b>UNIQUE : </b>FALSE<br></dt>
+		<dt><b>NOT NULL : </b>FALSE<br></dt>
+		<dt><b>型 : </b>text<br></dt>
+		<dt><b>AUTO INCREMENT : </b>FALSE<br></dt>
+		<dt><b>デフォルト値 : </b><br></dt>
+		<dt><b>制約 : </b><br></dt>
+	</dl>
+</dl>
+
+<p>
+
+<hr>
+<a name="212"></a>
+<h3>  性別</h3>
+
+<dl>
+	<dd>sex
+	<p>
+	<dd><pre>性別</pre>
+	<p>
+	<dl>
+		<dt><b>UNIQUE : </b>FALSE<br></dt>
+		<dt><b>NOT NULL : </b>FALSE<br></dt>
+		<dt><b>型 : </b>int<br></dt>
+		<dt><b>AUTO INCREMENT : </b>FALSE<br></dt>
+		<dt><b>デフォルト値 : </b><br></dt>
+		<dt><b>制約 : </b><br></dt>
+	</dl>
+</dl>
+
+<p>
+
+<hr>
+<a name="213"></a>
+<h3>  生年月日</h3>
+
+<dl>
+	<dd>birthday
+	<p>
+	<dd><pre>生年月日</pre>
+	<p>
+	<dl>
+		<dt><b>UNIQUE : </b>FALSE<br></dt>
+		<dt><b>NOT NULL : </b>FALSE<br></dt>
+		<dt><b>型 : </b>date<br></dt>
+		<dt><b>AUTO INCREMENT : </b>FALSE<br></dt>
+		<dt><b>デフォルト値 : </b><br></dt>
+		<dt><b>制約 : </b><br></dt>
+	</dl>
+</dl>
+
+<p>
+
+<hr>
+<a name="214"></a>
+<h3>  電話番号1_1</h3>
+
+<dl>
+	<dd>phone_first1
+	<p>
+	<dd><pre>電話番号1_1</pre>
+	<p>
+	<dl>
+		<dt><b>UNIQUE : </b>FALSE<br></dt>
+		<dt><b>NOT NULL : </b>FALSE<br></dt>
+		<dt><b>型 : </b>text<br></dt>
+		<dt><b>AUTO INCREMENT : </b>FALSE<br></dt>
+		<dt><b>デフォルト値 : </b><br></dt>
+		<dt><b>制約 : </b><br></dt>
+	</dl>
+</dl>
+
+<p>
+
+<hr>
+<a name="215"></a>
+<h3>  電話番号1_2</h3>
+
+<dl>
+	<dd>phone_first2
+	<p>
+	<dd><pre>電話番号1_2</pre>
+	<p>
+	<dl>
+		<dt><b>UNIQUE : </b>FALSE<br></dt>
+		<dt><b>NOT NULL : </b>FALSE<br></dt>
+		<dt><b>型 : </b>text<br></dt>
+		<dt><b>AUTO INCREMENT : </b>FALSE<br></dt>
+		<dt><b>デフォルト値 : </b><br></dt>
+		<dt><b>制約 : </b><br></dt>
+	</dl>
+</dl>
+
+<p>
+
+<hr>
+<a name="216"></a>
+<h3>  電話番号1_3</h3>
+
+<dl>
+	<dd>phone_first3
+	<p>
+	<dd><pre>電話番号1_3</pre>
+	<p>
+	<dl>
+		<dt><b>UNIQUE : </b>FALSE<br></dt>
+		<dt><b>NOT NULL : </b>FALSE<br></dt>
+		<dt><b>型 : </b>text<br></dt>
+		<dt><b>AUTO INCREMENT : </b>FALSE<br></dt>
+		<dt><b>デフォルト値 : </b><br></dt>
+		<dt><b>制約 : </b><br></dt>
+	</dl>
+</dl>
+
+<p>
+
+<hr>
+<a name="217"></a>
+<h3>  電話番号2_1</h3>
+
+<dl>
+	<dd>phone_second1
+	<p>
+	<dd><pre>電話番号2_1</pre>
+	<p>
+	<dl>
+		<dt><b>UNIQUE : </b>FALSE<br></dt>
+		<dt><b>NOT NULL : </b>FALSE<br></dt>
+		<dt><b>型 : </b>text<br></dt>
+		<dt><b>AUTO INCREMENT : </b>FALSE<br></dt>
+		<dt><b>デフォルト値 : </b><br></dt>
+		<dt><b>制約 : </b><br></dt>
+	</dl>
+</dl>
+
+<p>
+
+<hr>
+<a name="218"></a>
+<h3>  電話番号2_2</h3>
+
+<dl>
+	<dd>phone_second2
+	<p>
+	<dd><pre>電話番号2_2</pre>
+	<p>
+	<dl>
+		<dt><b>UNIQUE : </b>FALSE<br></dt>
+		<dt><b>NOT NULL : </b>FALSE<br></dt>
+		<dt><b>型 : </b>text<br></dt>
+		<dt><b>AUTO INCREMENT : </b>FALSE<br></dt>
+		<dt><b>デフォルト値 : </b><br></dt>
+		<dt><b>制約 : </b><br></dt>
+	</dl>
+</dl>
+
+<p>
+
+<hr>
+<a name="219"></a>
+<h3>  電話番号2_3</h3>
+
+<dl>
+	<dd>phone_second3
+	<p>
+	<dd><pre>電話番号2_3</pre>
+	<p>
+	<dl>
+		<dt><b>UNIQUE : </b>FALSE<br></dt>
+		<dt><b>NOT NULL : </b>FALSE<br></dt>
+		<dt><b>型 : </b>text<br></dt>
+		<dt><b>AUTO INCREMENT : </b>FALSE<br></dt>
+		<dt><b>デフォルト値 : </b><br></dt>
+		<dt><b>制約 : </b><br></dt>
+	</dl>
+</dl>
+
+<p>
+
+<hr>
+<a name="220"></a>
+<h3>  メールアドレス1</h3>
+
+<dl>
+	<dd>email1
+	<p>
+	<dd><pre>メールアドレス1</pre>
+	<p>
+	<dl>
+		<dt><b>UNIQUE : </b>FALSE<br></dt>
+		<dt><b>NOT NULL : </b>FALSE<br></dt>
+		<dt><b>型 : </b>text<br></dt>
+		<dt><b>AUTO INCREMENT : </b>FALSE<br></dt>
+		<dt><b>デフォルト値 : </b><br></dt>
+		<dt><b>制約 : </b><br></dt>
+	</dl>
+</dl>
+
+<p>
+
+<hr>
+<a name="221"></a>
+<h3>  メールアドレス2</h3>
+
+<dl>
+	<dd>email2
+	<p>
+	<dd><pre>メールアドレス2</pre>
+	<p>
+	<dl>
+		<dt><b>UNIQUE : </b>FALSE<br></dt>
+		<dt><b>NOT NULL : </b>FALSE<br></dt>
+		<dt><b>型 : </b>text<br></dt>
+		<dt><b>AUTO INCREMENT : </b>FALSE<br></dt>
+		<dt><b>デフォルト値 : </b><br></dt>
+		<dt><b>制約 : </b><br></dt>
+	</dl>
+</dl>
+
+<p>
+
+<hr>
+<a name="222"></a>
+<h3>  郵便番号</h3>
+
+<dl>
+	<dd>postal_code
+	<p>
+	<dd><pre>郵便番号</pre>
+	<p>
+	<dl>
+		<dt><b>UNIQUE : </b>FALSE<br></dt>
+		<dt><b>NOT NULL : </b>FALSE<br></dt>
+		<dt><b>型 : </b>char(7)<br></dt>
+		<dt><b>AUTO INCREMENT : </b>FALSE<br></dt>
+		<dt><b>デフォルト値 : </b><br></dt>
+		<dt><b>制約 : </b><br></dt>
+	</dl>
+</dl>
+
+<p>
+
+<hr>
+<a name="223"></a>
+<h3>  都道府県</h3>
+
+<dl>
+	<dd>prefecture
+	<p>
+	<dd><pre>都道府県</pre>
+	<p>
+	<dl>
+		<dt><b>UNIQUE : </b>FALSE<br></dt>
+		<dt><b>NOT NULL : </b>FALSE<br></dt>
+		<dt><b>型 : </b>smallint<br></dt>
+		<dt><b>AUTO INCREMENT : </b>FALSE<br></dt>
+		<dt><b>デフォルト値 : </b><br></dt>
+		<dt><b>制約 : </b><br></dt>
+	</dl>
+</dl>
+
+<p>
+
+<hr>
+<a name="224"></a>
+<h3>  市区町村</h3>
+
+<dl>
+	<dd>city
+	<p>
+	<dd><pre>市区町村</pre>
+	<p>
+	<dl>
+		<dt><b>UNIQUE : </b>FALSE<br></dt>
+		<dt><b>NOT NULL : </b>FALSE<br></dt>
+		<dt><b>型 : </b>text<br></dt>
+		<dt><b>AUTO INCREMENT : </b>FALSE<br></dt>
+		<dt><b>デフォルト値 : </b><br></dt>
+		<dt><b>制約 : </b><br></dt>
+	</dl>
+</dl>
+
+<p>
+
+<hr>
+<a name="225"></a>
+<h3>  その他住所1</h3>
+
+<dl>
+	<dd>address1
+	<p>
+	<dd><pre>その他住所1</pre>
+	<p>
+	<dl>
+		<dt><b>UNIQUE : </b>FALSE<br></dt>
+		<dt><b>NOT NULL : </b>FALSE<br></dt>
+		<dt><b>型 : </b>text<br></dt>
+		<dt><b>AUTO INCREMENT : </b>FALSE<br></dt>
+		<dt><b>デフォルト値 : </b><br></dt>
+		<dt><b>制約 : </b><br></dt>
+	</dl>
+</dl>
+
+<p>
+
+<hr>
+<a name="226"></a>
+<h3>  その他住所2</h3>
+
+<dl>
+	<dd>address2
+	<p>
+	<dd><pre>その他住所2</pre>
+	<p>
+	<dl>
+		<dt><b>UNIQUE : </b>FALSE<br></dt>
+		<dt><b>NOT NULL : </b>FALSE<br></dt>
+		<dt><b>型 : </b>text<br></dt>
+		<dt><b>AUTO INCREMENT : </b>FALSE<br></dt>
+		<dt><b>デフォルト値 : </b><br></dt>
+		<dt><b>制約 : </b><br></dt>
+	</dl>
+</dl>
+
+<p>
+
+<hr>
+<a name="227"></a>
+<h3>  備考</h3>
+
+<dl>
+	<dd>remarks
+	<p>
+	<dd><pre>備考</pre>
+	<p>
+	<dl>
+		<dt><b>UNIQUE : </b>FALSE<br></dt>
+		<dt><b>NOT NULL : </b>FALSE<br></dt>
+		<dt><b>型 : </b>text<br></dt>
+		<dt><b>AUTO INCREMENT : </b>FALSE<br></dt>
+		<dt><b>デフォルト値 : </b><br></dt>
+		<dt><b>制約 : </b><br></dt>
+	</dl>
+</dl>
+
+<p>
+
+<hr>
+<a name="143"></a>
+<h3>  削除フラグ</h3>
+
+<dl>
+	<dd>delete_flag
+	<p>
+	<dd><pre></pre>
+	<p>
+	<dl>
+		<dt><b>UNIQUE : </b>FALSE<br></dt>
+		<dt><b>NOT NULL : </b>TRUE<br></dt>
+		<dt><b>型 : </b>boolean<br></dt>
+		<dt><b>AUTO INCREMENT : </b>FALSE<br></dt>
+		<dt><b>デフォルト値 : </b>false<br></dt>
+		<dt><b>制約 : </b><br></dt>
+	</dl>
+</dl>
+
+<p>
+
+<hr>
+<a name="144"></a>
+<h3>  version_no</h3>
+
+<dl>
+	<dd>version_no
+	<p>
+	<dd><pre></pre>
+	<p>
+	<dl>
+		<dt><b>UNIQUE : </b>FALSE<br></dt>
+		<dt><b>NOT NULL : </b>TRUE<br></dt>
+		<dt><b>型 : </b>int<br></dt>
+		<dt><b>AUTO INCREMENT : </b>FALSE<br></dt>
+		<dt><b>デフォルト値 : </b>1<br></dt>
+		<dt><b>制約 : </b><br></dt>
+	</dl>
+</dl>
+
+<p>
+
+<hr>
+<a name="145"></a>
+<h3>  登録日時</h3>
+
+<dl>
+	<dd>register_datetime
+	<p>
+	<dd><pre></pre>
+	<p>
+	<dl>
+		<dt><b>UNIQUE : </b>FALSE<br></dt>
+		<dt><b>NOT NULL : </b>TRUE<br></dt>
+		<dt><b>型 : </b>timestamp(3)<br></dt>
+		<dt><b>AUTO INCREMENT : </b>FALSE<br></dt>
+		<dt><b>デフォルト値 : </b>CURRENT_TIMESTAMP<br></dt>
+		<dt><b>制約 : </b><br></dt>
+	</dl>
+</dl>
+
+<p>
+
+<hr>
+<a name="146"></a>
+<h3>  更新日時</h3>
+
+<dl>
+	<dd>update_datetime
+	<p>
+	<dd><pre></pre>
+	<p>
+	<dl>
+		<dt><b>UNIQUE : </b>FALSE<br></dt>
+		<dt><b>NOT NULL : </b>FALSE<br></dt>
+		<dt><b>型 : </b>timestamp(3)<br></dt>
+		<dt><b>AUTO INCREMENT : </b>FALSE<br></dt>
+		<dt><b>デフォルト値 : </b><br></dt>
+		<dt><b>制約 : </b><br></dt>
+	</dl>
+</dl>
+
+<p>
+
+<hr>
+
+
+
+
+		<!-- ========== START OF NAVBAR ========== -->
+		<table border="0" width="100%" cellpadding="1" cellspacing="0">
+			<tr>
+				<td colspan="3" class="NavBarCell1">
+					<table border="0" cellpadding="0" cellspacing="3">
+						<tr align="center" valign="top">
+							<td class="NavBarCell1">
+								<a href="../overview-summary.html">概要</a>&nbsp;
+							</td>
+							<td class="NavBarCell1">
+								<a href="package-summary.html">オブジェクトタイプ</a>&nbsp;
+							</td>
+							<td class="NavBarCell1Rev"> &nbsp;
+								テーブル&nbsp;
+							</td>
+							<td class="NavBarCell1">
+								<a href="../help-doc.html">ヘルプ</a>&nbsp;
+							</td>
+						</tr>
+					</table>
+				</td>
+			</tr>
+			<tr>
+				<td class="NavBarCell2">
+					&nbsp;<a HREF="8.html" ><b>前のテーブル</b></a>&nbsp;&nbsp;
+					&nbsp;<a HREF="10.html" ><b>次のテーブル</b></a>&nbsp;&nbsp;
+				</td>
+				<td class="NavBarCell2">
+					<a href="../index.html" target="_top">フレームあり</a>
+					&nbsp;&nbsp;&nbsp;
+					<a href="9.html" target="_top">フレームなし</a>
+					&nbsp;&nbsp;&nbsp;
+					<script>
+					<!--
+						if(window==top) {
+							document.writeln('<a href="../allclasses.html" target="">すべてのオブジェクト</a>');
+						}
+					//-->
+					</script>
+					<noscript>
+						<a href="../allclasses.html" target="">すべてのオブジェクト</a>
+					</noscript>
+				</td>
+			</tr>
+		</table>
+		<!-- =========== END OF NAVBAR =========== -->
+
+		<hr>
+
+	</body>
+</HTML>

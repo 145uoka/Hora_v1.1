@@ -93,6 +93,26 @@ public class BsTShiftCQ extends AbstractBsTShiftCQ {
      */
     public BsTShiftCQ addOrderBy_ShiftId_Desc() { regOBD("shift_id"); return this; }
 
+    protected ConditionValue _workingStaffId;
+    public ConditionValue xdfgetWorkingStaffId()
+    { if (_workingStaffId == null) { _workingStaffId = nCV(); }
+      return _workingStaffId; }
+    protected ConditionValue xgetCValueWorkingStaffId() { return xdfgetWorkingStaffId(); }
+
+    /**
+     * Add order-by as ascend. <br>
+     * working_staff_id: {NotNull, int4(10), FK to m_working_staff}
+     * @return this. (NotNull)
+     */
+    public BsTShiftCQ addOrderBy_WorkingStaffId_Asc() { regOBA("working_staff_id"); return this; }
+
+    /**
+     * Add order-by as descend. <br>
+     * working_staff_id: {NotNull, int4(10), FK to m_working_staff}
+     * @return this. (NotNull)
+     */
+    public BsTShiftCQ addOrderBy_WorkingStaffId_Desc() { regOBD("working_staff_id"); return this; }
+
     protected ConditionValue _workingDayId;
     public ConditionValue xdfgetWorkingDayId()
     { if (_workingDayId == null) { _workingDayId = nCV(); }
@@ -112,26 +132,6 @@ public class BsTShiftCQ extends AbstractBsTShiftCQ {
      * @return this. (NotNull)
      */
     public BsTShiftCQ addOrderBy_WorkingDayId_Desc() { regOBD("working_day_id"); return this; }
-
-    protected ConditionValue _staffId;
-    public ConditionValue xdfgetStaffId()
-    { if (_staffId == null) { _staffId = nCV(); }
-      return _staffId; }
-    protected ConditionValue xgetCValueStaffId() { return xdfgetStaffId(); }
-
-    /**
-     * Add order-by as ascend. <br>
-     * staff_id: {int4(10), FK to m_staff}
-     * @return this. (NotNull)
-     */
-    public BsTShiftCQ addOrderBy_StaffId_Asc() { regOBA("staff_id"); return this; }
-
-    /**
-     * Add order-by as descend. <br>
-     * staff_id: {int4(10), FK to m_staff}
-     * @return this. (NotNull)
-     */
-    public BsTShiftCQ addOrderBy_StaffId_Desc() { regOBD("staff_id"); return this; }
 
     protected ConditionValue _startTime;
     public ConditionValue xdfgetStartTime()
@@ -192,6 +192,26 @@ public class BsTShiftCQ extends AbstractBsTShiftCQ {
      * @return this. (NotNull)
      */
     public BsTShiftCQ addOrderBy_DeleteFlag_Desc() { regOBD("delete_flag"); return this; }
+
+    protected ConditionValue _versionNo;
+    public ConditionValue xdfgetVersionNo()
+    { if (_versionNo == null) { _versionNo = nCV(); }
+      return _versionNo; }
+    protected ConditionValue xgetCValueVersionNo() { return xdfgetVersionNo(); }
+
+    /**
+     * Add order-by as ascend. <br>
+     * version_no: {NotNull, int4(10), default=[1]}
+     * @return this. (NotNull)
+     */
+    public BsTShiftCQ addOrderBy_VersionNo_Asc() { regOBA("version_no"); return this; }
+
+    /**
+     * Add order-by as descend. <br>
+     * version_no: {NotNull, int4(10), default=[1]}
+     * @return this. (NotNull)
+     */
+    public BsTShiftCQ addOrderBy_VersionNo_Desc() { regOBD("version_no"); return this; }
 
     protected ConditionValue _registerDatetime;
     public ConditionValue xdfgetRegisterDatetime()
@@ -274,37 +294,17 @@ public class BsTShiftCQ extends AbstractBsTShiftCQ {
     public void reflectRelationOnUnionQuery(ConditionQuery bqs, ConditionQuery uqs) {
         TShiftCQ bq = (TShiftCQ)bqs;
         TShiftCQ uq = (TShiftCQ)uqs;
-        if (bq.hasConditionQueryMStaff()) {
-            uq.queryMStaff().reflectRelationOnUnionQuery(bq.queryMStaff(), uq.queryMStaff());
-        }
         if (bq.hasConditionQueryMWorkingDay()) {
             uq.queryMWorkingDay().reflectRelationOnUnionQuery(bq.queryMWorkingDay(), uq.queryMWorkingDay());
+        }
+        if (bq.hasConditionQueryMWorkingStaff()) {
+            uq.queryMWorkingStaff().reflectRelationOnUnionQuery(bq.queryMWorkingStaff(), uq.queryMWorkingStaff());
         }
     }
 
     // ===================================================================================
     //                                                                       Foreign Query
     //                                                                       =============
-    /**
-     * Get the condition-query for relation table. <br>
-     * m_staff by my staff_id, named 'MStaff'.
-     * @return The instance of condition-query. (NotNull)
-     */
-    public MStaffCQ queryMStaff() {
-        return xdfgetConditionQueryMStaff();
-    }
-    public MStaffCQ xdfgetConditionQueryMStaff() {
-        String prop = "mStaff";
-        if (!xhasQueRlMap(prop)) { xregQueRl(prop, xcreateQueryMStaff()); xsetupOuterJoinMStaff(); }
-        return xgetQueRlMap(prop);
-    }
-    protected MStaffCQ xcreateQueryMStaff() {
-        String nrp = xresolveNRP("t_shift", "mStaff"); String jan = xresolveJAN(nrp, xgetNNLvl());
-        return xinitRelCQ(new MStaffCQ(this, xgetSqlClause(), jan, xgetNNLvl()), _baseCB, "mStaff", nrp);
-    }
-    protected void xsetupOuterJoinMStaff() { xregOutJo("mStaff"); }
-    public boolean hasConditionQueryMStaff() { return xhasQueRlMap("mStaff"); }
-
     /**
      * Get the condition-query for relation table. <br>
      * m_working_day by my working_day_id, named 'MWorkingDay'.
@@ -324,6 +324,26 @@ public class BsTShiftCQ extends AbstractBsTShiftCQ {
     }
     protected void xsetupOuterJoinMWorkingDay() { xregOutJo("mWorkingDay"); }
     public boolean hasConditionQueryMWorkingDay() { return xhasQueRlMap("mWorkingDay"); }
+
+    /**
+     * Get the condition-query for relation table. <br>
+     * m_working_staff by my working_staff_id, named 'MWorkingStaff'.
+     * @return The instance of condition-query. (NotNull)
+     */
+    public MWorkingStaffCQ queryMWorkingStaff() {
+        return xdfgetConditionQueryMWorkingStaff();
+    }
+    public MWorkingStaffCQ xdfgetConditionQueryMWorkingStaff() {
+        String prop = "mWorkingStaff";
+        if (!xhasQueRlMap(prop)) { xregQueRl(prop, xcreateQueryMWorkingStaff()); xsetupOuterJoinMWorkingStaff(); }
+        return xgetQueRlMap(prop);
+    }
+    protected MWorkingStaffCQ xcreateQueryMWorkingStaff() {
+        String nrp = xresolveNRP("t_shift", "mWorkingStaff"); String jan = xresolveJAN(nrp, xgetNNLvl());
+        return xinitRelCQ(new MWorkingStaffCQ(this, xgetSqlClause(), jan, xgetNNLvl()), _baseCB, "mWorkingStaff", nrp);
+    }
+    protected void xsetupOuterJoinMWorkingStaff() { xregOutJo("mWorkingStaff"); }
+    public boolean hasConditionQueryMWorkingStaff() { return xhasQueRlMap("mWorkingStaff"); }
 
     protected Map<String, Object> xfindFixedConditionDynamicParameterMap(String property) {
         return null;

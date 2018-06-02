@@ -293,7 +293,7 @@ public class BsMHolidayCB extends AbstractConditionBean {
          */
         public SpecifiedColumn columnHolidayName() { return doColumn("holiday_name"); }
         /**
-         * holiday: {date(13)}
+         * holiday: {NotNull, date(13)}
          * @return The information object of specified column. (NotNull)
          */
         public SpecifiedColumn columnHoliday() { return doColumn("holiday"); }
@@ -302,6 +302,11 @@ public class BsMHolidayCB extends AbstractConditionBean {
          * @return The information object of specified column. (NotNull)
          */
         public SpecifiedColumn columnDeleteFlag() { return doColumn("delete_flag"); }
+        /**
+         * version_no: {NotNull, int4(10), default=[1]}
+         * @return The information object of specified column. (NotNull)
+         */
+        public SpecifiedColumn columnVersionNo() { return doColumn("version_no"); }
         /**
          * register_datetime: {NotNull, timestamp(26, 3), default=[now()]}
          * @return The information object of specified column. (NotNull)

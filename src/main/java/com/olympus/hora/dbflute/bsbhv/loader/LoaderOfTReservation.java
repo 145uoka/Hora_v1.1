@@ -15,7 +15,7 @@ import com.olympus.hora.dbflute.cbean.*;
  *     reservation_id
  *
  * [column]
- *     reservation_id, shop_id, staff_id, hist_staff_family_name, hist_shop_name, hist_shop_abbreviated_name, hist_staff_given_name, reservation_date, reservation_time, user_id, total_amount, remarks, status, delete_flag, register_datetime, update_datetime
+ *     reservation_id, shop_id, working_staff_id, user_id, hist_staff_family_name, hist_shop_name, hist_shop_abbreviated_name, hist_staff_given_name, reservation_date, reservation_time, total_amount, remarks, status, delete_flag, version_no, register_datetime, update_datetime
  *
  * [sequence]
  *     t_reservation_reservation_id_seq
@@ -24,16 +24,16 @@ import com.olympus.hora.dbflute.cbean.*;
  *     
  *
  * [version-no]
- *     
+ *     version_no
  *
  * [foreign table]
- *     m_shop, m_staff, m_user
+ *     m_shop, m_user, m_working_staff
  *
  * [referrer table]
  *     t_reservation_detail
  *
  * [foreign property]
- *     mShop, mStaff, mUser
+ *     mShop, mUser, mWorkingStaff
  *
  * [referrer property]
  *     tReservationDetailList
@@ -105,18 +105,18 @@ public class LoaderOfTReservation {
         return _foreignMShopLoader;
     }
 
-    protected LoaderOfMStaff _foreignMStaffLoader;
-    public LoaderOfMStaff pulloutMStaff() {
-        if (_foreignMStaffLoader == null)
-        { _foreignMStaffLoader = new LoaderOfMStaff().ready(myBhv().pulloutMStaff(_selectedList), _selector); }
-        return _foreignMStaffLoader;
-    }
-
     protected LoaderOfMUser _foreignMUserLoader;
     public LoaderOfMUser pulloutMUser() {
         if (_foreignMUserLoader == null)
         { _foreignMUserLoader = new LoaderOfMUser().ready(myBhv().pulloutMUser(_selectedList), _selector); }
         return _foreignMUserLoader;
+    }
+
+    protected LoaderOfMWorkingStaff _foreignMWorkingStaffLoader;
+    public LoaderOfMWorkingStaff pulloutMWorkingStaff() {
+        if (_foreignMWorkingStaffLoader == null)
+        { _foreignMWorkingStaffLoader = new LoaderOfMWorkingStaff().ready(myBhv().pulloutMWorkingStaff(_selectedList), _selector); }
+        return _foreignMWorkingStaffLoader;
     }
 
     // ===================================================================================

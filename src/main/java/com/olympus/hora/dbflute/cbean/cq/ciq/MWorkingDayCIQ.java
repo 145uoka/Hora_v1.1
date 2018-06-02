@@ -77,6 +77,7 @@ public class MWorkingDayCIQ extends AbstractBsMWorkingDayCQ {
     protected ConditionValue xgetCValueStartTime() { return _myCQ.xdfgetStartTime(); }
     protected ConditionValue xgetCValueEndTime() { return _myCQ.xdfgetEndTime(); }
     protected ConditionValue xgetCValueDeleteFlag() { return _myCQ.xdfgetDeleteFlag(); }
+    protected ConditionValue xgetCValueVersionNo() { return _myCQ.xdfgetVersionNo(); }
     protected ConditionValue xgetCValueRegisterDatetime() { return _myCQ.xdfgetRegisterDatetime(); }
     protected ConditionValue xgetCValueUpdateDatetime() { return _myCQ.xdfgetUpdateDatetime(); }
     protected Map<String, Object> xfindFixedConditionDynamicParameterMap(String pp) { return null; }

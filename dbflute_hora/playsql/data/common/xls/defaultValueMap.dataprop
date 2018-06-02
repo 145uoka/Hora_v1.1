@@ -1,6 +1,0 @@
-map:{
-    ; DELETE_FLAG = false
-    ; REGISTER_DATETIME = sysdate
-    ; UPDATE_DATETIME   = sysdate
-#    ; VERSION_NO        = 0
-}

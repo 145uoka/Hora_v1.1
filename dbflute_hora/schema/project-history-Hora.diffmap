@@ -1,4 +1,233 @@
 map:{
+    ; 2018/06/02 15:21:58 = map:{
+        ; diffDate = 2018/06/02 15:21:58
+        ; tableCount = map:{
+            ; next = 17
+            ; previous = 15
+        }
+        ; tableDiff = map:{
+            ; display_def_m = map:{
+                ; tableName = display_def_m
+                ; diffType = ADD
+            }
+            ; system_property_m = map:{
+                ; tableName = system_property_m
+                ; diffType = ADD
+            }
+            ; m_code = map:{
+                ; tableName = m_code
+                ; diffType = CHANGE
+                ; columnDiff = map:{
+                    ; version_no = map:{
+                        ; columnName = version_no
+                        ; diffType = ADD
+                    }
+                }
+            }
+            ; m_company = map:{
+                ; tableName = m_company
+                ; diffType = CHANGE
+                ; columnDiff = map:{
+                    ; version_no = map:{
+                        ; columnName = version_no
+                        ; diffType = ADD
+                    }
+                }
+            }
+            ; m_course = map:{
+                ; tableName = m_course
+                ; diffType = CHANGE
+                ; columnDiff = map:{
+                    ; version_no = map:{
+                        ; columnName = version_no
+                        ; diffType = ADD
+                    }
+                }
+            }
+            ; m_course_group = map:{
+                ; tableName = m_course_group
+                ; diffType = CHANGE
+                ; columnDiff = map:{
+                    ; version_no = map:{
+                        ; columnName = version_no
+                        ; diffType = ADD
+                    }
+                }
+            }
+            ; m_holiday = map:{
+                ; tableName = m_holiday
+                ; diffType = CHANGE
+                ; columnDiff = map:{
+                    ; version_no = map:{
+                        ; columnName = version_no
+                        ; diffType = ADD
+                    }
+                    ; holiday = map:{
+                        ; columnName = holiday
+                        ; diffType = CHANGE
+                        ; notNullDiff = map:{
+                            ; next = true
+                            ; previous = false
+                        }
+                    }
+                }
+            }
+            ; m_shop = map:{
+                ; tableName = m_shop
+                ; diffType = CHANGE
+                ; columnDiff = map:{
+                    ; version_no = map:{
+                        ; columnName = version_no
+                        ; diffType = ADD
+                    }
+                }
+            }
+            ; m_staff = map:{
+                ; tableName = m_staff
+                ; diffType = CHANGE
+                ; columnDiff = map:{
+                    ; company_id = map:{
+                        ; columnName = company_id
+                        ; diffType = ADD
+                    }
+                    ; version_no = map:{
+                        ; columnName = version_no
+                        ; diffType = ADD
+                    }
+                }
+                ; foreignKeyDiff = map:{
+                    ; m_staff_company_id_fkey = map:{
+                        ; constraintName = m_staff_company_id_fkey
+                        ; diffType = ADD
+                    }
+                }
+            }
+            ; m_user = map:{
+                ; tableName = m_user
+                ; diffType = CHANGE
+                ; columnDiff = map:{
+                    ; line_id = map:{
+                        ; columnName = line_id
+                        ; diffType = ADD
+                    }
+                    ; line_name = map:{
+                        ; columnName = line_name
+                        ; diffType = ADD
+                    }
+                    ; version_no = map:{
+                        ; columnName = version_no
+                        ; diffType = ADD
+                    }
+                }
+            }
+            ; m_working_day = map:{
+                ; tableName = m_working_day
+                ; diffType = CHANGE
+                ; columnDiff = map:{
+                    ; version_no = map:{
+                        ; columnName = version_no
+                        ; diffType = ADD
+                    }
+                }
+            }
+            ; m_working_day_deff = map:{
+                ; tableName = m_working_day_deff
+                ; diffType = CHANGE
+                ; columnDiff = map:{
+                    ; version_no = map:{
+                        ; columnName = version_no
+                        ; diffType = ADD
+                    }
+                }
+            }
+            ; m_working_day_detail_deff = map:{
+                ; tableName = m_working_day_detail_deff
+                ; diffType = CHANGE
+                ; columnDiff = map:{
+                    ; version_no = map:{
+                        ; columnName = version_no
+                        ; diffType = ADD
+                    }
+                }
+            }
+            ; m_working_staff = map:{
+                ; tableName = m_working_staff
+                ; diffType = CHANGE
+                ; columnDiff = map:{
+                    ; version_no = map:{
+                        ; columnName = version_no
+                        ; diffType = ADD
+                    }
+                }
+            }
+            ; t_reservation = map:{
+                ; tableName = t_reservation
+                ; diffType = CHANGE
+                ; columnDiff = map:{
+                    ; working_staff_id = map:{
+                        ; columnName = working_staff_id
+                        ; diffType = ADD
+                    }
+                    ; version_no = map:{
+                        ; columnName = version_no
+                        ; diffType = ADD
+                    }
+                    ; staff_id = map:{
+                        ; columnName = staff_id
+                        ; diffType = DELETE
+                    }
+                }
+                ; foreignKeyDiff = map:{
+                    ; t_reservation_working_staff_id_fkey = map:{
+                        ; constraintName = t_reservation_working_staff_id_fkey
+                        ; diffType = ADD
+                    }
+                    ; idx_t_reservation_fk2 = map:{
+                        ; constraintName = idx_t_reservation_fk2
+                        ; diffType = DELETE
+                    }
+                }
+            }
+            ; t_reservation_detail = map:{
+                ; tableName = t_reservation_detail
+                ; diffType = CHANGE
+                ; columnDiff = map:{
+                    ; version_no = map:{
+                        ; columnName = version_no
+                        ; diffType = ADD
+                    }
+                }
+            }
+            ; t_shift = map:{
+                ; tableName = t_shift
+                ; diffType = CHANGE
+                ; columnDiff = map:{
+                    ; working_staff_id = map:{
+                        ; columnName = working_staff_id
+                        ; diffType = ADD
+                    }
+                    ; version_no = map:{
+                        ; columnName = version_no
+                        ; diffType = ADD
+                    }
+                    ; staff_id = map:{
+                        ; columnName = staff_id
+                        ; diffType = DELETE
+                    }
+                }
+                ; foreignKeyDiff = map:{
+                    ; t_shift_working_staff_id_fkey = map:{
+                        ; constraintName = t_shift_working_staff_id_fkey
+                        ; diffType = ADD
+                    }
+                    ; idx_t_shift_fk1 = map:{
+                        ; constraintName = idx_t_shift_fk1
+                        ; diffType = DELETE
+                    }
+                }
+            }
+        }
+    }
     ; 2018/05/18 18:04:01 = map:{
         ; diffDate = 2018/05/18 18:04:01
         ; tableCount = map:{

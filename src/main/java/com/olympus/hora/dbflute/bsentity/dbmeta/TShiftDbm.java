@@ -44,11 +44,12 @@ public class TShiftDbm extends AbstractDBMeta {
     { xsetupEpg(); }
     protected void xsetupEpg() {
         setupEpg(_epgMap, et -> ((TShift)et).getShiftId(), (et, vl) -> ((TShift)et).setShiftId(cti(vl)), "shiftId");
+        setupEpg(_epgMap, et -> ((TShift)et).getWorkingStaffId(), (et, vl) -> ((TShift)et).setWorkingStaffId(cti(vl)), "workingStaffId");
         setupEpg(_epgMap, et -> ((TShift)et).getWorkingDayId(), (et, vl) -> ((TShift)et).setWorkingDayId(cti(vl)), "workingDayId");
-        setupEpg(_epgMap, et -> ((TShift)et).getStaffId(), (et, vl) -> ((TShift)et).setStaffId(cti(vl)), "staffId");
         setupEpg(_epgMap, et -> ((TShift)et).getStartTime(), (et, vl) -> ((TShift)et).setStartTime(ctlt(vl)), "startTime");
         setupEpg(_epgMap, et -> ((TShift)et).getEndTime(), (et, vl) -> ((TShift)et).setEndTime(ctlt(vl)), "endTime");
         setupEpg(_epgMap, et -> ((TShift)et).getDeleteFlag(), (et, vl) -> ((TShift)et).setDeleteFlag((Boolean)vl), "deleteFlag");
+        setupEpg(_epgMap, et -> ((TShift)et).getVersionNo(), (et, vl) -> ((TShift)et).setVersionNo(cti(vl)), "versionNo");
         setupEpg(_epgMap, et -> ((TShift)et).getRegisterDatetime(), (et, vl) -> ((TShift)et).setRegisterDatetime(ctldt(vl)), "registerDatetime");
         setupEpg(_epgMap, et -> ((TShift)et).getUpdateDatetime(), (et, vl) -> ((TShift)et).setUpdateDatetime(ctldt(vl)), "updateDatetime");
     }
@@ -62,8 +63,8 @@ public class TShiftDbm extends AbstractDBMeta {
     { xsetupEfpg(); }
     @SuppressWarnings("unchecked")
     protected void xsetupEfpg() {
-        setupEfpg(_efpgMap, et -> ((TShift)et).getMStaff(), (et, vl) -> ((TShift)et).setMStaff((OptionalEntity<MStaff>)vl), "MStaff");
         setupEfpg(_efpgMap, et -> ((TShift)et).getMWorkingDay(), (et, vl) -> ((TShift)et).setMWorkingDay((OptionalEntity<MWorkingDay>)vl), "MWorkingDay");
+        setupEfpg(_efpgMap, et -> ((TShift)et).getMWorkingStaff(), (et, vl) -> ((TShift)et).setMWorkingStaff((OptionalEntity<MWorkingStaff>)vl), "MWorkingStaff");
     }
     public PropertyGateway findForeignPropertyGateway(String prop)
     { return doFindEfpg(_efpgMap, prop); }
@@ -85,11 +86,12 @@ public class TShiftDbm extends AbstractDBMeta {
     //                                                                         Column Info
     //                                                                         ===========
     protected final ColumnInfo _columnShiftId = cci("shift_id", "shift_id", null, null, Integer.class, "shiftId", null, true, true, true, "serial", 10, 0, null, "nextval('t_shift_shift_id_seq'::regclass)", false, null, null, null, null, null, false);
+    protected final ColumnInfo _columnWorkingStaffId = cci("working_staff_id", "working_staff_id", null, null, Integer.class, "workingStaffId", null, false, false, true, "int4", 10, 0, null, null, false, null, null, "MWorkingStaff", null, null, false);
     protected final ColumnInfo _columnWorkingDayId = cci("working_day_id", "working_day_id", null, null, Integer.class, "workingDayId", null, false, false, false, "int4", 10, 0, null, null, false, null, null, "MWorkingDay", null, null, false);
-    protected final ColumnInfo _columnStaffId = cci("staff_id", "staff_id", null, null, Integer.class, "staffId", null, false, false, false, "int4", 10, 0, null, null, false, null, null, "MStaff", null, null, false);
     protected final ColumnInfo _columnStartTime = cci("start_time", "start_time", null, null, java.time.LocalTime.class, "startTime", null, false, false, false, "time", 15, 6, null, null, false, null, null, null, null, null, false);
     protected final ColumnInfo _columnEndTime = cci("end_time", "end_time", null, null, java.time.LocalTime.class, "endTime", null, false, false, false, "time", 15, 6, null, null, false, null, null, null, null, null, false);
     protected final ColumnInfo _columnDeleteFlag = cci("delete_flag", "delete_flag", null, null, Boolean.class, "deleteFlag", null, false, false, true, "bool", 1, 0, null, "false", false, null, null, null, null, null, false);
+    protected final ColumnInfo _columnVersionNo = cci("version_no", "version_no", null, null, Integer.class, "versionNo", null, false, false, true, "int4", 10, 0, null, "1", false, OptimisticLockType.VERSION_NO, null, null, null, null, false);
     protected final ColumnInfo _columnRegisterDatetime = cci("register_datetime", "register_datetime", null, null, java.time.LocalDateTime.class, "registerDatetime", null, false, false, true, "timestamp", 26, 3, null, "now()", true, null, null, null, null, null, false);
     protected final ColumnInfo _columnUpdateDatetime = cci("update_datetime", "update_datetime", null, null, java.time.LocalDateTime.class, "updateDatetime", null, false, false, false, "timestamp", 26, 3, null, null, true, null, null, null, null, null, false);
 
@@ -99,15 +101,15 @@ public class TShiftDbm extends AbstractDBMeta {
      */
     public ColumnInfo columnShiftId() { return _columnShiftId; }
     /**
+     * working_staff_id: {NotNull, int4(10), FK to m_working_staff}
+     * @return The information object of specified column. (NotNull)
+     */
+    public ColumnInfo columnWorkingStaffId() { return _columnWorkingStaffId; }
+    /**
      * working_day_id: {int4(10), FK to m_working_day}
      * @return The information object of specified column. (NotNull)
      */
     public ColumnInfo columnWorkingDayId() { return _columnWorkingDayId; }
-    /**
-     * staff_id: {int4(10), FK to m_staff}
-     * @return The information object of specified column. (NotNull)
-     */
-    public ColumnInfo columnStaffId() { return _columnStaffId; }
     /**
      * start_time: {time(15, 6)}
      * @return The information object of specified column. (NotNull)
@@ -124,6 +126,11 @@ public class TShiftDbm extends AbstractDBMeta {
      */
     public ColumnInfo columnDeleteFlag() { return _columnDeleteFlag; }
     /**
+     * version_no: {NotNull, int4(10), default=[1]}
+     * @return The information object of specified column. (NotNull)
+     */
+    public ColumnInfo columnVersionNo() { return _columnVersionNo; }
+    /**
      * register_datetime: {NotNull, timestamp(26, 3), default=[now()]}
      * @return The information object of specified column. (NotNull)
      */
@@ -137,11 +144,12 @@ public class TShiftDbm extends AbstractDBMeta {
     protected List<ColumnInfo> ccil() {
         List<ColumnInfo> ls = newArrayList();
         ls.add(columnShiftId());
+        ls.add(columnWorkingStaffId());
         ls.add(columnWorkingDayId());
-        ls.add(columnStaffId());
         ls.add(columnStartTime());
         ls.add(columnEndTime());
         ls.add(columnDeleteFlag());
+        ls.add(columnVersionNo());
         ls.add(columnRegisterDatetime());
         ls.add(columnUpdateDatetime());
         return ls;
@@ -168,20 +176,20 @@ public class TShiftDbm extends AbstractDBMeta {
     //                                      Foreign Property
     //                                      ----------------
     /**
-     * m_staff by my staff_id, named 'MStaff'.
-     * @return The information object of foreign property. (NotNull)
-     */
-    public ForeignInfo foreignMStaff() {
-        Map<ColumnInfo, ColumnInfo> mp = newLinkedHashMap(columnStaffId(), MStaffDbm.getInstance().columnStaffId());
-        return cfi("idx_t_shift_fk1", "MStaff", this, MStaffDbm.getInstance(), mp, 0, org.dbflute.optional.OptionalEntity.class, false, false, false, false, null, null, false, "TShiftList", false);
-    }
-    /**
      * m_working_day by my working_day_id, named 'MWorkingDay'.
      * @return The information object of foreign property. (NotNull)
      */
     public ForeignInfo foreignMWorkingDay() {
         Map<ColumnInfo, ColumnInfo> mp = newLinkedHashMap(columnWorkingDayId(), MWorkingDayDbm.getInstance().columnWorkingDayId());
-        return cfi("idx_t_shift_fk0", "MWorkingDay", this, MWorkingDayDbm.getInstance(), mp, 1, org.dbflute.optional.OptionalEntity.class, false, false, false, false, null, null, false, "TShiftList", false);
+        return cfi("idx_t_shift_fk0", "MWorkingDay", this, MWorkingDayDbm.getInstance(), mp, 0, org.dbflute.optional.OptionalEntity.class, false, false, false, false, null, null, false, "TShiftList", false);
+    }
+    /**
+     * m_working_staff by my working_staff_id, named 'MWorkingStaff'.
+     * @return The information object of foreign property. (NotNull)
+     */
+    public ForeignInfo foreignMWorkingStaff() {
+        Map<ColumnInfo, ColumnInfo> mp = newLinkedHashMap(columnWorkingStaffId(), MWorkingStaffDbm.getInstance().columnWorkingStaffId());
+        return cfi("t_shift_working_staff_id_fkey", "MWorkingStaff", this, MWorkingStaffDbm.getInstance(), mp, 1, org.dbflute.optional.OptionalEntity.class, false, false, false, false, null, null, false, "TShiftList", false);
     }
 
     // -----------------------------------------------------
@@ -195,6 +203,8 @@ public class TShiftDbm extends AbstractDBMeta {
     public String getSequenceName() { return "t_shift_shift_id_seq"; }
     public Integer getSequenceIncrementSize() { return 1; }
     public Integer getSequenceCacheSize() { return null; }
+    public boolean hasVersionNo() { return true; }
+    public ColumnInfo getVersionNoColumnInfo() { return _columnVersionNo; }
     public boolean hasCommonColumn() { return true; }
     public List<ColumnInfo> getCommonColumnInfoList()
     { return newArrayList(columnRegisterDatetime(), columnUpdateDatetime()); }

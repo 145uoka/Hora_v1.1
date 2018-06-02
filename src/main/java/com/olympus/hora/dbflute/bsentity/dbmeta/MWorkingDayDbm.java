@@ -49,6 +49,7 @@ public class MWorkingDayDbm extends AbstractDBMeta {
         setupEpg(_epgMap, et -> ((MWorkingDay)et).getStartTime(), (et, vl) -> ((MWorkingDay)et).setStartTime(ctlt(vl)), "startTime");
         setupEpg(_epgMap, et -> ((MWorkingDay)et).getEndTime(), (et, vl) -> ((MWorkingDay)et).setEndTime(ctlt(vl)), "endTime");
         setupEpg(_epgMap, et -> ((MWorkingDay)et).getDeleteFlag(), (et, vl) -> ((MWorkingDay)et).setDeleteFlag((Boolean)vl), "deleteFlag");
+        setupEpg(_epgMap, et -> ((MWorkingDay)et).getVersionNo(), (et, vl) -> ((MWorkingDay)et).setVersionNo(cti(vl)), "versionNo");
         setupEpg(_epgMap, et -> ((MWorkingDay)et).getRegisterDatetime(), (et, vl) -> ((MWorkingDay)et).setRegisterDatetime(ctldt(vl)), "registerDatetime");
         setupEpg(_epgMap, et -> ((MWorkingDay)et).getUpdateDatetime(), (et, vl) -> ((MWorkingDay)et).setUpdateDatetime(ctldt(vl)), "updateDatetime");
     }
@@ -89,6 +90,7 @@ public class MWorkingDayDbm extends AbstractDBMeta {
     protected final ColumnInfo _columnStartTime = cci("start_time", "start_time", null, null, java.time.LocalTime.class, "startTime", null, false, false, false, "time", 15, 6, null, null, false, null, null, null, null, null, false);
     protected final ColumnInfo _columnEndTime = cci("end_time", "end_time", null, null, java.time.LocalTime.class, "endTime", null, false, false, false, "time", 15, 6, null, null, false, null, null, null, null, null, false);
     protected final ColumnInfo _columnDeleteFlag = cci("delete_flag", "delete_flag", null, null, Boolean.class, "deleteFlag", null, false, false, true, "bool", 1, 0, null, "false", false, null, null, null, null, null, false);
+    protected final ColumnInfo _columnVersionNo = cci("version_no", "version_no", null, null, Integer.class, "versionNo", null, false, false, true, "int4", 10, 0, null, "1", false, OptimisticLockType.VERSION_NO, null, null, null, null, false);
     protected final ColumnInfo _columnRegisterDatetime = cci("register_datetime", "register_datetime", null, null, java.time.LocalDateTime.class, "registerDatetime", null, false, false, true, "timestamp", 26, 3, null, "now()", true, null, null, null, null, null, false);
     protected final ColumnInfo _columnUpdateDatetime = cci("update_datetime", "update_datetime", null, null, java.time.LocalDateTime.class, "updateDatetime", null, false, false, false, "timestamp", 26, 3, null, null, true, null, null, null, null, null, false);
 
@@ -123,6 +125,11 @@ public class MWorkingDayDbm extends AbstractDBMeta {
      */
     public ColumnInfo columnDeleteFlag() { return _columnDeleteFlag; }
     /**
+     * version_no: {NotNull, int4(10), default=[1]}
+     * @return The information object of specified column. (NotNull)
+     */
+    public ColumnInfo columnVersionNo() { return _columnVersionNo; }
+    /**
      * register_datetime: {NotNull, timestamp(26, 3), default=[now()]}
      * @return The information object of specified column. (NotNull)
      */
@@ -141,6 +148,7 @@ public class MWorkingDayDbm extends AbstractDBMeta {
         ls.add(columnStartTime());
         ls.add(columnEndTime());
         ls.add(columnDeleteFlag());
+        ls.add(columnVersionNo());
         ls.add(columnRegisterDatetime());
         ls.add(columnUpdateDatetime());
         return ls;
@@ -194,6 +202,8 @@ public class MWorkingDayDbm extends AbstractDBMeta {
     public String getSequenceName() { return "m_working_day_working_day_id_seq"; }
     public Integer getSequenceIncrementSize() { return 1; }
     public Integer getSequenceCacheSize() { return null; }
+    public boolean hasVersionNo() { return true; }
+    public ColumnInfo getVersionNoColumnInfo() { return _columnVersionNo; }
     public boolean hasCommonColumn() { return true; }
     public List<ColumnInfo> getCommonColumnInfoList()
     { return newArrayList(columnRegisterDatetime(), columnUpdateDatetime()); }

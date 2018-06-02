@@ -64,40 +64,22 @@ public class MStaffCIQ extends AbstractBsMStaffCQ {
     protected ConditionValue xgetCValueStaffId() { return _myCQ.xdfgetStaffId(); }
     public String keepStaffId_ExistsReferrer_MWorkingStaffList(MWorkingStaffCQ sq)
     { throwIICBOE("ExistsReferrer"); return null; }
-    public String keepStaffId_ExistsReferrer_TReservationList(TReservationCQ sq)
-    { throwIICBOE("ExistsReferrer"); return null; }
-    public String keepStaffId_ExistsReferrer_TShiftList(TShiftCQ sq)
-    { throwIICBOE("ExistsReferrer"); return null; }
     public String keepStaffId_NotExistsReferrer_MWorkingStaffList(MWorkingStaffCQ sq)
     { throwIICBOE("NotExistsReferrer"); return null; }
-    public String keepStaffId_NotExistsReferrer_TReservationList(TReservationCQ sq)
-    { throwIICBOE("NotExistsReferrer"); return null; }
-    public String keepStaffId_NotExistsReferrer_TShiftList(TShiftCQ sq)
-    { throwIICBOE("NotExistsReferrer"); return null; }
     public String keepStaffId_SpecifyDerivedReferrer_MWorkingStaffList(MWorkingStaffCQ sq)
-    { throwIICBOE("(Specify)DerivedReferrer"); return null; }
-    public String keepStaffId_SpecifyDerivedReferrer_TReservationList(TReservationCQ sq)
-    { throwIICBOE("(Specify)DerivedReferrer"); return null; }
-    public String keepStaffId_SpecifyDerivedReferrer_TShiftList(TShiftCQ sq)
     { throwIICBOE("(Specify)DerivedReferrer"); return null; }
     public String keepStaffId_QueryDerivedReferrer_MWorkingStaffList(MWorkingStaffCQ sq)
     { throwIICBOE("(Query)DerivedReferrer"); return null; }
     public String keepStaffId_QueryDerivedReferrer_MWorkingStaffListParameter(Object vl)
     { throwIICBOE("(Query)DerivedReferrer"); return null; }
-    public String keepStaffId_QueryDerivedReferrer_TReservationList(TReservationCQ sq)
-    { throwIICBOE("(Query)DerivedReferrer"); return null; }
-    public String keepStaffId_QueryDerivedReferrer_TReservationListParameter(Object vl)
-    { throwIICBOE("(Query)DerivedReferrer"); return null; }
-    public String keepStaffId_QueryDerivedReferrer_TShiftList(TShiftCQ sq)
-    { throwIICBOE("(Query)DerivedReferrer"); return null; }
-    public String keepStaffId_QueryDerivedReferrer_TShiftListParameter(Object vl)
-    { throwIICBOE("(Query)DerivedReferrer"); return null; }
+    protected ConditionValue xgetCValueCompanyId() { return _myCQ.xdfgetCompanyId(); }
     protected ConditionValue xgetCValueFamilyName() { return _myCQ.xdfgetFamilyName(); }
     protected ConditionValue xgetCValueGivenName() { return _myCQ.xdfgetGivenName(); }
     protected ConditionValue xgetCValuePhone11() { return _myCQ.xdfgetPhone11(); }
     protected ConditionValue xgetCValuePhone12() { return _myCQ.xdfgetPhone12(); }
     protected ConditionValue xgetCValuePhone13() { return _myCQ.xdfgetPhone13(); }
     protected ConditionValue xgetCValueDeleteFlag() { return _myCQ.xdfgetDeleteFlag(); }
+    protected ConditionValue xgetCValueVersionNo() { return _myCQ.xdfgetVersionNo(); }
     protected ConditionValue xgetCValueRegisterDatetime() { return _myCQ.xdfgetRegisterDatetime(); }
     protected ConditionValue xgetCValueUpdateDatetime() { return _myCQ.xdfgetUpdateDatetime(); }
     protected Map<String, Object> xfindFixedConditionDynamicParameterMap(String pp) { return null; }

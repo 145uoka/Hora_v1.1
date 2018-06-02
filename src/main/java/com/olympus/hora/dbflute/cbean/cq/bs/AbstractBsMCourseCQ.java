@@ -823,6 +823,123 @@ public abstract class AbstractBsMCourseCQ extends AbstractConditionQuery {
 
     /**
      * Equal(=). And NullIgnored, OnlyOnceRegistered. <br>
+     * version_no: {NotNull, int4(10), default=[1]}
+     * @param versionNo The value of versionNo as equal. (basically NotNull: error as default, or no condition as option)
+     */
+    public void setVersionNo_Equal(Integer versionNo) {
+        doSetVersionNo_Equal(versionNo);
+    }
+
+    protected void doSetVersionNo_Equal(Integer versionNo) {
+        regVersionNo(CK_EQ, versionNo);
+    }
+
+    /**
+     * NotEqual(&lt;&gt;). And NullIgnored, OnlyOnceRegistered. <br>
+     * version_no: {NotNull, int4(10), default=[1]}
+     * @param versionNo The value of versionNo as notEqual. (basically NotNull: error as default, or no condition as option)
+     */
+    public void setVersionNo_NotEqual(Integer versionNo) {
+        doSetVersionNo_NotEqual(versionNo);
+    }
+
+    protected void doSetVersionNo_NotEqual(Integer versionNo) {
+        regVersionNo(CK_NES, versionNo);
+    }
+
+    /**
+     * GreaterThan(&gt;). And NullIgnored, OnlyOnceRegistered. <br>
+     * version_no: {NotNull, int4(10), default=[1]}
+     * @param versionNo The value of versionNo as greaterThan. (basically NotNull: error as default, or no condition as option)
+     */
+    public void setVersionNo_GreaterThan(Integer versionNo) {
+        regVersionNo(CK_GT, versionNo);
+    }
+
+    /**
+     * LessThan(&lt;). And NullIgnored, OnlyOnceRegistered. <br>
+     * version_no: {NotNull, int4(10), default=[1]}
+     * @param versionNo The value of versionNo as lessThan. (basically NotNull: error as default, or no condition as option)
+     */
+    public void setVersionNo_LessThan(Integer versionNo) {
+        regVersionNo(CK_LT, versionNo);
+    }
+
+    /**
+     * GreaterEqual(&gt;=). And NullIgnored, OnlyOnceRegistered. <br>
+     * version_no: {NotNull, int4(10), default=[1]}
+     * @param versionNo The value of versionNo as greaterEqual. (basically NotNull: error as default, or no condition as option)
+     */
+    public void setVersionNo_GreaterEqual(Integer versionNo) {
+        regVersionNo(CK_GE, versionNo);
+    }
+
+    /**
+     * LessEqual(&lt;=). And NullIgnored, OnlyOnceRegistered. <br>
+     * version_no: {NotNull, int4(10), default=[1]}
+     * @param versionNo The value of versionNo as lessEqual. (basically NotNull: error as default, or no condition as option)
+     */
+    public void setVersionNo_LessEqual(Integer versionNo) {
+        regVersionNo(CK_LE, versionNo);
+    }
+
+    /**
+     * RangeOf with various options. (versatile) <br>
+     * {(default) minNumber &lt;= column &lt;= maxNumber} <br>
+     * And NullIgnored, OnlyOnceRegistered. <br>
+     * version_no: {NotNull, int4(10), default=[1]}
+     * @param minNumber The min number of versionNo. (basically NotNull: if op.allowOneSide(), null allowed)
+     * @param maxNumber The max number of versionNo. (basically NotNull: if op.allowOneSide(), null allowed)
+     * @param opLambda The callback for option of range-of. (NotNull)
+     */
+    public void setVersionNo_RangeOf(Integer minNumber, Integer maxNumber, ConditionOptionCall<RangeOfOption> opLambda) {
+        setVersionNo_RangeOf(minNumber, maxNumber, xcROOP(opLambda));
+    }
+
+    /**
+     * RangeOf with various options. (versatile) <br>
+     * {(default) minNumber &lt;= column &lt;= maxNumber} <br>
+     * And NullIgnored, OnlyOnceRegistered. <br>
+     * version_no: {NotNull, int4(10), default=[1]}
+     * @param minNumber The min number of versionNo. (basically NotNull: if op.allowOneSide(), null allowed)
+     * @param maxNumber The max number of versionNo. (basically NotNull: if op.allowOneSide(), null allowed)
+     * @param rangeOfOption The option of range-of. (NotNull)
+     */
+    protected void setVersionNo_RangeOf(Integer minNumber, Integer maxNumber, RangeOfOption rangeOfOption) {
+        regROO(minNumber, maxNumber, xgetCValueVersionNo(), "version_no", rangeOfOption);
+    }
+
+    /**
+     * InScope {in (1, 2)}. And NullIgnored, NullElementIgnored, SeveralRegistered. <br>
+     * version_no: {NotNull, int4(10), default=[1]}
+     * @param versionNoList The collection of versionNo as inScope. (basically NotNull, NotEmpty: error as default, or no condition as option)
+     */
+    public void setVersionNo_InScope(Collection<Integer> versionNoList) {
+        doSetVersionNo_InScope(versionNoList);
+    }
+
+    protected void doSetVersionNo_InScope(Collection<Integer> versionNoList) {
+        regINS(CK_INS, cTL(versionNoList), xgetCValueVersionNo(), "version_no");
+    }
+
+    /**
+     * NotInScope {not in (1, 2)}. And NullIgnored, NullElementIgnored, SeveralRegistered. <br>
+     * version_no: {NotNull, int4(10), default=[1]}
+     * @param versionNoList The collection of versionNo as notInScope. (basically NotNull, NotEmpty: error as default, or no condition as option)
+     */
+    public void setVersionNo_NotInScope(Collection<Integer> versionNoList) {
+        doSetVersionNo_NotInScope(versionNoList);
+    }
+
+    protected void doSetVersionNo_NotInScope(Collection<Integer> versionNoList) {
+        regINS(CK_NINS, cTL(versionNoList), xgetCValueVersionNo(), "version_no");
+    }
+
+    protected void regVersionNo(ConditionKey ky, Object vl) { regQ(ky, vl, xgetCValueVersionNo(), "version_no"); }
+    protected abstract ConditionValue xgetCValueVersionNo();
+
+    /**
+     * Equal(=). And NullIgnored, OnlyOnceRegistered. <br>
      * register_datetime: {NotNull, timestamp(26, 3), default=[now()]}
      * @param registerDatetime The value of registerDatetime as equal. (basically NotNull: error as default, or no condition as option)
      */

@@ -1,0 +1,801 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN""http://www.w3.org/TR/REC-html40/loose.dtd">
+<html>
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+		<title>予約テーブル</title>
+		<link rel="stylesheet" type="text/css" href="../stylesheet.css" title="Style">
+	</head>
+<script>
+function asd() {
+	parent.document.title="予約テーブル";
+}
+</script>
+
+	<body onload="asd();">
+
+		<!-- ========== START OF NAVBAR ========== -->
+		<table border="0" width="100%" cellpadding="1" cellspacing="0">
+			<tr>
+				<td colspan="3" class="NavBarCell1">
+					<table border="0" cellpadding="0" cellspacing="3">
+						<tr align="center" valign="top">
+							<td class="NavBarCell1">
+								<a href="../overview-summary.html">概要</a>&nbsp;
+							</td>
+							<td class="NavBarCell1">
+								<a href="package-summary.html">オブジェクトタイプ</a>&nbsp;
+							</td>
+							<td class="NavBarCell1Rev"> &nbsp;
+								テーブル&nbsp;
+							</td>
+							<td class="NavBarCell1">
+								<a href="../help-doc.html">ヘルプ</a>&nbsp;
+							</td>
+						</tr>
+					</table>
+				</td>
+			</tr>
+			<tr>
+				<td class="NavBarCell2">
+					&nbsp;<a HREF="13.html" ><b>前のテーブル</b></a>&nbsp;&nbsp;
+					&nbsp;<a HREF="15.html" ><b>次のテーブル</b></a>&nbsp;&nbsp;
+				</td>
+				<td class="NavBarCell2">
+					<a href="../index.html" target="_top">フレームあり</a>
+					&nbsp;&nbsp;&nbsp;
+					<a href="14.html" target="_top">フレームなし</a>
+					&nbsp;&nbsp;&nbsp;
+					<script>
+					<!--
+						if(window==top) {
+							document.writeln('<a href="../allclasses.html" target="">すべてのオブジェクト</a>');
+						}
+					//-->
+					</script>
+					<noscript>
+						<a href="../allclasses.html" target="">すべてのオブジェクト</a>
+					</noscript>
+				</td>
+			</tr>
+		</table>
+		<!-- =========== END OF NAVBAR =========== -->
+
+		<hr>
+		<a name="main"></a>
+		<h2>テーブル   予約テーブル</h2>
+		<hr>
+
+
+<dl>
+	<dt><b>物理名:</b></dt>
+		<dd>t_reservation<br><br></dd>
+</dl>
+
+<dl>
+	<dt><b>制約:</b></dt>
+		<dd><br><br></dd>
+</dl>
+
+<pre style="font-size:1em;">
+
+</pre>
+
+<p>
+
+<!-- ======== Attribute ======== -->
+
+<a name="attribute_summary"></a>
+
+<table border="1" cellpadding="3" cellspacing="0" width="100%" class="AttributeTable">
+	<tr class="TableHeadingColor">
+		<th colspan="7">属性 の概要</th>
+	</tr>
+	<tr class="TableSubHeadingColor">
+		<th>PK</th>
+		<th>FK</th>
+		<th>論理名</th>
+		<th>物理名</th>
+		<th>型</th>
+		<th>UNIQUE</th>
+		<th>NOT NULL</th>
+	</tr>
+	<tr>
+	<tr>
+	<td align="center"><img src="../image/icons/pkey.gif">&nbsp;</td>
+	<td align="center">&nbsp;</td>
+	<td><a href="#260">予約ID</a>&nbsp;</td>
+	<td>reservation_id&nbsp;</td>
+	<td>bigserial&nbsp;</td>
+	<td align="center">&nbsp;</td>
+	<td align="center">NOT NULL&nbsp;</td>
+</tr>
+<tr>
+	<td align="center">&nbsp;</td>
+	<td align="center"><img src="../image/icons/foreign_key.gif">&nbsp;</td>
+	<td><a href="#197">店舗ID</a>&nbsp;</td>
+	<td>shop_id&nbsp;</td>
+	<td>int&nbsp;</td>
+	<td align="center">&nbsp;</td>
+	<td align="center">&nbsp;</td>
+</tr>
+<tr>
+	<td align="center">&nbsp;</td>
+	<td align="center"><img src="../image/icons/foreign_key.gif">&nbsp;</td>
+	<td><a href="#258">作業ing_staff_id</a>&nbsp;</td>
+	<td>working_staff_id&nbsp;</td>
+	<td>int&nbsp;</td>
+	<td align="center">&nbsp;</td>
+	<td align="center">&nbsp;</td>
+</tr>
+<tr>
+	<td align="center">&nbsp;</td>
+	<td align="center"><img src="../image/icons/foreign_key.gif">&nbsp;</td>
+	<td><a href="#228">ユーザID</a>&nbsp;</td>
+	<td>user_id&nbsp;</td>
+	<td>int&nbsp;</td>
+	<td align="center">&nbsp;</td>
+	<td align="center">&nbsp;</td>
+</tr>
+<tr>
+	<td align="center">&nbsp;</td>
+	<td align="center">&nbsp;</td>
+	<td><a href="#261">履歴用スタッフ姓</a>&nbsp;</td>
+	<td>hist_staff_family_name&nbsp;</td>
+	<td>text&nbsp;</td>
+	<td align="center">&nbsp;</td>
+	<td align="center">&nbsp;</td>
+</tr>
+<tr>
+	<td align="center">&nbsp;</td>
+	<td align="center">&nbsp;</td>
+	<td><a href="#262">履歴用店舗名</a>&nbsp;</td>
+	<td>hist_shop_name&nbsp;</td>
+	<td>text&nbsp;</td>
+	<td align="center">&nbsp;</td>
+	<td align="center">&nbsp;</td>
+</tr>
+<tr>
+	<td align="center">&nbsp;</td>
+	<td align="center">&nbsp;</td>
+	<td><a href="#263">履歴用店舗略名</a>&nbsp;</td>
+	<td>hist_shop_abbreviated_name&nbsp;</td>
+	<td>text&nbsp;</td>
+	<td align="center">&nbsp;</td>
+	<td align="center">&nbsp;</td>
+</tr>
+<tr>
+	<td align="center">&nbsp;</td>
+	<td align="center">&nbsp;</td>
+	<td><a href="#264">履歴用スタッフ名</a>&nbsp;</td>
+	<td>hist_staff_given_name&nbsp;</td>
+	<td>text&nbsp;</td>
+	<td align="center">&nbsp;</td>
+	<td align="center">&nbsp;</td>
+</tr>
+<tr>
+	<td align="center">&nbsp;</td>
+	<td align="center">&nbsp;</td>
+	<td><a href="#265">予約日付</a>&nbsp;</td>
+	<td>reservation_date&nbsp;</td>
+	<td>date&nbsp;</td>
+	<td align="center">&nbsp;</td>
+	<td align="center">&nbsp;</td>
+</tr>
+<tr>
+	<td align="center">&nbsp;</td>
+	<td align="center">&nbsp;</td>
+	<td><a href="#266">予約時間</a>&nbsp;</td>
+	<td>reservation_time&nbsp;</td>
+	<td>time&nbsp;</td>
+	<td align="center">&nbsp;</td>
+	<td align="center">&nbsp;</td>
+</tr>
+<tr>
+	<td align="center">&nbsp;</td>
+	<td align="center">&nbsp;</td>
+	<td><a href="#267">合計料金</a>&nbsp;</td>
+	<td>total_amount&nbsp;</td>
+	<td>int&nbsp;</td>
+	<td align="center">&nbsp;</td>
+	<td align="center">&nbsp;</td>
+</tr>
+<tr>
+	<td align="center">&nbsp;</td>
+	<td align="center">&nbsp;</td>
+	<td><a href="#268">備考</a>&nbsp;</td>
+	<td>remarks&nbsp;</td>
+	<td>text&nbsp;</td>
+	<td align="center">&nbsp;</td>
+	<td align="center">&nbsp;</td>
+</tr>
+<tr>
+	<td align="center">&nbsp;</td>
+	<td align="center">&nbsp;</td>
+	<td><a href="#269">状態</a>&nbsp;</td>
+	<td>status&nbsp;</td>
+	<td>int&nbsp;</td>
+	<td align="center">&nbsp;</td>
+	<td align="center">&nbsp;</td>
+</tr>
+<tr>
+	<td align="center">&nbsp;</td>
+	<td align="center">&nbsp;</td>
+	<td><a href="#143">削除フラグ</a>&nbsp;</td>
+	<td>delete_flag&nbsp;</td>
+	<td>boolean&nbsp;</td>
+	<td align="center">&nbsp;</td>
+	<td align="center">NOT NULL&nbsp;</td>
+</tr>
+<tr>
+	<td align="center">&nbsp;</td>
+	<td align="center">&nbsp;</td>
+	<td><a href="#144">version_no</a>&nbsp;</td>
+	<td>version_no&nbsp;</td>
+	<td>int&nbsp;</td>
+	<td align="center">&nbsp;</td>
+	<td align="center">NOT NULL&nbsp;</td>
+</tr>
+<tr>
+	<td align="center">&nbsp;</td>
+	<td align="center">&nbsp;</td>
+	<td><a href="#145">登録日時</a>&nbsp;</td>
+	<td>register_datetime&nbsp;</td>
+	<td>timestamp(3)&nbsp;</td>
+	<td align="center">&nbsp;</td>
+	<td align="center">NOT NULL&nbsp;</td>
+</tr>
+<tr>
+	<td align="center">&nbsp;</td>
+	<td align="center">&nbsp;</td>
+	<td><a href="#146">更新日時</a>&nbsp;</td>
+	<td>update_datetime&nbsp;</td>
+	<td>timestamp(3)&nbsp;</td>
+	<td align="center">&nbsp;</td>
+	<td align="center">&nbsp;</td>
+</tr>
+
+	</tr>
+</table>
+
+<p>
+
+<!-- ========== FOREIGN KEY =========== -->
+
+<a name="foreign_key"><!-- --></a>
+<table border="1" cellpadding="3" cellspacing="0" width="100%" class="AttributeTable">
+	<tr class="TableHeadingColor">
+		<th colspan="7">外部キー</th>
+	</tr>
+	<tr class="TableSubHeadingColor">
+		<th width="12">属性</th>
+		<th width="28%">参照テーブル</th>
+		<th width="12%">参照キー</th>
+		<th width="12%">ON UPDATE</th>
+		<th width="12%">ON DELETE</th>
+		<th width="12%">親の多重度</th>
+		<th width="12%">子の多重度</th>
+	</tr>
+	<tr>
+	<td><a href="#197">店舗ID&nbsp;</a></td>
+	<td><a href="../table/7.html">店舗マスタ&nbsp;</a></td>
+	<td><a href="../table/7.html#171">店舗ID&nbsp;</a></td>
+	<td align="center">NO ACTION&nbsp;</td>
+	<td align="center">NO ACTION&nbsp;</td>
+	<td align="center">0..1&nbsp;</td>
+	<td align="center">1..n&nbsp;</td>
+</tr>
+<tr>
+	<td><a href="#258">作業ing_staff_id&nbsp;</a></td>
+	<td><a href="../table/13.html">所属スタッフマスタ&nbsp;</a></td>
+	<td><a href="../table/13.html#257">所属スタッフID&nbsp;</a></td>
+	<td align="center">RESTRICT&nbsp;</td>
+	<td align="center">RESTRICT&nbsp;</td>
+	<td align="center">0..1&nbsp;</td>
+	<td align="center">1..n&nbsp;</td>
+</tr>
+<tr>
+	<td><a href="#228">ユーザID&nbsp;</a></td>
+	<td><a href="../table/9.html">ユーザマスタ&nbsp;</a></td>
+	<td><a href="../table/9.html#205">ユーザID&nbsp;</a></td>
+	<td align="center">NO ACTION&nbsp;</td>
+	<td align="center">NO ACTION&nbsp;</td>
+	<td align="center">0..1&nbsp;</td>
+	<td align="center">1..n&nbsp;</td>
+</tr>
+
+</table>
+
+<p>
+
+<!-- ========== REFERENCE KEY =========== -->
+
+<a name="reference_key"><!-- --></a>
+<table border="1" cellpadding="3" cellspacing="0" width="100%" class="AttributeTable">
+	<tr class="TableHeadingColor">
+		<th colspan="7">参照キー</th>
+	</tr>
+	<tr class="TableSubHeadingColor">
+		<th width="12">属性</th>
+		<th width="28%">テーブル</th>
+		<th width="12%">外部キー</th>
+		<th width="12%">ON UPDATE</th>
+		<th width="12%">ON DELETE</th>
+		<th width="12%">親の多重度</th>
+		<th width="12%">子の多重度</th>
+	</tr>
+	<tr>
+	<td><a href="#260">予約ID&nbsp;</a></td>
+	<td><a href="../table/15.html">予約明細テーブル&nbsp;</a></td>
+	<td><a href="../table/15.html#270">予約ID&nbsp;</a></td>
+	<td align="center">NO ACTION&nbsp;</td>
+	<td align="center">NO ACTION&nbsp;</td>
+	<td align="center">0..1&nbsp;</td>
+	<td align="center">1..n&nbsp;</td>
+</tr>
+
+</table>
+
+<p>
+
+<!-- ========== Complex Unique Key =========== -->
+
+<a name="complex_unique_key"><!-- --></a>
+<table border="1" cellpadding="3" cellspacing="0" width="100%" class="AttributeTable">
+	<tr class="TableHeadingColor">
+		<th colspan="1">複合一意キー</th>
+	</tr>
+	<tr class="TableSubHeadingColor">
+		<th>&nbsp;</th>
+		
+	</tr>
+	
+</table>
+
+
+
+<p>
+
+<!-- ========== INDEX SUMMARY =========== -->
+
+<a name="index_summary"><!-- --></a>
+<table border="1" cellpadding="3" cellspacing="0" width="100%" class="AttributeTable">
+	<tr class="TableHeadingColor">
+		<th colspan="3">インデックス の概要</th>
+	</tr>
+	<tr class="TableSubHeadingColor">
+		<th>インデックス名</th>
+		<th>タイプ</th>
+		<th>UNIQUE</th>
+	</tr>
+	
+</table>
+
+<p>
+
+
+
+
+
+<p>
+
+<!-- ============ ATTRIBUTE DETAIL =========== -->
+
+<a name="attribute_detail"></a>
+<table border="1" cellpadding="3" cellspacing="0" width="100%" class="AttributeTable">
+	<tr class="TableHeadingColor">
+		<th>属性 の詳細</th>
+	</tr>
+</table>
+
+<a name="260"></a>
+<h3><img src="../image/icons/pkey.gif">  予約ID</h3>
+
+<dl>
+	<dd>reservation_id
+	<p>
+	<dd><pre>予約ID</pre>
+	<p>
+	<dl>
+		<dt><b>UNIQUE : </b>FALSE<br></dt>
+		<dt><b>NOT NULL : </b>TRUE<br></dt>
+		<dt><b>型 : </b>bigserial<br></dt>
+		<dt><b>AUTO INCREMENT : </b>TRUE<br></dt>
+		<dt><b>デフォルト値 : </b><br></dt>
+		<dt><b>制約 : </b><br></dt>
+	</dl>
+</dl>
+
+<p>
+
+<hr>
+<a name="197"></a>
+<h3> <img src="../image/icons/foreign_key.gif"> 店舗ID</h3>
+
+<dl>
+	<dd>shop_id
+	<p>
+	<dd><pre>店舗ID</pre>
+	<p>
+	<dl>
+		<dt><b>UNIQUE : </b>FALSE<br></dt>
+		<dt><b>NOT NULL : </b>FALSE<br></dt>
+		<dt><b>型 : </b>int<br></dt>
+		<dt><b>AUTO INCREMENT : </b>FALSE<br></dt>
+		<dt><b>デフォルト値 : </b><br></dt>
+		<dt><b>制約 : </b><br></dt>
+	</dl>
+</dl>
+
+<p>
+
+<hr>
+<a name="258"></a>
+<h3> <img src="../image/icons/foreign_key.gif"> 作業ing_staff_id</h3>
+
+<dl>
+	<dd>working_staff_id
+	<p>
+	<dd><pre>所属スタッフID</pre>
+	<p>
+	<dl>
+		<dt><b>UNIQUE : </b>FALSE<br></dt>
+		<dt><b>NOT NULL : </b>FALSE<br></dt>
+		<dt><b>型 : </b>int<br></dt>
+		<dt><b>AUTO INCREMENT : </b>FALSE<br></dt>
+		<dt><b>デフォルト値 : </b><br></dt>
+		<dt><b>制約 : </b><br></dt>
+	</dl>
+</dl>
+
+<p>
+
+<hr>
+<a name="228"></a>
+<h3> <img src="../image/icons/foreign_key.gif"> ユーザID</h3>
+
+<dl>
+	<dd>user_id
+	<p>
+	<dd><pre>ユーザID</pre>
+	<p>
+	<dl>
+		<dt><b>UNIQUE : </b>FALSE<br></dt>
+		<dt><b>NOT NULL : </b>FALSE<br></dt>
+		<dt><b>型 : </b>int<br></dt>
+		<dt><b>AUTO INCREMENT : </b>FALSE<br></dt>
+		<dt><b>デフォルト値 : </b><br></dt>
+		<dt><b>制約 : </b><br></dt>
+	</dl>
+</dl>
+
+<p>
+
+<hr>
+<a name="261"></a>
+<h3>  履歴用スタッフ姓</h3>
+
+<dl>
+	<dd>hist_staff_family_name
+	<p>
+	<dd><pre>履歴用スタッフ姓</pre>
+	<p>
+	<dl>
+		<dt><b>UNIQUE : </b>FALSE<br></dt>
+		<dt><b>NOT NULL : </b>FALSE<br></dt>
+		<dt><b>型 : </b>text<br></dt>
+		<dt><b>AUTO INCREMENT : </b>FALSE<br></dt>
+		<dt><b>デフォルト値 : </b><br></dt>
+		<dt><b>制約 : </b><br></dt>
+	</dl>
+</dl>
+
+<p>
+
+<hr>
+<a name="262"></a>
+<h3>  履歴用店舗名</h3>
+
+<dl>
+	<dd>hist_shop_name
+	<p>
+	<dd><pre>履歴用店舗名</pre>
+	<p>
+	<dl>
+		<dt><b>UNIQUE : </b>FALSE<br></dt>
+		<dt><b>NOT NULL : </b>FALSE<br></dt>
+		<dt><b>型 : </b>text<br></dt>
+		<dt><b>AUTO INCREMENT : </b>FALSE<br></dt>
+		<dt><b>デフォルト値 : </b><br></dt>
+		<dt><b>制約 : </b><br></dt>
+	</dl>
+</dl>
+
+<p>
+
+<hr>
+<a name="263"></a>
+<h3>  履歴用店舗略名</h3>
+
+<dl>
+	<dd>hist_shop_abbreviated_name
+	<p>
+	<dd><pre>履歴用店舗略名</pre>
+	<p>
+	<dl>
+		<dt><b>UNIQUE : </b>FALSE<br></dt>
+		<dt><b>NOT NULL : </b>FALSE<br></dt>
+		<dt><b>型 : </b>text<br></dt>
+		<dt><b>AUTO INCREMENT : </b>FALSE<br></dt>
+		<dt><b>デフォルト値 : </b><br></dt>
+		<dt><b>制約 : </b><br></dt>
+	</dl>
+</dl>
+
+<p>
+
+<hr>
+<a name="264"></a>
+<h3>  履歴用スタッフ名</h3>
+
+<dl>
+	<dd>hist_staff_given_name
+	<p>
+	<dd><pre>履歴用スタッフ名</pre>
+	<p>
+	<dl>
+		<dt><b>UNIQUE : </b>FALSE<br></dt>
+		<dt><b>NOT NULL : </b>FALSE<br></dt>
+		<dt><b>型 : </b>text<br></dt>
+		<dt><b>AUTO INCREMENT : </b>FALSE<br></dt>
+		<dt><b>デフォルト値 : </b><br></dt>
+		<dt><b>制約 : </b><br></dt>
+	</dl>
+</dl>
+
+<p>
+
+<hr>
+<a name="265"></a>
+<h3>  予約日付</h3>
+
+<dl>
+	<dd>reservation_date
+	<p>
+	<dd><pre>予約日付</pre>
+	<p>
+	<dl>
+		<dt><b>UNIQUE : </b>FALSE<br></dt>
+		<dt><b>NOT NULL : </b>FALSE<br></dt>
+		<dt><b>型 : </b>date<br></dt>
+		<dt><b>AUTO INCREMENT : </b>FALSE<br></dt>
+		<dt><b>デフォルト値 : </b><br></dt>
+		<dt><b>制約 : </b><br></dt>
+	</dl>
+</dl>
+
+<p>
+
+<hr>
+<a name="266"></a>
+<h3>  予約時間</h3>
+
+<dl>
+	<dd>reservation_time
+	<p>
+	<dd><pre>予約時間</pre>
+	<p>
+	<dl>
+		<dt><b>UNIQUE : </b>FALSE<br></dt>
+		<dt><b>NOT NULL : </b>FALSE<br></dt>
+		<dt><b>型 : </b>time<br></dt>
+		<dt><b>AUTO INCREMENT : </b>FALSE<br></dt>
+		<dt><b>デフォルト値 : </b><br></dt>
+		<dt><b>制約 : </b><br></dt>
+	</dl>
+</dl>
+
+<p>
+
+<hr>
+<a name="267"></a>
+<h3>  合計料金</h3>
+
+<dl>
+	<dd>total_amount
+	<p>
+	<dd><pre>合計料金</pre>
+	<p>
+	<dl>
+		<dt><b>UNIQUE : </b>FALSE<br></dt>
+		<dt><b>NOT NULL : </b>FALSE<br></dt>
+		<dt><b>型 : </b>int<br></dt>
+		<dt><b>AUTO INCREMENT : </b>FALSE<br></dt>
+		<dt><b>デフォルト値 : </b><br></dt>
+		<dt><b>制約 : </b><br></dt>
+	</dl>
+</dl>
+
+<p>
+
+<hr>
+<a name="268"></a>
+<h3>  備考</h3>
+
+<dl>
+	<dd>remarks
+	<p>
+	<dd><pre>備考</pre>
+	<p>
+	<dl>
+		<dt><b>UNIQUE : </b>FALSE<br></dt>
+		<dt><b>NOT NULL : </b>FALSE<br></dt>
+		<dt><b>型 : </b>text<br></dt>
+		<dt><b>AUTO INCREMENT : </b>FALSE<br></dt>
+		<dt><b>デフォルト値 : </b><br></dt>
+		<dt><b>制約 : </b><br></dt>
+	</dl>
+</dl>
+
+<p>
+
+<hr>
+<a name="269"></a>
+<h3>  状態</h3>
+
+<dl>
+	<dd>status
+	<p>
+	<dd><pre>状態</pre>
+	<p>
+	<dl>
+		<dt><b>UNIQUE : </b>FALSE<br></dt>
+		<dt><b>NOT NULL : </b>FALSE<br></dt>
+		<dt><b>型 : </b>int<br></dt>
+		<dt><b>AUTO INCREMENT : </b>FALSE<br></dt>
+		<dt><b>デフォルト値 : </b><br></dt>
+		<dt><b>制約 : </b><br></dt>
+	</dl>
+</dl>
+
+<p>
+
+<hr>
+<a name="143"></a>
+<h3>  削除フラグ</h3>
+
+<dl>
+	<dd>delete_flag
+	<p>
+	<dd><pre></pre>
+	<p>
+	<dl>
+		<dt><b>UNIQUE : </b>FALSE<br></dt>
+		<dt><b>NOT NULL : </b>TRUE<br></dt>
+		<dt><b>型 : </b>boolean<br></dt>
+		<dt><b>AUTO INCREMENT : </b>FALSE<br></dt>
+		<dt><b>デフォルト値 : </b>false<br></dt>
+		<dt><b>制約 : </b><br></dt>
+	</dl>
+</dl>
+
+<p>
+
+<hr>
+<a name="144"></a>
+<h3>  version_no</h3>
+
+<dl>
+	<dd>version_no
+	<p>
+	<dd><pre></pre>
+	<p>
+	<dl>
+		<dt><b>UNIQUE : </b>FALSE<br></dt>
+		<dt><b>NOT NULL : </b>TRUE<br></dt>
+		<dt><b>型 : </b>int<br></dt>
+		<dt><b>AUTO INCREMENT : </b>FALSE<br></dt>
+		<dt><b>デフォルト値 : </b>1<br></dt>
+		<dt><b>制約 : </b><br></dt>
+	</dl>
+</dl>
+
+<p>
+
+<hr>
+<a name="145"></a>
+<h3>  登録日時</h3>
+
+<dl>
+	<dd>register_datetime
+	<p>
+	<dd><pre></pre>
+	<p>
+	<dl>
+		<dt><b>UNIQUE : </b>FALSE<br></dt>
+		<dt><b>NOT NULL : </b>TRUE<br></dt>
+		<dt><b>型 : </b>timestamp(3)<br></dt>
+		<dt><b>AUTO INCREMENT : </b>FALSE<br></dt>
+		<dt><b>デフォルト値 : </b>CURRENT_TIMESTAMP<br></dt>
+		<dt><b>制約 : </b><br></dt>
+	</dl>
+</dl>
+
+<p>
+
+<hr>
+<a name="146"></a>
+<h3>  更新日時</h3>
+
+<dl>
+	<dd>update_datetime
+	<p>
+	<dd><pre></pre>
+	<p>
+	<dl>
+		<dt><b>UNIQUE : </b>FALSE<br></dt>
+		<dt><b>NOT NULL : </b>FALSE<br></dt>
+		<dt><b>型 : </b>timestamp(3)<br></dt>
+		<dt><b>AUTO INCREMENT : </b>FALSE<br></dt>
+		<dt><b>デフォルト値 : </b><br></dt>
+		<dt><b>制約 : </b><br></dt>
+	</dl>
+</dl>
+
+<p>
+
+<hr>
+
+
+
+
+		<!-- ========== START OF NAVBAR ========== -->
+		<table border="0" width="100%" cellpadding="1" cellspacing="0">
+			<tr>
+				<td colspan="3" class="NavBarCell1">
+					<table border="0" cellpadding="0" cellspacing="3">
+						<tr align="center" valign="top">
+							<td class="NavBarCell1">
+								<a href="../overview-summary.html">概要</a>&nbsp;
+							</td>
+							<td class="NavBarCell1">
+								<a href="package-summary.html">オブジェクトタイプ</a>&nbsp;
+							</td>
+							<td class="NavBarCell1Rev"> &nbsp;
+								テーブル&nbsp;
+							</td>
+							<td class="NavBarCell1">
+								<a href="../help-doc.html">ヘルプ</a>&nbsp;
+							</td>
+						</tr>
+					</table>
+				</td>
+			</tr>
+			<tr>
+				<td class="NavBarCell2">
+					&nbsp;<a HREF="13.html" ><b>前のテーブル</b></a>&nbsp;&nbsp;
+					&nbsp;<a HREF="15.html" ><b>次のテーブル</b></a>&nbsp;&nbsp;
+				</td>
+				<td class="NavBarCell2">
+					<a href="../index.html" target="_top">フレームあり</a>
+					&nbsp;&nbsp;&nbsp;
+					<a href="14.html" target="_top">フレームなし</a>
+					&nbsp;&nbsp;&nbsp;
+					<script>
+					<!--
+						if(window==top) {
+							document.writeln('<a href="../allclasses.html" target="">すべてのオブジェクト</a>');
+						}
+					//-->
+					</script>
+					<noscript>
+						<a href="../allclasses.html" target="">すべてのオブジェクト</a>
+					</noscript>
+				</td>
+			</tr>
+		</table>
+		<!-- =========== END OF NAVBAR =========== -->
+
+		<hr>
+
+	</body>
+</HTML>

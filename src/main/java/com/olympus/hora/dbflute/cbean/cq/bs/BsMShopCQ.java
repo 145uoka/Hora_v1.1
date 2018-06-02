@@ -583,6 +583,26 @@ public class BsMShopCQ extends AbstractBsMShopCQ {
      */
     public BsMShopCQ addOrderBy_DeleteFlag_Desc() { regOBD("delete_flag"); return this; }
 
+    protected ConditionValue _versionNo;
+    public ConditionValue xdfgetVersionNo()
+    { if (_versionNo == null) { _versionNo = nCV(); }
+      return _versionNo; }
+    protected ConditionValue xgetCValueVersionNo() { return xdfgetVersionNo(); }
+
+    /**
+     * Add order-by as ascend. <br>
+     * version_no: {NotNull, int4(10), default=[1]}
+     * @return this. (NotNull)
+     */
+    public BsMShopCQ addOrderBy_VersionNo_Asc() { regOBA("version_no"); return this; }
+
+    /**
+     * Add order-by as descend. <br>
+     * version_no: {NotNull, int4(10), default=[1]}
+     * @return this. (NotNull)
+     */
+    public BsMShopCQ addOrderBy_VersionNo_Desc() { regOBD("version_no"); return this; }
+
     protected ConditionValue _registerDatetime;
     public ConditionValue xdfgetRegisterDatetime()
     { if (_registerDatetime == null) { _registerDatetime = nCV(); }

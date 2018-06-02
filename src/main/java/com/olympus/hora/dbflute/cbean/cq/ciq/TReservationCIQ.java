@@ -73,18 +73,19 @@ public class TReservationCIQ extends AbstractBsTReservationCQ {
     public String keepReservationId_QueryDerivedReferrer_TReservationDetailListParameter(Object vl)
     { throwIICBOE("(Query)DerivedReferrer"); return null; }
     protected ConditionValue xgetCValueShopId() { return _myCQ.xdfgetShopId(); }
-    protected ConditionValue xgetCValueStaffId() { return _myCQ.xdfgetStaffId(); }
+    protected ConditionValue xgetCValueWorkingStaffId() { return _myCQ.xdfgetWorkingStaffId(); }
+    protected ConditionValue xgetCValueUserId() { return _myCQ.xdfgetUserId(); }
     protected ConditionValue xgetCValueHistStaffFamilyName() { return _myCQ.xdfgetHistStaffFamilyName(); }
     protected ConditionValue xgetCValueHistShopName() { return _myCQ.xdfgetHistShopName(); }
     protected ConditionValue xgetCValueHistShopAbbreviatedName() { return _myCQ.xdfgetHistShopAbbreviatedName(); }
     protected ConditionValue xgetCValueHistStaffGivenName() { return _myCQ.xdfgetHistStaffGivenName(); }
     protected ConditionValue xgetCValueReservationDate() { return _myCQ.xdfgetReservationDate(); }
     protected ConditionValue xgetCValueReservationTime() { return _myCQ.xdfgetReservationTime(); }
-    protected ConditionValue xgetCValueUserId() { return _myCQ.xdfgetUserId(); }
     protected ConditionValue xgetCValueTotalAmount() { return _myCQ.xdfgetTotalAmount(); }
     protected ConditionValue xgetCValueRemarks() { return _myCQ.xdfgetRemarks(); }
     protected ConditionValue xgetCValueStatus() { return _myCQ.xdfgetStatus(); }
     protected ConditionValue xgetCValueDeleteFlag() { return _myCQ.xdfgetDeleteFlag(); }
+    protected ConditionValue xgetCValueVersionNo() { return _myCQ.xdfgetVersionNo(); }
     protected ConditionValue xgetCValueRegisterDatetime() { return _myCQ.xdfgetRegisterDatetime(); }
     protected ConditionValue xgetCValueUpdateDatetime() { return _myCQ.xdfgetUpdateDatetime(); }
     protected Map<String, Object> xfindFixedConditionDynamicParameterMap(String pp) { return null; }

@@ -269,26 +269,6 @@ public class BsTReservationCB extends AbstractConditionBean {
 
     /**
      * Set up relation columns to select clause. <br>
-     * m_staff by my staff_id, named 'MStaff'.
-     * <pre>
-     * <span style="color: #0000C0">tReservationBhv</span>.selectEntity(<span style="color: #553000">cb</span> <span style="color: #90226C; font-weight: bold"><span style="font-size: 120%">-</span>&gt;</span> {
-     *     <span style="color: #553000">cb</span>.<span style="color: #CC4747">setupSelect_MStaff()</span>; <span style="color: #3F7E5E">// ...().with[nested-relation]()</span>
-     *     <span style="color: #553000">cb</span>.query().set...
-     * }).alwaysPresent(<span style="color: #553000">tReservation</span> <span style="color: #90226C; font-weight: bold"><span style="font-size: 120%">-</span>&gt;</span> {
-     *     ... = <span style="color: #553000">tReservation</span>.<span style="color: #CC4747">getMStaff()</span>; <span style="color: #3F7E5E">// you can get by using SetupSelect</span>
-     * });
-     * </pre>
-     */
-    public void setupSelect_MStaff() {
-        assertSetupSelectPurpose("mStaff");
-        if (hasSpecifiedLocalColumn()) {
-            specify().columnStaffId();
-        }
-        doSetupSelect(() -> query().queryMStaff());
-    }
-
-    /**
-     * Set up relation columns to select clause. <br>
      * m_user by my user_id, named 'MUser'.
      * <pre>
      * <span style="color: #0000C0">tReservationBhv</span>.selectEntity(<span style="color: #553000">cb</span> <span style="color: #90226C; font-weight: bold"><span style="font-size: 120%">-</span>&gt;</span> {
@@ -305,6 +285,35 @@ public class BsTReservationCB extends AbstractConditionBean {
             specify().columnUserId();
         }
         doSetupSelect(() -> query().queryMUser());
+    }
+
+    protected MWorkingStaffNss _nssMWorkingStaff;
+    public MWorkingStaffNss xdfgetNssMWorkingStaff() {
+        if (_nssMWorkingStaff == null) { _nssMWorkingStaff = new MWorkingStaffNss(null); }
+        return _nssMWorkingStaff;
+    }
+    /**
+     * Set up relation columns to select clause. <br>
+     * m_working_staff by my working_staff_id, named 'MWorkingStaff'.
+     * <pre>
+     * <span style="color: #0000C0">tReservationBhv</span>.selectEntity(<span style="color: #553000">cb</span> <span style="color: #90226C; font-weight: bold"><span style="font-size: 120%">-</span>&gt;</span> {
+     *     <span style="color: #553000">cb</span>.<span style="color: #CC4747">setupSelect_MWorkingStaff()</span>; <span style="color: #3F7E5E">// ...().with[nested-relation]()</span>
+     *     <span style="color: #553000">cb</span>.query().set...
+     * }).alwaysPresent(<span style="color: #553000">tReservation</span> <span style="color: #90226C; font-weight: bold"><span style="font-size: 120%">-</span>&gt;</span> {
+     *     ... = <span style="color: #553000">tReservation</span>.<span style="color: #CC4747">getMWorkingStaff()</span>; <span style="color: #3F7E5E">// you can get by using SetupSelect</span>
+     * });
+     * </pre>
+     * @return The set-upper of nested relation. {setupSelect...().with[nested-relation]} (NotNull)
+     */
+    public MWorkingStaffNss setupSelect_MWorkingStaff() {
+        assertSetupSelectPurpose("mWorkingStaff");
+        if (hasSpecifiedLocalColumn()) {
+            specify().columnWorkingStaffId();
+        }
+        doSetupSelect(() -> query().queryMWorkingStaff());
+        if (_nssMWorkingStaff == null || !_nssMWorkingStaff.hasConditionQuery())
+        { _nssMWorkingStaff = new MWorkingStaffNss(query().queryMWorkingStaff()); }
+        return _nssMWorkingStaff;
     }
 
     // [DBFlute-0.7.4]
@@ -349,8 +358,8 @@ public class BsTReservationCB extends AbstractConditionBean {
 
     public static class HpSpecification extends HpAbstractSpecification<TReservationCQ> {
         protected MShopCB.HpSpecification _mShop;
-        protected MStaffCB.HpSpecification _mStaff;
         protected MUserCB.HpSpecification _mUser;
+        protected MWorkingStaffCB.HpSpecification _mWorkingStaff;
         public HpSpecification(ConditionBean baseCB, HpSpQyCall<TReservationCQ> qyCall
                              , HpCBPurpose purpose, DBMetaProvider dbmetaProvider
                              , HpSDRFunctionFactory sdrFuncFactory)
@@ -366,10 +375,15 @@ public class BsTReservationCB extends AbstractConditionBean {
          */
         public SpecifiedColumn columnShopId() { return doColumn("shop_id"); }
         /**
-         * staff_id: {NotNull, int4(10), FK to m_staff}
+         * working_staff_id: {int4(10), FK to m_working_staff}
          * @return The information object of specified column. (NotNull)
          */
-        public SpecifiedColumn columnStaffId() { return doColumn("staff_id"); }
+        public SpecifiedColumn columnWorkingStaffId() { return doColumn("working_staff_id"); }
+        /**
+         * user_id: {int4(10), FK to m_user}
+         * @return The information object of specified column. (NotNull)
+         */
+        public SpecifiedColumn columnUserId() { return doColumn("user_id"); }
         /**
          * hist_staff_family_name: {text(2147483647)}
          * @return The information object of specified column. (NotNull)
@@ -401,11 +415,6 @@ public class BsTReservationCB extends AbstractConditionBean {
          */
         public SpecifiedColumn columnReservationTime() { return doColumn("reservation_time"); }
         /**
-         * user_id: {int4(10), FK to m_user}
-         * @return The information object of specified column. (NotNull)
-         */
-        public SpecifiedColumn columnUserId() { return doColumn("user_id"); }
-        /**
          * total_amount: {int4(10)}
          * @return The information object of specified column. (NotNull)
          */
@@ -426,6 +435,11 @@ public class BsTReservationCB extends AbstractConditionBean {
          */
         public SpecifiedColumn columnDeleteFlag() { return doColumn("delete_flag"); }
         /**
+         * version_no: {NotNull, int4(10), default=[1]}
+         * @return The information object of specified column. (NotNull)
+         */
+        public SpecifiedColumn columnVersionNo() { return doColumn("version_no"); }
+        /**
          * register_datetime: {NotNull, timestamp(26, 3), default=[now()]}
          * @return The information object of specified column. (NotNull)
          */
@@ -444,13 +458,13 @@ public class BsTReservationCB extends AbstractConditionBean {
                     || qyCall().qy().xgetReferrerQuery() instanceof MShopCQ) {
                 columnShopId(); // FK or one-to-one referrer
             }
-            if (qyCall().qy().hasConditionQueryMStaff()
-                    || qyCall().qy().xgetReferrerQuery() instanceof MStaffCQ) {
-                columnStaffId(); // FK or one-to-one referrer
-            }
             if (qyCall().qy().hasConditionQueryMUser()
                     || qyCall().qy().xgetReferrerQuery() instanceof MUserCQ) {
                 columnUserId(); // FK or one-to-one referrer
+            }
+            if (qyCall().qy().hasConditionQueryMWorkingStaff()
+                    || qyCall().qy().xgetReferrerQuery() instanceof MWorkingStaffCQ) {
+                columnWorkingStaffId(); // FK or one-to-one referrer
             }
         }
         @Override
@@ -477,26 +491,6 @@ public class BsTReservationCB extends AbstractConditionBean {
         }
         /**
          * Prepare to specify functions about relation table. <br>
-         * m_staff by my staff_id, named 'MStaff'.
-         * @return The instance for specification for relation table to specify. (NotNull)
-         */
-        public MStaffCB.HpSpecification specifyMStaff() {
-            assertRelation("mStaff");
-            if (_mStaff == null) {
-                _mStaff = new MStaffCB.HpSpecification(_baseCB
-                    , xcreateSpQyCall(() -> _qyCall.has() && _qyCall.qy().hasConditionQueryMStaff()
-                                    , () -> _qyCall.qy().queryMStaff())
-                    , _purpose, _dbmetaProvider, xgetSDRFnFc());
-                if (xhasSyncQyCall()) { // inherits it
-                    _mStaff.xsetSyncQyCall(xcreateSpQyCall(
-                        () -> xsyncQyCall().has() && xsyncQyCall().qy().hasConditionQueryMStaff()
-                      , () -> xsyncQyCall().qy().queryMStaff()));
-                }
-            }
-            return _mStaff;
-        }
-        /**
-         * Prepare to specify functions about relation table. <br>
          * m_user by my user_id, named 'MUser'.
          * @return The instance for specification for relation table to specify. (NotNull)
          */
@@ -514,6 +508,26 @@ public class BsTReservationCB extends AbstractConditionBean {
                 }
             }
             return _mUser;
+        }
+        /**
+         * Prepare to specify functions about relation table. <br>
+         * m_working_staff by my working_staff_id, named 'MWorkingStaff'.
+         * @return The instance for specification for relation table to specify. (NotNull)
+         */
+        public MWorkingStaffCB.HpSpecification specifyMWorkingStaff() {
+            assertRelation("mWorkingStaff");
+            if (_mWorkingStaff == null) {
+                _mWorkingStaff = new MWorkingStaffCB.HpSpecification(_baseCB
+                    , xcreateSpQyCall(() -> _qyCall.has() && _qyCall.qy().hasConditionQueryMWorkingStaff()
+                                    , () -> _qyCall.qy().queryMWorkingStaff())
+                    , _purpose, _dbmetaProvider, xgetSDRFnFc());
+                if (xhasSyncQyCall()) { // inherits it
+                    _mWorkingStaff.xsetSyncQyCall(xcreateSpQyCall(
+                        () -> xsyncQyCall().has() && xsyncQyCall().qy().hasConditionQueryMWorkingStaff()
+                      , () -> xsyncQyCall().qy().queryMWorkingStaff()));
+                }
+            }
+            return _mWorkingStaff;
         }
         /**
          * Prepare for (Specify)DerivedReferrer (correlated sub-query). <br>

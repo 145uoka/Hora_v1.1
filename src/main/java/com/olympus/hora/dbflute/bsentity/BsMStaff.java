@@ -3,21 +3,24 @@ package com.olympus.hora.dbflute.bsentity;
 import java.util.List;
 import java.util.ArrayList;
 
+import org.dbflute.Entity;
 import org.dbflute.dbmeta.DBMeta;
 import org.dbflute.dbmeta.AbstractEntity;
 import org.dbflute.dbmeta.accessory.DomainEntity;
+import org.dbflute.optional.OptionalEntity;
 import com.olympus.hora.dbflute.allcommon.EntityDefinedCommonColumn;
 import com.olympus.hora.dbflute.allcommon.DBMetaInstanceHandler;
 import com.olympus.hora.dbflute.exentity.*;
 
 /**
  * The entity of m_staff as TABLE. <br>
+ * スタッフマスタ
  * <pre>
  * [primary-key]
  *     staff_id
  *
  * [column]
- *     staff_id, family_name, given_name, phone1_1, phone1_2, phone1_3, delete_flag, register_datetime, update_datetime
+ *     staff_id, company_id, family_name, given_name, phone1_1, phone1_2, phone1_3, delete_flag, version_no, register_datetime, update_datetime
  *
  * [sequence]
  *     m_staff_staff_id_seq
@@ -26,38 +29,42 @@ import com.olympus.hora.dbflute.exentity.*;
  *     
  *
  * [version-no]
- *     
+ *     version_no
  *
  * [foreign table]
- *     
+ *     m_company
  *
  * [referrer table]
- *     m_working_staff, t_reservation, t_shift
+ *     m_working_staff
  *
  * [foreign property]
- *     
+ *     mCompany
  *
  * [referrer property]
- *     mWorkingStaffList, tReservationList, tShiftList
+ *     mWorkingStaffList
  *
  * [get/set template]
  * /= = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = =
  * Integer staffId = entity.getStaffId();
+ * Integer companyId = entity.getCompanyId();
  * String familyName = entity.getFamilyName();
  * String givenName = entity.getGivenName();
  * String phone11 = entity.getPhone11();
  * String phone12 = entity.getPhone12();
  * String phone13 = entity.getPhone13();
  * Boolean deleteFlag = entity.getDeleteFlag();
+ * Integer versionNo = entity.getVersionNo();
  * java.time.LocalDateTime registerDatetime = entity.getRegisterDatetime();
  * java.time.LocalDateTime updateDatetime = entity.getUpdateDatetime();
  * entity.setStaffId(staffId);
+ * entity.setCompanyId(companyId);
  * entity.setFamilyName(familyName);
  * entity.setGivenName(givenName);
  * entity.setPhone11(phone11);
  * entity.setPhone12(phone12);
  * entity.setPhone13(phone13);
  * entity.setDeleteFlag(deleteFlag);
+ * entity.setVersionNo(versionNo);
  * entity.setRegisterDatetime(registerDatetime);
  * entity.setUpdateDatetime(updateDatetime);
  * = = = = = = = = = =/
@@ -78,6 +85,9 @@ public abstract class BsMStaff extends AbstractEntity implements DomainEntity, E
     /** staff_id: {PK, ID, NotNull, serial(10)} */
     protected Integer _staffId;
 
+    /** company_id: {NotNull, int4(10), FK to m_company} */
+    protected Integer _companyId;
+
     /** family_name: {text(2147483647)} */
     protected String _familyName;
 
@@ -95,6 +105,9 @@ public abstract class BsMStaff extends AbstractEntity implements DomainEntity, E
 
     /** delete_flag: {NotNull, bool(1), default=[false]} */
     protected Boolean _deleteFlag;
+
+    /** version_no: {NotNull, int4(10), default=[1]} */
+    protected Integer _versionNo;
 
     /** register_datetime: {NotNull, timestamp(26, 3), default=[now()]} */
     protected java.time.LocalDateTime _registerDatetime;
@@ -127,6 +140,27 @@ public abstract class BsMStaff extends AbstractEntity implements DomainEntity, E
     // ===================================================================================
     //                                                                    Foreign Property
     //                                                                    ================
+    /** m_company by my company_id, named 'MCompany'. */
+    protected OptionalEntity<MCompany> _mCompany;
+
+    /**
+     * [get] m_company by my company_id, named 'MCompany'. <br>
+     * Optional: alwaysPresent(), ifPresent().orElse(), get(), ...
+     * @return The entity of foreign property 'MCompany'. (NotNull, EmptyAllowed: when e.g. null FK column, no setupSelect)
+     */
+    public OptionalEntity<MCompany> getMCompany() {
+        if (_mCompany == null) { _mCompany = OptionalEntity.relationEmpty(this, "MCompany"); }
+        return _mCompany;
+    }
+
+    /**
+     * [set] m_company by my company_id, named 'MCompany'.
+     * @param mCompany The entity of foreign property 'MCompany'. (NullAllowed)
+     */
+    public void setMCompany(OptionalEntity<MCompany> mCompany) {
+        _mCompany = mCompany;
+    }
+
     // ===================================================================================
     //                                                                   Referrer Property
     //                                                                   =================
@@ -148,46 +182,6 @@ public abstract class BsMStaff extends AbstractEntity implements DomainEntity, E
      */
     public void setMWorkingStaffList(List<MWorkingStaff> mWorkingStaffList) {
         _mWorkingStaffList = mWorkingStaffList;
-    }
-
-    /** t_reservation by staff_id, named 'TReservationList'. */
-    protected List<TReservation> _tReservationList;
-
-    /**
-     * [get] t_reservation by staff_id, named 'TReservationList'.
-     * @return The entity list of referrer property 'TReservationList'. (NotNull: even if no loading, returns empty list)
-     */
-    public List<TReservation> getTReservationList() {
-        if (_tReservationList == null) { _tReservationList = newReferrerList(); }
-        return _tReservationList;
-    }
-
-    /**
-     * [set] t_reservation by staff_id, named 'TReservationList'.
-     * @param tReservationList The entity list of referrer property 'TReservationList'. (NullAllowed)
-     */
-    public void setTReservationList(List<TReservation> tReservationList) {
-        _tReservationList = tReservationList;
-    }
-
-    /** t_shift by staff_id, named 'TShiftList'. */
-    protected List<TShift> _tShiftList;
-
-    /**
-     * [get] t_shift by staff_id, named 'TShiftList'.
-     * @return The entity list of referrer property 'TShiftList'. (NotNull: even if no loading, returns empty list)
-     */
-    public List<TShift> getTShiftList() {
-        if (_tShiftList == null) { _tShiftList = newReferrerList(); }
-        return _tShiftList;
-    }
-
-    /**
-     * [set] t_shift by staff_id, named 'TShiftList'.
-     * @param tShiftList The entity list of referrer property 'TShiftList'. (NullAllowed)
-     */
-    public void setTShiftList(List<TShift> tShiftList) {
-        _tShiftList = tShiftList;
     }
 
     protected <ELEMENT> List<ELEMENT> newReferrerList() { // overriding to import
@@ -219,25 +213,28 @@ public abstract class BsMStaff extends AbstractEntity implements DomainEntity, E
     @Override
     protected String doBuildStringWithRelation(String li) {
         StringBuilder sb = new StringBuilder();
+        if (_mCompany != null && _mCompany.isPresent())
+        { sb.append(li).append(xbRDS(_mCompany, "mCompany")); }
         if (_mWorkingStaffList != null) { for (MWorkingStaff et : _mWorkingStaffList)
         { if (et != null) { sb.append(li).append(xbRDS(et, "mWorkingStaffList")); } } }
-        if (_tReservationList != null) { for (TReservation et : _tReservationList)
-        { if (et != null) { sb.append(li).append(xbRDS(et, "tReservationList")); } } }
-        if (_tShiftList != null) { for (TShift et : _tShiftList)
-        { if (et != null) { sb.append(li).append(xbRDS(et, "tShiftList")); } } }
         return sb.toString();
+    }
+    protected <ET extends Entity> String xbRDS(org.dbflute.optional.OptionalEntity<ET> et, String name) { // buildRelationDisplayString()
+        return et.get().buildDisplayString(name, true, true);
     }
 
     @Override
     protected String doBuildColumnString(String dm) {
         StringBuilder sb = new StringBuilder();
         sb.append(dm).append(xfND(_staffId));
+        sb.append(dm).append(xfND(_companyId));
         sb.append(dm).append(xfND(_familyName));
         sb.append(dm).append(xfND(_givenName));
         sb.append(dm).append(xfND(_phone11));
         sb.append(dm).append(xfND(_phone12));
         sb.append(dm).append(xfND(_phone13));
         sb.append(dm).append(xfND(_deleteFlag));
+        sb.append(dm).append(xfND(_versionNo));
         sb.append(dm).append(xfND(_registerDatetime));
         sb.append(dm).append(xfND(_updateDatetime));
         if (sb.length() > dm.length()) {
@@ -250,12 +247,10 @@ public abstract class BsMStaff extends AbstractEntity implements DomainEntity, E
     @Override
     protected String doBuildRelationString(String dm) {
         StringBuilder sb = new StringBuilder();
+        if (_mCompany != null && _mCompany.isPresent())
+        { sb.append(dm).append("mCompany"); }
         if (_mWorkingStaffList != null && !_mWorkingStaffList.isEmpty())
         { sb.append(dm).append("mWorkingStaffList"); }
-        if (_tReservationList != null && !_tReservationList.isEmpty())
-        { sb.append(dm).append("tReservationList"); }
-        if (_tShiftList != null && !_tShiftList.isEmpty())
-        { sb.append(dm).append("tShiftList"); }
         if (sb.length() > dm.length()) {
             sb.delete(0, dm.length()).insert(0, "(").append(")");
         }
@@ -272,6 +267,7 @@ public abstract class BsMStaff extends AbstractEntity implements DomainEntity, E
     //                                                                            ========
     /**
      * [get] staff_id: {PK, ID, NotNull, serial(10)} <br>
+     * スタッフID : スタッフID
      * @return The value of the column 'staff_id'. (basically NotNull if selected: for the constraint)
      */
     public Integer getStaffId() {
@@ -281,6 +277,7 @@ public abstract class BsMStaff extends AbstractEntity implements DomainEntity, E
 
     /**
      * [set] staff_id: {PK, ID, NotNull, serial(10)} <br>
+     * スタッフID : スタッフID
      * @param staffId The value of the column 'staff_id'. (basically NotNull if update: for the constraint)
      */
     public void setStaffId(Integer staffId) {
@@ -289,7 +286,28 @@ public abstract class BsMStaff extends AbstractEntity implements DomainEntity, E
     }
 
     /**
+     * [get] company_id: {NotNull, int4(10), FK to m_company} <br>
+     * 会社id : 企業ID
+     * @return The value of the column 'company_id'. (basically NotNull if selected: for the constraint)
+     */
+    public Integer getCompanyId() {
+        checkSpecifiedProperty("companyId");
+        return _companyId;
+    }
+
+    /**
+     * [set] company_id: {NotNull, int4(10), FK to m_company} <br>
+     * 会社id : 企業ID
+     * @param companyId The value of the column 'company_id'. (basically NotNull if update: for the constraint)
+     */
+    public void setCompanyId(Integer companyId) {
+        registerModifiedProperty("companyId");
+        _companyId = companyId;
+    }
+
+    /**
      * [get] family_name: {text(2147483647)} <br>
+     * 姓 : 姓
      * @return The value of the column 'family_name'. (NullAllowed even if selected: for no constraint)
      */
     public String getFamilyName() {
@@ -299,6 +317,7 @@ public abstract class BsMStaff extends AbstractEntity implements DomainEntity, E
 
     /**
      * [set] family_name: {text(2147483647)} <br>
+     * 姓 : 姓
      * @param familyName The value of the column 'family_name'. (NullAllowed: null update allowed for no constraint)
      */
     public void setFamilyName(String familyName) {
@@ -308,6 +327,7 @@ public abstract class BsMStaff extends AbstractEntity implements DomainEntity, E
 
     /**
      * [get] given_name: {text(2147483647)} <br>
+     * 名 : 名
      * @return The value of the column 'given_name'. (NullAllowed even if selected: for no constraint)
      */
     public String getGivenName() {
@@ -317,6 +337,7 @@ public abstract class BsMStaff extends AbstractEntity implements DomainEntity, E
 
     /**
      * [set] given_name: {text(2147483647)} <br>
+     * 名 : 名
      * @param givenName The value of the column 'given_name'. (NullAllowed: null update allowed for no constraint)
      */
     public void setGivenName(String givenName) {
@@ -326,6 +347,7 @@ public abstract class BsMStaff extends AbstractEntity implements DomainEntity, E
 
     /**
      * [get] phone1_1: {text(2147483647)} <br>
+     * 電話番号1_1 : 電話番号1_1
      * @return The value of the column 'phone1_1'. (NullAllowed even if selected: for no constraint)
      */
     public String getPhone11() {
@@ -335,6 +357,7 @@ public abstract class BsMStaff extends AbstractEntity implements DomainEntity, E
 
     /**
      * [set] phone1_1: {text(2147483647)} <br>
+     * 電話番号1_1 : 電話番号1_1
      * @param phone11 The value of the column 'phone1_1'. (NullAllowed: null update allowed for no constraint)
      */
     public void setPhone11(String phone11) {
@@ -344,6 +367,7 @@ public abstract class BsMStaff extends AbstractEntity implements DomainEntity, E
 
     /**
      * [get] phone1_2: {text(2147483647)} <br>
+     * 電話番号1_2 : 電話番号1_2
      * @return The value of the column 'phone1_2'. (NullAllowed even if selected: for no constraint)
      */
     public String getPhone12() {
@@ -353,6 +377,7 @@ public abstract class BsMStaff extends AbstractEntity implements DomainEntity, E
 
     /**
      * [set] phone1_2: {text(2147483647)} <br>
+     * 電話番号1_2 : 電話番号1_2
      * @param phone12 The value of the column 'phone1_2'. (NullAllowed: null update allowed for no constraint)
      */
     public void setPhone12(String phone12) {
@@ -362,6 +387,7 @@ public abstract class BsMStaff extends AbstractEntity implements DomainEntity, E
 
     /**
      * [get] phone1_3: {text(2147483647)} <br>
+     * 電話番号1_3 : 電話番号1_3
      * @return The value of the column 'phone1_3'. (NullAllowed even if selected: for no constraint)
      */
     public String getPhone13() {
@@ -371,6 +397,7 @@ public abstract class BsMStaff extends AbstractEntity implements DomainEntity, E
 
     /**
      * [set] phone1_3: {text(2147483647)} <br>
+     * 電話番号1_3 : 電話番号1_3
      * @param phone13 The value of the column 'phone1_3'. (NullAllowed: null update allowed for no constraint)
      */
     public void setPhone13(String phone13) {
@@ -380,6 +407,7 @@ public abstract class BsMStaff extends AbstractEntity implements DomainEntity, E
 
     /**
      * [get] delete_flag: {NotNull, bool(1), default=[false]} <br>
+     * 削除フラグ
      * @return The value of the column 'delete_flag'. (basically NotNull if selected: for the constraint)
      */
     public Boolean getDeleteFlag() {
@@ -389,6 +417,7 @@ public abstract class BsMStaff extends AbstractEntity implements DomainEntity, E
 
     /**
      * [set] delete_flag: {NotNull, bool(1), default=[false]} <br>
+     * 削除フラグ
      * @param deleteFlag The value of the column 'delete_flag'. (basically NotNull if update: for the constraint)
      */
     public void setDeleteFlag(Boolean deleteFlag) {
@@ -397,7 +426,28 @@ public abstract class BsMStaff extends AbstractEntity implements DomainEntity, E
     }
 
     /**
+     * [get] version_no: {NotNull, int4(10), default=[1]} <br>
+     * version_no
+     * @return The value of the column 'version_no'. (basically NotNull if selected: for the constraint)
+     */
+    public Integer getVersionNo() {
+        checkSpecifiedProperty("versionNo");
+        return _versionNo;
+    }
+
+    /**
+     * [set] version_no: {NotNull, int4(10), default=[1]} <br>
+     * version_no
+     * @param versionNo The value of the column 'version_no'. (basically NotNull if update: for the constraint)
+     */
+    public void setVersionNo(Integer versionNo) {
+        registerModifiedProperty("versionNo");
+        _versionNo = versionNo;
+    }
+
+    /**
      * [get] register_datetime: {NotNull, timestamp(26, 3), default=[now()]} <br>
+     * 登録日時
      * @return The value of the column 'register_datetime'. (basically NotNull if selected: for the constraint)
      */
     public java.time.LocalDateTime getRegisterDatetime() {
@@ -407,6 +457,7 @@ public abstract class BsMStaff extends AbstractEntity implements DomainEntity, E
 
     /**
      * [set] register_datetime: {NotNull, timestamp(26, 3), default=[now()]} <br>
+     * 登録日時
      * @param registerDatetime The value of the column 'register_datetime'. (basically NotNull if update: for the constraint)
      */
     public void setRegisterDatetime(java.time.LocalDateTime registerDatetime) {
@@ -416,6 +467,7 @@ public abstract class BsMStaff extends AbstractEntity implements DomainEntity, E
 
     /**
      * [get] update_datetime: {timestamp(26, 3)} <br>
+     * 更新日時
      * @return The value of the column 'update_datetime'. (NullAllowed even if selected: for no constraint)
      */
     public java.time.LocalDateTime getUpdateDatetime() {
@@ -425,6 +477,7 @@ public abstract class BsMStaff extends AbstractEntity implements DomainEntity, E
 
     /**
      * [set] update_datetime: {timestamp(26, 3)} <br>
+     * 更新日時
      * @param updateDatetime The value of the column 'update_datetime'. (NullAllowed: null update allowed for no constraint)
      */
     public void setUpdateDatetime(java.time.LocalDateTime updateDatetime) {

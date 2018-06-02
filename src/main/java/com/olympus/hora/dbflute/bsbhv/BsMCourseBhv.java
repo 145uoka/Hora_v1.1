@@ -26,7 +26,7 @@ import com.olympus.hora.dbflute.cbean.*;
  *     course_id
  *
  * [column]
- *     course_id, course_group_id, course_name, charge, required_time, delete_flag, register_datetime, update_datetime
+ *     course_id, course_group_id, course_name, charge, required_time, delete_flag, version_no, register_datetime, update_datetime
  *
  * [sequence]
  *     
@@ -35,7 +35,7 @@ import com.olympus.hora.dbflute.cbean.*;
  *     
  *
  * [version-no]
- *     
+ *     version_no
  *
  * [foreign table]
  *     m_course_group
@@ -470,7 +470,7 @@ public abstract class BsMCourseBhv extends AbstractBehaviorWritable<MCourse, MCo
     }
 
     /**
-     * Update the entity modified-only. (ZeroUpdateException, NonExclusiveControl) <br>
+     * Update the entity modified-only. (ZeroUpdateException, ExclusiveControl) <br>
      * By PK as default, and also you can update by unique keys using entity's uniqueOf().
      * <pre>
      * MCourse mCourse = <span style="color: #70226C">new</span> MCourse();
@@ -483,8 +483,8 @@ public abstract class BsMCourseBhv extends AbstractBehaviorWritable<MCourse, MCo
      * mCourse.<span style="color: #CC4747">setVersionNo</span>(value);
      * <span style="color: #0000C0">mCourseBhv</span>.<span style="color: #CC4747">update</span>(mCourse);
      * </pre>
-     * @param mCourse The entity of update. (NotNull, PrimaryKeyNotNull)
-     * @throws EntityAlreadyDeletedException When the entity has already been deleted. (not found)
+     * @param mCourse The entity of update. (NotNull, PrimaryKeyNotNull, ConcurrencyColumnNotNull)
+     * @throws EntityAlreadyUpdatedException When the entity has already been updated.
      * @throws EntityDuplicatedException When the entity has been duplicated.
      * @throws EntityAlreadyExistsException When the entity already exists. (unique constraint violation)
      */
@@ -493,11 +493,35 @@ public abstract class BsMCourseBhv extends AbstractBehaviorWritable<MCourse, MCo
     }
 
     /**
-     * Insert or update the entity modified-only. (DefaultConstraintsEnabled, NonExclusiveControl) <br>
+     * Update the entity non-strictly modified-only. (ZeroUpdateException, NonExclusiveControl) <br>
+     * By PK as default, and also you can update by unique keys using entity's uniqueOf().
+     * <pre>
+     * MCourse mCourse = <span style="color: #70226C">new</span> MCourse();
+     * mCourse.setPK...(value); <span style="color: #3F7E5E">// required</span>
+     * mCourse.setFoo...(value); <span style="color: #3F7E5E">// you should set only modified columns</span>
+     * <span style="color: #3F7E5E">// you don't need to set values of common columns</span>
+     * <span style="color: #3F7E5E">//mCourse.setRegisterUser(value);</span>
+     * <span style="color: #3F7E5E">//mCourse.set...;</span>
+     * <span style="color: #3F7E5E">// you don't need to set a value of concurrency column</span>
+     * <span style="color: #3F7E5E">// (auto-increment for version number is valid though non-exclusive control)</span>
+     * <span style="color: #3F7E5E">//mCourse.setVersionNo(value);</span>
+     * <span style="color: #0000C0">mCourseBhv</span>.<span style="color: #CC4747">updateNonstrict</span>(mCourse);
+     * </pre>
+     * @param mCourse The entity of update. (NotNull, PrimaryKeyNotNull)
+     * @throws EntityAlreadyDeletedException When the entity has already been deleted. (not found)
+     * @throws EntityDuplicatedException When the entity has been duplicated.
+     * @throws EntityAlreadyExistsException When the entity already exists. (unique constraint violation)
+     */
+    public void updateNonstrict(MCourse mCourse) {
+        doUpdateNonstrict(mCourse, null);
+    }
+
+    /**
+     * Insert or update the entity modified-only. (DefaultConstraintsEnabled, ExclusiveControl) <br>
      * if (the entity has no PK) { insert() } else { update(), but no data, insert() } <br>
      * <p><span style="color: #994747; font-size: 120%">Also you can update by unique keys using entity's uniqueOf().</span></p>
      * @param mCourse The entity of insert or update. (NotNull, ...depends on insert or update)
-     * @throws EntityAlreadyDeletedException When the entity has already been deleted. (not found)
+     * @throws EntityAlreadyUpdatedException When the entity has already been updated.
      * @throws EntityDuplicatedException When the entity has been duplicated.
      * @throws EntityAlreadyExistsException When the entity already exists. (unique constraint violation)
      */
@@ -506,7 +530,20 @@ public abstract class BsMCourseBhv extends AbstractBehaviorWritable<MCourse, MCo
     }
 
     /**
-     * Delete the entity. (ZeroUpdateException, NonExclusiveControl) <br>
+     * Insert or update the entity non-strictly modified-only. (DefaultConstraintsEnabled, NonExclusiveControl) <br>
+     * if (the entity has no PK) { insert() } else { update(), but no data, insert() }
+     * <p><span style="color: #994747; font-size: 120%">Also you can update by unique keys using entity's uniqueOf().</span></p>
+     * @param mCourse The entity of insert or update. (NotNull, ...depends on insert or update)
+     * @throws EntityAlreadyDeletedException When the entity has already been deleted. (not found)
+     * @throws EntityDuplicatedException When the entity has been duplicated.
+     * @throws EntityAlreadyExistsException When the entity already exists. (unique constraint violation)
+     */
+    public void insertOrUpdateNonstrict(MCourse mCourse) {
+        doInsertOrUpdateNonstrict(mCourse, null, null);
+    }
+
+    /**
+     * Delete the entity. (ZeroUpdateException, ExclusiveControl) <br>
      * By PK as default, and also you can delete by unique keys using entity's uniqueOf().
      * <pre>
      * MCourse mCourse = <span style="color: #70226C">new</span> MCourse();
@@ -519,12 +556,31 @@ public abstract class BsMCourseBhv extends AbstractBehaviorWritable<MCourse, MCo
      *     ...
      * }
      * </pre>
-     * @param mCourse The entity of delete. (NotNull, PrimaryKeyNotNull)
-     * @throws EntityAlreadyDeletedException When the entity has already been deleted. (not found)
+     * @param mCourse The entity of delete. (NotNull, PrimaryKeyNotNull, ConcurrencyColumnNotNull)
+     * @throws EntityAlreadyUpdatedException When the entity has already been updated.
      * @throws EntityDuplicatedException When the entity has been duplicated.
      */
     public void delete(MCourse mCourse) {
         doDelete(mCourse, null);
+    }
+
+    /**
+     * Delete the entity non-strictly. {ZeroUpdateException, NonExclusiveControl} <br>
+     * By PK as default, and also you can delete by unique keys using entity's uniqueOf().
+     * <pre>
+     * MCourse mCourse = <span style="color: #70226C">new</span> MCourse();
+     * mCourse.setPK...(value); <span style="color: #3F7E5E">// required</span>
+     * <span style="color: #3F7E5E">// you don't need to set a value of concurrency column</span>
+     * <span style="color: #3F7E5E">// (auto-increment for version number is valid though non-exclusive control)</span>
+     * <span style="color: #3F7E5E">//mCourse.setVersionNo(value);</span>
+     * <span style="color: #0000C0">mCourseBhv</span>.<span style="color: #CC4747">deleteNonstrict</span>(mCourse);
+     * </pre>
+     * @param mCourse The entity of delete. (NotNull, PrimaryKeyNotNull)
+     * @throws EntityAlreadyDeletedException When the entity has already been deleted. (not found)
+     * @throws EntityDuplicatedException When the entity has been duplicated.
+     */
+    public void deleteNonstrict(MCourse mCourse) {
+        doDeleteNonstrict(mCourse, null);
     }
 
     // ===================================================================================
@@ -559,7 +615,7 @@ public abstract class BsMCourseBhv extends AbstractBehaviorWritable<MCourse, MCo
     }
 
     /**
-     * Batch-update the entity list modified-only of same-set columns. (NonExclusiveControl) <br>
+     * Batch-update the entity list modified-only of same-set columns. (ExclusiveControl) <br>
      * This method uses executeBatch() of java.sql.PreparedStatement. <br>
      * <span style="color: #CC4747; font-size: 120%">You should specify same-set columns to all entities like this:</span>
      * <pre>
@@ -578,23 +634,62 @@ public abstract class BsMCourseBhv extends AbstractBehaviorWritable<MCourse, MCo
      * }
      * <span style="color: #0000C0">mCourseBhv</span>.<span style="color: #CC4747">batchUpdate</span>(mCourseList);
      * </pre>
-     * @param mCourseList The list of the entity. (NotNull, EmptyAllowed, PrimaryKeyNotNull)
+     * @param mCourseList The list of the entity. (NotNull, EmptyAllowed, PrimaryKeyNotNull, ConcurrencyColumnNotNull)
      * @return The array of updated count. (NotNull, EmptyAllowed)
-     * @throws EntityAlreadyDeletedException When the entity has already been deleted. (not found)
+     * @throws BatchEntityAlreadyUpdatedException When the entity has already been updated. This exception extends EntityAlreadyUpdatedException.
      */
     public int[] batchUpdate(List<MCourse> mCourseList) {
         return doBatchUpdate(mCourseList, null);
     }
 
     /**
-     * Batch-delete the entity list. (NonExclusiveControl) <br>
+     * Batch-update the entity list non-strictly modified-only of same-set columns. (NonExclusiveControl) <br>
+     * This method uses executeBatch() of java.sql.PreparedStatement. <br>
+     * <span style="color: #CC4747; font-size: 140%">You should specify same-set columns to all entities like this:</span>
+     * <pre>
+     * <span style="color: #70226C">for</span> (... : ...) {
+     *     MCourse mCourse = <span style="color: #70226C">new</span> MCourse();
+     *     mCourse.setFooName("foo");
+     *     <span style="color: #70226C">if</span> (...) {
+     *         mCourse.setFooPrice(123);
+     *     } <span style="color: #70226C">else</span> {
+     *         mCourse.setFooPrice(null); <span style="color: #3F7E5E">// updated as null</span>
+     *         <span style="color: #3F7E5E">//mCourse.setFooDate(...); // *not allowed, fragmented</span>
+     *     }
+     *     <span style="color: #3F7E5E">// FOO_NAME and FOO_PRICE (and record meta columns) are updated</span>
+     *     <span style="color: #3F7E5E">// (others are not updated: their values are kept)</span>
+     *     mCourseList.add(mCourse);
+     * }
+     * <span style="color: #0000C0">mCourseBhv</span>.<span style="color: #CC4747">batchUpdate</span>(mCourseList);
+     * </pre>
+     * @param mCourseList The list of the entity. (NotNull, EmptyAllowed, PrimaryKeyNotNull)
+     * @return The array of updated count. (NotNull, EmptyAllowed)
+     * @throws EntityAlreadyDeletedException When the entity has already been deleted. (not found)
+     */
+    public int[] batchUpdateNonstrict(List<MCourse> mCourseList) {
+        return doBatchUpdateNonstrict(mCourseList, null);
+    }
+
+    /**
+     * Batch-delete the entity list. (ExclusiveControl) <br>
+     * This method uses executeBatch() of java.sql.PreparedStatement.
+     * @param mCourseList The list of the entity. (NotNull, EmptyAllowed, PrimaryKeyNotNull)
+     * @return The array of deleted count. (NotNull, EmptyAllowed)
+     * @throws BatchEntityAlreadyUpdatedException When the entity has already been updated. This exception extends EntityAlreadyUpdatedException.
+     */
+    public int[] batchDelete(List<MCourse> mCourseList) {
+        return doBatchDelete(mCourseList, null);
+    }
+
+    /**
+     * Batch-delete the entity list non-strictly. {NonExclusiveControl} <br>
      * This method uses executeBatch() of java.sql.PreparedStatement.
      * @param mCourseList The list of the entity. (NotNull, EmptyAllowed, PrimaryKeyNotNull)
      * @return The array of deleted count. (NotNull, EmptyAllowed)
      * @throws EntityAlreadyDeletedException When the entity has already been deleted. (not found)
      */
-    public int[] batchDelete(List<MCourse> mCourseList) {
-        return doBatchDelete(mCourseList, null);
+    public int[] batchDeleteNonstrict(List<MCourse> mCourseList) {
+        return doBatchDeleteNonstrict(mCourseList, null);
     }
 
     // ===================================================================================
@@ -701,7 +796,7 @@ public abstract class BsMCourseBhv extends AbstractBehaviorWritable<MCourse, MCo
     }
 
     /**
-     * Update the entity with varying requests modified-only. (ZeroUpdateException, NonExclusiveControl) <br>
+     * Update the entity with varying requests modified-only. (ZeroUpdateException, ExclusiveControl) <br>
      * For example, self(selfCalculationSpecification), specify(updateColumnSpecification), disableCommonColumnAutoSetup(). <br>
      * Other specifications are same as update(entity).
      * <pre>
@@ -717,9 +812,9 @@ public abstract class BsMCourseBhv extends AbstractBehaviorWritable<MCourse, MCo
      *     }).plus(1); <span style="color: #3F7E5E">// XXX_COUNT = XXX_COUNT + 1</span>
      * });
      * </pre>
-     * @param mCourse The entity of update. (NotNull, PrimaryKeyNotNull)
+     * @param mCourse The entity of update. (NotNull, PrimaryKeyNotNull, ConcurrencyColumnNotNull)
      * @param opLambda The callback for option of update for varying requests. (NotNull)
-     * @throws EntityAlreadyDeletedException When the entity has already been deleted. (not found)
+     * @throws EntityAlreadyUpdatedException When the entity has already been updated.
      * @throws EntityDuplicatedException When the entity has been duplicated.
      * @throws EntityAlreadyExistsException When the entity already exists. (unique constraint violation)
      */
@@ -728,12 +823,40 @@ public abstract class BsMCourseBhv extends AbstractBehaviorWritable<MCourse, MCo
     }
 
     /**
+     * Update the entity with varying requests non-strictly modified-only. (ZeroUpdateException, NonExclusiveControl) <br>
+     * For example, self(selfCalculationSpecification), specify(updateColumnSpecification), disableCommonColumnAutoSetup(). <br>
+     * Other specifications are same as updateNonstrict(entity).
+     * <pre>
+     * <span style="color: #3F7E5E">// ex) you can update by self calculation values</span>
+     * MCourse mCourse = <span style="color: #70226C">new</span> MCourse();
+     * mCourse.setPK...(value); <span style="color: #3F7E5E">// required</span>
+     * mCourse.setOther...(value); <span style="color: #3F7E5E">// you should set only modified columns</span>
+     * <span style="color: #3F7E5E">// you don't need to set a value of concurrency column</span>
+     * <span style="color: #3F7E5E">// (auto-increment for version number is valid though non-exclusive control)</span>
+     * <span style="color: #3F7E5E">//mCourse.setVersionNo(value);</span>
+     * <span style="color: #0000C0">mCourseBhv</span>.<span style="color: #CC4747">varyingUpdateNonstrict</span>(mCourse, <span style="color: #553000">op</span> <span style="color: #90226C; font-weight: bold"><span style="font-size: 120%">-</span>&gt;</span> {
+     *     <span style="color: #553000">op</span>.self(<span style="color: #553000">cb</span> <span style="color: #90226C; font-weight: bold"><span style="font-size: 120%">-</span>&gt;</span> {
+     *         <span style="color: #553000">cb</span>.specify().<span style="color: #CC4747">columnXxxCount()</span>;
+     *     }).plus(1); <span style="color: #3F7E5E">// XXX_COUNT = XXX_COUNT + 1</span>
+     * });
+     * </pre>
+     * @param mCourse The entity of update. (NotNull, PrimaryKeyNotNull)
+     * @param opLambda The callback for option of update for varying requests. (NotNull)
+     * @throws EntityAlreadyDeletedException When the entity has already been deleted. (not found)
+     * @throws EntityDuplicatedException When the entity has been duplicated.
+     * @throws EntityAlreadyExistsException When the entity already exists. (unique constraint violation)
+     */
+    public void varyingUpdateNonstrict(MCourse mCourse, WritableOptionCall<MCourseCB, UpdateOption<MCourseCB>> opLambda) {
+        doUpdateNonstrict(mCourse, createUpdateOption(opLambda));
+    }
+
+    /**
      * Insert or update the entity with varying requests. (ExclusiveControl: when update) <br>
      * Other specifications are same as insertOrUpdate(entity).
      * @param mCourse The entity of insert or update. (NotNull)
      * @param insertOpLambda The callback for option of insert for varying requests. (NotNull)
      * @param updateOpLambda The callback for option of update for varying requests. (NotNull)
-     * @throws EntityAlreadyDeletedException When the entity has already been deleted. (not found)
+     * @throws EntityAlreadyUpdatedException When the entity has already been updated.
      * @throws EntityDuplicatedException When the entity has been duplicated.
      * @throws EntityAlreadyExistsException When the entity already exists. (unique constraint violation)
      */
@@ -742,16 +865,43 @@ public abstract class BsMCourseBhv extends AbstractBehaviorWritable<MCourse, MCo
     }
 
     /**
-     * Delete the entity with varying requests. (ZeroUpdateException, NonExclusiveControl) <br>
+     * Insert or update the entity with varying requests non-strictly. (NonExclusiveControl: when update) <br>
+     * Other specifications are same as insertOrUpdateNonstrict(entity).
+     * @param mCourse The entity of insert or update. (NotNull)
+     * @param insertOpLambda The callback for option of insert for varying requests. (NotNull)
+     * @param updateOpLambda The callback for option of update for varying requests. (NotNull)
+     * @throws EntityAlreadyDeletedException When the entity has already been deleted. (not found)
+     * @throws EntityDuplicatedException When the entity has been duplicated.
+     * @throws EntityAlreadyExistsException When the entity already exists. (unique constraint violation)
+     */
+    public void varyingInsertOrUpdateNonstrict(MCourse mCourse, WritableOptionCall<MCourseCB, InsertOption<MCourseCB>> insertOpLambda, WritableOptionCall<MCourseCB, UpdateOption<MCourseCB>> updateOpLambda) {
+        doInsertOrUpdateNonstrict(mCourse, createInsertOption(insertOpLambda), createUpdateOption(updateOpLambda));
+    }
+
+    /**
+     * Delete the entity with varying requests. (ZeroUpdateException, ExclusiveControl) <br>
      * Now a valid option does not exist. <br>
      * Other specifications are same as delete(entity).
+     * @param mCourse The entity of delete. (NotNull, PrimaryKeyNotNull, ConcurrencyColumnNotNull)
+     * @param opLambda The callback for option of delete for varying requests. (NotNull)
+     * @throws EntityAlreadyUpdatedException When the entity has already been updated.
+     * @throws EntityDuplicatedException When the entity has been duplicated.
+     */
+    public void varyingDelete(MCourse mCourse, WritableOptionCall<MCourseCB, DeleteOption<MCourseCB>> opLambda) {
+        doDelete(mCourse, createDeleteOption(opLambda));
+    }
+
+    /**
+     * Delete the entity with varying requests non-strictly. (ZeroUpdateException, NonExclusiveControl) <br>
+     * Now a valid option does not exist. <br>
+     * Other specifications are same as deleteNonstrict(entity).
      * @param mCourse The entity of delete. (NotNull, PrimaryKeyNotNull, ConcurrencyColumnNotNull)
      * @param opLambda The callback for option of delete for varying requests. (NotNull)
      * @throws EntityAlreadyDeletedException When the entity has already been deleted. (not found)
      * @throws EntityDuplicatedException When the entity has been duplicated.
      */
-    public void varyingDelete(MCourse mCourse, WritableOptionCall<MCourseCB, DeleteOption<MCourseCB>> opLambda) {
-        doDelete(mCourse, createDeleteOption(opLambda));
+    public void varyingDeleteNonstrict(MCourse mCourse, WritableOptionCall<MCourseCB, DeleteOption<MCourseCB>> opLambda) {
+        doDeleteNonstrict(mCourse, createDeleteOption(opLambda));
     }
 
     // -----------------------------------------------------
@@ -784,6 +934,19 @@ public abstract class BsMCourseBhv extends AbstractBehaviorWritable<MCourse, MCo
     }
 
     /**
+     * Batch-update the list with varying requests non-strictly. <br>
+     * For example, self(selfCalculationSpecification), specify(updateColumnSpecification)
+     * , disableCommonColumnAutoSetup(), limitBatchUpdateLogging(). <br>
+     * Other specifications are same as batchUpdateNonstrict(entityList).
+     * @param mCourseList The list of the entity. (NotNull, EmptyAllowed, PrimaryKeyNotNull)
+     * @param opLambda The callback for option of update for varying requests. (NotNull)
+     * @return The array of updated count. (NotNull, EmptyAllowed)
+     */
+    public int[] varyingBatchUpdateNonstrict(List<MCourse> mCourseList, WritableOptionCall<MCourseCB, UpdateOption<MCourseCB>> opLambda) {
+        return doBatchUpdateNonstrict(mCourseList, createUpdateOption(opLambda));
+    }
+
+    /**
      * Batch-delete the list with varying requests. <br>
      * For example, limitBatchDeleteLogging(). <br>
      * Other specifications are same as batchDelete(entityList).
@@ -793,6 +956,18 @@ public abstract class BsMCourseBhv extends AbstractBehaviorWritable<MCourse, MCo
      */
     public int[] varyingBatchDelete(List<MCourse> mCourseList, WritableOptionCall<MCourseCB, DeleteOption<MCourseCB>> opLambda) {
         return doBatchDelete(mCourseList, createDeleteOption(opLambda));
+    }
+
+    /**
+     * Batch-delete the list with varying requests non-strictly. <br>
+     * For example, limitBatchDeleteLogging(). <br>
+     * Other specifications are same as batchDeleteNonstrict(entityList).
+     * @param mCourseList The list of the entity. (NotNull, EmptyAllowed, PrimaryKeyNotNull)
+     * @param opLambda The callback for option of delete for varying requests. (NotNull)
+     * @return The array of deleted count. (NotNull, EmptyAllowed)
+     */
+    public int[] varyingBatchDeleteNonstrict(List<MCourse> mCourseList, WritableOptionCall<MCourseCB, DeleteOption<MCourseCB>> opLambda) {
+        return doBatchDeleteNonstrict(mCourseList, createDeleteOption(opLambda));
     }
 
     // -----------------------------------------------------
@@ -896,6 +1071,12 @@ public abstract class BsMCourseBhv extends AbstractBehaviorWritable<MCourse, MCo
     public OutsideSqlAllFacadeExecutor<MCourseBhv> outsideSql() {
         return doOutsideSql();
     }
+
+    // ===================================================================================
+    //                                                                Optimistic Lock Info
+    //                                                                ====================
+    @Override
+    protected boolean hasVersionNoValue(Entity et) { return downcast(et).getVersionNo() != null; }
 
     // ===================================================================================
     //                                                                         Type Helper

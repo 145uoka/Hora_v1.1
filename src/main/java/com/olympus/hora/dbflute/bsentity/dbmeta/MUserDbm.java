@@ -43,6 +43,8 @@ public class MUserDbm extends AbstractDBMeta {
     { xsetupEpg(); }
     protected void xsetupEpg() {
         setupEpg(_epgMap, et -> ((MUser)et).getUserId(), (et, vl) -> ((MUser)et).setUserId(cti(vl)), "userId");
+        setupEpg(_epgMap, et -> ((MUser)et).getLineId(), (et, vl) -> ((MUser)et).setLineId((String)vl), "lineId");
+        setupEpg(_epgMap, et -> ((MUser)et).getLineName(), (et, vl) -> ((MUser)et).setLineName((String)vl), "lineName");
         setupEpg(_epgMap, et -> ((MUser)et).getFamilyName(), (et, vl) -> ((MUser)et).setFamilyName((String)vl), "familyName");
         setupEpg(_epgMap, et -> ((MUser)et).getGivenName(), (et, vl) -> ((MUser)et).setGivenName((String)vl), "givenName");
         setupEpg(_epgMap, et -> ((MUser)et).getFamilyNameKana(), (et, vl) -> ((MUser)et).setFamilyNameKana((String)vl), "familyNameKana");
@@ -64,6 +66,7 @@ public class MUserDbm extends AbstractDBMeta {
         setupEpg(_epgMap, et -> ((MUser)et).getAddress2(), (et, vl) -> ((MUser)et).setAddress2((String)vl), "address2");
         setupEpg(_epgMap, et -> ((MUser)et).getRemarks(), (et, vl) -> ((MUser)et).setRemarks((String)vl), "remarks");
         setupEpg(_epgMap, et -> ((MUser)et).getDeleteFlag(), (et, vl) -> ((MUser)et).setDeleteFlag((Boolean)vl), "deleteFlag");
+        setupEpg(_epgMap, et -> ((MUser)et).getVersionNo(), (et, vl) -> ((MUser)et).setVersionNo(cti(vl)), "versionNo");
         setupEpg(_epgMap, et -> ((MUser)et).getRegisterDatetime(), (et, vl) -> ((MUser)et).setRegisterDatetime(ctldt(vl)), "registerDatetime");
         setupEpg(_epgMap, et -> ((MUser)et).getUpdateDatetime(), (et, vl) -> ((MUser)et).setUpdateDatetime(ctldt(vl)), "updateDatetime");
     }
@@ -87,6 +90,8 @@ public class MUserDbm extends AbstractDBMeta {
     //                                                                         Column Info
     //                                                                         ===========
     protected final ColumnInfo _columnUserId = cci("user_id", "user_id", null, null, Integer.class, "userId", null, true, true, true, "serial", 10, 0, null, "nextval('m_user_user_id_seq'::regclass)", false, null, null, null, "TReservationList", null, false);
+    protected final ColumnInfo _columnLineId = cci("line_id", "line_id", null, null, String.class, "lineId", null, false, false, false, "text", 2147483647, 0, null, null, false, null, null, null, null, null, false);
+    protected final ColumnInfo _columnLineName = cci("line_name", "line_name", null, null, String.class, "lineName", null, false, false, false, "text", 2147483647, 0, null, null, false, null, null, null, null, null, false);
     protected final ColumnInfo _columnFamilyName = cci("family_name", "family_name", null, null, String.class, "familyName", null, false, false, false, "text", 2147483647, 0, null, null, false, null, null, null, null, null, false);
     protected final ColumnInfo _columnGivenName = cci("given_name", "given_name", null, null, String.class, "givenName", null, false, false, false, "text", 2147483647, 0, null, null, false, null, null, null, null, null, false);
     protected final ColumnInfo _columnFamilyNameKana = cci("family_name_kana", "family_name_kana", null, null, String.class, "familyNameKana", null, false, false, false, "text", 2147483647, 0, null, null, false, null, null, null, null, null, false);
@@ -108,6 +113,7 @@ public class MUserDbm extends AbstractDBMeta {
     protected final ColumnInfo _columnAddress2 = cci("address2", "address2", null, null, String.class, "address2", null, false, false, false, "text", 2147483647, 0, null, null, false, null, null, null, null, null, false);
     protected final ColumnInfo _columnRemarks = cci("remarks", "remarks", null, null, String.class, "remarks", null, false, false, false, "text", 2147483647, 0, null, null, false, null, null, null, null, null, false);
     protected final ColumnInfo _columnDeleteFlag = cci("delete_flag", "delete_flag", null, null, Boolean.class, "deleteFlag", null, false, false, true, "bool", 1, 0, null, "false", false, null, null, null, null, null, false);
+    protected final ColumnInfo _columnVersionNo = cci("version_no", "version_no", null, null, Integer.class, "versionNo", null, false, false, true, "int4", 10, 0, null, "1", false, OptimisticLockType.VERSION_NO, null, null, null, null, false);
     protected final ColumnInfo _columnRegisterDatetime = cci("register_datetime", "register_datetime", null, null, java.time.LocalDateTime.class, "registerDatetime", null, false, false, true, "timestamp", 26, 3, null, "now()", true, null, null, null, null, null, false);
     protected final ColumnInfo _columnUpdateDatetime = cci("update_datetime", "update_datetime", null, null, java.time.LocalDateTime.class, "updateDatetime", null, false, false, false, "timestamp", 26, 3, null, null, true, null, null, null, null, null, false);
 
@@ -116,6 +122,16 @@ public class MUserDbm extends AbstractDBMeta {
      * @return The information object of specified column. (NotNull)
      */
     public ColumnInfo columnUserId() { return _columnUserId; }
+    /**
+     * line_id: {text(2147483647)}
+     * @return The information object of specified column. (NotNull)
+     */
+    public ColumnInfo columnLineId() { return _columnLineId; }
+    /**
+     * line_name: {text(2147483647)}
+     * @return The information object of specified column. (NotNull)
+     */
+    public ColumnInfo columnLineName() { return _columnLineName; }
     /**
      * family_name: {text(2147483647)}
      * @return The information object of specified column. (NotNull)
@@ -222,6 +238,11 @@ public class MUserDbm extends AbstractDBMeta {
      */
     public ColumnInfo columnDeleteFlag() { return _columnDeleteFlag; }
     /**
+     * version_no: {NotNull, int4(10), default=[1]}
+     * @return The information object of specified column. (NotNull)
+     */
+    public ColumnInfo columnVersionNo() { return _columnVersionNo; }
+    /**
      * register_datetime: {NotNull, timestamp(26, 3), default=[now()]}
      * @return The information object of specified column. (NotNull)
      */
@@ -235,6 +256,8 @@ public class MUserDbm extends AbstractDBMeta {
     protected List<ColumnInfo> ccil() {
         List<ColumnInfo> ls = newArrayList();
         ls.add(columnUserId());
+        ls.add(columnLineId());
+        ls.add(columnLineName());
         ls.add(columnFamilyName());
         ls.add(columnGivenName());
         ls.add(columnFamilyNameKana());
@@ -256,6 +279,7 @@ public class MUserDbm extends AbstractDBMeta {
         ls.add(columnAddress2());
         ls.add(columnRemarks());
         ls.add(columnDeleteFlag());
+        ls.add(columnVersionNo());
         ls.add(columnRegisterDatetime());
         ls.add(columnUpdateDatetime());
         return ls;
@@ -301,6 +325,8 @@ public class MUserDbm extends AbstractDBMeta {
     public String getSequenceName() { return "m_user_user_id_seq"; }
     public Integer getSequenceIncrementSize() { return 1; }
     public Integer getSequenceCacheSize() { return null; }
+    public boolean hasVersionNo() { return true; }
+    public ColumnInfo getVersionNoColumnInfo() { return _columnVersionNo; }
     public boolean hasCommonColumn() { return true; }
     public List<ColumnInfo> getCommonColumnInfoList()
     { return newArrayList(columnRegisterDatetime(), columnUpdateDatetime()); }

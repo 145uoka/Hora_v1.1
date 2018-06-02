@@ -46,6 +46,7 @@ public class MHolidayDbm extends AbstractDBMeta {
         setupEpg(_epgMap, et -> ((MHoliday)et).getHolidayName(), (et, vl) -> ((MHoliday)et).setHolidayName((String)vl), "holidayName");
         setupEpg(_epgMap, et -> ((MHoliday)et).getHoliday(), (et, vl) -> ((MHoliday)et).setHoliday(ctld(vl)), "holiday");
         setupEpg(_epgMap, et -> ((MHoliday)et).getDeleteFlag(), (et, vl) -> ((MHoliday)et).setDeleteFlag((Boolean)vl), "deleteFlag");
+        setupEpg(_epgMap, et -> ((MHoliday)et).getVersionNo(), (et, vl) -> ((MHoliday)et).setVersionNo(cti(vl)), "versionNo");
         setupEpg(_epgMap, et -> ((MHoliday)et).getRegisterDatetime(), (et, vl) -> ((MHoliday)et).setRegisterDatetime(ctldt(vl)), "registerDatetime");
         setupEpg(_epgMap, et -> ((MHoliday)et).getUpdateDatetime(), (et, vl) -> ((MHoliday)et).setUpdateDatetime(ctldt(vl)), "updateDatetime");
     }
@@ -70,8 +71,9 @@ public class MHolidayDbm extends AbstractDBMeta {
     //                                                                         ===========
     protected final ColumnInfo _columnHolidayId = cci("holiday_id", "holiday_id", null, null, Integer.class, "holidayId", null, true, true, true, "serial", 10, 0, null, "nextval('m_holiday_holiday_id_seq'::regclass)", false, null, null, null, null, null, false);
     protected final ColumnInfo _columnHolidayName = cci("holiday_name", "holiday_name", null, null, String.class, "holidayName", null, false, false, false, "text", 2147483647, 0, null, null, false, null, null, null, null, null, false);
-    protected final ColumnInfo _columnHoliday = cci("holiday", "holiday", null, null, java.time.LocalDate.class, "holiday", null, false, false, false, "date", 13, 0, null, null, false, null, null, null, null, null, false);
+    protected final ColumnInfo _columnHoliday = cci("holiday", "holiday", null, null, java.time.LocalDate.class, "holiday", null, false, false, true, "date", 13, 0, null, null, false, null, null, null, null, null, false);
     protected final ColumnInfo _columnDeleteFlag = cci("delete_flag", "delete_flag", null, null, Boolean.class, "deleteFlag", null, false, false, true, "bool", 1, 0, null, "false", false, null, null, null, null, null, false);
+    protected final ColumnInfo _columnVersionNo = cci("version_no", "version_no", null, null, Integer.class, "versionNo", null, false, false, true, "int4", 10, 0, null, "1", false, OptimisticLockType.VERSION_NO, null, null, null, null, false);
     protected final ColumnInfo _columnRegisterDatetime = cci("register_datetime", "register_datetime", null, null, java.time.LocalDateTime.class, "registerDatetime", null, false, false, true, "timestamp", 26, 3, null, "now()", true, null, null, null, null, null, false);
     protected final ColumnInfo _columnUpdateDatetime = cci("update_datetime", "update_datetime", null, null, java.time.LocalDateTime.class, "updateDatetime", null, false, false, false, "timestamp", 26, 3, null, null, true, null, null, null, null, null, false);
 
@@ -86,7 +88,7 @@ public class MHolidayDbm extends AbstractDBMeta {
      */
     public ColumnInfo columnHolidayName() { return _columnHolidayName; }
     /**
-     * holiday: {date(13)}
+     * holiday: {NotNull, date(13)}
      * @return The information object of specified column. (NotNull)
      */
     public ColumnInfo columnHoliday() { return _columnHoliday; }
@@ -95,6 +97,11 @@ public class MHolidayDbm extends AbstractDBMeta {
      * @return The information object of specified column. (NotNull)
      */
     public ColumnInfo columnDeleteFlag() { return _columnDeleteFlag; }
+    /**
+     * version_no: {NotNull, int4(10), default=[1]}
+     * @return The information object of specified column. (NotNull)
+     */
+    public ColumnInfo columnVersionNo() { return _columnVersionNo; }
     /**
      * register_datetime: {NotNull, timestamp(26, 3), default=[now()]}
      * @return The information object of specified column. (NotNull)
@@ -112,6 +119,7 @@ public class MHolidayDbm extends AbstractDBMeta {
         ls.add(columnHolidayName());
         ls.add(columnHoliday());
         ls.add(columnDeleteFlag());
+        ls.add(columnVersionNo());
         ls.add(columnRegisterDatetime());
         ls.add(columnUpdateDatetime());
         return ls;
@@ -149,6 +157,8 @@ public class MHolidayDbm extends AbstractDBMeta {
     public String getSequenceName() { return "m_holiday_holiday_id_seq"; }
     public Integer getSequenceIncrementSize() { return 1; }
     public Integer getSequenceCacheSize() { return null; }
+    public boolean hasVersionNo() { return true; }
+    public ColumnInfo getVersionNoColumnInfo() { return _columnVersionNo; }
     public boolean hasCommonColumn() { return true; }
     public List<ColumnInfo> getCommonColumnInfoList()
     { return newArrayList(columnRegisterDatetime(), columnUpdateDatetime()); }

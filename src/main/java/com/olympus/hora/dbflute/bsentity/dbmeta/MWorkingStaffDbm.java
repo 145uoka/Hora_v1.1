@@ -47,6 +47,7 @@ public class MWorkingStaffDbm extends AbstractDBMeta {
         setupEpg(_epgMap, et -> ((MWorkingStaff)et).getShopId(), (et, vl) -> ((MWorkingStaff)et).setShopId(cti(vl)), "shopId");
         setupEpg(_epgMap, et -> ((MWorkingStaff)et).getStaffId(), (et, vl) -> ((MWorkingStaff)et).setStaffId(cti(vl)), "staffId");
         setupEpg(_epgMap, et -> ((MWorkingStaff)et).getDeleteFlag(), (et, vl) -> ((MWorkingStaff)et).setDeleteFlag((Boolean)vl), "deleteFlag");
+        setupEpg(_epgMap, et -> ((MWorkingStaff)et).getVersionNo(), (et, vl) -> ((MWorkingStaff)et).setVersionNo(cti(vl)), "versionNo");
         setupEpg(_epgMap, et -> ((MWorkingStaff)et).getRegisterDatetime(), (et, vl) -> ((MWorkingStaff)et).setRegisterDatetime(ctldt(vl)), "registerDatetime");
         setupEpg(_epgMap, et -> ((MWorkingStaff)et).getUpdateDatetime(), (et, vl) -> ((MWorkingStaff)et).setUpdateDatetime(ctldt(vl)), "updateDatetime");
     }
@@ -82,10 +83,11 @@ public class MWorkingStaffDbm extends AbstractDBMeta {
     // ===================================================================================
     //                                                                         Column Info
     //                                                                         ===========
-    protected final ColumnInfo _columnWorkingStaffId = cci("working_staff_id", "working_staff_id", null, null, Integer.class, "workingStaffId", null, true, true, true, "serial", 10, 0, null, "nextval('m_working_staff_working_staff_id_seq'::regclass)", false, null, null, null, null, null, false);
+    protected final ColumnInfo _columnWorkingStaffId = cci("working_staff_id", "working_staff_id", null, null, Integer.class, "workingStaffId", null, true, true, true, "serial", 10, 0, null, "nextval('m_working_staff_working_staff_id_seq'::regclass)", false, null, null, null, "TReservationList,TShiftList", null, false);
     protected final ColumnInfo _columnShopId = cci("shop_id", "shop_id", null, null, Integer.class, "shopId", null, false, false, false, "int4", 10, 0, null, null, false, null, null, "MShop", null, null, false);
     protected final ColumnInfo _columnStaffId = cci("staff_id", "staff_id", null, null, Integer.class, "staffId", null, false, false, false, "int4", 10, 0, null, null, false, null, null, "MStaff", null, null, false);
     protected final ColumnInfo _columnDeleteFlag = cci("delete_flag", "delete_flag", null, null, Boolean.class, "deleteFlag", null, false, false, true, "bool", 1, 0, null, "false", false, null, null, null, null, null, false);
+    protected final ColumnInfo _columnVersionNo = cci("version_no", "version_no", null, null, Integer.class, "versionNo", null, false, false, true, "int4", 10, 0, null, "1", false, OptimisticLockType.VERSION_NO, null, null, null, null, false);
     protected final ColumnInfo _columnRegisterDatetime = cci("register_datetime", "register_datetime", null, null, java.time.LocalDateTime.class, "registerDatetime", null, false, false, true, "timestamp", 26, 3, null, "now()", true, null, null, null, null, null, false);
     protected final ColumnInfo _columnUpdateDatetime = cci("update_datetime", "update_datetime", null, null, java.time.LocalDateTime.class, "updateDatetime", null, false, false, false, "timestamp", 26, 3, null, null, true, null, null, null, null, null, false);
 
@@ -110,6 +112,11 @@ public class MWorkingStaffDbm extends AbstractDBMeta {
      */
     public ColumnInfo columnDeleteFlag() { return _columnDeleteFlag; }
     /**
+     * version_no: {NotNull, int4(10), default=[1]}
+     * @return The information object of specified column. (NotNull)
+     */
+    public ColumnInfo columnVersionNo() { return _columnVersionNo; }
+    /**
      * register_datetime: {NotNull, timestamp(26, 3), default=[now()]}
      * @return The information object of specified column. (NotNull)
      */
@@ -126,6 +133,7 @@ public class MWorkingStaffDbm extends AbstractDBMeta {
         ls.add(columnShopId());
         ls.add(columnStaffId());
         ls.add(columnDeleteFlag());
+        ls.add(columnVersionNo());
         ls.add(columnRegisterDatetime());
         ls.add(columnUpdateDatetime());
         return ls;
@@ -171,6 +179,22 @@ public class MWorkingStaffDbm extends AbstractDBMeta {
     // -----------------------------------------------------
     //                                     Referrer Property
     //                                     -----------------
+    /**
+     * t_reservation by working_staff_id, named 'TReservationList'.
+     * @return The information object of referrer property. (NotNull)
+     */
+    public ReferrerInfo referrerTReservationList() {
+        Map<ColumnInfo, ColumnInfo> mp = newLinkedHashMap(columnWorkingStaffId(), TReservationDbm.getInstance().columnWorkingStaffId());
+        return cri("t_reservation_working_staff_id_fkey", "TReservationList", this, TReservationDbm.getInstance(), mp, false, "MWorkingStaff");
+    }
+    /**
+     * t_shift by working_staff_id, named 'TShiftList'.
+     * @return The information object of referrer property. (NotNull)
+     */
+    public ReferrerInfo referrerTShiftList() {
+        Map<ColumnInfo, ColumnInfo> mp = newLinkedHashMap(columnWorkingStaffId(), TShiftDbm.getInstance().columnWorkingStaffId());
+        return cri("t_shift_working_staff_id_fkey", "TShiftList", this, TShiftDbm.getInstance(), mp, false, "MWorkingStaff");
+    }
 
     // ===================================================================================
     //                                                                        Various Info
@@ -179,6 +203,8 @@ public class MWorkingStaffDbm extends AbstractDBMeta {
     public String getSequenceName() { return "m_working_staff_working_staff_id_seq"; }
     public Integer getSequenceIncrementSize() { return 1; }
     public Integer getSequenceCacheSize() { return null; }
+    public boolean hasVersionNo() { return true; }
+    public ColumnInfo getVersionNoColumnInfo() { return _columnVersionNo; }
     public boolean hasCommonColumn() { return true; }
     public List<ColumnInfo> getCommonColumnInfoList()
     { return newArrayList(columnRegisterDatetime(), columnUpdateDatetime()); }

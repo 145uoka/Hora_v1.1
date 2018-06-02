@@ -314,11 +314,6 @@ public class BsMCourseGroupCB extends AbstractConditionBean {
                              , HpSDRFunctionFactory sdrFuncFactory)
         { super(baseCB, qyCall, purpose, dbmetaProvider, sdrFuncFactory); }
         /**
-         * course_group_id: {PK, ID, NotNull, serial(10)}
-         * @return The information object of specified column. (NotNull)
-         */
-        public SpecifiedColumn columnCourseGroupId() { return doColumn("course_group_id"); }
-        /**
          * shop_id: {int4(10), FK to m_shop}
          * @return The information object of specified column. (NotNull)
          */
@@ -328,6 +323,11 @@ public class BsMCourseGroupCB extends AbstractConditionBean {
          * @return The information object of specified column. (NotNull)
          */
         public SpecifiedColumn columnGroupName() { return doColumn("group_name"); }
+        /**
+         * course_group_id: {PK, ID, NotNull, serial(10)}
+         * @return The information object of specified column. (NotNull)
+         */
+        public SpecifiedColumn columnCourseGroupId() { return doColumn("course_group_id"); }
         /**
          * required_flg: {int2(5)}
          * @return The information object of specified column. (NotNull)
@@ -343,6 +343,11 @@ public class BsMCourseGroupCB extends AbstractConditionBean {
          * @return The information object of specified column. (NotNull)
          */
         public SpecifiedColumn columnDeleteFlag() { return doColumn("delete_flag"); }
+        /**
+         * version_no: {NotNull, int4(10), default=[1]}
+         * @return The information object of specified column. (NotNull)
+         */
+        public SpecifiedColumn columnVersionNo() { return doColumn("version_no"); }
         /**
          * register_datetime: {NotNull, timestamp(26, 3), default=[now()]}
          * @return The information object of specified column. (NotNull)

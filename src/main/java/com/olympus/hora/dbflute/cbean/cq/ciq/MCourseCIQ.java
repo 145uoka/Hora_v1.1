@@ -77,6 +77,7 @@ public class MCourseCIQ extends AbstractBsMCourseCQ {
     protected ConditionValue xgetCValueCharge() { return _myCQ.xdfgetCharge(); }
     protected ConditionValue xgetCValueRequiredTime() { return _myCQ.xdfgetRequiredTime(); }
     protected ConditionValue xgetCValueDeleteFlag() { return _myCQ.xdfgetDeleteFlag(); }
+    protected ConditionValue xgetCValueVersionNo() { return _myCQ.xdfgetVersionNo(); }
     protected ConditionValue xgetCValueRegisterDatetime() { return _myCQ.xdfgetRegisterDatetime(); }
     protected ConditionValue xgetCValueUpdateDatetime() { return _myCQ.xdfgetUpdateDatetime(); }
     protected Map<String, Object> xfindFixedConditionDynamicParameterMap(String pp) { return null; }

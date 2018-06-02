@@ -267,6 +267,11 @@ public class BsMWorkingStaffCB extends AbstractConditionBean {
         return _nssMShop;
     }
 
+    protected MStaffNss _nssMStaff;
+    public MStaffNss xdfgetNssMStaff() {
+        if (_nssMStaff == null) { _nssMStaff = new MStaffNss(null); }
+        return _nssMStaff;
+    }
     /**
      * Set up relation columns to select clause. <br>
      * m_staff by my staff_id, named 'MStaff'.
@@ -278,13 +283,17 @@ public class BsMWorkingStaffCB extends AbstractConditionBean {
      *     ... = <span style="color: #553000">mWorkingStaff</span>.<span style="color: #CC4747">getMStaff()</span>; <span style="color: #3F7E5E">// you can get by using SetupSelect</span>
      * });
      * </pre>
+     * @return The set-upper of nested relation. {setupSelect...().with[nested-relation]} (NotNull)
      */
-    public void setupSelect_MStaff() {
+    public MStaffNss setupSelect_MStaff() {
         assertSetupSelectPurpose("mStaff");
         if (hasSpecifiedLocalColumn()) {
             specify().columnStaffId();
         }
         doSetupSelect(() -> query().queryMStaff());
+        if (_nssMStaff == null || !_nssMStaff.hasConditionQuery())
+        { _nssMStaff = new MStaffNss(query().queryMStaff()); }
+        return _nssMStaff;
     }
 
     // [DBFlute-0.7.4]
@@ -355,6 +364,11 @@ public class BsMWorkingStaffCB extends AbstractConditionBean {
          */
         public SpecifiedColumn columnDeleteFlag() { return doColumn("delete_flag"); }
         /**
+         * version_no: {NotNull, int4(10), default=[1]}
+         * @return The information object of specified column. (NotNull)
+         */
+        public SpecifiedColumn columnVersionNo() { return doColumn("version_no"); }
+        /**
          * register_datetime: {NotNull, timestamp(26, 3), default=[now()]}
          * @return The information object of specified column. (NotNull)
          */
@@ -419,6 +433,40 @@ public class BsMWorkingStaffCB extends AbstractConditionBean {
                 }
             }
             return _mStaff;
+        }
+        /**
+         * Prepare for (Specify)DerivedReferrer (correlated sub-query). <br>
+         * {select max(FOO) from t_reservation where ...) as FOO_MAX} <br>
+         * t_reservation by working_staff_id, named 'TReservationList'.
+         * <pre>
+         * cb.specify().<span style="color: #CC4747">derived${relationMethodIdentityName}()</span>.<span style="color: #CC4747">max</span>(reservationCB <span style="color: #90226C; font-weight: bold"><span style="font-size: 120%">-</span>&gt;</span> {
+         *     reservationCB.specify().<span style="color: #CC4747">column...</span> <span style="color: #3F7E5E">// derived column by function</span>
+         *     reservationCB.query().set... <span style="color: #3F7E5E">// referrer condition</span>
+         * }, TReservation.<span style="color: #CC4747">ALIAS_foo...</span>);
+         * </pre>
+         * @return The object to set up a function for referrer table. (NotNull)
+         */
+        public HpSDRFunction<TReservationCB, MWorkingStaffCQ> derivedTReservation() {
+            assertDerived("tReservationList"); if (xhasSyncQyCall()) { xsyncQyCall().qy(); } // for sync (for example, this in ColumnQuery)
+            return cHSDRF(_baseCB, _qyCall.qy(), (String fn, SubQuery<TReservationCB> sq, MWorkingStaffCQ cq, String al, DerivedReferrerOption op)
+                    -> cq.xsderiveTReservationList(fn, sq, al, op), _dbmetaProvider);
+        }
+        /**
+         * Prepare for (Specify)DerivedReferrer (correlated sub-query). <br>
+         * {select max(FOO) from t_shift where ...) as FOO_MAX} <br>
+         * t_shift by working_staff_id, named 'TShiftList'.
+         * <pre>
+         * cb.specify().<span style="color: #CC4747">derived${relationMethodIdentityName}()</span>.<span style="color: #CC4747">max</span>(shiftCB <span style="color: #90226C; font-weight: bold"><span style="font-size: 120%">-</span>&gt;</span> {
+         *     shiftCB.specify().<span style="color: #CC4747">column...</span> <span style="color: #3F7E5E">// derived column by function</span>
+         *     shiftCB.query().set... <span style="color: #3F7E5E">// referrer condition</span>
+         * }, TShift.<span style="color: #CC4747">ALIAS_foo...</span>);
+         * </pre>
+         * @return The object to set up a function for referrer table. (NotNull)
+         */
+        public HpSDRFunction<TShiftCB, MWorkingStaffCQ> derivedTShift() {
+            assertDerived("tShiftList"); if (xhasSyncQyCall()) { xsyncQyCall().qy(); } // for sync (for example, this in ColumnQuery)
+            return cHSDRF(_baseCB, _qyCall.qy(), (String fn, SubQuery<TShiftCB> sq, MWorkingStaffCQ cq, String al, DerivedReferrerOption op)
+                    -> cq.xsderiveTShiftList(fn, sq, al, op), _dbmetaProvider);
         }
         /**
          * Prepare for (Specify)MyselfDerived (SubQuery).

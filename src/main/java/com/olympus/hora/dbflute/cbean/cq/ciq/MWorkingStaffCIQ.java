@@ -62,9 +62,30 @@ public class MWorkingStaffCIQ extends AbstractBsMWorkingStaffCQ {
     //                                                                Override about Query
     //                                                                ====================
     protected ConditionValue xgetCValueWorkingStaffId() { return _myCQ.xdfgetWorkingStaffId(); }
+    public String keepWorkingStaffId_ExistsReferrer_TReservationList(TReservationCQ sq)
+    { throwIICBOE("ExistsReferrer"); return null; }
+    public String keepWorkingStaffId_ExistsReferrer_TShiftList(TShiftCQ sq)
+    { throwIICBOE("ExistsReferrer"); return null; }
+    public String keepWorkingStaffId_NotExistsReferrer_TReservationList(TReservationCQ sq)
+    { throwIICBOE("NotExistsReferrer"); return null; }
+    public String keepWorkingStaffId_NotExistsReferrer_TShiftList(TShiftCQ sq)
+    { throwIICBOE("NotExistsReferrer"); return null; }
+    public String keepWorkingStaffId_SpecifyDerivedReferrer_TReservationList(TReservationCQ sq)
+    { throwIICBOE("(Specify)DerivedReferrer"); return null; }
+    public String keepWorkingStaffId_SpecifyDerivedReferrer_TShiftList(TShiftCQ sq)
+    { throwIICBOE("(Specify)DerivedReferrer"); return null; }
+    public String keepWorkingStaffId_QueryDerivedReferrer_TReservationList(TReservationCQ sq)
+    { throwIICBOE("(Query)DerivedReferrer"); return null; }
+    public String keepWorkingStaffId_QueryDerivedReferrer_TReservationListParameter(Object vl)
+    { throwIICBOE("(Query)DerivedReferrer"); return null; }
+    public String keepWorkingStaffId_QueryDerivedReferrer_TShiftList(TShiftCQ sq)
+    { throwIICBOE("(Query)DerivedReferrer"); return null; }
+    public String keepWorkingStaffId_QueryDerivedReferrer_TShiftListParameter(Object vl)
+    { throwIICBOE("(Query)DerivedReferrer"); return null; }
     protected ConditionValue xgetCValueShopId() { return _myCQ.xdfgetShopId(); }
     protected ConditionValue xgetCValueStaffId() { return _myCQ.xdfgetStaffId(); }
     protected ConditionValue xgetCValueDeleteFlag() { return _myCQ.xdfgetDeleteFlag(); }
+    protected ConditionValue xgetCValueVersionNo() { return _myCQ.xdfgetVersionNo(); }
     protected ConditionValue xgetCValueRegisterDatetime() { return _myCQ.xdfgetRegisterDatetime(); }
     protected ConditionValue xgetCValueUpdateDatetime() { return _myCQ.xdfgetUpdateDatetime(); }
     protected Map<String, Object> xfindFixedConditionDynamicParameterMap(String pp) { return null; }

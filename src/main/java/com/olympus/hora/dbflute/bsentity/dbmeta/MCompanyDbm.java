@@ -45,6 +45,7 @@ public class MCompanyDbm extends AbstractDBMeta {
         setupEpg(_epgMap, et -> ((MCompany)et).getCompanyId(), (et, vl) -> ((MCompany)et).setCompanyId(cti(vl)), "companyId");
         setupEpg(_epgMap, et -> ((MCompany)et).getCompanyName(), (et, vl) -> ((MCompany)et).setCompanyName((String)vl), "companyName");
         setupEpg(_epgMap, et -> ((MCompany)et).getDeleteFlag(), (et, vl) -> ((MCompany)et).setDeleteFlag((Boolean)vl), "deleteFlag");
+        setupEpg(_epgMap, et -> ((MCompany)et).getVersionNo(), (et, vl) -> ((MCompany)et).setVersionNo(cti(vl)), "versionNo");
         setupEpg(_epgMap, et -> ((MCompany)et).getRegisterDatetime(), (et, vl) -> ((MCompany)et).setRegisterDatetime(ctldt(vl)), "registerDatetime");
         setupEpg(_epgMap, et -> ((MCompany)et).getUpdateDatetime(), (et, vl) -> ((MCompany)et).setUpdateDatetime(ctldt(vl)), "updateDatetime");
     }
@@ -67,9 +68,10 @@ public class MCompanyDbm extends AbstractDBMeta {
     // ===================================================================================
     //                                                                         Column Info
     //                                                                         ===========
-    protected final ColumnInfo _columnCompanyId = cci("company_id", "company_id", null, null, Integer.class, "companyId", null, true, true, true, "serial", 10, 0, null, "nextval('m_company_company_id_seq'::regclass)", false, null, null, null, "MShopList", null, false);
+    protected final ColumnInfo _columnCompanyId = cci("company_id", "company_id", null, null, Integer.class, "companyId", null, true, true, true, "serial", 10, 0, null, "nextval('m_company_company_id_seq'::regclass)", false, null, null, null, "MShopList,MStaffList", null, false);
     protected final ColumnInfo _columnCompanyName = cci("company_name", "company_name", null, null, String.class, "companyName", null, false, false, false, "text", 2147483647, 0, null, null, false, null, null, null, null, null, false);
     protected final ColumnInfo _columnDeleteFlag = cci("delete_flag", "delete_flag", null, null, Boolean.class, "deleteFlag", null, false, false, true, "bool", 1, 0, null, "false", false, null, null, null, null, null, false);
+    protected final ColumnInfo _columnVersionNo = cci("version_no", "version_no", null, null, Integer.class, "versionNo", null, false, false, true, "int4", 10, 0, null, "1", false, OptimisticLockType.VERSION_NO, null, null, null, null, false);
     protected final ColumnInfo _columnRegisterDatetime = cci("register_datetime", "register_datetime", null, null, java.time.LocalDateTime.class, "registerDatetime", null, false, false, true, "timestamp", 26, 3, null, "now()", true, null, null, null, null, null, false);
     protected final ColumnInfo _columnUpdateDatetime = cci("update_datetime", "update_datetime", null, null, java.time.LocalDateTime.class, "updateDatetime", null, false, false, false, "timestamp", 26, 3, null, null, true, null, null, null, null, null, false);
 
@@ -89,6 +91,11 @@ public class MCompanyDbm extends AbstractDBMeta {
      */
     public ColumnInfo columnDeleteFlag() { return _columnDeleteFlag; }
     /**
+     * version_no: {NotNull, int4(10), default=[1]}
+     * @return The information object of specified column. (NotNull)
+     */
+    public ColumnInfo columnVersionNo() { return _columnVersionNo; }
+    /**
      * register_datetime: {NotNull, timestamp(26, 3), default=[now()]}
      * @return The information object of specified column. (NotNull)
      */
@@ -104,6 +111,7 @@ public class MCompanyDbm extends AbstractDBMeta {
         ls.add(columnCompanyId());
         ls.add(columnCompanyName());
         ls.add(columnDeleteFlag());
+        ls.add(columnVersionNo());
         ls.add(columnRegisterDatetime());
         ls.add(columnUpdateDatetime());
         return ls;
@@ -141,6 +149,14 @@ public class MCompanyDbm extends AbstractDBMeta {
         Map<ColumnInfo, ColumnInfo> mp = newLinkedHashMap(columnCompanyId(), MShopDbm.getInstance().columnCompanyId());
         return cri("idx_m_shop_fk0", "MShopList", this, MShopDbm.getInstance(), mp, false, "MCompany");
     }
+    /**
+     * m_staff by company_id, named 'MStaffList'.
+     * @return The information object of referrer property. (NotNull)
+     */
+    public ReferrerInfo referrerMStaffList() {
+        Map<ColumnInfo, ColumnInfo> mp = newLinkedHashMap(columnCompanyId(), MStaffDbm.getInstance().columnCompanyId());
+        return cri("m_staff_company_id_fkey", "MStaffList", this, MStaffDbm.getInstance(), mp, false, "MCompany");
+    }
 
     // ===================================================================================
     //                                                                        Various Info
@@ -149,6 +165,8 @@ public class MCompanyDbm extends AbstractDBMeta {
     public String getSequenceName() { return "m_company_company_id_seq"; }
     public Integer getSequenceIncrementSize() { return 1; }
     public Integer getSequenceCacheSize() { return null; }
+    public boolean hasVersionNo() { return true; }
+    public ColumnInfo getVersionNoColumnInfo() { return _columnVersionNo; }
     public boolean hasCommonColumn() { return true; }
     public List<ColumnInfo> getCommonColumnInfoList()
     { return newArrayList(columnRegisterDatetime(), columnUpdateDatetime()); }

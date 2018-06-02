@@ -48,6 +48,7 @@ public class MCodeDbm extends AbstractDBMeta {
         setupEpg(_epgMap, et -> ((MCode)et).getCode2(), (et, vl) -> ((MCode)et).setCode2(cti(vl)), "code2");
         setupEpg(_epgMap, et -> ((MCode)et).getName(), (et, vl) -> ((MCode)et).setName((String)vl), "name");
         setupEpg(_epgMap, et -> ((MCode)et).getDeleteFlag(), (et, vl) -> ((MCode)et).setDeleteFlag((Boolean)vl), "deleteFlag");
+        setupEpg(_epgMap, et -> ((MCode)et).getVersionNo(), (et, vl) -> ((MCode)et).setVersionNo(cti(vl)), "versionNo");
         setupEpg(_epgMap, et -> ((MCode)et).getRegisterDatetime(), (et, vl) -> ((MCode)et).setRegisterDatetime(ctldt(vl)), "registerDatetime");
         setupEpg(_epgMap, et -> ((MCode)et).getUpdateDatetime(), (et, vl) -> ((MCode)et).setUpdateDatetime(ctldt(vl)), "updateDatetime");
     }
@@ -76,6 +77,7 @@ public class MCodeDbm extends AbstractDBMeta {
     protected final ColumnInfo _columnCode2 = cci("code2", "code2", null, null, Integer.class, "code2", null, false, false, false, "int4", 10, 0, null, null, false, null, null, null, null, null, false);
     protected final ColumnInfo _columnName = cci("name", "name", null, null, String.class, "name", null, false, false, false, "text", 2147483647, 0, null, null, false, null, null, null, null, null, false);
     protected final ColumnInfo _columnDeleteFlag = cci("delete_flag", "delete_flag", null, null, Boolean.class, "deleteFlag", null, false, false, true, "bool", 1, 0, null, "false", false, null, null, null, null, null, false);
+    protected final ColumnInfo _columnVersionNo = cci("version_no", "version_no", null, null, Integer.class, "versionNo", null, false, false, true, "int4", 10, 0, null, "1", false, OptimisticLockType.VERSION_NO, null, null, null, null, false);
     protected final ColumnInfo _columnRegisterDatetime = cci("register_datetime", "register_datetime", null, null, java.time.LocalDateTime.class, "registerDatetime", null, false, false, true, "timestamp", 26, 3, null, "now()", true, null, null, null, null, null, false);
     protected final ColumnInfo _columnUpdateDatetime = cci("update_datetime", "update_datetime", null, null, java.time.LocalDateTime.class, "updateDatetime", null, false, false, false, "timestamp", 26, 3, null, null, true, null, null, null, null, null, false);
 
@@ -110,6 +112,11 @@ public class MCodeDbm extends AbstractDBMeta {
      */
     public ColumnInfo columnDeleteFlag() { return _columnDeleteFlag; }
     /**
+     * version_no: {NotNull, int4(10), default=[1]}
+     * @return The information object of specified column. (NotNull)
+     */
+    public ColumnInfo columnVersionNo() { return _columnVersionNo; }
+    /**
      * register_datetime: {NotNull, timestamp(26, 3), default=[now()]}
      * @return The information object of specified column. (NotNull)
      */
@@ -128,6 +135,7 @@ public class MCodeDbm extends AbstractDBMeta {
         ls.add(columnCode2());
         ls.add(columnName());
         ls.add(columnDeleteFlag());
+        ls.add(columnVersionNo());
         ls.add(columnRegisterDatetime());
         ls.add(columnUpdateDatetime());
         return ls;
@@ -165,6 +173,8 @@ public class MCodeDbm extends AbstractDBMeta {
     public String getSequenceName() { return "m_code_code_id_seq"; }
     public Integer getSequenceIncrementSize() { return 1; }
     public Integer getSequenceCacheSize() { return null; }
+    public boolean hasVersionNo() { return true; }
+    public ColumnInfo getVersionNoColumnInfo() { return _columnVersionNo; }
     public boolean hasCommonColumn() { return true; }
     public List<ColumnInfo> getCommonColumnInfoList()
     { return newArrayList(columnRegisterDatetime(), columnUpdateDatetime()); }

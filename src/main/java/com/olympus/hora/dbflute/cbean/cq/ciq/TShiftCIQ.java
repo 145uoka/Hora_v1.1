@@ -62,11 +62,12 @@ public class TShiftCIQ extends AbstractBsTShiftCQ {
     //                                                                Override about Query
     //                                                                ====================
     protected ConditionValue xgetCValueShiftId() { return _myCQ.xdfgetShiftId(); }
+    protected ConditionValue xgetCValueWorkingStaffId() { return _myCQ.xdfgetWorkingStaffId(); }
     protected ConditionValue xgetCValueWorkingDayId() { return _myCQ.xdfgetWorkingDayId(); }
-    protected ConditionValue xgetCValueStaffId() { return _myCQ.xdfgetStaffId(); }
     protected ConditionValue xgetCValueStartTime() { return _myCQ.xdfgetStartTime(); }
     protected ConditionValue xgetCValueEndTime() { return _myCQ.xdfgetEndTime(); }
     protected ConditionValue xgetCValueDeleteFlag() { return _myCQ.xdfgetDeleteFlag(); }
+    protected ConditionValue xgetCValueVersionNo() { return _myCQ.xdfgetVersionNo(); }
     protected ConditionValue xgetCValueRegisterDatetime() { return _myCQ.xdfgetRegisterDatetime(); }
     protected ConditionValue xgetCValueUpdateDatetime() { return _myCQ.xdfgetUpdateDatetime(); }
     protected Map<String, Object> xfindFixedConditionDynamicParameterMap(String pp) { return null; }

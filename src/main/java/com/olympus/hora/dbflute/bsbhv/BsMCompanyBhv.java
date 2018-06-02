@@ -26,7 +26,7 @@ import com.olympus.hora.dbflute.cbean.*;
  *     company_id
  *
  * [column]
- *     company_id, company_name, delete_flag, register_datetime, update_datetime
+ *     company_id, company_name, delete_flag, version_no, register_datetime, update_datetime
  *
  * [sequence]
  *     m_company_company_id_seq
@@ -35,19 +35,19 @@ import com.olympus.hora.dbflute.cbean.*;
  *     
  *
  * [version-no]
- *     
+ *     version_no
  *
  * [foreign table]
  *     
  *
  * [referrer table]
- *     m_shop
+ *     m_shop, m_staff
  *
  * [foreign property]
  *     
  *
  * [referrer property]
- *     mShopList
+ *     mShopList, mStaffList
  * </pre>
  * @author DBFlute(AutoGenerator)
  */
@@ -440,6 +440,70 @@ public abstract class BsMCompanyBhv extends AbstractBehaviorWritable<MCompany, M
         return helpLoadReferrerInternally(mCompanyList, option, "mShopList");
     }
 
+    /**
+     * Load referrer of MStaffList by the set-upper of referrer. <br>
+     * m_staff by company_id, named 'MStaffList'.
+     * <pre>
+     * <span style="color: #0000C0">mCompanyBhv</span>.<span style="color: #CC4747">loadMStaff</span>(<span style="color: #553000">mCompanyList</span>, <span style="color: #553000">staffCB</span> <span style="color: #90226C; font-weight: bold"><span style="font-size: 120%">-</span>&gt;</span> {
+     *     <span style="color: #553000">staffCB</span>.setupSelect...
+     *     <span style="color: #553000">staffCB</span>.query().set...
+     *     <span style="color: #553000">staffCB</span>.query().addOrderBy...
+     * }); <span style="color: #3F7E5E">// you can load nested referrer from here</span>
+     * <span style="color: #3F7E5E">//}).withNestedReferrer(referrerList -&gt; {</span>
+     * <span style="color: #3F7E5E">//    ...</span>
+     * <span style="color: #3F7E5E">//});</span>
+     * <span style="color: #70226C">for</span> (MCompany mCompany : <span style="color: #553000">mCompanyList</span>) {
+     *     ... = mCompany.<span style="color: #CC4747">getMStaffList()</span>;
+     * }
+     * </pre>
+     * About internal policy, the value of primary key (and others too) is treated as case-insensitive. <br>
+     * The condition-bean, which the set-upper provides, has settings before callback as follows:
+     * <pre>
+     * cb.query().setCompanyId_InScope(pkList);
+     * cb.query().addOrderBy_CompanyId_Asc();
+     * </pre>
+     * @param mCompanyList The entity list of MCompany. (NotNull)
+     * @param refCBLambda The callback to set up referrer condition-bean for loading referrer. (NotNull)
+     * @return The callback interface which you can load nested referrer by calling withNestedReferrer(). (NotNull)
+     */
+    public NestedReferrerListGateway<MStaff> loadMStaff(List<MCompany> mCompanyList, ReferrerConditionSetupper<MStaffCB> refCBLambda) {
+        xassLRArg(mCompanyList, refCBLambda);
+        return doLoadMStaff(mCompanyList, new LoadReferrerOption<MStaffCB, MStaff>().xinit(refCBLambda));
+    }
+
+    /**
+     * Load referrer of MStaffList by the set-upper of referrer. <br>
+     * m_staff by company_id, named 'MStaffList'.
+     * <pre>
+     * <span style="color: #0000C0">mCompanyBhv</span>.<span style="color: #CC4747">loadMStaff</span>(<span style="color: #553000">mCompany</span>, <span style="color: #553000">staffCB</span> <span style="color: #90226C; font-weight: bold"><span style="font-size: 120%">-</span>&gt;</span> {
+     *     <span style="color: #553000">staffCB</span>.setupSelect...
+     *     <span style="color: #553000">staffCB</span>.query().set...
+     *     <span style="color: #553000">staffCB</span>.query().addOrderBy...
+     * }); <span style="color: #3F7E5E">// you can load nested referrer from here</span>
+     * <span style="color: #3F7E5E">//}).withNestedReferrer(referrerList -&gt; {</span>
+     * <span style="color: #3F7E5E">//    ...</span>
+     * <span style="color: #3F7E5E">//});</span>
+     * ... = <span style="color: #553000">mCompany</span>.<span style="color: #CC4747">getMStaffList()</span>;
+     * </pre>
+     * About internal policy, the value of primary key (and others too) is treated as case-insensitive. <br>
+     * The condition-bean, which the set-upper provides, has settings before callback as follows:
+     * <pre>
+     * cb.query().setCompanyId_InScope(pkList);
+     * cb.query().addOrderBy_CompanyId_Asc();
+     * </pre>
+     * @param mCompany The entity of MCompany. (NotNull)
+     * @param refCBLambda The callback to set up referrer condition-bean for loading referrer. (NotNull)
+     * @return The callback interface which you can load nested referrer by calling withNestedReferrer(). (NotNull)
+     */
+    public NestedReferrerListGateway<MStaff> loadMStaff(MCompany mCompany, ReferrerConditionSetupper<MStaffCB> refCBLambda) {
+        xassLRArg(mCompany, refCBLambda);
+        return doLoadMStaff(xnewLRLs(mCompany), new LoadReferrerOption<MStaffCB, MStaff>().xinit(refCBLambda));
+    }
+
+    protected NestedReferrerListGateway<MStaff> doLoadMStaff(List<MCompany> mCompanyList, LoadReferrerOption<MStaffCB, MStaff> option) {
+        return helpLoadReferrerInternally(mCompanyList, option, "mStaffList");
+    }
+
     // ===================================================================================
     //                                                                   Pull out Relation
     //                                                                   =================
@@ -479,7 +543,7 @@ public abstract class BsMCompanyBhv extends AbstractBehaviorWritable<MCompany, M
     }
 
     /**
-     * Update the entity modified-only. (ZeroUpdateException, NonExclusiveControl) <br>
+     * Update the entity modified-only. (ZeroUpdateException, ExclusiveControl) <br>
      * By PK as default, and also you can update by unique keys using entity's uniqueOf().
      * <pre>
      * MCompany mCompany = <span style="color: #70226C">new</span> MCompany();
@@ -492,8 +556,8 @@ public abstract class BsMCompanyBhv extends AbstractBehaviorWritable<MCompany, M
      * mCompany.<span style="color: #CC4747">setVersionNo</span>(value);
      * <span style="color: #0000C0">mCompanyBhv</span>.<span style="color: #CC4747">update</span>(mCompany);
      * </pre>
-     * @param mCompany The entity of update. (NotNull, PrimaryKeyNotNull)
-     * @throws EntityAlreadyDeletedException When the entity has already been deleted. (not found)
+     * @param mCompany The entity of update. (NotNull, PrimaryKeyNotNull, ConcurrencyColumnNotNull)
+     * @throws EntityAlreadyUpdatedException When the entity has already been updated.
      * @throws EntityDuplicatedException When the entity has been duplicated.
      * @throws EntityAlreadyExistsException When the entity already exists. (unique constraint violation)
      */
@@ -502,11 +566,35 @@ public abstract class BsMCompanyBhv extends AbstractBehaviorWritable<MCompany, M
     }
 
     /**
-     * Insert or update the entity modified-only. (DefaultConstraintsEnabled, NonExclusiveControl) <br>
+     * Update the entity non-strictly modified-only. (ZeroUpdateException, NonExclusiveControl) <br>
+     * By PK as default, and also you can update by unique keys using entity's uniqueOf().
+     * <pre>
+     * MCompany mCompany = <span style="color: #70226C">new</span> MCompany();
+     * mCompany.setPK...(value); <span style="color: #3F7E5E">// required</span>
+     * mCompany.setFoo...(value); <span style="color: #3F7E5E">// you should set only modified columns</span>
+     * <span style="color: #3F7E5E">// you don't need to set values of common columns</span>
+     * <span style="color: #3F7E5E">//mCompany.setRegisterUser(value);</span>
+     * <span style="color: #3F7E5E">//mCompany.set...;</span>
+     * <span style="color: #3F7E5E">// you don't need to set a value of concurrency column</span>
+     * <span style="color: #3F7E5E">// (auto-increment for version number is valid though non-exclusive control)</span>
+     * <span style="color: #3F7E5E">//mCompany.setVersionNo(value);</span>
+     * <span style="color: #0000C0">mCompanyBhv</span>.<span style="color: #CC4747">updateNonstrict</span>(mCompany);
+     * </pre>
+     * @param mCompany The entity of update. (NotNull, PrimaryKeyNotNull)
+     * @throws EntityAlreadyDeletedException When the entity has already been deleted. (not found)
+     * @throws EntityDuplicatedException When the entity has been duplicated.
+     * @throws EntityAlreadyExistsException When the entity already exists. (unique constraint violation)
+     */
+    public void updateNonstrict(MCompany mCompany) {
+        doUpdateNonstrict(mCompany, null);
+    }
+
+    /**
+     * Insert or update the entity modified-only. (DefaultConstraintsEnabled, ExclusiveControl) <br>
      * if (the entity has no PK) { insert() } else { update(), but no data, insert() } <br>
      * <p><span style="color: #994747; font-size: 120%">Also you can update by unique keys using entity's uniqueOf().</span></p>
      * @param mCompany The entity of insert or update. (NotNull, ...depends on insert or update)
-     * @throws EntityAlreadyDeletedException When the entity has already been deleted. (not found)
+     * @throws EntityAlreadyUpdatedException When the entity has already been updated.
      * @throws EntityDuplicatedException When the entity has been duplicated.
      * @throws EntityAlreadyExistsException When the entity already exists. (unique constraint violation)
      */
@@ -515,7 +603,20 @@ public abstract class BsMCompanyBhv extends AbstractBehaviorWritable<MCompany, M
     }
 
     /**
-     * Delete the entity. (ZeroUpdateException, NonExclusiveControl) <br>
+     * Insert or update the entity non-strictly modified-only. (DefaultConstraintsEnabled, NonExclusiveControl) <br>
+     * if (the entity has no PK) { insert() } else { update(), but no data, insert() }
+     * <p><span style="color: #994747; font-size: 120%">Also you can update by unique keys using entity's uniqueOf().</span></p>
+     * @param mCompany The entity of insert or update. (NotNull, ...depends on insert or update)
+     * @throws EntityAlreadyDeletedException When the entity has already been deleted. (not found)
+     * @throws EntityDuplicatedException When the entity has been duplicated.
+     * @throws EntityAlreadyExistsException When the entity already exists. (unique constraint violation)
+     */
+    public void insertOrUpdateNonstrict(MCompany mCompany) {
+        doInsertOrUpdateNonstrict(mCompany, null, null);
+    }
+
+    /**
+     * Delete the entity. (ZeroUpdateException, ExclusiveControl) <br>
      * By PK as default, and also you can delete by unique keys using entity's uniqueOf().
      * <pre>
      * MCompany mCompany = <span style="color: #70226C">new</span> MCompany();
@@ -528,12 +629,31 @@ public abstract class BsMCompanyBhv extends AbstractBehaviorWritable<MCompany, M
      *     ...
      * }
      * </pre>
-     * @param mCompany The entity of delete. (NotNull, PrimaryKeyNotNull)
-     * @throws EntityAlreadyDeletedException When the entity has already been deleted. (not found)
+     * @param mCompany The entity of delete. (NotNull, PrimaryKeyNotNull, ConcurrencyColumnNotNull)
+     * @throws EntityAlreadyUpdatedException When the entity has already been updated.
      * @throws EntityDuplicatedException When the entity has been duplicated.
      */
     public void delete(MCompany mCompany) {
         doDelete(mCompany, null);
+    }
+
+    /**
+     * Delete the entity non-strictly. {ZeroUpdateException, NonExclusiveControl} <br>
+     * By PK as default, and also you can delete by unique keys using entity's uniqueOf().
+     * <pre>
+     * MCompany mCompany = <span style="color: #70226C">new</span> MCompany();
+     * mCompany.setPK...(value); <span style="color: #3F7E5E">// required</span>
+     * <span style="color: #3F7E5E">// you don't need to set a value of concurrency column</span>
+     * <span style="color: #3F7E5E">// (auto-increment for version number is valid though non-exclusive control)</span>
+     * <span style="color: #3F7E5E">//mCompany.setVersionNo(value);</span>
+     * <span style="color: #0000C0">mCompanyBhv</span>.<span style="color: #CC4747">deleteNonstrict</span>(mCompany);
+     * </pre>
+     * @param mCompany The entity of delete. (NotNull, PrimaryKeyNotNull)
+     * @throws EntityAlreadyDeletedException When the entity has already been deleted. (not found)
+     * @throws EntityDuplicatedException When the entity has been duplicated.
+     */
+    public void deleteNonstrict(MCompany mCompany) {
+        doDeleteNonstrict(mCompany, null);
     }
 
     // ===================================================================================
@@ -568,7 +688,7 @@ public abstract class BsMCompanyBhv extends AbstractBehaviorWritable<MCompany, M
     }
 
     /**
-     * Batch-update the entity list modified-only of same-set columns. (NonExclusiveControl) <br>
+     * Batch-update the entity list modified-only of same-set columns. (ExclusiveControl) <br>
      * This method uses executeBatch() of java.sql.PreparedStatement. <br>
      * <span style="color: #CC4747; font-size: 120%">You should specify same-set columns to all entities like this:</span>
      * <pre>
@@ -587,23 +707,62 @@ public abstract class BsMCompanyBhv extends AbstractBehaviorWritable<MCompany, M
      * }
      * <span style="color: #0000C0">mCompanyBhv</span>.<span style="color: #CC4747">batchUpdate</span>(mCompanyList);
      * </pre>
-     * @param mCompanyList The list of the entity. (NotNull, EmptyAllowed, PrimaryKeyNotNull)
+     * @param mCompanyList The list of the entity. (NotNull, EmptyAllowed, PrimaryKeyNotNull, ConcurrencyColumnNotNull)
      * @return The array of updated count. (NotNull, EmptyAllowed)
-     * @throws EntityAlreadyDeletedException When the entity has already been deleted. (not found)
+     * @throws BatchEntityAlreadyUpdatedException When the entity has already been updated. This exception extends EntityAlreadyUpdatedException.
      */
     public int[] batchUpdate(List<MCompany> mCompanyList) {
         return doBatchUpdate(mCompanyList, null);
     }
 
     /**
-     * Batch-delete the entity list. (NonExclusiveControl) <br>
+     * Batch-update the entity list non-strictly modified-only of same-set columns. (NonExclusiveControl) <br>
+     * This method uses executeBatch() of java.sql.PreparedStatement. <br>
+     * <span style="color: #CC4747; font-size: 140%">You should specify same-set columns to all entities like this:</span>
+     * <pre>
+     * <span style="color: #70226C">for</span> (... : ...) {
+     *     MCompany mCompany = <span style="color: #70226C">new</span> MCompany();
+     *     mCompany.setFooName("foo");
+     *     <span style="color: #70226C">if</span> (...) {
+     *         mCompany.setFooPrice(123);
+     *     } <span style="color: #70226C">else</span> {
+     *         mCompany.setFooPrice(null); <span style="color: #3F7E5E">// updated as null</span>
+     *         <span style="color: #3F7E5E">//mCompany.setFooDate(...); // *not allowed, fragmented</span>
+     *     }
+     *     <span style="color: #3F7E5E">// FOO_NAME and FOO_PRICE (and record meta columns) are updated</span>
+     *     <span style="color: #3F7E5E">// (others are not updated: their values are kept)</span>
+     *     mCompanyList.add(mCompany);
+     * }
+     * <span style="color: #0000C0">mCompanyBhv</span>.<span style="color: #CC4747">batchUpdate</span>(mCompanyList);
+     * </pre>
+     * @param mCompanyList The list of the entity. (NotNull, EmptyAllowed, PrimaryKeyNotNull)
+     * @return The array of updated count. (NotNull, EmptyAllowed)
+     * @throws EntityAlreadyDeletedException When the entity has already been deleted. (not found)
+     */
+    public int[] batchUpdateNonstrict(List<MCompany> mCompanyList) {
+        return doBatchUpdateNonstrict(mCompanyList, null);
+    }
+
+    /**
+     * Batch-delete the entity list. (ExclusiveControl) <br>
+     * This method uses executeBatch() of java.sql.PreparedStatement.
+     * @param mCompanyList The list of the entity. (NotNull, EmptyAllowed, PrimaryKeyNotNull)
+     * @return The array of deleted count. (NotNull, EmptyAllowed)
+     * @throws BatchEntityAlreadyUpdatedException When the entity has already been updated. This exception extends EntityAlreadyUpdatedException.
+     */
+    public int[] batchDelete(List<MCompany> mCompanyList) {
+        return doBatchDelete(mCompanyList, null);
+    }
+
+    /**
+     * Batch-delete the entity list non-strictly. {NonExclusiveControl} <br>
      * This method uses executeBatch() of java.sql.PreparedStatement.
      * @param mCompanyList The list of the entity. (NotNull, EmptyAllowed, PrimaryKeyNotNull)
      * @return The array of deleted count. (NotNull, EmptyAllowed)
      * @throws EntityAlreadyDeletedException When the entity has already been deleted. (not found)
      */
-    public int[] batchDelete(List<MCompany> mCompanyList) {
-        return doBatchDelete(mCompanyList, null);
+    public int[] batchDeleteNonstrict(List<MCompany> mCompanyList) {
+        return doBatchDeleteNonstrict(mCompanyList, null);
     }
 
     // ===================================================================================
@@ -710,7 +869,7 @@ public abstract class BsMCompanyBhv extends AbstractBehaviorWritable<MCompany, M
     }
 
     /**
-     * Update the entity with varying requests modified-only. (ZeroUpdateException, NonExclusiveControl) <br>
+     * Update the entity with varying requests modified-only. (ZeroUpdateException, ExclusiveControl) <br>
      * For example, self(selfCalculationSpecification), specify(updateColumnSpecification), disableCommonColumnAutoSetup(). <br>
      * Other specifications are same as update(entity).
      * <pre>
@@ -726,9 +885,9 @@ public abstract class BsMCompanyBhv extends AbstractBehaviorWritable<MCompany, M
      *     }).plus(1); <span style="color: #3F7E5E">// XXX_COUNT = XXX_COUNT + 1</span>
      * });
      * </pre>
-     * @param mCompany The entity of update. (NotNull, PrimaryKeyNotNull)
+     * @param mCompany The entity of update. (NotNull, PrimaryKeyNotNull, ConcurrencyColumnNotNull)
      * @param opLambda The callback for option of update for varying requests. (NotNull)
-     * @throws EntityAlreadyDeletedException When the entity has already been deleted. (not found)
+     * @throws EntityAlreadyUpdatedException When the entity has already been updated.
      * @throws EntityDuplicatedException When the entity has been duplicated.
      * @throws EntityAlreadyExistsException When the entity already exists. (unique constraint violation)
      */
@@ -737,12 +896,40 @@ public abstract class BsMCompanyBhv extends AbstractBehaviorWritable<MCompany, M
     }
 
     /**
+     * Update the entity with varying requests non-strictly modified-only. (ZeroUpdateException, NonExclusiveControl) <br>
+     * For example, self(selfCalculationSpecification), specify(updateColumnSpecification), disableCommonColumnAutoSetup(). <br>
+     * Other specifications are same as updateNonstrict(entity).
+     * <pre>
+     * <span style="color: #3F7E5E">// ex) you can update by self calculation values</span>
+     * MCompany mCompany = <span style="color: #70226C">new</span> MCompany();
+     * mCompany.setPK...(value); <span style="color: #3F7E5E">// required</span>
+     * mCompany.setOther...(value); <span style="color: #3F7E5E">// you should set only modified columns</span>
+     * <span style="color: #3F7E5E">// you don't need to set a value of concurrency column</span>
+     * <span style="color: #3F7E5E">// (auto-increment for version number is valid though non-exclusive control)</span>
+     * <span style="color: #3F7E5E">//mCompany.setVersionNo(value);</span>
+     * <span style="color: #0000C0">mCompanyBhv</span>.<span style="color: #CC4747">varyingUpdateNonstrict</span>(mCompany, <span style="color: #553000">op</span> <span style="color: #90226C; font-weight: bold"><span style="font-size: 120%">-</span>&gt;</span> {
+     *     <span style="color: #553000">op</span>.self(<span style="color: #553000">cb</span> <span style="color: #90226C; font-weight: bold"><span style="font-size: 120%">-</span>&gt;</span> {
+     *         <span style="color: #553000">cb</span>.specify().<span style="color: #CC4747">columnXxxCount()</span>;
+     *     }).plus(1); <span style="color: #3F7E5E">// XXX_COUNT = XXX_COUNT + 1</span>
+     * });
+     * </pre>
+     * @param mCompany The entity of update. (NotNull, PrimaryKeyNotNull)
+     * @param opLambda The callback for option of update for varying requests. (NotNull)
+     * @throws EntityAlreadyDeletedException When the entity has already been deleted. (not found)
+     * @throws EntityDuplicatedException When the entity has been duplicated.
+     * @throws EntityAlreadyExistsException When the entity already exists. (unique constraint violation)
+     */
+    public void varyingUpdateNonstrict(MCompany mCompany, WritableOptionCall<MCompanyCB, UpdateOption<MCompanyCB>> opLambda) {
+        doUpdateNonstrict(mCompany, createUpdateOption(opLambda));
+    }
+
+    /**
      * Insert or update the entity with varying requests. (ExclusiveControl: when update) <br>
      * Other specifications are same as insertOrUpdate(entity).
      * @param mCompany The entity of insert or update. (NotNull)
      * @param insertOpLambda The callback for option of insert for varying requests. (NotNull)
      * @param updateOpLambda The callback for option of update for varying requests. (NotNull)
-     * @throws EntityAlreadyDeletedException When the entity has already been deleted. (not found)
+     * @throws EntityAlreadyUpdatedException When the entity has already been updated.
      * @throws EntityDuplicatedException When the entity has been duplicated.
      * @throws EntityAlreadyExistsException When the entity already exists. (unique constraint violation)
      */
@@ -751,16 +938,43 @@ public abstract class BsMCompanyBhv extends AbstractBehaviorWritable<MCompany, M
     }
 
     /**
-     * Delete the entity with varying requests. (ZeroUpdateException, NonExclusiveControl) <br>
+     * Insert or update the entity with varying requests non-strictly. (NonExclusiveControl: when update) <br>
+     * Other specifications are same as insertOrUpdateNonstrict(entity).
+     * @param mCompany The entity of insert or update. (NotNull)
+     * @param insertOpLambda The callback for option of insert for varying requests. (NotNull)
+     * @param updateOpLambda The callback for option of update for varying requests. (NotNull)
+     * @throws EntityAlreadyDeletedException When the entity has already been deleted. (not found)
+     * @throws EntityDuplicatedException When the entity has been duplicated.
+     * @throws EntityAlreadyExistsException When the entity already exists. (unique constraint violation)
+     */
+    public void varyingInsertOrUpdateNonstrict(MCompany mCompany, WritableOptionCall<MCompanyCB, InsertOption<MCompanyCB>> insertOpLambda, WritableOptionCall<MCompanyCB, UpdateOption<MCompanyCB>> updateOpLambda) {
+        doInsertOrUpdateNonstrict(mCompany, createInsertOption(insertOpLambda), createUpdateOption(updateOpLambda));
+    }
+
+    /**
+     * Delete the entity with varying requests. (ZeroUpdateException, ExclusiveControl) <br>
      * Now a valid option does not exist. <br>
      * Other specifications are same as delete(entity).
+     * @param mCompany The entity of delete. (NotNull, PrimaryKeyNotNull, ConcurrencyColumnNotNull)
+     * @param opLambda The callback for option of delete for varying requests. (NotNull)
+     * @throws EntityAlreadyUpdatedException When the entity has already been updated.
+     * @throws EntityDuplicatedException When the entity has been duplicated.
+     */
+    public void varyingDelete(MCompany mCompany, WritableOptionCall<MCompanyCB, DeleteOption<MCompanyCB>> opLambda) {
+        doDelete(mCompany, createDeleteOption(opLambda));
+    }
+
+    /**
+     * Delete the entity with varying requests non-strictly. (ZeroUpdateException, NonExclusiveControl) <br>
+     * Now a valid option does not exist. <br>
+     * Other specifications are same as deleteNonstrict(entity).
      * @param mCompany The entity of delete. (NotNull, PrimaryKeyNotNull, ConcurrencyColumnNotNull)
      * @param opLambda The callback for option of delete for varying requests. (NotNull)
      * @throws EntityAlreadyDeletedException When the entity has already been deleted. (not found)
      * @throws EntityDuplicatedException When the entity has been duplicated.
      */
-    public void varyingDelete(MCompany mCompany, WritableOptionCall<MCompanyCB, DeleteOption<MCompanyCB>> opLambda) {
-        doDelete(mCompany, createDeleteOption(opLambda));
+    public void varyingDeleteNonstrict(MCompany mCompany, WritableOptionCall<MCompanyCB, DeleteOption<MCompanyCB>> opLambda) {
+        doDeleteNonstrict(mCompany, createDeleteOption(opLambda));
     }
 
     // -----------------------------------------------------
@@ -793,6 +1007,19 @@ public abstract class BsMCompanyBhv extends AbstractBehaviorWritable<MCompany, M
     }
 
     /**
+     * Batch-update the list with varying requests non-strictly. <br>
+     * For example, self(selfCalculationSpecification), specify(updateColumnSpecification)
+     * , disableCommonColumnAutoSetup(), limitBatchUpdateLogging(). <br>
+     * Other specifications are same as batchUpdateNonstrict(entityList).
+     * @param mCompanyList The list of the entity. (NotNull, EmptyAllowed, PrimaryKeyNotNull)
+     * @param opLambda The callback for option of update for varying requests. (NotNull)
+     * @return The array of updated count. (NotNull, EmptyAllowed)
+     */
+    public int[] varyingBatchUpdateNonstrict(List<MCompany> mCompanyList, WritableOptionCall<MCompanyCB, UpdateOption<MCompanyCB>> opLambda) {
+        return doBatchUpdateNonstrict(mCompanyList, createUpdateOption(opLambda));
+    }
+
+    /**
      * Batch-delete the list with varying requests. <br>
      * For example, limitBatchDeleteLogging(). <br>
      * Other specifications are same as batchDelete(entityList).
@@ -802,6 +1029,18 @@ public abstract class BsMCompanyBhv extends AbstractBehaviorWritable<MCompany, M
      */
     public int[] varyingBatchDelete(List<MCompany> mCompanyList, WritableOptionCall<MCompanyCB, DeleteOption<MCompanyCB>> opLambda) {
         return doBatchDelete(mCompanyList, createDeleteOption(opLambda));
+    }
+
+    /**
+     * Batch-delete the list with varying requests non-strictly. <br>
+     * For example, limitBatchDeleteLogging(). <br>
+     * Other specifications are same as batchDeleteNonstrict(entityList).
+     * @param mCompanyList The list of the entity. (NotNull, EmptyAllowed, PrimaryKeyNotNull)
+     * @param opLambda The callback for option of delete for varying requests. (NotNull)
+     * @return The array of deleted count. (NotNull, EmptyAllowed)
+     */
+    public int[] varyingBatchDeleteNonstrict(List<MCompany> mCompanyList, WritableOptionCall<MCompanyCB, DeleteOption<MCompanyCB>> opLambda) {
+        return doBatchDeleteNonstrict(mCompanyList, createDeleteOption(opLambda));
     }
 
     // -----------------------------------------------------
@@ -905,6 +1144,12 @@ public abstract class BsMCompanyBhv extends AbstractBehaviorWritable<MCompany, M
     public OutsideSqlAllFacadeExecutor<MCompanyBhv> outsideSql() {
         return doOutsideSql();
     }
+
+    // ===================================================================================
+    //                                                                Optimistic Lock Info
+    //                                                                ====================
+    @Override
+    protected boolean hasVersionNoValue(Entity et) { return downcast(et).getVersionNo() != null; }
 
     // ===================================================================================
     //                                                                         Type Helper

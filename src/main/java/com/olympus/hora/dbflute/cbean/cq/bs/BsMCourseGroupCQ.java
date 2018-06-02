@@ -73,40 +73,6 @@ public class BsMCourseGroupCQ extends AbstractBsMCourseGroupCQ {
     // ===================================================================================
     //                                                                               Query
     //                                                                               =====
-    protected ConditionValue _courseGroupId;
-    public ConditionValue xdfgetCourseGroupId()
-    { if (_courseGroupId == null) { _courseGroupId = nCV(); }
-      return _courseGroupId; }
-    protected ConditionValue xgetCValueCourseGroupId() { return xdfgetCourseGroupId(); }
-
-    public Map<String, MCourseCQ> xdfgetCourseGroupId_ExistsReferrer_MCourseList() { return xgetSQueMap("courseGroupId_ExistsReferrer_MCourseList"); }
-    public String keepCourseGroupId_ExistsReferrer_MCourseList(MCourseCQ sq) { return xkeepSQue("courseGroupId_ExistsReferrer_MCourseList", sq); }
-
-    public Map<String, MCourseCQ> xdfgetCourseGroupId_NotExistsReferrer_MCourseList() { return xgetSQueMap("courseGroupId_NotExistsReferrer_MCourseList"); }
-    public String keepCourseGroupId_NotExistsReferrer_MCourseList(MCourseCQ sq) { return xkeepSQue("courseGroupId_NotExistsReferrer_MCourseList", sq); }
-
-    public Map<String, MCourseCQ> xdfgetCourseGroupId_SpecifyDerivedReferrer_MCourseList() { return xgetSQueMap("courseGroupId_SpecifyDerivedReferrer_MCourseList"); }
-    public String keepCourseGroupId_SpecifyDerivedReferrer_MCourseList(MCourseCQ sq) { return xkeepSQue("courseGroupId_SpecifyDerivedReferrer_MCourseList", sq); }
-
-    public Map<String, MCourseCQ> xdfgetCourseGroupId_QueryDerivedReferrer_MCourseList() { return xgetSQueMap("courseGroupId_QueryDerivedReferrer_MCourseList"); }
-    public String keepCourseGroupId_QueryDerivedReferrer_MCourseList(MCourseCQ sq) { return xkeepSQue("courseGroupId_QueryDerivedReferrer_MCourseList", sq); }
-    public Map<String, Object> xdfgetCourseGroupId_QueryDerivedReferrer_MCourseListParameter() { return xgetSQuePmMap("courseGroupId_QueryDerivedReferrer_MCourseList"); }
-    public String keepCourseGroupId_QueryDerivedReferrer_MCourseListParameter(Object pm) { return xkeepSQuePm("courseGroupId_QueryDerivedReferrer_MCourseList", pm); }
-
-    /**
-     * Add order-by as ascend. <br>
-     * course_group_id: {PK, ID, NotNull, serial(10)}
-     * @return this. (NotNull)
-     */
-    public BsMCourseGroupCQ addOrderBy_CourseGroupId_Asc() { regOBA("course_group_id"); return this; }
-
-    /**
-     * Add order-by as descend. <br>
-     * course_group_id: {PK, ID, NotNull, serial(10)}
-     * @return this. (NotNull)
-     */
-    public BsMCourseGroupCQ addOrderBy_CourseGroupId_Desc() { regOBD("course_group_id"); return this; }
-
     protected ConditionValue _shopId;
     public ConditionValue xdfgetShopId()
     { if (_shopId == null) { _shopId = nCV(); }
@@ -146,6 +112,40 @@ public class BsMCourseGroupCQ extends AbstractBsMCourseGroupCQ {
      * @return this. (NotNull)
      */
     public BsMCourseGroupCQ addOrderBy_GroupName_Desc() { regOBD("group_name"); return this; }
+
+    protected ConditionValue _courseGroupId;
+    public ConditionValue xdfgetCourseGroupId()
+    { if (_courseGroupId == null) { _courseGroupId = nCV(); }
+      return _courseGroupId; }
+    protected ConditionValue xgetCValueCourseGroupId() { return xdfgetCourseGroupId(); }
+
+    public Map<String, MCourseCQ> xdfgetCourseGroupId_ExistsReferrer_MCourseList() { return xgetSQueMap("courseGroupId_ExistsReferrer_MCourseList"); }
+    public String keepCourseGroupId_ExistsReferrer_MCourseList(MCourseCQ sq) { return xkeepSQue("courseGroupId_ExistsReferrer_MCourseList", sq); }
+
+    public Map<String, MCourseCQ> xdfgetCourseGroupId_NotExistsReferrer_MCourseList() { return xgetSQueMap("courseGroupId_NotExistsReferrer_MCourseList"); }
+    public String keepCourseGroupId_NotExistsReferrer_MCourseList(MCourseCQ sq) { return xkeepSQue("courseGroupId_NotExistsReferrer_MCourseList", sq); }
+
+    public Map<String, MCourseCQ> xdfgetCourseGroupId_SpecifyDerivedReferrer_MCourseList() { return xgetSQueMap("courseGroupId_SpecifyDerivedReferrer_MCourseList"); }
+    public String keepCourseGroupId_SpecifyDerivedReferrer_MCourseList(MCourseCQ sq) { return xkeepSQue("courseGroupId_SpecifyDerivedReferrer_MCourseList", sq); }
+
+    public Map<String, MCourseCQ> xdfgetCourseGroupId_QueryDerivedReferrer_MCourseList() { return xgetSQueMap("courseGroupId_QueryDerivedReferrer_MCourseList"); }
+    public String keepCourseGroupId_QueryDerivedReferrer_MCourseList(MCourseCQ sq) { return xkeepSQue("courseGroupId_QueryDerivedReferrer_MCourseList", sq); }
+    public Map<String, Object> xdfgetCourseGroupId_QueryDerivedReferrer_MCourseListParameter() { return xgetSQuePmMap("courseGroupId_QueryDerivedReferrer_MCourseList"); }
+    public String keepCourseGroupId_QueryDerivedReferrer_MCourseListParameter(Object pm) { return xkeepSQuePm("courseGroupId_QueryDerivedReferrer_MCourseList", pm); }
+
+    /**
+     * Add order-by as ascend. <br>
+     * course_group_id: {PK, ID, NotNull, serial(10)}
+     * @return this. (NotNull)
+     */
+    public BsMCourseGroupCQ addOrderBy_CourseGroupId_Asc() { regOBA("course_group_id"); return this; }
+
+    /**
+     * Add order-by as descend. <br>
+     * course_group_id: {PK, ID, NotNull, serial(10)}
+     * @return this. (NotNull)
+     */
+    public BsMCourseGroupCQ addOrderBy_CourseGroupId_Desc() { regOBD("course_group_id"); return this; }
 
     protected ConditionValue _requiredFlg;
     public ConditionValue xdfgetRequiredFlg()
@@ -206,6 +206,26 @@ public class BsMCourseGroupCQ extends AbstractBsMCourseGroupCQ {
      * @return this. (NotNull)
      */
     public BsMCourseGroupCQ addOrderBy_DeleteFlag_Desc() { regOBD("delete_flag"); return this; }
+
+    protected ConditionValue _versionNo;
+    public ConditionValue xdfgetVersionNo()
+    { if (_versionNo == null) { _versionNo = nCV(); }
+      return _versionNo; }
+    protected ConditionValue xgetCValueVersionNo() { return xdfgetVersionNo(); }
+
+    /**
+     * Add order-by as ascend. <br>
+     * version_no: {NotNull, int4(10), default=[1]}
+     * @return this. (NotNull)
+     */
+    public BsMCourseGroupCQ addOrderBy_VersionNo_Asc() { regOBA("version_no"); return this; }
+
+    /**
+     * Add order-by as descend. <br>
+     * version_no: {NotNull, int4(10), default=[1]}
+     * @return this. (NotNull)
+     */
+    public BsMCourseGroupCQ addOrderBy_VersionNo_Desc() { regOBD("version_no"); return this; }
 
     protected ConditionValue _registerDatetime;
     public ConditionValue xdfgetRegisterDatetime()

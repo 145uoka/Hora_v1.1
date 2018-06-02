@@ -4,6 +4,7 @@ import java.util.List;
 import java.util.Map;
 
 import org.dbflute.Entity;
+import org.dbflute.optional.OptionalEntity;
 import org.dbflute.dbmeta.AbstractDBMeta;
 import org.dbflute.dbmeta.info.*;
 import org.dbflute.dbmeta.name.*;
@@ -43,17 +44,31 @@ public class MStaffDbm extends AbstractDBMeta {
     { xsetupEpg(); }
     protected void xsetupEpg() {
         setupEpg(_epgMap, et -> ((MStaff)et).getStaffId(), (et, vl) -> ((MStaff)et).setStaffId(cti(vl)), "staffId");
+        setupEpg(_epgMap, et -> ((MStaff)et).getCompanyId(), (et, vl) -> ((MStaff)et).setCompanyId(cti(vl)), "companyId");
         setupEpg(_epgMap, et -> ((MStaff)et).getFamilyName(), (et, vl) -> ((MStaff)et).setFamilyName((String)vl), "familyName");
         setupEpg(_epgMap, et -> ((MStaff)et).getGivenName(), (et, vl) -> ((MStaff)et).setGivenName((String)vl), "givenName");
         setupEpg(_epgMap, et -> ((MStaff)et).getPhone11(), (et, vl) -> ((MStaff)et).setPhone11((String)vl), "phone11");
         setupEpg(_epgMap, et -> ((MStaff)et).getPhone12(), (et, vl) -> ((MStaff)et).setPhone12((String)vl), "phone12");
         setupEpg(_epgMap, et -> ((MStaff)et).getPhone13(), (et, vl) -> ((MStaff)et).setPhone13((String)vl), "phone13");
         setupEpg(_epgMap, et -> ((MStaff)et).getDeleteFlag(), (et, vl) -> ((MStaff)et).setDeleteFlag((Boolean)vl), "deleteFlag");
+        setupEpg(_epgMap, et -> ((MStaff)et).getVersionNo(), (et, vl) -> ((MStaff)et).setVersionNo(cti(vl)), "versionNo");
         setupEpg(_epgMap, et -> ((MStaff)et).getRegisterDatetime(), (et, vl) -> ((MStaff)et).setRegisterDatetime(ctldt(vl)), "registerDatetime");
         setupEpg(_epgMap, et -> ((MStaff)et).getUpdateDatetime(), (et, vl) -> ((MStaff)et).setUpdateDatetime(ctldt(vl)), "updateDatetime");
     }
     public PropertyGateway findPropertyGateway(String prop)
     { return doFindEpg(_epgMap, prop); }
+
+    // -----------------------------------------------------
+    //                                      Foreign Property
+    //                                      ----------------
+    protected final Map<String, PropertyGateway> _efpgMap = newHashMap();
+    { xsetupEfpg(); }
+    @SuppressWarnings("unchecked")
+    protected void xsetupEfpg() {
+        setupEfpg(_efpgMap, et -> ((MStaff)et).getMCompany(), (et, vl) -> ((MStaff)et).setMCompany((OptionalEntity<MCompany>)vl), "MCompany");
+    }
+    public PropertyGateway findForeignPropertyGateway(String prop)
+    { return doFindEfpg(_efpgMap, prop); }
 
     // ===================================================================================
     //                                                                          Table Info
@@ -71,13 +86,15 @@ public class MStaffDbm extends AbstractDBMeta {
     // ===================================================================================
     //                                                                         Column Info
     //                                                                         ===========
-    protected final ColumnInfo _columnStaffId = cci("staff_id", "staff_id", null, null, Integer.class, "staffId", null, true, true, true, "serial", 10, 0, null, "nextval('m_staff_staff_id_seq'::regclass)", false, null, null, null, "MWorkingStaffList,TReservationList,TShiftList", null, false);
+    protected final ColumnInfo _columnStaffId = cci("staff_id", "staff_id", null, null, Integer.class, "staffId", null, true, true, true, "serial", 10, 0, null, "nextval('m_staff_staff_id_seq'::regclass)", false, null, null, null, "MWorkingStaffList", null, false);
+    protected final ColumnInfo _columnCompanyId = cci("company_id", "company_id", null, null, Integer.class, "companyId", null, false, false, true, "int4", 10, 0, null, null, false, null, null, "MCompany", null, null, false);
     protected final ColumnInfo _columnFamilyName = cci("family_name", "family_name", null, null, String.class, "familyName", null, false, false, false, "text", 2147483647, 0, null, null, false, null, null, null, null, null, false);
     protected final ColumnInfo _columnGivenName = cci("given_name", "given_name", null, null, String.class, "givenName", null, false, false, false, "text", 2147483647, 0, null, null, false, null, null, null, null, null, false);
     protected final ColumnInfo _columnPhone11 = cci("phone1_1", "phone1_1", null, null, String.class, "phone11", null, false, false, false, "text", 2147483647, 0, null, null, false, null, null, null, null, null, false);
     protected final ColumnInfo _columnPhone12 = cci("phone1_2", "phone1_2", null, null, String.class, "phone12", null, false, false, false, "text", 2147483647, 0, null, null, false, null, null, null, null, null, false);
     protected final ColumnInfo _columnPhone13 = cci("phone1_3", "phone1_3", null, null, String.class, "phone13", null, false, false, false, "text", 2147483647, 0, null, null, false, null, null, null, null, null, false);
     protected final ColumnInfo _columnDeleteFlag = cci("delete_flag", "delete_flag", null, null, Boolean.class, "deleteFlag", null, false, false, true, "bool", 1, 0, null, "false", false, null, null, null, null, null, false);
+    protected final ColumnInfo _columnVersionNo = cci("version_no", "version_no", null, null, Integer.class, "versionNo", null, false, false, true, "int4", 10, 0, null, "1", false, OptimisticLockType.VERSION_NO, null, null, null, null, false);
     protected final ColumnInfo _columnRegisterDatetime = cci("register_datetime", "register_datetime", null, null, java.time.LocalDateTime.class, "registerDatetime", null, false, false, true, "timestamp", 26, 3, null, "now()", true, null, null, null, null, null, false);
     protected final ColumnInfo _columnUpdateDatetime = cci("update_datetime", "update_datetime", null, null, java.time.LocalDateTime.class, "updateDatetime", null, false, false, false, "timestamp", 26, 3, null, null, true, null, null, null, null, null, false);
 
@@ -86,6 +103,11 @@ public class MStaffDbm extends AbstractDBMeta {
      * @return The information object of specified column. (NotNull)
      */
     public ColumnInfo columnStaffId() { return _columnStaffId; }
+    /**
+     * company_id: {NotNull, int4(10), FK to m_company}
+     * @return The information object of specified column. (NotNull)
+     */
+    public ColumnInfo columnCompanyId() { return _columnCompanyId; }
     /**
      * family_name: {text(2147483647)}
      * @return The information object of specified column. (NotNull)
@@ -117,6 +139,11 @@ public class MStaffDbm extends AbstractDBMeta {
      */
     public ColumnInfo columnDeleteFlag() { return _columnDeleteFlag; }
     /**
+     * version_no: {NotNull, int4(10), default=[1]}
+     * @return The information object of specified column. (NotNull)
+     */
+    public ColumnInfo columnVersionNo() { return _columnVersionNo; }
+    /**
      * register_datetime: {NotNull, timestamp(26, 3), default=[now()]}
      * @return The information object of specified column. (NotNull)
      */
@@ -130,12 +157,14 @@ public class MStaffDbm extends AbstractDBMeta {
     protected List<ColumnInfo> ccil() {
         List<ColumnInfo> ls = newArrayList();
         ls.add(columnStaffId());
+        ls.add(columnCompanyId());
         ls.add(columnFamilyName());
         ls.add(columnGivenName());
         ls.add(columnPhone11());
         ls.add(columnPhone12());
         ls.add(columnPhone13());
         ls.add(columnDeleteFlag());
+        ls.add(columnVersionNo());
         ls.add(columnRegisterDatetime());
         ls.add(columnUpdateDatetime());
         return ls;
@@ -161,6 +190,14 @@ public class MStaffDbm extends AbstractDBMeta {
     // -----------------------------------------------------
     //                                      Foreign Property
     //                                      ----------------
+    /**
+     * m_company by my company_id, named 'MCompany'.
+     * @return The information object of foreign property. (NotNull)
+     */
+    public ForeignInfo foreignMCompany() {
+        Map<ColumnInfo, ColumnInfo> mp = newLinkedHashMap(columnCompanyId(), MCompanyDbm.getInstance().columnCompanyId());
+        return cfi("m_staff_company_id_fkey", "MCompany", this, MCompanyDbm.getInstance(), mp, 0, org.dbflute.optional.OptionalEntity.class, false, false, false, false, null, null, false, "MStaffList", false);
+    }
 
     // -----------------------------------------------------
     //                                     Referrer Property
@@ -173,22 +210,6 @@ public class MStaffDbm extends AbstractDBMeta {
         Map<ColumnInfo, ColumnInfo> mp = newLinkedHashMap(columnStaffId(), MWorkingStaffDbm.getInstance().columnStaffId());
         return cri("idx_m_working_staff_fk1", "MWorkingStaffList", this, MWorkingStaffDbm.getInstance(), mp, false, "MStaff");
     }
-    /**
-     * t_reservation by staff_id, named 'TReservationList'.
-     * @return The information object of referrer property. (NotNull)
-     */
-    public ReferrerInfo referrerTReservationList() {
-        Map<ColumnInfo, ColumnInfo> mp = newLinkedHashMap(columnStaffId(), TReservationDbm.getInstance().columnStaffId());
-        return cri("idx_t_reservation_fk2", "TReservationList", this, TReservationDbm.getInstance(), mp, false, "MStaff");
-    }
-    /**
-     * t_shift by staff_id, named 'TShiftList'.
-     * @return The information object of referrer property. (NotNull)
-     */
-    public ReferrerInfo referrerTShiftList() {
-        Map<ColumnInfo, ColumnInfo> mp = newLinkedHashMap(columnStaffId(), TShiftDbm.getInstance().columnStaffId());
-        return cri("idx_t_shift_fk1", "TShiftList", this, TShiftDbm.getInstance(), mp, false, "MStaff");
-    }
 
     // ===================================================================================
     //                                                                        Various Info
@@ -197,6 +218,8 @@ public class MStaffDbm extends AbstractDBMeta {
     public String getSequenceName() { return "m_staff_staff_id_seq"; }
     public Integer getSequenceIncrementSize() { return 1; }
     public Integer getSequenceCacheSize() { return null; }
+    public boolean hasVersionNo() { return true; }
+    public ColumnInfo getVersionNoColumnInfo() { return _columnVersionNo; }
     public boolean hasCommonColumn() { return true; }
     public List<ColumnInfo> getCommonColumnInfoList()
     { return newArrayList(columnRegisterDatetime(), columnUpdateDatetime()); }

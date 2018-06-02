@@ -14,12 +14,13 @@ import com.olympus.hora.dbflute.exentity.*;
 
 /**
  * The entity of t_reservation as TABLE. <br>
+ * 予約テーブル
  * <pre>
  * [primary-key]
  *     reservation_id
  *
  * [column]
- *     reservation_id, shop_id, staff_id, hist_staff_family_name, hist_shop_name, hist_shop_abbreviated_name, hist_staff_given_name, reservation_date, reservation_time, user_id, total_amount, remarks, status, delete_flag, register_datetime, update_datetime
+ *     reservation_id, shop_id, working_staff_id, user_id, hist_staff_family_name, hist_shop_name, hist_shop_abbreviated_name, hist_staff_given_name, reservation_date, reservation_time, total_amount, remarks, status, delete_flag, version_no, register_datetime, update_datetime
  *
  * [sequence]
  *     t_reservation_reservation_id_seq
@@ -28,16 +29,16 @@ import com.olympus.hora.dbflute.exentity.*;
  *     
  *
  * [version-no]
- *     
+ *     version_no
  *
  * [foreign table]
- *     m_shop, m_staff, m_user
+ *     m_shop, m_user, m_working_staff
  *
  * [referrer table]
  *     t_reservation_detail
  *
  * [foreign property]
- *     mShop, mStaff, mUser
+ *     mShop, mUser, mWorkingStaff
  *
  * [referrer property]
  *     tReservationDetailList
@@ -46,34 +47,36 @@ import com.olympus.hora.dbflute.exentity.*;
  * /= = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = =
  * Long reservationId = entity.getReservationId();
  * Integer shopId = entity.getShopId();
- * Integer staffId = entity.getStaffId();
+ * Integer workingStaffId = entity.getWorkingStaffId();
+ * Integer userId = entity.getUserId();
  * String histStaffFamilyName = entity.getHistStaffFamilyName();
  * String histShopName = entity.getHistShopName();
  * String histShopAbbreviatedName = entity.getHistShopAbbreviatedName();
  * String histStaffGivenName = entity.getHistStaffGivenName();
  * java.time.LocalDate reservationDate = entity.getReservationDate();
  * java.time.LocalTime reservationTime = entity.getReservationTime();
- * Integer userId = entity.getUserId();
  * Integer totalAmount = entity.getTotalAmount();
  * String remarks = entity.getRemarks();
  * Integer status = entity.getStatus();
  * Boolean deleteFlag = entity.getDeleteFlag();
+ * Integer versionNo = entity.getVersionNo();
  * java.time.LocalDateTime registerDatetime = entity.getRegisterDatetime();
  * java.time.LocalDateTime updateDatetime = entity.getUpdateDatetime();
  * entity.setReservationId(reservationId);
  * entity.setShopId(shopId);
- * entity.setStaffId(staffId);
+ * entity.setWorkingStaffId(workingStaffId);
+ * entity.setUserId(userId);
  * entity.setHistStaffFamilyName(histStaffFamilyName);
  * entity.setHistShopName(histShopName);
  * entity.setHistShopAbbreviatedName(histShopAbbreviatedName);
  * entity.setHistStaffGivenName(histStaffGivenName);
  * entity.setReservationDate(reservationDate);
  * entity.setReservationTime(reservationTime);
- * entity.setUserId(userId);
  * entity.setTotalAmount(totalAmount);
  * entity.setRemarks(remarks);
  * entity.setStatus(status);
  * entity.setDeleteFlag(deleteFlag);
+ * entity.setVersionNo(versionNo);
  * entity.setRegisterDatetime(registerDatetime);
  * entity.setUpdateDatetime(updateDatetime);
  * = = = = = = = = = =/
@@ -97,8 +100,11 @@ public abstract class BsTReservation extends AbstractEntity implements DomainEnt
     /** shop_id: {int4(10), FK to m_shop} */
     protected Integer _shopId;
 
-    /** staff_id: {NotNull, int4(10), FK to m_staff} */
-    protected Integer _staffId;
+    /** working_staff_id: {int4(10), FK to m_working_staff} */
+    protected Integer _workingStaffId;
+
+    /** user_id: {int4(10), FK to m_user} */
+    protected Integer _userId;
 
     /** hist_staff_family_name: {text(2147483647)} */
     protected String _histStaffFamilyName;
@@ -118,9 +124,6 @@ public abstract class BsTReservation extends AbstractEntity implements DomainEnt
     /** reservation_time: {time(15, 6)} */
     protected java.time.LocalTime _reservationTime;
 
-    /** user_id: {int4(10), FK to m_user} */
-    protected Integer _userId;
-
     /** total_amount: {int4(10)} */
     protected Integer _totalAmount;
 
@@ -132,6 +135,9 @@ public abstract class BsTReservation extends AbstractEntity implements DomainEnt
 
     /** delete_flag: {NotNull, bool(1), default=[false]} */
     protected Boolean _deleteFlag;
+
+    /** version_no: {NotNull, int4(10), default=[1]} */
+    protected Integer _versionNo;
 
     /** register_datetime: {NotNull, timestamp(26, 3), default=[now()]} */
     protected java.time.LocalDateTime _registerDatetime;
@@ -185,27 +191,6 @@ public abstract class BsTReservation extends AbstractEntity implements DomainEnt
         _mShop = mShop;
     }
 
-    /** m_staff by my staff_id, named 'MStaff'. */
-    protected OptionalEntity<MStaff> _mStaff;
-
-    /**
-     * [get] m_staff by my staff_id, named 'MStaff'. <br>
-     * Optional: alwaysPresent(), ifPresent().orElse(), get(), ...
-     * @return The entity of foreign property 'MStaff'. (NotNull, EmptyAllowed: when e.g. null FK column, no setupSelect)
-     */
-    public OptionalEntity<MStaff> getMStaff() {
-        if (_mStaff == null) { _mStaff = OptionalEntity.relationEmpty(this, "MStaff"); }
-        return _mStaff;
-    }
-
-    /**
-     * [set] m_staff by my staff_id, named 'MStaff'.
-     * @param mStaff The entity of foreign property 'MStaff'. (NullAllowed)
-     */
-    public void setMStaff(OptionalEntity<MStaff> mStaff) {
-        _mStaff = mStaff;
-    }
-
     /** m_user by my user_id, named 'MUser'. */
     protected OptionalEntity<MUser> _mUser;
 
@@ -225,6 +210,27 @@ public abstract class BsTReservation extends AbstractEntity implements DomainEnt
      */
     public void setMUser(OptionalEntity<MUser> mUser) {
         _mUser = mUser;
+    }
+
+    /** m_working_staff by my working_staff_id, named 'MWorkingStaff'. */
+    protected OptionalEntity<MWorkingStaff> _mWorkingStaff;
+
+    /**
+     * [get] m_working_staff by my working_staff_id, named 'MWorkingStaff'. <br>
+     * Optional: alwaysPresent(), ifPresent().orElse(), get(), ...
+     * @return The entity of foreign property 'MWorkingStaff'. (NotNull, EmptyAllowed: when e.g. null FK column, no setupSelect)
+     */
+    public OptionalEntity<MWorkingStaff> getMWorkingStaff() {
+        if (_mWorkingStaff == null) { _mWorkingStaff = OptionalEntity.relationEmpty(this, "MWorkingStaff"); }
+        return _mWorkingStaff;
+    }
+
+    /**
+     * [set] m_working_staff by my working_staff_id, named 'MWorkingStaff'.
+     * @param mWorkingStaff The entity of foreign property 'MWorkingStaff'. (NullAllowed)
+     */
+    public void setMWorkingStaff(OptionalEntity<MWorkingStaff> mWorkingStaff) {
+        _mWorkingStaff = mWorkingStaff;
     }
 
     // ===================================================================================
@@ -281,10 +287,10 @@ public abstract class BsTReservation extends AbstractEntity implements DomainEnt
         StringBuilder sb = new StringBuilder();
         if (_mShop != null && _mShop.isPresent())
         { sb.append(li).append(xbRDS(_mShop, "mShop")); }
-        if (_mStaff != null && _mStaff.isPresent())
-        { sb.append(li).append(xbRDS(_mStaff, "mStaff")); }
         if (_mUser != null && _mUser.isPresent())
         { sb.append(li).append(xbRDS(_mUser, "mUser")); }
+        if (_mWorkingStaff != null && _mWorkingStaff.isPresent())
+        { sb.append(li).append(xbRDS(_mWorkingStaff, "mWorkingStaff")); }
         if (_tReservationDetailList != null) { for (TReservationDetail et : _tReservationDetailList)
         { if (et != null) { sb.append(li).append(xbRDS(et, "tReservationDetailList")); } } }
         return sb.toString();
@@ -298,18 +304,19 @@ public abstract class BsTReservation extends AbstractEntity implements DomainEnt
         StringBuilder sb = new StringBuilder();
         sb.append(dm).append(xfND(_reservationId));
         sb.append(dm).append(xfND(_shopId));
-        sb.append(dm).append(xfND(_staffId));
+        sb.append(dm).append(xfND(_workingStaffId));
+        sb.append(dm).append(xfND(_userId));
         sb.append(dm).append(xfND(_histStaffFamilyName));
         sb.append(dm).append(xfND(_histShopName));
         sb.append(dm).append(xfND(_histShopAbbreviatedName));
         sb.append(dm).append(xfND(_histStaffGivenName));
         sb.append(dm).append(xfND(_reservationDate));
         sb.append(dm).append(xfND(_reservationTime));
-        sb.append(dm).append(xfND(_userId));
         sb.append(dm).append(xfND(_totalAmount));
         sb.append(dm).append(xfND(_remarks));
         sb.append(dm).append(xfND(_status));
         sb.append(dm).append(xfND(_deleteFlag));
+        sb.append(dm).append(xfND(_versionNo));
         sb.append(dm).append(xfND(_registerDatetime));
         sb.append(dm).append(xfND(_updateDatetime));
         if (sb.length() > dm.length()) {
@@ -324,10 +331,10 @@ public abstract class BsTReservation extends AbstractEntity implements DomainEnt
         StringBuilder sb = new StringBuilder();
         if (_mShop != null && _mShop.isPresent())
         { sb.append(dm).append("mShop"); }
-        if (_mStaff != null && _mStaff.isPresent())
-        { sb.append(dm).append("mStaff"); }
         if (_mUser != null && _mUser.isPresent())
         { sb.append(dm).append("mUser"); }
+        if (_mWorkingStaff != null && _mWorkingStaff.isPresent())
+        { sb.append(dm).append("mWorkingStaff"); }
         if (_tReservationDetailList != null && !_tReservationDetailList.isEmpty())
         { sb.append(dm).append("tReservationDetailList"); }
         if (sb.length() > dm.length()) {
@@ -346,6 +353,7 @@ public abstract class BsTReservation extends AbstractEntity implements DomainEnt
     //                                                                            ========
     /**
      * [get] reservation_id: {PK, ID, NotNull, bigserial(19)} <br>
+     * 予約ID : 予約ID
      * @return The value of the column 'reservation_id'. (basically NotNull if selected: for the constraint)
      */
     public Long getReservationId() {
@@ -355,6 +363,7 @@ public abstract class BsTReservation extends AbstractEntity implements DomainEnt
 
     /**
      * [set] reservation_id: {PK, ID, NotNull, bigserial(19)} <br>
+     * 予約ID : 予約ID
      * @param reservationId The value of the column 'reservation_id'. (basically NotNull if update: for the constraint)
      */
     public void setReservationId(Long reservationId) {
@@ -364,6 +373,7 @@ public abstract class BsTReservation extends AbstractEntity implements DomainEnt
 
     /**
      * [get] shop_id: {int4(10), FK to m_shop} <br>
+     * 店舗ID : 店舗ID
      * @return The value of the column 'shop_id'. (NullAllowed even if selected: for no constraint)
      */
     public Integer getShopId() {
@@ -373,6 +383,7 @@ public abstract class BsTReservation extends AbstractEntity implements DomainEnt
 
     /**
      * [set] shop_id: {int4(10), FK to m_shop} <br>
+     * 店舗ID : 店舗ID
      * @param shopId The value of the column 'shop_id'. (NullAllowed: null update allowed for no constraint)
      */
     public void setShopId(Integer shopId) {
@@ -381,133 +392,28 @@ public abstract class BsTReservation extends AbstractEntity implements DomainEnt
     }
 
     /**
-     * [get] staff_id: {NotNull, int4(10), FK to m_staff} <br>
-     * @return The value of the column 'staff_id'. (basically NotNull if selected: for the constraint)
+     * [get] working_staff_id: {int4(10), FK to m_working_staff} <br>
+     * 作業ing_staff_id : 所属スタッフID
+     * @return The value of the column 'working_staff_id'. (NullAllowed even if selected: for no constraint)
      */
-    public Integer getStaffId() {
-        checkSpecifiedProperty("staffId");
-        return _staffId;
+    public Integer getWorkingStaffId() {
+        checkSpecifiedProperty("workingStaffId");
+        return _workingStaffId;
     }
 
     /**
-     * [set] staff_id: {NotNull, int4(10), FK to m_staff} <br>
-     * @param staffId The value of the column 'staff_id'. (basically NotNull if update: for the constraint)
+     * [set] working_staff_id: {int4(10), FK to m_working_staff} <br>
+     * 作業ing_staff_id : 所属スタッフID
+     * @param workingStaffId The value of the column 'working_staff_id'. (NullAllowed: null update allowed for no constraint)
      */
-    public void setStaffId(Integer staffId) {
-        registerModifiedProperty("staffId");
-        _staffId = staffId;
-    }
-
-    /**
-     * [get] hist_staff_family_name: {text(2147483647)} <br>
-     * @return The value of the column 'hist_staff_family_name'. (NullAllowed even if selected: for no constraint)
-     */
-    public String getHistStaffFamilyName() {
-        checkSpecifiedProperty("histStaffFamilyName");
-        return _histStaffFamilyName;
-    }
-
-    /**
-     * [set] hist_staff_family_name: {text(2147483647)} <br>
-     * @param histStaffFamilyName The value of the column 'hist_staff_family_name'. (NullAllowed: null update allowed for no constraint)
-     */
-    public void setHistStaffFamilyName(String histStaffFamilyName) {
-        registerModifiedProperty("histStaffFamilyName");
-        _histStaffFamilyName = histStaffFamilyName;
-    }
-
-    /**
-     * [get] hist_shop_name: {text(2147483647)} <br>
-     * @return The value of the column 'hist_shop_name'. (NullAllowed even if selected: for no constraint)
-     */
-    public String getHistShopName() {
-        checkSpecifiedProperty("histShopName");
-        return _histShopName;
-    }
-
-    /**
-     * [set] hist_shop_name: {text(2147483647)} <br>
-     * @param histShopName The value of the column 'hist_shop_name'. (NullAllowed: null update allowed for no constraint)
-     */
-    public void setHistShopName(String histShopName) {
-        registerModifiedProperty("histShopName");
-        _histShopName = histShopName;
-    }
-
-    /**
-     * [get] hist_shop_abbreviated_name: {text(2147483647)} <br>
-     * @return The value of the column 'hist_shop_abbreviated_name'. (NullAllowed even if selected: for no constraint)
-     */
-    public String getHistShopAbbreviatedName() {
-        checkSpecifiedProperty("histShopAbbreviatedName");
-        return _histShopAbbreviatedName;
-    }
-
-    /**
-     * [set] hist_shop_abbreviated_name: {text(2147483647)} <br>
-     * @param histShopAbbreviatedName The value of the column 'hist_shop_abbreviated_name'. (NullAllowed: null update allowed for no constraint)
-     */
-    public void setHistShopAbbreviatedName(String histShopAbbreviatedName) {
-        registerModifiedProperty("histShopAbbreviatedName");
-        _histShopAbbreviatedName = histShopAbbreviatedName;
-    }
-
-    /**
-     * [get] hist_staff_given_name: {text(2147483647)} <br>
-     * @return The value of the column 'hist_staff_given_name'. (NullAllowed even if selected: for no constraint)
-     */
-    public String getHistStaffGivenName() {
-        checkSpecifiedProperty("histStaffGivenName");
-        return _histStaffGivenName;
-    }
-
-    /**
-     * [set] hist_staff_given_name: {text(2147483647)} <br>
-     * @param histStaffGivenName The value of the column 'hist_staff_given_name'. (NullAllowed: null update allowed for no constraint)
-     */
-    public void setHistStaffGivenName(String histStaffGivenName) {
-        registerModifiedProperty("histStaffGivenName");
-        _histStaffGivenName = histStaffGivenName;
-    }
-
-    /**
-     * [get] reservation_date: {date(13)} <br>
-     * @return The value of the column 'reservation_date'. (NullAllowed even if selected: for no constraint)
-     */
-    public java.time.LocalDate getReservationDate() {
-        checkSpecifiedProperty("reservationDate");
-        return _reservationDate;
-    }
-
-    /**
-     * [set] reservation_date: {date(13)} <br>
-     * @param reservationDate The value of the column 'reservation_date'. (NullAllowed: null update allowed for no constraint)
-     */
-    public void setReservationDate(java.time.LocalDate reservationDate) {
-        registerModifiedProperty("reservationDate");
-        _reservationDate = reservationDate;
-    }
-
-    /**
-     * [get] reservation_time: {time(15, 6)} <br>
-     * @return The value of the column 'reservation_time'. (NullAllowed even if selected: for no constraint)
-     */
-    public java.time.LocalTime getReservationTime() {
-        checkSpecifiedProperty("reservationTime");
-        return _reservationTime;
-    }
-
-    /**
-     * [set] reservation_time: {time(15, 6)} <br>
-     * @param reservationTime The value of the column 'reservation_time'. (NullAllowed: null update allowed for no constraint)
-     */
-    public void setReservationTime(java.time.LocalTime reservationTime) {
-        registerModifiedProperty("reservationTime");
-        _reservationTime = reservationTime;
+    public void setWorkingStaffId(Integer workingStaffId) {
+        registerModifiedProperty("workingStaffId");
+        _workingStaffId = workingStaffId;
     }
 
     /**
      * [get] user_id: {int4(10), FK to m_user} <br>
+     * ユーザID : ユーザID
      * @return The value of the column 'user_id'. (NullAllowed even if selected: for no constraint)
      */
     public Integer getUserId() {
@@ -517,6 +423,7 @@ public abstract class BsTReservation extends AbstractEntity implements DomainEnt
 
     /**
      * [set] user_id: {int4(10), FK to m_user} <br>
+     * ユーザID : ユーザID
      * @param userId The value of the column 'user_id'. (NullAllowed: null update allowed for no constraint)
      */
     public void setUserId(Integer userId) {
@@ -525,7 +432,128 @@ public abstract class BsTReservation extends AbstractEntity implements DomainEnt
     }
 
     /**
+     * [get] hist_staff_family_name: {text(2147483647)} <br>
+     * 履歴用スタッフ姓 : 履歴用スタッフ姓
+     * @return The value of the column 'hist_staff_family_name'. (NullAllowed even if selected: for no constraint)
+     */
+    public String getHistStaffFamilyName() {
+        checkSpecifiedProperty("histStaffFamilyName");
+        return _histStaffFamilyName;
+    }
+
+    /**
+     * [set] hist_staff_family_name: {text(2147483647)} <br>
+     * 履歴用スタッフ姓 : 履歴用スタッフ姓
+     * @param histStaffFamilyName The value of the column 'hist_staff_family_name'. (NullAllowed: null update allowed for no constraint)
+     */
+    public void setHistStaffFamilyName(String histStaffFamilyName) {
+        registerModifiedProperty("histStaffFamilyName");
+        _histStaffFamilyName = histStaffFamilyName;
+    }
+
+    /**
+     * [get] hist_shop_name: {text(2147483647)} <br>
+     * 履歴用店舗名 : 履歴用店舗名
+     * @return The value of the column 'hist_shop_name'. (NullAllowed even if selected: for no constraint)
+     */
+    public String getHistShopName() {
+        checkSpecifiedProperty("histShopName");
+        return _histShopName;
+    }
+
+    /**
+     * [set] hist_shop_name: {text(2147483647)} <br>
+     * 履歴用店舗名 : 履歴用店舗名
+     * @param histShopName The value of the column 'hist_shop_name'. (NullAllowed: null update allowed for no constraint)
+     */
+    public void setHistShopName(String histShopName) {
+        registerModifiedProperty("histShopName");
+        _histShopName = histShopName;
+    }
+
+    /**
+     * [get] hist_shop_abbreviated_name: {text(2147483647)} <br>
+     * 履歴用店舗略名 : 履歴用店舗略名
+     * @return The value of the column 'hist_shop_abbreviated_name'. (NullAllowed even if selected: for no constraint)
+     */
+    public String getHistShopAbbreviatedName() {
+        checkSpecifiedProperty("histShopAbbreviatedName");
+        return _histShopAbbreviatedName;
+    }
+
+    /**
+     * [set] hist_shop_abbreviated_name: {text(2147483647)} <br>
+     * 履歴用店舗略名 : 履歴用店舗略名
+     * @param histShopAbbreviatedName The value of the column 'hist_shop_abbreviated_name'. (NullAllowed: null update allowed for no constraint)
+     */
+    public void setHistShopAbbreviatedName(String histShopAbbreviatedName) {
+        registerModifiedProperty("histShopAbbreviatedName");
+        _histShopAbbreviatedName = histShopAbbreviatedName;
+    }
+
+    /**
+     * [get] hist_staff_given_name: {text(2147483647)} <br>
+     * 履歴用スタッフ名 : 履歴用スタッフ名
+     * @return The value of the column 'hist_staff_given_name'. (NullAllowed even if selected: for no constraint)
+     */
+    public String getHistStaffGivenName() {
+        checkSpecifiedProperty("histStaffGivenName");
+        return _histStaffGivenName;
+    }
+
+    /**
+     * [set] hist_staff_given_name: {text(2147483647)} <br>
+     * 履歴用スタッフ名 : 履歴用スタッフ名
+     * @param histStaffGivenName The value of the column 'hist_staff_given_name'. (NullAllowed: null update allowed for no constraint)
+     */
+    public void setHistStaffGivenName(String histStaffGivenName) {
+        registerModifiedProperty("histStaffGivenName");
+        _histStaffGivenName = histStaffGivenName;
+    }
+
+    /**
+     * [get] reservation_date: {date(13)} <br>
+     * 予約日付 : 予約日付
+     * @return The value of the column 'reservation_date'. (NullAllowed even if selected: for no constraint)
+     */
+    public java.time.LocalDate getReservationDate() {
+        checkSpecifiedProperty("reservationDate");
+        return _reservationDate;
+    }
+
+    /**
+     * [set] reservation_date: {date(13)} <br>
+     * 予約日付 : 予約日付
+     * @param reservationDate The value of the column 'reservation_date'. (NullAllowed: null update allowed for no constraint)
+     */
+    public void setReservationDate(java.time.LocalDate reservationDate) {
+        registerModifiedProperty("reservationDate");
+        _reservationDate = reservationDate;
+    }
+
+    /**
+     * [get] reservation_time: {time(15, 6)} <br>
+     * 予約時間 : 予約時間
+     * @return The value of the column 'reservation_time'. (NullAllowed even if selected: for no constraint)
+     */
+    public java.time.LocalTime getReservationTime() {
+        checkSpecifiedProperty("reservationTime");
+        return _reservationTime;
+    }
+
+    /**
+     * [set] reservation_time: {time(15, 6)} <br>
+     * 予約時間 : 予約時間
+     * @param reservationTime The value of the column 'reservation_time'. (NullAllowed: null update allowed for no constraint)
+     */
+    public void setReservationTime(java.time.LocalTime reservationTime) {
+        registerModifiedProperty("reservationTime");
+        _reservationTime = reservationTime;
+    }
+
+    /**
      * [get] total_amount: {int4(10)} <br>
+     * 合計料金 : 合計料金
      * @return The value of the column 'total_amount'. (NullAllowed even if selected: for no constraint)
      */
     public Integer getTotalAmount() {
@@ -535,6 +563,7 @@ public abstract class BsTReservation extends AbstractEntity implements DomainEnt
 
     /**
      * [set] total_amount: {int4(10)} <br>
+     * 合計料金 : 合計料金
      * @param totalAmount The value of the column 'total_amount'. (NullAllowed: null update allowed for no constraint)
      */
     public void setTotalAmount(Integer totalAmount) {
@@ -544,6 +573,7 @@ public abstract class BsTReservation extends AbstractEntity implements DomainEnt
 
     /**
      * [get] remarks: {text(2147483647)} <br>
+     * 備考 : 備考
      * @return The value of the column 'remarks'. (NullAllowed even if selected: for no constraint)
      */
     public String getRemarks() {
@@ -553,6 +583,7 @@ public abstract class BsTReservation extends AbstractEntity implements DomainEnt
 
     /**
      * [set] remarks: {text(2147483647)} <br>
+     * 備考 : 備考
      * @param remarks The value of the column 'remarks'. (NullAllowed: null update allowed for no constraint)
      */
     public void setRemarks(String remarks) {
@@ -562,6 +593,7 @@ public abstract class BsTReservation extends AbstractEntity implements DomainEnt
 
     /**
      * [get] status: {int4(10)} <br>
+     * 状態 : 状態
      * @return The value of the column 'status'. (NullAllowed even if selected: for no constraint)
      */
     public Integer getStatus() {
@@ -571,6 +603,7 @@ public abstract class BsTReservation extends AbstractEntity implements DomainEnt
 
     /**
      * [set] status: {int4(10)} <br>
+     * 状態 : 状態
      * @param status The value of the column 'status'. (NullAllowed: null update allowed for no constraint)
      */
     public void setStatus(Integer status) {
@@ -580,6 +613,7 @@ public abstract class BsTReservation extends AbstractEntity implements DomainEnt
 
     /**
      * [get] delete_flag: {NotNull, bool(1), default=[false]} <br>
+     * 削除フラグ
      * @return The value of the column 'delete_flag'. (basically NotNull if selected: for the constraint)
      */
     public Boolean getDeleteFlag() {
@@ -589,6 +623,7 @@ public abstract class BsTReservation extends AbstractEntity implements DomainEnt
 
     /**
      * [set] delete_flag: {NotNull, bool(1), default=[false]} <br>
+     * 削除フラグ
      * @param deleteFlag The value of the column 'delete_flag'. (basically NotNull if update: for the constraint)
      */
     public void setDeleteFlag(Boolean deleteFlag) {
@@ -597,7 +632,28 @@ public abstract class BsTReservation extends AbstractEntity implements DomainEnt
     }
 
     /**
+     * [get] version_no: {NotNull, int4(10), default=[1]} <br>
+     * version_no
+     * @return The value of the column 'version_no'. (basically NotNull if selected: for the constraint)
+     */
+    public Integer getVersionNo() {
+        checkSpecifiedProperty("versionNo");
+        return _versionNo;
+    }
+
+    /**
+     * [set] version_no: {NotNull, int4(10), default=[1]} <br>
+     * version_no
+     * @param versionNo The value of the column 'version_no'. (basically NotNull if update: for the constraint)
+     */
+    public void setVersionNo(Integer versionNo) {
+        registerModifiedProperty("versionNo");
+        _versionNo = versionNo;
+    }
+
+    /**
      * [get] register_datetime: {NotNull, timestamp(26, 3), default=[now()]} <br>
+     * 登録日時
      * @return The value of the column 'register_datetime'. (basically NotNull if selected: for the constraint)
      */
     public java.time.LocalDateTime getRegisterDatetime() {
@@ -607,6 +663,7 @@ public abstract class BsTReservation extends AbstractEntity implements DomainEnt
 
     /**
      * [set] register_datetime: {NotNull, timestamp(26, 3), default=[now()]} <br>
+     * 登録日時
      * @param registerDatetime The value of the column 'register_datetime'. (basically NotNull if update: for the constraint)
      */
     public void setRegisterDatetime(java.time.LocalDateTime registerDatetime) {
@@ -616,6 +673,7 @@ public abstract class BsTReservation extends AbstractEntity implements DomainEnt
 
     /**
      * [get] update_datetime: {timestamp(26, 3)} <br>
+     * 更新日時
      * @return The value of the column 'update_datetime'. (NullAllowed even if selected: for no constraint)
      */
     public java.time.LocalDateTime getUpdateDatetime() {
@@ -625,6 +683,7 @@ public abstract class BsTReservation extends AbstractEntity implements DomainEnt
 
     /**
      * [set] update_datetime: {timestamp(26, 3)} <br>
+     * 更新日時
      * @param updateDatetime The value of the column 'update_datetime'. (NullAllowed: null update allowed for no constraint)
      */
     public void setUpdateDatetime(java.time.LocalDateTime updateDatetime) {

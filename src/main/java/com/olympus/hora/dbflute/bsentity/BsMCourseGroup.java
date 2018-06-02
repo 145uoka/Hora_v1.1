@@ -14,12 +14,13 @@ import com.olympus.hora.dbflute.exentity.*;
 
 /**
  * The entity of m_course_group as TABLE. <br>
+ * コースグループマスタ
  * <pre>
  * [primary-key]
  *     course_group_id
  *
  * [column]
- *     course_group_id, shop_id, group_name, required_flg, reamarks, delete_flag, register_datetime, update_datetime
+ *     shop_id, group_name, course_group_id, required_flg, reamarks, delete_flag, version_no, register_datetime, update_datetime
  *
  * [sequence]
  *     m_course_group_course_group_id_seq
@@ -28,7 +29,7 @@ import com.olympus.hora.dbflute.exentity.*;
  *     
  *
  * [version-no]
- *     
+ *     version_no
  *
  * [foreign table]
  *     m_shop
@@ -44,20 +45,22 @@ import com.olympus.hora.dbflute.exentity.*;
  *
  * [get/set template]
  * /= = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = =
- * Integer courseGroupId = entity.getCourseGroupId();
  * Integer shopId = entity.getShopId();
  * String groupName = entity.getGroupName();
+ * Integer courseGroupId = entity.getCourseGroupId();
  * Integer requiredFlg = entity.getRequiredFlg();
  * String reamarks = entity.getReamarks();
  * Boolean deleteFlag = entity.getDeleteFlag();
+ * Integer versionNo = entity.getVersionNo();
  * java.time.LocalDateTime registerDatetime = entity.getRegisterDatetime();
  * java.time.LocalDateTime updateDatetime = entity.getUpdateDatetime();
- * entity.setCourseGroupId(courseGroupId);
  * entity.setShopId(shopId);
  * entity.setGroupName(groupName);
+ * entity.setCourseGroupId(courseGroupId);
  * entity.setRequiredFlg(requiredFlg);
  * entity.setReamarks(reamarks);
  * entity.setDeleteFlag(deleteFlag);
+ * entity.setVersionNo(versionNo);
  * entity.setRegisterDatetime(registerDatetime);
  * entity.setUpdateDatetime(updateDatetime);
  * = = = = = = = = = =/
@@ -75,14 +78,14 @@ public abstract class BsMCourseGroup extends AbstractEntity implements DomainEnt
     // ===================================================================================
     //                                                                           Attribute
     //                                                                           =========
-    /** course_group_id: {PK, ID, NotNull, serial(10)} */
-    protected Integer _courseGroupId;
-
     /** shop_id: {int4(10), FK to m_shop} */
     protected Integer _shopId;
 
     /** group_name: {text(2147483647)} */
     protected String _groupName;
+
+    /** course_group_id: {PK, ID, NotNull, serial(10)} */
+    protected Integer _courseGroupId;
 
     /** required_flg: {int2(5)} */
     protected Integer _requiredFlg;
@@ -92,6 +95,9 @@ public abstract class BsMCourseGroup extends AbstractEntity implements DomainEnt
 
     /** delete_flag: {NotNull, bool(1), default=[false]} */
     protected Boolean _deleteFlag;
+
+    /** version_no: {NotNull, int4(10), default=[1]} */
+    protected Integer _versionNo;
 
     /** register_datetime: {NotNull, timestamp(26, 3), default=[now()]} */
     protected java.time.LocalDateTime _registerDatetime;
@@ -210,12 +216,13 @@ public abstract class BsMCourseGroup extends AbstractEntity implements DomainEnt
     @Override
     protected String doBuildColumnString(String dm) {
         StringBuilder sb = new StringBuilder();
-        sb.append(dm).append(xfND(_courseGroupId));
         sb.append(dm).append(xfND(_shopId));
         sb.append(dm).append(xfND(_groupName));
+        sb.append(dm).append(xfND(_courseGroupId));
         sb.append(dm).append(xfND(_requiredFlg));
         sb.append(dm).append(xfND(_reamarks));
         sb.append(dm).append(xfND(_deleteFlag));
+        sb.append(dm).append(xfND(_versionNo));
         sb.append(dm).append(xfND(_registerDatetime));
         sb.append(dm).append(xfND(_updateDatetime));
         if (sb.length() > dm.length()) {
@@ -247,25 +254,8 @@ public abstract class BsMCourseGroup extends AbstractEntity implements DomainEnt
     //                                                                            Accessor
     //                                                                            ========
     /**
-     * [get] course_group_id: {PK, ID, NotNull, serial(10)} <br>
-     * @return The value of the column 'course_group_id'. (basically NotNull if selected: for the constraint)
-     */
-    public Integer getCourseGroupId() {
-        checkSpecifiedProperty("courseGroupId");
-        return _courseGroupId;
-    }
-
-    /**
-     * [set] course_group_id: {PK, ID, NotNull, serial(10)} <br>
-     * @param courseGroupId The value of the column 'course_group_id'. (basically NotNull if update: for the constraint)
-     */
-    public void setCourseGroupId(Integer courseGroupId) {
-        registerModifiedProperty("courseGroupId");
-        _courseGroupId = courseGroupId;
-    }
-
-    /**
      * [get] shop_id: {int4(10), FK to m_shop} <br>
+     * 店舗ID : 店舗ID
      * @return The value of the column 'shop_id'. (NullAllowed even if selected: for no constraint)
      */
     public Integer getShopId() {
@@ -275,6 +265,7 @@ public abstract class BsMCourseGroup extends AbstractEntity implements DomainEnt
 
     /**
      * [set] shop_id: {int4(10), FK to m_shop} <br>
+     * 店舗ID : 店舗ID
      * @param shopId The value of the column 'shop_id'. (NullAllowed: null update allowed for no constraint)
      */
     public void setShopId(Integer shopId) {
@@ -284,6 +275,7 @@ public abstract class BsMCourseGroup extends AbstractEntity implements DomainEnt
 
     /**
      * [get] group_name: {text(2147483647)} <br>
+     * グループ名 : グループ名
      * @return The value of the column 'group_name'. (NullAllowed even if selected: for no constraint)
      */
     public String getGroupName() {
@@ -293,6 +285,7 @@ public abstract class BsMCourseGroup extends AbstractEntity implements DomainEnt
 
     /**
      * [set] group_name: {text(2147483647)} <br>
+     * グループ名 : グループ名
      * @param groupName The value of the column 'group_name'. (NullAllowed: null update allowed for no constraint)
      */
     public void setGroupName(String groupName) {
@@ -301,7 +294,28 @@ public abstract class BsMCourseGroup extends AbstractEntity implements DomainEnt
     }
 
     /**
+     * [get] course_group_id: {PK, ID, NotNull, serial(10)} <br>
+     * コースグループID : コースグループID
+     * @return The value of the column 'course_group_id'. (basically NotNull if selected: for the constraint)
+     */
+    public Integer getCourseGroupId() {
+        checkSpecifiedProperty("courseGroupId");
+        return _courseGroupId;
+    }
+
+    /**
+     * [set] course_group_id: {PK, ID, NotNull, serial(10)} <br>
+     * コースグループID : コースグループID
+     * @param courseGroupId The value of the column 'course_group_id'. (basically NotNull if update: for the constraint)
+     */
+    public void setCourseGroupId(Integer courseGroupId) {
+        registerModifiedProperty("courseGroupId");
+        _courseGroupId = courseGroupId;
+    }
+
+    /**
      * [get] required_flg: {int2(5)} <br>
+     * 必須フラグ : 必須フラグ
      * @return The value of the column 'required_flg'. (NullAllowed even if selected: for no constraint)
      */
     public Integer getRequiredFlg() {
@@ -311,6 +325,7 @@ public abstract class BsMCourseGroup extends AbstractEntity implements DomainEnt
 
     /**
      * [set] required_flg: {int2(5)} <br>
+     * 必須フラグ : 必須フラグ
      * @param requiredFlg The value of the column 'required_flg'. (NullAllowed: null update allowed for no constraint)
      */
     public void setRequiredFlg(Integer requiredFlg) {
@@ -320,6 +335,7 @@ public abstract class BsMCourseGroup extends AbstractEntity implements DomainEnt
 
     /**
      * [get] reamarks: {text(2147483647)} <br>
+     * 備考 : 備考
      * @return The value of the column 'reamarks'. (NullAllowed even if selected: for no constraint)
      */
     public String getReamarks() {
@@ -329,6 +345,7 @@ public abstract class BsMCourseGroup extends AbstractEntity implements DomainEnt
 
     /**
      * [set] reamarks: {text(2147483647)} <br>
+     * 備考 : 備考
      * @param reamarks The value of the column 'reamarks'. (NullAllowed: null update allowed for no constraint)
      */
     public void setReamarks(String reamarks) {
@@ -338,6 +355,7 @@ public abstract class BsMCourseGroup extends AbstractEntity implements DomainEnt
 
     /**
      * [get] delete_flag: {NotNull, bool(1), default=[false]} <br>
+     * 削除フラグ
      * @return The value of the column 'delete_flag'. (basically NotNull if selected: for the constraint)
      */
     public Boolean getDeleteFlag() {
@@ -347,6 +365,7 @@ public abstract class BsMCourseGroup extends AbstractEntity implements DomainEnt
 
     /**
      * [set] delete_flag: {NotNull, bool(1), default=[false]} <br>
+     * 削除フラグ
      * @param deleteFlag The value of the column 'delete_flag'. (basically NotNull if update: for the constraint)
      */
     public void setDeleteFlag(Boolean deleteFlag) {
@@ -355,7 +374,28 @@ public abstract class BsMCourseGroup extends AbstractEntity implements DomainEnt
     }
 
     /**
+     * [get] version_no: {NotNull, int4(10), default=[1]} <br>
+     * version_no
+     * @return The value of the column 'version_no'. (basically NotNull if selected: for the constraint)
+     */
+    public Integer getVersionNo() {
+        checkSpecifiedProperty("versionNo");
+        return _versionNo;
+    }
+
+    /**
+     * [set] version_no: {NotNull, int4(10), default=[1]} <br>
+     * version_no
+     * @param versionNo The value of the column 'version_no'. (basically NotNull if update: for the constraint)
+     */
+    public void setVersionNo(Integer versionNo) {
+        registerModifiedProperty("versionNo");
+        _versionNo = versionNo;
+    }
+
+    /**
      * [get] register_datetime: {NotNull, timestamp(26, 3), default=[now()]} <br>
+     * 登録日時
      * @return The value of the column 'register_datetime'. (basically NotNull if selected: for the constraint)
      */
     public java.time.LocalDateTime getRegisterDatetime() {
@@ -365,6 +405,7 @@ public abstract class BsMCourseGroup extends AbstractEntity implements DomainEnt
 
     /**
      * [set] register_datetime: {NotNull, timestamp(26, 3), default=[now()]} <br>
+     * 登録日時
      * @param registerDatetime The value of the column 'register_datetime'. (basically NotNull if update: for the constraint)
      */
     public void setRegisterDatetime(java.time.LocalDateTime registerDatetime) {
@@ -374,6 +415,7 @@ public abstract class BsMCourseGroup extends AbstractEntity implements DomainEnt
 
     /**
      * [get] update_datetime: {timestamp(26, 3)} <br>
+     * 更新日時
      * @return The value of the column 'update_datetime'. (NullAllowed even if selected: for no constraint)
      */
     public java.time.LocalDateTime getUpdateDatetime() {
@@ -383,6 +425,7 @@ public abstract class BsMCourseGroup extends AbstractEntity implements DomainEnt
 
     /**
      * [set] update_datetime: {timestamp(26, 3)} <br>
+     * 更新日時
      * @param updateDatetime The value of the column 'update_datetime'. (NullAllowed: null update allowed for no constraint)
      */
     public void setUpdateDatetime(java.time.LocalDateTime updateDatetime) {

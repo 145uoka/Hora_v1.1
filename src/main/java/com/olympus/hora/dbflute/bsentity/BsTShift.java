@@ -14,12 +14,13 @@ import com.olympus.hora.dbflute.exentity.*;
 
 /**
  * The entity of t_shift as TABLE. <br>
+ * シフトテーブル
  * <pre>
  * [primary-key]
  *     shift_id
  *
  * [column]
- *     shift_id, working_day_id, staff_id, start_time, end_time, delete_flag, register_datetime, update_datetime
+ *     shift_id, working_staff_id, working_day_id, start_time, end_time, delete_flag, version_no, register_datetime, update_datetime
  *
  * [sequence]
  *     t_shift_shift_id_seq
@@ -28,16 +29,16 @@ import com.olympus.hora.dbflute.exentity.*;
  *     
  *
  * [version-no]
- *     
+ *     version_no
  *
  * [foreign table]
- *     m_staff, m_working_day
+ *     m_working_day, m_working_staff
  *
  * [referrer table]
  *     
  *
  * [foreign property]
- *     mStaff, mWorkingDay
+ *     mWorkingDay, mWorkingStaff
  *
  * [referrer property]
  *     
@@ -45,19 +46,21 @@ import com.olympus.hora.dbflute.exentity.*;
  * [get/set template]
  * /= = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = =
  * Integer shiftId = entity.getShiftId();
+ * Integer workingStaffId = entity.getWorkingStaffId();
  * Integer workingDayId = entity.getWorkingDayId();
- * Integer staffId = entity.getStaffId();
  * java.time.LocalTime startTime = entity.getStartTime();
  * java.time.LocalTime endTime = entity.getEndTime();
  * Boolean deleteFlag = entity.getDeleteFlag();
+ * Integer versionNo = entity.getVersionNo();
  * java.time.LocalDateTime registerDatetime = entity.getRegisterDatetime();
  * java.time.LocalDateTime updateDatetime = entity.getUpdateDatetime();
  * entity.setShiftId(shiftId);
+ * entity.setWorkingStaffId(workingStaffId);
  * entity.setWorkingDayId(workingDayId);
- * entity.setStaffId(staffId);
  * entity.setStartTime(startTime);
  * entity.setEndTime(endTime);
  * entity.setDeleteFlag(deleteFlag);
+ * entity.setVersionNo(versionNo);
  * entity.setRegisterDatetime(registerDatetime);
  * entity.setUpdateDatetime(updateDatetime);
  * = = = = = = = = = =/
@@ -78,11 +81,11 @@ public abstract class BsTShift extends AbstractEntity implements DomainEntity, E
     /** shift_id: {PK, ID, NotNull, serial(10)} */
     protected Integer _shiftId;
 
+    /** working_staff_id: {NotNull, int4(10), FK to m_working_staff} */
+    protected Integer _workingStaffId;
+
     /** working_day_id: {int4(10), FK to m_working_day} */
     protected Integer _workingDayId;
-
-    /** staff_id: {int4(10), FK to m_staff} */
-    protected Integer _staffId;
 
     /** start_time: {time(15, 6)} */
     protected java.time.LocalTime _startTime;
@@ -92,6 +95,9 @@ public abstract class BsTShift extends AbstractEntity implements DomainEntity, E
 
     /** delete_flag: {NotNull, bool(1), default=[false]} */
     protected Boolean _deleteFlag;
+
+    /** version_no: {NotNull, int4(10), default=[1]} */
+    protected Integer _versionNo;
 
     /** register_datetime: {NotNull, timestamp(26, 3), default=[now()]} */
     protected java.time.LocalDateTime _registerDatetime;
@@ -124,27 +130,6 @@ public abstract class BsTShift extends AbstractEntity implements DomainEntity, E
     // ===================================================================================
     //                                                                    Foreign Property
     //                                                                    ================
-    /** m_staff by my staff_id, named 'MStaff'. */
-    protected OptionalEntity<MStaff> _mStaff;
-
-    /**
-     * [get] m_staff by my staff_id, named 'MStaff'. <br>
-     * Optional: alwaysPresent(), ifPresent().orElse(), get(), ...
-     * @return The entity of foreign property 'MStaff'. (NotNull, EmptyAllowed: when e.g. null FK column, no setupSelect)
-     */
-    public OptionalEntity<MStaff> getMStaff() {
-        if (_mStaff == null) { _mStaff = OptionalEntity.relationEmpty(this, "MStaff"); }
-        return _mStaff;
-    }
-
-    /**
-     * [set] m_staff by my staff_id, named 'MStaff'.
-     * @param mStaff The entity of foreign property 'MStaff'. (NullAllowed)
-     */
-    public void setMStaff(OptionalEntity<MStaff> mStaff) {
-        _mStaff = mStaff;
-    }
-
     /** m_working_day by my working_day_id, named 'MWorkingDay'. */
     protected OptionalEntity<MWorkingDay> _mWorkingDay;
 
@@ -164,6 +149,27 @@ public abstract class BsTShift extends AbstractEntity implements DomainEntity, E
      */
     public void setMWorkingDay(OptionalEntity<MWorkingDay> mWorkingDay) {
         _mWorkingDay = mWorkingDay;
+    }
+
+    /** m_working_staff by my working_staff_id, named 'MWorkingStaff'. */
+    protected OptionalEntity<MWorkingStaff> _mWorkingStaff;
+
+    /**
+     * [get] m_working_staff by my working_staff_id, named 'MWorkingStaff'. <br>
+     * Optional: alwaysPresent(), ifPresent().orElse(), get(), ...
+     * @return The entity of foreign property 'MWorkingStaff'. (NotNull, EmptyAllowed: when e.g. null FK column, no setupSelect)
+     */
+    public OptionalEntity<MWorkingStaff> getMWorkingStaff() {
+        if (_mWorkingStaff == null) { _mWorkingStaff = OptionalEntity.relationEmpty(this, "MWorkingStaff"); }
+        return _mWorkingStaff;
+    }
+
+    /**
+     * [set] m_working_staff by my working_staff_id, named 'MWorkingStaff'.
+     * @param mWorkingStaff The entity of foreign property 'MWorkingStaff'. (NullAllowed)
+     */
+    public void setMWorkingStaff(OptionalEntity<MWorkingStaff> mWorkingStaff) {
+        _mWorkingStaff = mWorkingStaff;
     }
 
     // ===================================================================================
@@ -198,10 +204,10 @@ public abstract class BsTShift extends AbstractEntity implements DomainEntity, E
     @Override
     protected String doBuildStringWithRelation(String li) {
         StringBuilder sb = new StringBuilder();
-        if (_mStaff != null && _mStaff.isPresent())
-        { sb.append(li).append(xbRDS(_mStaff, "mStaff")); }
         if (_mWorkingDay != null && _mWorkingDay.isPresent())
         { sb.append(li).append(xbRDS(_mWorkingDay, "mWorkingDay")); }
+        if (_mWorkingStaff != null && _mWorkingStaff.isPresent())
+        { sb.append(li).append(xbRDS(_mWorkingStaff, "mWorkingStaff")); }
         return sb.toString();
     }
     protected <ET extends Entity> String xbRDS(org.dbflute.optional.OptionalEntity<ET> et, String name) { // buildRelationDisplayString()
@@ -212,11 +218,12 @@ public abstract class BsTShift extends AbstractEntity implements DomainEntity, E
     protected String doBuildColumnString(String dm) {
         StringBuilder sb = new StringBuilder();
         sb.append(dm).append(xfND(_shiftId));
+        sb.append(dm).append(xfND(_workingStaffId));
         sb.append(dm).append(xfND(_workingDayId));
-        sb.append(dm).append(xfND(_staffId));
         sb.append(dm).append(xfND(_startTime));
         sb.append(dm).append(xfND(_endTime));
         sb.append(dm).append(xfND(_deleteFlag));
+        sb.append(dm).append(xfND(_versionNo));
         sb.append(dm).append(xfND(_registerDatetime));
         sb.append(dm).append(xfND(_updateDatetime));
         if (sb.length() > dm.length()) {
@@ -229,10 +236,10 @@ public abstract class BsTShift extends AbstractEntity implements DomainEntity, E
     @Override
     protected String doBuildRelationString(String dm) {
         StringBuilder sb = new StringBuilder();
-        if (_mStaff != null && _mStaff.isPresent())
-        { sb.append(dm).append("mStaff"); }
         if (_mWorkingDay != null && _mWorkingDay.isPresent())
         { sb.append(dm).append("mWorkingDay"); }
+        if (_mWorkingStaff != null && _mWorkingStaff.isPresent())
+        { sb.append(dm).append("mWorkingStaff"); }
         if (sb.length() > dm.length()) {
             sb.delete(0, dm.length()).insert(0, "(").append(")");
         }
@@ -249,6 +256,7 @@ public abstract class BsTShift extends AbstractEntity implements DomainEntity, E
     //                                                                            ========
     /**
      * [get] shift_id: {PK, ID, NotNull, serial(10)} <br>
+     * シフトID : シフトID
      * @return The value of the column 'shift_id'. (basically NotNull if selected: for the constraint)
      */
     public Integer getShiftId() {
@@ -258,6 +266,7 @@ public abstract class BsTShift extends AbstractEntity implements DomainEntity, E
 
     /**
      * [set] shift_id: {PK, ID, NotNull, serial(10)} <br>
+     * シフトID : シフトID
      * @param shiftId The value of the column 'shift_id'. (basically NotNull if update: for the constraint)
      */
     public void setShiftId(Integer shiftId) {
@@ -266,7 +275,28 @@ public abstract class BsTShift extends AbstractEntity implements DomainEntity, E
     }
 
     /**
+     * [get] working_staff_id: {NotNull, int4(10), FK to m_working_staff} <br>
+     * 作業ing_staff_id : 所属スタッフID
+     * @return The value of the column 'working_staff_id'. (basically NotNull if selected: for the constraint)
+     */
+    public Integer getWorkingStaffId() {
+        checkSpecifiedProperty("workingStaffId");
+        return _workingStaffId;
+    }
+
+    /**
+     * [set] working_staff_id: {NotNull, int4(10), FK to m_working_staff} <br>
+     * 作業ing_staff_id : 所属スタッフID
+     * @param workingStaffId The value of the column 'working_staff_id'. (basically NotNull if update: for the constraint)
+     */
+    public void setWorkingStaffId(Integer workingStaffId) {
+        registerModifiedProperty("workingStaffId");
+        _workingStaffId = workingStaffId;
+    }
+
+    /**
      * [get] working_day_id: {int4(10), FK to m_working_day} <br>
+     * 営業日ID : 営業日ID
      * @return The value of the column 'working_day_id'. (NullAllowed even if selected: for no constraint)
      */
     public Integer getWorkingDayId() {
@@ -276,6 +306,7 @@ public abstract class BsTShift extends AbstractEntity implements DomainEntity, E
 
     /**
      * [set] working_day_id: {int4(10), FK to m_working_day} <br>
+     * 営業日ID : 営業日ID
      * @param workingDayId The value of the column 'working_day_id'. (NullAllowed: null update allowed for no constraint)
      */
     public void setWorkingDayId(Integer workingDayId) {
@@ -284,25 +315,8 @@ public abstract class BsTShift extends AbstractEntity implements DomainEntity, E
     }
 
     /**
-     * [get] staff_id: {int4(10), FK to m_staff} <br>
-     * @return The value of the column 'staff_id'. (NullAllowed even if selected: for no constraint)
-     */
-    public Integer getStaffId() {
-        checkSpecifiedProperty("staffId");
-        return _staffId;
-    }
-
-    /**
-     * [set] staff_id: {int4(10), FK to m_staff} <br>
-     * @param staffId The value of the column 'staff_id'. (NullAllowed: null update allowed for no constraint)
-     */
-    public void setStaffId(Integer staffId) {
-        registerModifiedProperty("staffId");
-        _staffId = staffId;
-    }
-
-    /**
      * [get] start_time: {time(15, 6)} <br>
+     * 開始時間 : 開始時間
      * @return The value of the column 'start_time'. (NullAllowed even if selected: for no constraint)
      */
     public java.time.LocalTime getStartTime() {
@@ -312,6 +326,7 @@ public abstract class BsTShift extends AbstractEntity implements DomainEntity, E
 
     /**
      * [set] start_time: {time(15, 6)} <br>
+     * 開始時間 : 開始時間
      * @param startTime The value of the column 'start_time'. (NullAllowed: null update allowed for no constraint)
      */
     public void setStartTime(java.time.LocalTime startTime) {
@@ -321,6 +336,7 @@ public abstract class BsTShift extends AbstractEntity implements DomainEntity, E
 
     /**
      * [get] end_time: {time(15, 6)} <br>
+     * 終了時間 : 終了時間
      * @return The value of the column 'end_time'. (NullAllowed even if selected: for no constraint)
      */
     public java.time.LocalTime getEndTime() {
@@ -330,6 +346,7 @@ public abstract class BsTShift extends AbstractEntity implements DomainEntity, E
 
     /**
      * [set] end_time: {time(15, 6)} <br>
+     * 終了時間 : 終了時間
      * @param endTime The value of the column 'end_time'. (NullAllowed: null update allowed for no constraint)
      */
     public void setEndTime(java.time.LocalTime endTime) {
@@ -339,6 +356,7 @@ public abstract class BsTShift extends AbstractEntity implements DomainEntity, E
 
     /**
      * [get] delete_flag: {NotNull, bool(1), default=[false]} <br>
+     * 削除フラグ
      * @return The value of the column 'delete_flag'. (basically NotNull if selected: for the constraint)
      */
     public Boolean getDeleteFlag() {
@@ -348,6 +366,7 @@ public abstract class BsTShift extends AbstractEntity implements DomainEntity, E
 
     /**
      * [set] delete_flag: {NotNull, bool(1), default=[false]} <br>
+     * 削除フラグ
      * @param deleteFlag The value of the column 'delete_flag'. (basically NotNull if update: for the constraint)
      */
     public void setDeleteFlag(Boolean deleteFlag) {
@@ -356,7 +375,28 @@ public abstract class BsTShift extends AbstractEntity implements DomainEntity, E
     }
 
     /**
+     * [get] version_no: {NotNull, int4(10), default=[1]} <br>
+     * version_no
+     * @return The value of the column 'version_no'. (basically NotNull if selected: for the constraint)
+     */
+    public Integer getVersionNo() {
+        checkSpecifiedProperty("versionNo");
+        return _versionNo;
+    }
+
+    /**
+     * [set] version_no: {NotNull, int4(10), default=[1]} <br>
+     * version_no
+     * @param versionNo The value of the column 'version_no'. (basically NotNull if update: for the constraint)
+     */
+    public void setVersionNo(Integer versionNo) {
+        registerModifiedProperty("versionNo");
+        _versionNo = versionNo;
+    }
+
+    /**
      * [get] register_datetime: {NotNull, timestamp(26, 3), default=[now()]} <br>
+     * 登録日時
      * @return The value of the column 'register_datetime'. (basically NotNull if selected: for the constraint)
      */
     public java.time.LocalDateTime getRegisterDatetime() {
@@ -366,6 +406,7 @@ public abstract class BsTShift extends AbstractEntity implements DomainEntity, E
 
     /**
      * [set] register_datetime: {NotNull, timestamp(26, 3), default=[now()]} <br>
+     * 登録日時
      * @param registerDatetime The value of the column 'register_datetime'. (basically NotNull if update: for the constraint)
      */
     public void setRegisterDatetime(java.time.LocalDateTime registerDatetime) {
@@ -375,6 +416,7 @@ public abstract class BsTShift extends AbstractEntity implements DomainEntity, E
 
     /**
      * [get] update_datetime: {timestamp(26, 3)} <br>
+     * 更新日時
      * @return The value of the column 'update_datetime'. (NullAllowed even if selected: for no constraint)
      */
     public java.time.LocalDateTime getUpdateDatetime() {
@@ -384,6 +426,7 @@ public abstract class BsTShift extends AbstractEntity implements DomainEntity, E
 
     /**
      * [set] update_datetime: {timestamp(26, 3)} <br>
+     * 更新日時
      * @param updateDatetime The value of the column 'update_datetime'. (NullAllowed: null update allowed for no constraint)
      */
     public void setUpdateDatetime(java.time.LocalDateTime updateDatetime) {

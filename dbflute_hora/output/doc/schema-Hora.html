@@ -356,146 +356,300 @@ dl.procedurelist dd.column pre {
 	<tbody id="table-list-body">
 	<tr>
 		<td class="rownumcell">1</td>
-		<td class="namecell" data-name="m_code"><a href="#m_code" title="type=TABLE, primaryKey={code_id}, nameLength=6, columnCount=8">m_code</a></td>
+		<td class="namecell" data-name="display_def_m"><a href="#display_def_m" title="type=TABLE, primaryKey={display_id}, nameLength=13, columnCount=6">display_def_m</a></td>
 		<td class="typecell">TABLE</td>
 		<td class="relcell">&nbsp;</td>
 		<td class="relcell">&nbsp;</td>
-		<td class="commentcell m_code_comment"><pre>&nbsp;</pre></td>
-		<td class="subcell">MCode</td>
+		<td class="commentcell display_def_m_comment"><pre>画面名定義_M</pre></td>
+		<td class="subcell">DisplayDefM</td>
 	</tr>
 	<tr>
 		<td class="rownumcell">2</td>
-		<td class="namecell" data-name="m_company"><a href="#m_company" title="type=TABLE, primaryKey={company_id}, nameLength=9, columnCount=5">m_company</a></td>
+		<td class="namecell" data-name="m_code"><a href="#m_code" title="type=TABLE, primaryKey={code_id}, nameLength=6, columnCount=9">m_code</a></td>
 		<td class="typecell">TABLE</td>
 		<td class="relcell">&nbsp;</td>
-		<td class="relcell"><a href="#m_shop" title="idx_m_shop_fk0">m_shop</a></td>
-		<td class="commentcell m_company_comment"><pre>&nbsp;</pre></td>
-		<td class="subcell">MCompany</td>
+		<td class="relcell">&nbsp;</td>
+		<td class="commentcell m_code_comment"><pre>コードマスタ</pre></td>
+		<td class="subcell">MCode</td>
 	</tr>
 	<tr>
 		<td class="rownumcell">3</td>
-		<td class="namecell" data-name="m_course"><a href="#m_course" title="type=TABLE, primaryKey={course_id}, nameLength=8, columnCount=8">m_course</a></td>
+		<td class="namecell" data-name="m_company"><a href="#m_company" title="type=TABLE, primaryKey={company_id}, nameLength=9, columnCount=6">m_company</a></td>
 		<td class="typecell">TABLE</td>
-		<td class="relcell"><a href="#m_course_group" title="idx_m_course_fk0">m_course_group</a></td>
-		<td class="relcell"><a href="#t_reservation_detail" title="idx_t_reservation_detail_fk2">t_reservation_detail</a></td>
-		<td class="commentcell m_course_comment"><pre>&nbsp;</pre></td>
-		<td class="subcell">MCourse</td>
+		<td class="relcell">&nbsp;</td>
+		<td class="relcell"><a href="#m_shop" title="idx_m_shop_fk0">m_shop</a>, <a href="#m_staff" title="m_staff_company_id_fkey">m_staff</a></td>
+		<td class="commentcell m_company_comment"><pre>企業マスタ</pre></td>
+		<td class="subcell">MCompany</td>
 	</tr>
 	<tr>
 		<td class="rownumcell">4</td>
-		<td class="namecell" data-name="m_course_group"><a href="#m_course_group" title="type=TABLE, primaryKey={course_group_id}, nameLength=14, columnCount=8">m_course_group</a></td>
+		<td class="namecell" data-name="m_course"><a href="#m_course" title="type=TABLE, primaryKey={course_id}, nameLength=8, columnCount=9">m_course</a></td>
 		<td class="typecell">TABLE</td>
-		<td class="relcell"><a href="#m_shop" title="idx_m_course_group_fk0">m_shop</a></td>
-		<td class="relcell"><a href="#m_course" title="idx_m_course_fk0">m_course</a></td>
-		<td class="commentcell m_course_group_comment"><pre>&nbsp;</pre></td>
-		<td class="subcell">MCourseGroup</td>
+		<td class="relcell"><a href="#m_course_group" title="idx_m_course_fk0">m_course_group</a></td>
+		<td class="relcell"><a href="#t_reservation_detail" title="idx_t_reservation_detail_fk2">t_reservation_detail</a></td>
+		<td class="commentcell m_course_comment"><pre>コースマスタ</pre></td>
+		<td class="subcell">MCourse</td>
 	</tr>
 	<tr>
 		<td class="rownumcell">5</td>
-		<td class="namecell" data-name="m_holiday"><a href="#m_holiday" title="type=TABLE, primaryKey={holiday_id}, nameLength=9, columnCount=6">m_holiday</a></td>
+		<td class="namecell" data-name="m_course_group"><a href="#m_course_group" title="type=TABLE, primaryKey={course_group_id}, nameLength=14, columnCount=9">m_course_group</a></td>
 		<td class="typecell">TABLE</td>
-		<td class="relcell">&nbsp;</td>
-		<td class="relcell">&nbsp;</td>
-		<td class="commentcell m_holiday_comment"><pre>&nbsp;</pre></td>
-		<td class="subcell">MHoliday</td>
+		<td class="relcell"><a href="#m_shop" title="idx_m_course_group_fk0">m_shop</a></td>
+		<td class="relcell"><a href="#m_course" title="idx_m_course_fk0">m_course</a></td>
+		<td class="commentcell m_course_group_comment"><pre>コースグループマスタ</pre></td>
+		<td class="subcell">MCourseGroup</td>
 	</tr>
 	<tr>
 		<td class="rownumcell">6</td>
-		<td class="namecell" data-name="m_shop"><a href="#m_shop" title="type=TABLE, primaryKey={shop_id}, nameLength=6, columnCount=24">m_shop</a></td>
+		<td class="namecell" data-name="m_holiday"><a href="#m_holiday" title="type=TABLE, primaryKey={holiday_id}, nameLength=9, columnCount=7">m_holiday</a></td>
 		<td class="typecell">TABLE</td>
-		<td class="relcell"><a href="#m_company" title="idx_m_shop_fk0">m_company</a></td>
-		<td class="relcell"><a href="#m_course_group" title="idx_m_course_group_fk0">m_course_group</a>, <a href="#m_working_day" title="idx_m_working_day_fk0">m_working_day</a>, <a href="#m_working_day_deff" title="idx_m_working_day_deff_fk0">m_working_day_deff</a>, <a href="#m_working_staff" title="idx_m_working_staff_fk0">m_working_staff</a>, <a href="#t_reservation" title="idx_t_reservation_fk1">t_reservation</a></td>
-		<td class="commentcell m_shop_comment"><pre>&nbsp;</pre></td>
-		<td class="subcell">MShop</td>
+		<td class="relcell">&nbsp;</td>
+		<td class="relcell">&nbsp;</td>
+		<td class="commentcell m_holiday_comment"><pre>祝日マスタ</pre></td>
+		<td class="subcell">MHoliday</td>
 	</tr>
 	<tr>
 		<td class="rownumcell">7</td>
-		<td class="namecell" data-name="m_staff"><a href="#m_staff" title="type=TABLE, primaryKey={staff_id}, nameLength=7, columnCount=9">m_staff</a></td>
+		<td class="namecell" data-name="m_shop"><a href="#m_shop" title="type=TABLE, primaryKey={shop_id}, nameLength=6, columnCount=25">m_shop</a></td>
 		<td class="typecell">TABLE</td>
-		<td class="relcell">&nbsp;</td>
-		<td class="relcell"><a href="#m_working_staff" title="idx_m_working_staff_fk1">m_working_staff</a>, <a href="#t_reservation" title="idx_t_reservation_fk2">t_reservation</a>, <a href="#t_shift" title="idx_t_shift_fk1">t_shift</a></td>
-		<td class="commentcell m_staff_comment"><pre>&nbsp;</pre></td>
-		<td class="subcell">MStaff</td>
+		<td class="relcell"><a href="#m_company" title="idx_m_shop_fk0">m_company</a></td>
+		<td class="relcell"><a href="#m_course_group" title="idx_m_course_group_fk0">m_course_group</a>, <a href="#m_working_day" title="idx_m_working_day_fk0">m_working_day</a>, <a href="#m_working_day_deff" title="idx_m_working_day_deff_fk0">m_working_day_deff</a>, <a href="#m_working_staff" title="idx_m_working_staff_fk0">m_working_staff</a>, <a href="#t_reservation" title="idx_t_reservation_fk1">t_reservation</a></td>
+		<td class="commentcell m_shop_comment"><pre>店舗マスタ</pre></td>
+		<td class="subcell">MShop</td>
 	</tr>
 	<tr>
 		<td class="rownumcell">8</td>
-		<td class="namecell" data-name="m_user"><a href="#m_user" title="type=TABLE, primaryKey={user_id}, nameLength=6, columnCount=24">m_user</a></td>
+		<td class="namecell" data-name="m_staff"><a href="#m_staff" title="type=TABLE, primaryKey={staff_id}, nameLength=7, columnCount=11">m_staff</a></td>
 		<td class="typecell">TABLE</td>
-		<td class="relcell">&nbsp;</td>
-		<td class="relcell"><a href="#t_reservation" title="idx_t_reservation_fk0">t_reservation</a></td>
-		<td class="commentcell m_user_comment"><pre>&nbsp;</pre></td>
-		<td class="subcell">MUser</td>
+		<td class="relcell"><a href="#m_company" title="m_staff_company_id_fkey">m_company</a></td>
+		<td class="relcell"><a href="#m_working_staff" title="idx_m_working_staff_fk1">m_working_staff</a></td>
+		<td class="commentcell m_staff_comment"><pre>スタッフマスタ</pre></td>
+		<td class="subcell">MStaff</td>
 	</tr>
 	<tr>
 		<td class="rownumcell">9</td>
-		<td class="namecell" data-name="m_working_day"><a href="#m_working_day" title="type=TABLE, primaryKey={working_day_id}, nameLength=13, columnCount=8">m_working_day</a></td>
+		<td class="namecell" data-name="m_user"><a href="#m_user" title="type=TABLE, primaryKey={user_id}, nameLength=6, columnCount=27">m_user</a></td>
 		<td class="typecell">TABLE</td>
-		<td class="relcell"><a href="#m_shop" title="idx_m_working_day_fk0">m_shop</a></td>
-		<td class="relcell"><a href="#t_shift" title="idx_t_shift_fk0">t_shift</a></td>
-		<td class="commentcell m_working_day_comment"><pre>&nbsp;</pre></td>
-		<td class="subcell">MWorkingDay</td>
+		<td class="relcell">&nbsp;</td>
+		<td class="relcell"><a href="#t_reservation" title="idx_t_reservation_fk0">t_reservation</a></td>
+		<td class="commentcell m_user_comment"><pre>ユーザマスタ</pre></td>
+		<td class="subcell">MUser</td>
 	</tr>
 	<tr>
 		<td class="rownumcell">10</td>
-		<td class="namecell" data-name="m_working_day_deff"><a href="#m_working_day_deff" title="type=TABLE, primaryKey={m_working_day_deff_id}, nameLength=18, columnCount=6">m_working_day_deff</a></td>
+		<td class="namecell" data-name="m_working_day"><a href="#m_working_day" title="type=TABLE, primaryKey={working_day_id}, nameLength=13, columnCount=9">m_working_day</a></td>
 		<td class="typecell">TABLE</td>
-		<td class="relcell"><a href="#m_shop" title="idx_m_working_day_deff_fk0">m_shop</a></td>
-		<td class="relcell"><a href="#m_working_day_detail_deff" title="idx_m_working_day_detail_deff_fk1">m_working_day_detail_deff</a></td>
-		<td class="commentcell m_working_day_deff_comment"><pre>&nbsp;</pre></td>
-		<td class="subcell">MWorkingDayDeff</td>
+		<td class="relcell"><a href="#m_shop" title="idx_m_working_day_fk0">m_shop</a></td>
+		<td class="relcell"><a href="#t_shift" title="idx_t_shift_fk0">t_shift</a></td>
+		<td class="commentcell m_working_day_comment"><pre>営業日マスタ</pre></td>
+		<td class="subcell">MWorkingDay</td>
 	</tr>
 	<tr>
 		<td class="rownumcell">11</td>
-		<td class="namecell" data-name="m_working_day_detail_deff"><a href="#m_working_day_detail_deff" title="type=TABLE, primaryKey={working_day_detail_deff_id}, nameLength=25, columnCount=24">m_working_day_detail_deff</a></td>
+		<td class="namecell" data-name="m_working_day_deff"><a href="#m_working_day_deff" title="type=TABLE, primaryKey={m_working_day_deff_id}, nameLength=18, columnCount=7">m_working_day_deff</a></td>
 		<td class="typecell">TABLE</td>
-		<td class="relcell"><a href="#m_working_day_deff" title="idx_m_working_day_detail_deff_fk1">m_working_day_deff</a></td>
-		<td class="relcell">&nbsp;</td>
-		<td class="commentcell m_working_day_detail_deff_comment"><pre>&nbsp;</pre></td>
-		<td class="subcell">MWorkingDayDetailDeff</td>
+		<td class="relcell"><a href="#m_shop" title="idx_m_working_day_deff_fk0">m_shop</a></td>
+		<td class="relcell"><a href="#m_working_day_detail_deff" title="idx_m_working_day_detail_deff_fk1">m_working_day_detail_deff</a></td>
+		<td class="commentcell m_working_day_deff_comment"><pre>営業日定義マスタ</pre></td>
+		<td class="subcell">MWorkingDayDeff</td>
 	</tr>
 	<tr>
 		<td class="rownumcell">12</td>
-		<td class="namecell" data-name="m_working_staff"><a href="#m_working_staff" title="type=TABLE, primaryKey={working_staff_id}, nameLength=15, columnCount=6">m_working_staff</a></td>
+		<td class="namecell" data-name="m_working_day_detail_deff"><a href="#m_working_day_detail_deff" title="type=TABLE, primaryKey={working_day_detail_deff_id}, nameLength=25, columnCount=25">m_working_day_detail_deff</a></td>
 		<td class="typecell">TABLE</td>
-		<td class="relcell"><a href="#m_shop" title="idx_m_working_staff_fk0">m_shop</a>, <a href="#m_staff" title="idx_m_working_staff_fk1">m_staff</a></td>
+		<td class="relcell"><a href="#m_working_day_deff" title="idx_m_working_day_detail_deff_fk1">m_working_day_deff</a></td>
 		<td class="relcell">&nbsp;</td>
-		<td class="commentcell m_working_staff_comment"><pre>&nbsp;</pre></td>
-		<td class="subcell">MWorkingStaff</td>
+		<td class="commentcell m_working_day_detail_deff_comment"><pre>営業日詳細定義マスタ</pre></td>
+		<td class="subcell">MWorkingDayDetailDeff</td>
 	</tr>
 	<tr>
 		<td class="rownumcell">13</td>
-		<td class="namecell" data-name="t_reservation"><a href="#t_reservation" title="type=TABLE, primaryKey={reservation_id}, nameLength=13, columnCount=16">t_reservation</a></td>
+		<td class="namecell" data-name="m_working_staff"><a href="#m_working_staff" title="type=TABLE, primaryKey={working_staff_id}, nameLength=15, columnCount=7">m_working_staff</a></td>
 		<td class="typecell">TABLE</td>
-		<td class="relcell"><a href="#m_shop" title="idx_t_reservation_fk1">m_shop</a>, <a href="#m_staff" title="idx_t_reservation_fk2">m_staff</a>, <a href="#m_user" title="idx_t_reservation_fk0">m_user</a></td>
-		<td class="relcell"><a href="#t_reservation_detail" title="idx_t_reservation_detail_fk0">t_reservation_detail</a></td>
-		<td class="commentcell t_reservation_comment"><pre>&nbsp;</pre></td>
-		<td class="subcell">TReservation</td>
+		<td class="relcell"><a href="#m_shop" title="idx_m_working_staff_fk0">m_shop</a>, <a href="#m_staff" title="idx_m_working_staff_fk1">m_staff</a></td>
+		<td class="relcell"><a href="#t_reservation" title="t_reservation_working_staff_id_fkey">t_reservation</a>, <a href="#t_shift" title="t_shift_working_staff_id_fkey">t_shift</a></td>
+		<td class="commentcell m_working_staff_comment"><pre>所属スタッフマスタ</pre></td>
+		<td class="subcell">MWorkingStaff</td>
 	</tr>
 	<tr>
 		<td class="rownumcell">14</td>
-		<td class="namecell" data-name="t_reservation_detail"><a href="#t_reservation_detail" title="type=TABLE, primaryKey={reservation_detail_id}, nameLength=20, columnCount=7">t_reservation_detail</a></td>
+		<td class="namecell" data-name="system_property_m"><a href="#system_property_m" title="type=TABLE, primaryKey={prop_key}, nameLength=17, columnCount=8">system_property_m</a></td>
 		<td class="typecell">TABLE</td>
-		<td class="relcell"><a href="#m_course" title="idx_t_reservation_detail_fk2">m_course</a>, <a href="#t_reservation" title="idx_t_reservation_detail_fk0">t_reservation</a></td>
 		<td class="relcell">&nbsp;</td>
-		<td class="commentcell t_reservation_detail_comment"><pre>&nbsp;</pre></td>
-		<td class="subcell">TReservationDetail</td>
+		<td class="relcell">&nbsp;</td>
+		<td class="commentcell system_property_m_comment"><pre>システムプロパティ_M</pre></td>
+		<td class="subcell">SystemPropertyM</td>
 	</tr>
 	<tr>
 		<td class="rownumcell">15</td>
-		<td class="namecell" data-name="t_shift"><a href="#t_shift" title="type=TABLE, primaryKey={shift_id}, nameLength=7, columnCount=8">t_shift</a></td>
+		<td class="namecell" data-name="t_reservation"><a href="#t_reservation" title="type=TABLE, primaryKey={reservation_id}, nameLength=13, columnCount=17">t_reservation</a></td>
 		<td class="typecell">TABLE</td>
-		<td class="relcell"><a href="#m_staff" title="idx_t_shift_fk1">m_staff</a>, <a href="#m_working_day" title="idx_t_shift_fk0">m_working_day</a></td>
+		<td class="relcell"><a href="#m_shop" title="idx_t_reservation_fk1">m_shop</a>, <a href="#m_user" title="idx_t_reservation_fk0">m_user</a>, <a href="#m_working_staff" title="t_reservation_working_staff_id_fkey">m_working_staff</a></td>
+		<td class="relcell"><a href="#t_reservation_detail" title="idx_t_reservation_detail_fk0">t_reservation_detail</a></td>
+		<td class="commentcell t_reservation_comment"><pre>予約テーブル</pre></td>
+		<td class="subcell">TReservation</td>
+	</tr>
+	<tr>
+		<td class="rownumcell">16</td>
+		<td class="namecell" data-name="t_reservation_detail"><a href="#t_reservation_detail" title="type=TABLE, primaryKey={reservation_detail_id}, nameLength=20, columnCount=8">t_reservation_detail</a></td>
+		<td class="typecell">TABLE</td>
+		<td class="relcell"><a href="#m_course" title="idx_t_reservation_detail_fk2">m_course</a>, <a href="#t_reservation" title="idx_t_reservation_detail_fk0">t_reservation</a></td>
 		<td class="relcell">&nbsp;</td>
-		<td class="commentcell t_shift_comment"><pre>&nbsp;</pre></td>
+		<td class="commentcell t_reservation_detail_comment"><pre>予約明細テーブル</pre></td>
+		<td class="subcell">TReservationDetail</td>
+	</tr>
+	<tr>
+		<td class="rownumcell">17</td>
+		<td class="namecell" data-name="t_shift"><a href="#t_shift" title="type=TABLE, primaryKey={shift_id}, nameLength=7, columnCount=9">t_shift</a></td>
+		<td class="typecell">TABLE</td>
+		<td class="relcell"><a href="#m_working_day" title="idx_t_shift_fk0">m_working_day</a>, <a href="#m_working_staff" title="t_shift_working_staff_id_fkey">m_working_staff</a></td>
+		<td class="relcell">&nbsp;</td>
+		<td class="commentcell t_shift_comment"><pre>シフトテーブル</pre></td>
 		<td class="subcell">TShift</td>
 	</tr>
 	</tbody>
 </table>
 
-<h2 id="m_code" title="type=TABLE, primaryKey={code_id}, nameLength=6, columnCount=8">
+<h2 id="display_def_m" title="type=TABLE, primaryKey={display_id}, nameLength=13, columnCount=6">
+display_def_m
+</h2>
+<div class="tablecomment display_def_m_comment" data-name="display_def_m"><pre>画面名定義_M</pre></div>
+<input type="hidden" value="display_def_m">
+<table class="tablecontent">
+	<thead>
+	<tr>
+		<th class="rownumhead">No.</th>
+		<th>PK</th>
+		<th>ID</th>
+		<th>UQ</th>
+		<th>IX</th>
+		<th>Not<br />Null</th>
+		<th>Name</th>
+		<th>Type</th>
+		<th>Size</th>
+		<th>Default</th>
+		<th>ForeignTable</th>
+		<th>ReferrerTable</th>
+		<th>Classification</th>
+		<th>ColumnComment</th>
+		<th>PropertyName</th>
+		<th>JavaType</th>
+	</tr>
+	</thead>
+	<tr>
+		<td class="rownumcell">1</td>
+		<td class="flgcell" title="display_def_m_pkey">o</td>
+		<td class="flgcell"> &nbsp;</td>
+		<td class="flgcell">&nbsp;</td>
+		<td class="flgcell">&nbsp;</td>
+		<td class="flgcell">*</td>
+		<td class=" columnnamecell" id="display_def_m_display_id">display_id</td>
+		<td class="typecell">text</td>
+		<td class="sizecell"> 2147483647 </td>
+		<td class="defvalcell"> &nbsp;</td>
+		<td class="relcell">&nbsp;&nbsp;</td>
+		<td class="relcell">&nbsp;</td>
+		<td class="relcell"> &nbsp;</td>
+		<td class="commentcell"><pre>画面ID : 画面ID</pre></td>
+		<td class="subcell">displayId</td>
+		<td class="subcell">String</td>
+	</tr>
+	<tr>
+		<td class="rownumcell">2</td>
+		<td class="flgcell">&nbsp;</td>
+		<td class="flgcell"> &nbsp;</td>
+		<td class="flgcell">&nbsp;</td>
+		<td class="flgcell">&nbsp;</td>
+		<td class="flgcell"> &nbsp;</td>
+		<td class=" columnnamecell" id="display_def_m_display_name">display_name</td>
+		<td class="typecell">text</td>
+		<td class="sizecell"> 2147483647 </td>
+		<td class="defvalcell"> &nbsp;</td>
+		<td class="relcell">&nbsp;&nbsp;</td>
+		<td class="relcell">&nbsp;</td>
+		<td class="relcell"> &nbsp;</td>
+		<td class="commentcell"><pre>画面名 : 画面名</pre></td>
+		<td class="subcell">displayName</td>
+		<td class="subcell">String</td>
+	</tr>
+	<tr>
+		<td class="rownumcell">3</td>
+		<td class="flgcell">&nbsp;</td>
+		<td class="flgcell"> &nbsp;</td>
+		<td class="flgcell">&nbsp;</td>
+		<td class="flgcell">&nbsp;</td>
+		<td class="flgcell">*</td>
+		<td class=" columnnamecell" id="display_def_m_delete_flag">delete_flag</td>
+		<td class="typecell">bool</td>
+		<td class="sizecell"> 1 </td>
+		<td class="defvalcell"> false</td>
+		<td class="relcell">&nbsp;&nbsp;</td>
+		<td class="relcell">&nbsp;</td>
+		<td class="relcell"> &nbsp;</td>
+		<td class="commentcell"><pre>削除フラグ</pre></td>
+		<td class="subcell">deleteFlag</td>
+		<td class="subcell">Boolean</td>
+	</tr>
+	<tr>
+		<td class="rownumcell">4</td>
+		<td class="flgcell">&nbsp;</td>
+		<td class="flgcell"> &nbsp;</td>
+		<td class="flgcell">&nbsp;</td>
+		<td class="flgcell">&nbsp;</td>
+		<td class="flgcell">*</td>
+		<td class="optcell columnnamecell" id="display_def_m_version_no">version_no</td>
+		<td class="typecell">int4</td>
+		<td class="sizecell"> 10 </td>
+		<td class="defvalcell"> 1</td>
+		<td class="relcell">&nbsp;&nbsp;</td>
+		<td class="relcell">&nbsp;</td>
+		<td class="relcell"> &nbsp;</td>
+		<td class="commentcell"><pre>version_no</pre></td>
+		<td class="subcell">versionNo</td>
+		<td class="subcell">Integer</td>
+	</tr>
+	<tr>
+		<td class="rownumcell">5</td>
+		<td class="flgcell">&nbsp;</td>
+		<td class="flgcell"> &nbsp;</td>
+		<td class="flgcell">&nbsp;</td>
+		<td class="flgcell">&nbsp;</td>
+		<td class="flgcell">*</td>
+		<td class="comcolcell columnnamecell" id="display_def_m_register_datetime">register_datetime</td>
+		<td class="typecell">timestamp</td>
+		<td class="sizecell"> 26, 3 </td>
+		<td class="defvalcell"> now()</td>
+		<td class="relcell">&nbsp;&nbsp;</td>
+		<td class="relcell">&nbsp;</td>
+		<td class="relcell"> &nbsp;</td>
+		<td class="commentcell"><pre>登録日時</pre></td>
+		<td class="subcell">registerDatetime</td>
+		<td class="subcell">LocalDateTime</td>
+	</tr>
+	<tr>
+		<td class="rownumcell">6</td>
+		<td class="flgcell">&nbsp;</td>
+		<td class="flgcell"> &nbsp;</td>
+		<td class="flgcell">&nbsp;</td>
+		<td class="flgcell">&nbsp;</td>
+		<td class="flgcell"> &nbsp;</td>
+		<td class="comcolcell columnnamecell" id="display_def_m_update_datetime">update_datetime</td>
+		<td class="typecell">timestamp</td>
+		<td class="sizecell"> 26, 3 </td>
+		<td class="defvalcell"> &nbsp;</td>
+		<td class="relcell">&nbsp;&nbsp;</td>
+		<td class="relcell">&nbsp;</td>
+		<td class="relcell"> &nbsp;</td>
+		<td class="commentcell"><pre>更新日時</pre></td>
+		<td class="subcell">updateDatetime</td>
+		<td class="subcell">LocalDateTime</td>
+	</tr>
+</table>
+
+<h2 id="m_code" title="type=TABLE, primaryKey={code_id}, nameLength=6, columnCount=9">
 m_code
 </h2>
-<div class="tablecomment m_code_comment" data-name="m_code"><pre></pre></div>
+<div class="tablecomment m_code_comment" data-name="m_code"><pre>コードマスタ</pre></div>
 <input type="hidden" value="m_code">
 <table class="tablecontent">
 	<thead>
@@ -532,7 +686,7 @@ m_code
 		<td class="relcell">&nbsp;&nbsp;</td>
 		<td class="relcell">&nbsp;</td>
 		<td class="relcell"> &nbsp;</td>
-		<td class="commentcell"><pre>&nbsp;</pre></td>
+		<td class="commentcell"><pre>コードID : コードID</pre></td>
 		<td class="subcell">codeId</td>
 		<td class="subcell">Integer</td>
 	</tr>
@@ -550,7 +704,7 @@ m_code
 		<td class="relcell">&nbsp;&nbsp;</td>
 		<td class="relcell">&nbsp;</td>
 		<td class="relcell"> &nbsp;</td>
-		<td class="commentcell"><pre>&nbsp;</pre></td>
+		<td class="commentcell"><pre>グループコード : グループコード</pre></td>
 		<td class="subcell">groupCode</td>
 		<td class="subcell">Integer</td>
 	</tr>
@@ -568,7 +722,7 @@ m_code
 		<td class="relcell">&nbsp;&nbsp;</td>
 		<td class="relcell">&nbsp;</td>
 		<td class="relcell"> &nbsp;</td>
-		<td class="commentcell"><pre>&nbsp;</pre></td>
+		<td class="commentcell"><pre>コード1 : コード1</pre></td>
 		<td class="subcell">code1</td>
 		<td class="subcell">Integer</td>
 	</tr>
@@ -586,7 +740,7 @@ m_code
 		<td class="relcell">&nbsp;&nbsp;</td>
 		<td class="relcell">&nbsp;</td>
 		<td class="relcell"> &nbsp;</td>
-		<td class="commentcell"><pre>&nbsp;</pre></td>
+		<td class="commentcell"><pre>コード2 : コード2</pre></td>
 		<td class="subcell">code2</td>
 		<td class="subcell">Integer</td>
 	</tr>
@@ -604,7 +758,7 @@ m_code
 		<td class="relcell">&nbsp;&nbsp;</td>
 		<td class="relcell">&nbsp;</td>
 		<td class="relcell"> &nbsp;</td>
-		<td class="commentcell"><pre>&nbsp;</pre></td>
+		<td class="commentcell"><pre>名称 : 名称</pre></td>
 		<td class="subcell">name</td>
 		<td class="subcell">String</td>
 	</tr>
@@ -622,12 +776,30 @@ m_code
 		<td class="relcell">&nbsp;&nbsp;</td>
 		<td class="relcell">&nbsp;</td>
 		<td class="relcell"> &nbsp;</td>
-		<td class="commentcell"><pre>&nbsp;</pre></td>
+		<td class="commentcell"><pre>削除フラグ</pre></td>
 		<td class="subcell">deleteFlag</td>
 		<td class="subcell">Boolean</td>
 	</tr>
 	<tr>
 		<td class="rownumcell">7</td>
+		<td class="flgcell">&nbsp;</td>
+		<td class="flgcell"> &nbsp;</td>
+		<td class="flgcell">&nbsp;</td>
+		<td class="flgcell">&nbsp;</td>
+		<td class="flgcell">*</td>
+		<td class="optcell columnnamecell" id="m_code_version_no">version_no</td>
+		<td class="typecell">int4</td>
+		<td class="sizecell"> 10 </td>
+		<td class="defvalcell"> 1</td>
+		<td class="relcell">&nbsp;&nbsp;</td>
+		<td class="relcell">&nbsp;</td>
+		<td class="relcell"> &nbsp;</td>
+		<td class="commentcell"><pre>version_no</pre></td>
+		<td class="subcell">versionNo</td>
+		<td class="subcell">Integer</td>
+	</tr>
+	<tr>
+		<td class="rownumcell">8</td>
 		<td class="flgcell">&nbsp;</td>
 		<td class="flgcell"> &nbsp;</td>
 		<td class="flgcell">&nbsp;</td>
@@ -640,12 +812,12 @@ m_code
 		<td class="relcell">&nbsp;&nbsp;</td>
 		<td class="relcell">&nbsp;</td>
 		<td class="relcell"> &nbsp;</td>
-		<td class="commentcell"><pre>&nbsp;</pre></td>
+		<td class="commentcell"><pre>登録日時</pre></td>
 		<td class="subcell">registerDatetime</td>
 		<td class="subcell">LocalDateTime</td>
 	</tr>
 	<tr>
-		<td class="rownumcell">8</td>
+		<td class="rownumcell">9</td>
 		<td class="flgcell">&nbsp;</td>
 		<td class="flgcell"> &nbsp;</td>
 		<td class="flgcell">&nbsp;</td>
@@ -658,16 +830,16 @@ m_code
 		<td class="relcell">&nbsp;&nbsp;</td>
 		<td class="relcell">&nbsp;</td>
 		<td class="relcell"> &nbsp;</td>
-		<td class="commentcell"><pre>&nbsp;</pre></td>
+		<td class="commentcell"><pre>更新日時</pre></td>
 		<td class="subcell">updateDatetime</td>
 		<td class="subcell">LocalDateTime</td>
 	</tr>
 </table>
 
-<h2 id="m_company" title="type=TABLE, primaryKey={company_id}, nameLength=9, columnCount=5">
+<h2 id="m_company" title="type=TABLE, primaryKey={company_id}, nameLength=9, columnCount=6">
 m_company
 </h2>
-<div class="tablecomment m_company_comment" data-name="m_company"><pre></pre></div>
+<div class="tablecomment m_company_comment" data-name="m_company"><pre>企業マスタ</pre></div>
 <input type="hidden" value="m_company">
 <table class="tablecontent">
 	<thead>
@@ -702,9 +874,9 @@ m_company
 		<td class="sizecell"> 10 </td>
 		<td class="defvalcell"> &nbsp;</td>
 		<td class="relcell">&nbsp;&nbsp;</td>
-		<td class="relcell"><a href="#m_shop" title="idx_m_shop_fk0">m_shop</a>&nbsp;</td>
+		<td class="relcell"><a href="#m_shop" title="idx_m_shop_fk0">m_shop</a>,<br><a href="#m_staff" title="m_staff_company_id_fkey">m_staff</a>&nbsp;</td>
 		<td class="relcell"> &nbsp;</td>
-		<td class="commentcell"><pre>&nbsp;</pre></td>
+		<td class="commentcell"><pre>企業ID : 企業ID</pre></td>
 		<td class="subcell">companyId</td>
 		<td class="subcell">Integer</td>
 	</tr>
@@ -722,7 +894,7 @@ m_company
 		<td class="relcell">&nbsp;&nbsp;</td>
 		<td class="relcell">&nbsp;</td>
 		<td class="relcell"> &nbsp;</td>
-		<td class="commentcell"><pre>&nbsp;</pre></td>
+		<td class="commentcell"><pre>企業名 : 企業名</pre></td>
 		<td class="subcell">companyName</td>
 		<td class="subcell">String</td>
 	</tr>
@@ -740,12 +912,30 @@ m_company
 		<td class="relcell">&nbsp;&nbsp;</td>
 		<td class="relcell">&nbsp;</td>
 		<td class="relcell"> &nbsp;</td>
-		<td class="commentcell"><pre>&nbsp;</pre></td>
+		<td class="commentcell"><pre>削除フラグ</pre></td>
 		<td class="subcell">deleteFlag</td>
 		<td class="subcell">Boolean</td>
 	</tr>
 	<tr>
 		<td class="rownumcell">4</td>
+		<td class="flgcell">&nbsp;</td>
+		<td class="flgcell"> &nbsp;</td>
+		<td class="flgcell">&nbsp;</td>
+		<td class="flgcell">&nbsp;</td>
+		<td class="flgcell">*</td>
+		<td class="optcell columnnamecell" id="m_company_version_no">version_no</td>
+		<td class="typecell">int4</td>
+		<td class="sizecell"> 10 </td>
+		<td class="defvalcell"> 1</td>
+		<td class="relcell">&nbsp;&nbsp;</td>
+		<td class="relcell">&nbsp;</td>
+		<td class="relcell"> &nbsp;</td>
+		<td class="commentcell"><pre>version_no</pre></td>
+		<td class="subcell">versionNo</td>
+		<td class="subcell">Integer</td>
+	</tr>
+	<tr>
+		<td class="rownumcell">5</td>
 		<td class="flgcell">&nbsp;</td>
 		<td class="flgcell"> &nbsp;</td>
 		<td class="flgcell">&nbsp;</td>
@@ -758,12 +948,12 @@ m_company
 		<td class="relcell">&nbsp;&nbsp;</td>
 		<td class="relcell">&nbsp;</td>
 		<td class="relcell"> &nbsp;</td>
-		<td class="commentcell"><pre>&nbsp;</pre></td>
+		<td class="commentcell"><pre>登録日時</pre></td>
 		<td class="subcell">registerDatetime</td>
 		<td class="subcell">LocalDateTime</td>
 	</tr>
 	<tr>
-		<td class="rownumcell">5</td>
+		<td class="rownumcell">6</td>
 		<td class="flgcell">&nbsp;</td>
 		<td class="flgcell"> &nbsp;</td>
 		<td class="flgcell">&nbsp;</td>
@@ -776,16 +966,16 @@ m_company
 		<td class="relcell">&nbsp;&nbsp;</td>
 		<td class="relcell">&nbsp;</td>
 		<td class="relcell"> &nbsp;</td>
-		<td class="commentcell"><pre>&nbsp;</pre></td>
+		<td class="commentcell"><pre>更新日時</pre></td>
 		<td class="subcell">updateDatetime</td>
 		<td class="subcell">LocalDateTime</td>
 	</tr>
 </table>
 
-<h2 id="m_course" title="type=TABLE, primaryKey={course_id}, nameLength=8, columnCount=8">
+<h2 id="m_course" title="type=TABLE, primaryKey={course_id}, nameLength=8, columnCount=9">
 m_course
 </h2>
-<div class="tablecomment m_course_comment" data-name="m_course"><pre></pre></div>
+<div class="tablecomment m_course_comment" data-name="m_course"><pre>コースマスタ</pre></div>
 <input type="hidden" value="m_course">
 <table class="tablecontent">
 	<thead>
@@ -822,7 +1012,7 @@ m_course
 		<td class="relcell">&nbsp;&nbsp;</td>
 		<td class="relcell"><a href="#t_reservation_detail" title="idx_t_reservation_detail_fk2">t_reservation_detail</a>&nbsp;</td>
 		<td class="relcell"> &nbsp;</td>
-		<td class="commentcell"><pre>&nbsp;</pre></td>
+		<td class="commentcell"><pre>コースID : コースID</pre></td>
 		<td class="subcell">courseId</td>
 		<td class="subcell">Integer</td>
 	</tr>
@@ -840,7 +1030,7 @@ m_course
 		<td class="relcell"><a href="#m_course_group" title="idx_m_course_fk0">m_course_group</a>&nbsp;</td>
 		<td class="relcell">&nbsp;</td>
 		<td class="relcell"> &nbsp;</td>
-		<td class="commentcell"><pre>&nbsp;</pre></td>
+		<td class="commentcell"><pre>コースグループID : コースグループID</pre></td>
 		<td class="subcell">courseGroupId</td>
 		<td class="subcell">Integer</td>
 	</tr>
@@ -858,7 +1048,7 @@ m_course
 		<td class="relcell">&nbsp;&nbsp;</td>
 		<td class="relcell">&nbsp;</td>
 		<td class="relcell"> &nbsp;</td>
-		<td class="commentcell"><pre>&nbsp;</pre></td>
+		<td class="commentcell"><pre>コース名 : コース名</pre></td>
 		<td class="subcell">courseName</td>
 		<td class="subcell">String</td>
 	</tr>
@@ -876,7 +1066,7 @@ m_course
 		<td class="relcell">&nbsp;&nbsp;</td>
 		<td class="relcell">&nbsp;</td>
 		<td class="relcell"> &nbsp;</td>
-		<td class="commentcell"><pre>&nbsp;</pre></td>
+		<td class="commentcell"><pre>料金 : 料金</pre></td>
 		<td class="subcell">charge</td>
 		<td class="subcell">Integer</td>
 	</tr>
@@ -894,7 +1084,7 @@ m_course
 		<td class="relcell">&nbsp;&nbsp;</td>
 		<td class="relcell">&nbsp;</td>
 		<td class="relcell"> &nbsp;</td>
-		<td class="commentcell"><pre>&nbsp;</pre></td>
+		<td class="commentcell"><pre>所要時間 : 所要時間</pre></td>
 		<td class="subcell">requiredTime</td>
 		<td class="subcell">String</td>
 	</tr>
@@ -912,12 +1102,30 @@ m_course
 		<td class="relcell">&nbsp;&nbsp;</td>
 		<td class="relcell">&nbsp;</td>
 		<td class="relcell"> &nbsp;</td>
-		<td class="commentcell"><pre>&nbsp;</pre></td>
+		<td class="commentcell"><pre>削除フラグ</pre></td>
 		<td class="subcell">deleteFlag</td>
 		<td class="subcell">Boolean</td>
 	</tr>
 	<tr>
 		<td class="rownumcell">7</td>
+		<td class="flgcell">&nbsp;</td>
+		<td class="flgcell"> &nbsp;</td>
+		<td class="flgcell">&nbsp;</td>
+		<td class="flgcell">&nbsp;</td>
+		<td class="flgcell">*</td>
+		<td class="optcell columnnamecell" id="m_course_version_no">version_no</td>
+		<td class="typecell">int4</td>
+		<td class="sizecell"> 10 </td>
+		<td class="defvalcell"> 1</td>
+		<td class="relcell">&nbsp;&nbsp;</td>
+		<td class="relcell">&nbsp;</td>
+		<td class="relcell"> &nbsp;</td>
+		<td class="commentcell"><pre>version_no</pre></td>
+		<td class="subcell">versionNo</td>
+		<td class="subcell">Integer</td>
+	</tr>
+	<tr>
+		<td class="rownumcell">8</td>
 		<td class="flgcell">&nbsp;</td>
 		<td class="flgcell"> &nbsp;</td>
 		<td class="flgcell">&nbsp;</td>
@@ -930,12 +1138,12 @@ m_course
 		<td class="relcell">&nbsp;&nbsp;</td>
 		<td class="relcell">&nbsp;</td>
 		<td class="relcell"> &nbsp;</td>
-		<td class="commentcell"><pre>&nbsp;</pre></td>
+		<td class="commentcell"><pre>登録日時</pre></td>
 		<td class="subcell">registerDatetime</td>
 		<td class="subcell">LocalDateTime</td>
 	</tr>
 	<tr>
-		<td class="rownumcell">8</td>
+		<td class="rownumcell">9</td>
 		<td class="flgcell">&nbsp;</td>
 		<td class="flgcell"> &nbsp;</td>
 		<td class="flgcell">&nbsp;</td>
@@ -948,16 +1156,16 @@ m_course
 		<td class="relcell">&nbsp;&nbsp;</td>
 		<td class="relcell">&nbsp;</td>
 		<td class="relcell"> &nbsp;</td>
-		<td class="commentcell"><pre>&nbsp;</pre></td>
+		<td class="commentcell"><pre>更新日時</pre></td>
 		<td class="subcell">updateDatetime</td>
 		<td class="subcell">LocalDateTime</td>
 	</tr>
 </table>
 
-<h2 id="m_course_group" title="type=TABLE, primaryKey={course_group_id}, nameLength=14, columnCount=8">
+<h2 id="m_course_group" title="type=TABLE, primaryKey={course_group_id}, nameLength=14, columnCount=9">
 m_course_group
 </h2>
-<div class="tablecomment m_course_group_comment" data-name="m_course_group"><pre></pre></div>
+<div class="tablecomment m_course_group_comment" data-name="m_course_group"><pre>コースグループマスタ</pre></div>
 <input type="hidden" value="m_course_group">
 <table class="tablecontent">
 	<thead>
@@ -982,24 +1190,6 @@ m_course_group
 	</thead>
 	<tr>
 		<td class="rownumcell">1</td>
-		<td class="flgcell" title="idx_m_course_group_pk :: sequence=m_course_group_course_group_id_seq:minimum(1),maximum(9223372036854775807),increment(1)">o</td>
-		<td class="flgcell">o</td>
-		<td class="flgcell">&nbsp;</td>
-		<td class="flgcell">&nbsp;</td>
-		<td class="flgcell">*</td>
-		<td class=" columnnamecell" id="m_course_group_course_group_id">course_group_id</td>
-		<td class="typecell">serial</td>
-		<td class="sizecell"> 10 </td>
-		<td class="defvalcell"> &nbsp;</td>
-		<td class="relcell">&nbsp;&nbsp;</td>
-		<td class="relcell"><a href="#m_course" title="idx_m_course_fk0">m_course</a>&nbsp;</td>
-		<td class="relcell"> &nbsp;</td>
-		<td class="commentcell"><pre>&nbsp;</pre></td>
-		<td class="subcell">courseGroupId</td>
-		<td class="subcell">Integer</td>
-	</tr>
-	<tr>
-		<td class="rownumcell">2</td>
 		<td class="flgcell">&nbsp;</td>
 		<td class="flgcell"> &nbsp;</td>
 		<td class="flgcell">&nbsp;</td>
@@ -1012,12 +1202,12 @@ m_course_group
 		<td class="relcell"><a href="#m_shop" title="idx_m_course_group_fk0">m_shop</a>&nbsp;</td>
 		<td class="relcell">&nbsp;</td>
 		<td class="relcell"> &nbsp;</td>
-		<td class="commentcell"><pre>&nbsp;</pre></td>
+		<td class="commentcell"><pre>店舗ID : 店舗ID</pre></td>
 		<td class="subcell">shopId</td>
 		<td class="subcell">Integer</td>
 	</tr>
 	<tr>
-		<td class="rownumcell">3</td>
+		<td class="rownumcell">2</td>
 		<td class="flgcell">&nbsp;</td>
 		<td class="flgcell"> &nbsp;</td>
 		<td class="flgcell">&nbsp;</td>
@@ -1030,9 +1220,27 @@ m_course_group
 		<td class="relcell">&nbsp;&nbsp;</td>
 		<td class="relcell">&nbsp;</td>
 		<td class="relcell"> &nbsp;</td>
-		<td class="commentcell"><pre>&nbsp;</pre></td>
+		<td class="commentcell"><pre>グループ名 : グループ名</pre></td>
 		<td class="subcell">groupName</td>
 		<td class="subcell">String</td>
+	</tr>
+	<tr>
+		<td class="rownumcell">3</td>
+		<td class="flgcell" title="idx_m_course_group_pk :: sequence=m_course_group_course_group_id_seq:minimum(1),maximum(9223372036854775807),increment(1)">o</td>
+		<td class="flgcell">o</td>
+		<td class="flgcell">&nbsp;</td>
+		<td class="flgcell">&nbsp;</td>
+		<td class="flgcell">*</td>
+		<td class=" columnnamecell" id="m_course_group_course_group_id">course_group_id</td>
+		<td class="typecell">serial</td>
+		<td class="sizecell"> 10 </td>
+		<td class="defvalcell"> &nbsp;</td>
+		<td class="relcell">&nbsp;&nbsp;</td>
+		<td class="relcell"><a href="#m_course" title="idx_m_course_fk0">m_course</a>&nbsp;</td>
+		<td class="relcell"> &nbsp;</td>
+		<td class="commentcell"><pre>コースグループID : コースグループID</pre></td>
+		<td class="subcell">courseGroupId</td>
+		<td class="subcell">Integer</td>
 	</tr>
 	<tr>
 		<td class="rownumcell">4</td>
@@ -1048,7 +1256,7 @@ m_course_group
 		<td class="relcell">&nbsp;&nbsp;</td>
 		<td class="relcell">&nbsp;</td>
 		<td class="relcell"> &nbsp;</td>
-		<td class="commentcell"><pre>&nbsp;</pre></td>
+		<td class="commentcell"><pre>必須フラグ : 必須フラグ</pre></td>
 		<td class="subcell">requiredFlg</td>
 		<td class="subcell">Integer</td>
 	</tr>
@@ -1066,7 +1274,7 @@ m_course_group
 		<td class="relcell">&nbsp;&nbsp;</td>
 		<td class="relcell">&nbsp;</td>
 		<td class="relcell"> &nbsp;</td>
-		<td class="commentcell"><pre>&nbsp;</pre></td>
+		<td class="commentcell"><pre>備考 : 備考</pre></td>
 		<td class="subcell">reamarks</td>
 		<td class="subcell">String</td>
 	</tr>
@@ -1084,12 +1292,30 @@ m_course_group
 		<td class="relcell">&nbsp;&nbsp;</td>
 		<td class="relcell">&nbsp;</td>
 		<td class="relcell"> &nbsp;</td>
-		<td class="commentcell"><pre>&nbsp;</pre></td>
+		<td class="commentcell"><pre>削除フラグ</pre></td>
 		<td class="subcell">deleteFlag</td>
 		<td class="subcell">Boolean</td>
 	</tr>
 	<tr>
 		<td class="rownumcell">7</td>
+		<td class="flgcell">&nbsp;</td>
+		<td class="flgcell"> &nbsp;</td>
+		<td class="flgcell">&nbsp;</td>
+		<td class="flgcell">&nbsp;</td>
+		<td class="flgcell">*</td>
+		<td class="optcell columnnamecell" id="m_course_group_version_no">version_no</td>
+		<td class="typecell">int4</td>
+		<td class="sizecell"> 10 </td>
+		<td class="defvalcell"> 1</td>
+		<td class="relcell">&nbsp;&nbsp;</td>
+		<td class="relcell">&nbsp;</td>
+		<td class="relcell"> &nbsp;</td>
+		<td class="commentcell"><pre>version_no</pre></td>
+		<td class="subcell">versionNo</td>
+		<td class="subcell">Integer</td>
+	</tr>
+	<tr>
+		<td class="rownumcell">8</td>
 		<td class="flgcell">&nbsp;</td>
 		<td class="flgcell"> &nbsp;</td>
 		<td class="flgcell">&nbsp;</td>
@@ -1102,12 +1328,12 @@ m_course_group
 		<td class="relcell">&nbsp;&nbsp;</td>
 		<td class="relcell">&nbsp;</td>
 		<td class="relcell"> &nbsp;</td>
-		<td class="commentcell"><pre>&nbsp;</pre></td>
+		<td class="commentcell"><pre>登録日時</pre></td>
 		<td class="subcell">registerDatetime</td>
 		<td class="subcell">LocalDateTime</td>
 	</tr>
 	<tr>
-		<td class="rownumcell">8</td>
+		<td class="rownumcell">9</td>
 		<td class="flgcell">&nbsp;</td>
 		<td class="flgcell"> &nbsp;</td>
 		<td class="flgcell">&nbsp;</td>
@@ -1120,16 +1346,16 @@ m_course_group
 		<td class="relcell">&nbsp;&nbsp;</td>
 		<td class="relcell">&nbsp;</td>
 		<td class="relcell"> &nbsp;</td>
-		<td class="commentcell"><pre>&nbsp;</pre></td>
+		<td class="commentcell"><pre>更新日時</pre></td>
 		<td class="subcell">updateDatetime</td>
 		<td class="subcell">LocalDateTime</td>
 	</tr>
 </table>
 
-<h2 id="m_holiday" title="type=TABLE, primaryKey={holiday_id}, nameLength=9, columnCount=6">
+<h2 id="m_holiday" title="type=TABLE, primaryKey={holiday_id}, nameLength=9, columnCount=7">
 m_holiday
 </h2>
-<div class="tablecomment m_holiday_comment" data-name="m_holiday"><pre></pre></div>
+<div class="tablecomment m_holiday_comment" data-name="m_holiday"><pre>祝日マスタ</pre></div>
 <input type="hidden" value="m_holiday">
 <table class="tablecontent">
 	<thead>
@@ -1166,7 +1392,7 @@ m_holiday
 		<td class="relcell">&nbsp;&nbsp;</td>
 		<td class="relcell">&nbsp;</td>
 		<td class="relcell"> &nbsp;</td>
-		<td class="commentcell"><pre>&nbsp;</pre></td>
+		<td class="commentcell"><pre>祝日ID</pre></td>
 		<td class="subcell">holidayId</td>
 		<td class="subcell">Integer</td>
 	</tr>
@@ -1184,7 +1410,7 @@ m_holiday
 		<td class="relcell">&nbsp;&nbsp;</td>
 		<td class="relcell">&nbsp;</td>
 		<td class="relcell"> &nbsp;</td>
-		<td class="commentcell"><pre>&nbsp;</pre></td>
+		<td class="commentcell"><pre>祝日名</pre></td>
 		<td class="subcell">holidayName</td>
 		<td class="subcell">String</td>
 	</tr>
@@ -1194,7 +1420,7 @@ m_holiday
 		<td class="flgcell"> &nbsp;</td>
 		<td class="flgcell">&nbsp;</td>
 		<td class="flgcell">&nbsp;</td>
-		<td class="flgcell"> &nbsp;</td>
+		<td class="flgcell">*</td>
 		<td class=" columnnamecell" id="m_holiday_holiday">holiday</td>
 		<td class="typecell">date</td>
 		<td class="sizecell"> 13 </td>
@@ -1202,7 +1428,7 @@ m_holiday
 		<td class="relcell">&nbsp;&nbsp;</td>
 		<td class="relcell">&nbsp;</td>
 		<td class="relcell"> &nbsp;</td>
-		<td class="commentcell"><pre>&nbsp;</pre></td>
+		<td class="commentcell"><pre>祝日</pre></td>
 		<td class="subcell">holiday</td>
 		<td class="subcell">LocalDate</td>
 	</tr>
@@ -1220,12 +1446,30 @@ m_holiday
 		<td class="relcell">&nbsp;&nbsp;</td>
 		<td class="relcell">&nbsp;</td>
 		<td class="relcell"> &nbsp;</td>
-		<td class="commentcell"><pre>&nbsp;</pre></td>
+		<td class="commentcell"><pre>削除フラグ</pre></td>
 		<td class="subcell">deleteFlag</td>
 		<td class="subcell">Boolean</td>
 	</tr>
 	<tr>
 		<td class="rownumcell">5</td>
+		<td class="flgcell">&nbsp;</td>
+		<td class="flgcell"> &nbsp;</td>
+		<td class="flgcell">&nbsp;</td>
+		<td class="flgcell">&nbsp;</td>
+		<td class="flgcell">*</td>
+		<td class="optcell columnnamecell" id="m_holiday_version_no">version_no</td>
+		<td class="typecell">int4</td>
+		<td class="sizecell"> 10 </td>
+		<td class="defvalcell"> 1</td>
+		<td class="relcell">&nbsp;&nbsp;</td>
+		<td class="relcell">&nbsp;</td>
+		<td class="relcell"> &nbsp;</td>
+		<td class="commentcell"><pre>version_no</pre></td>
+		<td class="subcell">versionNo</td>
+		<td class="subcell">Integer</td>
+	</tr>
+	<tr>
+		<td class="rownumcell">6</td>
 		<td class="flgcell">&nbsp;</td>
 		<td class="flgcell"> &nbsp;</td>
 		<td class="flgcell">&nbsp;</td>
@@ -1238,12 +1482,12 @@ m_holiday
 		<td class="relcell">&nbsp;&nbsp;</td>
 		<td class="relcell">&nbsp;</td>
 		<td class="relcell"> &nbsp;</td>
-		<td class="commentcell"><pre>&nbsp;</pre></td>
+		<td class="commentcell"><pre>登録日時</pre></td>
 		<td class="subcell">registerDatetime</td>
 		<td class="subcell">LocalDateTime</td>
 	</tr>
 	<tr>
-		<td class="rownumcell">6</td>
+		<td class="rownumcell">7</td>
 		<td class="flgcell">&nbsp;</td>
 		<td class="flgcell"> &nbsp;</td>
 		<td class="flgcell">&nbsp;</td>
@@ -1256,16 +1500,16 @@ m_holiday
 		<td class="relcell">&nbsp;&nbsp;</td>
 		<td class="relcell">&nbsp;</td>
 		<td class="relcell"> &nbsp;</td>
-		<td class="commentcell"><pre>&nbsp;</pre></td>
+		<td class="commentcell"><pre>更新日時</pre></td>
 		<td class="subcell">updateDatetime</td>
 		<td class="subcell">LocalDateTime</td>
 	</tr>
 </table>
 
-<h2 id="m_shop" title="type=TABLE, primaryKey={shop_id}, nameLength=6, columnCount=24">
+<h2 id="m_shop" title="type=TABLE, primaryKey={shop_id}, nameLength=6, columnCount=25">
 m_shop
 </h2>
-<div class="tablecomment m_shop_comment" data-name="m_shop"><pre></pre></div>
+<div class="tablecomment m_shop_comment" data-name="m_shop"><pre>店舗マスタ</pre></div>
 <input type="hidden" value="m_shop">
 <table class="tablecontent">
 	<thead>
@@ -1302,7 +1546,7 @@ m_shop
 		<td class="relcell">&nbsp;&nbsp;</td>
 		<td class="relcell"><a href="#m_course_group" title="idx_m_course_group_fk0">m_course_group</a>,<br><a href="#m_working_day" title="idx_m_working_day_fk0">m_working_day</a>,<br><a href="#m_working_day_deff" title="idx_m_working_day_deff_fk0">m_working_day_deff</a>,<br><a href="#m_working_staff" title="idx_m_working_staff_fk0">m_working_staff</a>,<br><a href="#t_reservation" title="idx_t_reservation_fk1">t_reservation</a>&nbsp;</td>
 		<td class="relcell"> &nbsp;</td>
-		<td class="commentcell"><pre>&nbsp;</pre></td>
+		<td class="commentcell"><pre>店舗ID : 店舗ID</pre></td>
 		<td class="subcell">shopId</td>
 		<td class="subcell">Integer</td>
 	</tr>
@@ -1320,7 +1564,7 @@ m_shop
 		<td class="relcell"><a href="#m_company" title="idx_m_shop_fk0">m_company</a>&nbsp;</td>
 		<td class="relcell">&nbsp;</td>
 		<td class="relcell"> &nbsp;</td>
-		<td class="commentcell"><pre>&nbsp;</pre></td>
+		<td class="commentcell"><pre>企業ID : 企業ID</pre></td>
 		<td class="subcell">companyId</td>
 		<td class="subcell">Integer</td>
 	</tr>
@@ -1338,7 +1582,7 @@ m_shop
 		<td class="relcell">&nbsp;&nbsp;</td>
 		<td class="relcell">&nbsp;</td>
 		<td class="relcell"> &nbsp;</td>
-		<td class="commentcell"><pre>&nbsp;</pre></td>
+		<td class="commentcell"><pre>店舗略名 : 店舗略名</pre></td>
 		<td class="subcell">shopAbbreviatedName</td>
 		<td class="subcell">String</td>
 	</tr>
@@ -1356,7 +1600,7 @@ m_shop
 		<td class="relcell">&nbsp;&nbsp;</td>
 		<td class="relcell">&nbsp;</td>
 		<td class="relcell"> &nbsp;</td>
-		<td class="commentcell"><pre>&nbsp;</pre></td>
+		<td class="commentcell"><pre>店舗名 : 店舗名</pre></td>
 		<td class="subcell">shopName</td>
 		<td class="subcell">String</td>
 	</tr>
@@ -1374,7 +1618,7 @@ m_shop
 		<td class="relcell">&nbsp;&nbsp;</td>
 		<td class="relcell">&nbsp;</td>
 		<td class="relcell"> &nbsp;</td>
-		<td class="commentcell"><pre>&nbsp;</pre></td>
+		<td class="commentcell"><pre>電話番号1_1 : 電話番号1_1</pre></td>
 		<td class="subcell">phone11</td>
 		<td class="subcell">String</td>
 	</tr>
@@ -1392,7 +1636,7 @@ m_shop
 		<td class="relcell">&nbsp;&nbsp;</td>
 		<td class="relcell">&nbsp;</td>
 		<td class="relcell"> &nbsp;</td>
-		<td class="commentcell"><pre>&nbsp;</pre></td>
+		<td class="commentcell"><pre>電話番号1_2 : 電話番号1_2</pre></td>
 		<td class="subcell">phone12</td>
 		<td class="subcell">String</td>
 	</tr>
@@ -1410,7 +1654,7 @@ m_shop
 		<td class="relcell">&nbsp;&nbsp;</td>
 		<td class="relcell">&nbsp;</td>
 		<td class="relcell"> &nbsp;</td>
-		<td class="commentcell"><pre>&nbsp;</pre></td>
+		<td class="commentcell"><pre>電話番号1_3 : 電話番号1_3</pre></td>
 		<td class="subcell">phone13</td>
 		<td class="subcell">String</td>
 	</tr>
@@ -1428,7 +1672,7 @@ m_shop
 		<td class="relcell">&nbsp;&nbsp;</td>
 		<td class="relcell">&nbsp;</td>
 		<td class="relcell"> &nbsp;</td>
-		<td class="commentcell"><pre>&nbsp;</pre></td>
+		<td class="commentcell"><pre>電話番号2_1 : 電話番号2_1</pre></td>
 		<td class="subcell">phone21</td>
 		<td class="subcell">String</td>
 	</tr>
@@ -1446,7 +1690,7 @@ m_shop
 		<td class="relcell">&nbsp;&nbsp;</td>
 		<td class="relcell">&nbsp;</td>
 		<td class="relcell"> &nbsp;</td>
-		<td class="commentcell"><pre>&nbsp;</pre></td>
+		<td class="commentcell"><pre>電話番号2_2 : 電話番号2_2</pre></td>
 		<td class="subcell">phone22</td>
 		<td class="subcell">String</td>
 	</tr>
@@ -1464,7 +1708,7 @@ m_shop
 		<td class="relcell">&nbsp;&nbsp;</td>
 		<td class="relcell">&nbsp;</td>
 		<td class="relcell"> &nbsp;</td>
-		<td class="commentcell"><pre>&nbsp;</pre></td>
+		<td class="commentcell"><pre>電話番号2_3 : 電話番号2_3</pre></td>
 		<td class="subcell">phone23</td>
 		<td class="subcell">String</td>
 	</tr>
@@ -1482,7 +1726,7 @@ m_shop
 		<td class="relcell">&nbsp;&nbsp;</td>
 		<td class="relcell">&nbsp;</td>
 		<td class="relcell"> &nbsp;</td>
-		<td class="commentcell"><pre>&nbsp;</pre></td>
+		<td class="commentcell"><pre>FAX_1 : FAX_1</pre></td>
 		<td class="subcell">fax1</td>
 		<td class="subcell">String</td>
 	</tr>
@@ -1500,7 +1744,7 @@ m_shop
 		<td class="relcell">&nbsp;&nbsp;</td>
 		<td class="relcell">&nbsp;</td>
 		<td class="relcell"> &nbsp;</td>
-		<td class="commentcell"><pre>&nbsp;</pre></td>
+		<td class="commentcell"><pre>FAX_2 : FAX_2</pre></td>
 		<td class="subcell">fax2</td>
 		<td class="subcell">String</td>
 	</tr>
@@ -1518,7 +1762,7 @@ m_shop
 		<td class="relcell">&nbsp;&nbsp;</td>
 		<td class="relcell">&nbsp;</td>
 		<td class="relcell"> &nbsp;</td>
-		<td class="commentcell"><pre>&nbsp;</pre></td>
+		<td class="commentcell"><pre>FAX_3 : FAX_3</pre></td>
 		<td class="subcell">fax3</td>
 		<td class="subcell">String</td>
 	</tr>
@@ -1536,7 +1780,7 @@ m_shop
 		<td class="relcell">&nbsp;&nbsp;</td>
 		<td class="relcell">&nbsp;</td>
 		<td class="relcell"> &nbsp;</td>
-		<td class="commentcell"><pre>&nbsp;</pre></td>
+		<td class="commentcell"><pre>メールアドレス1 : メールアドレス1</pre></td>
 		<td class="subcell">email1</td>
 		<td class="subcell">String</td>
 	</tr>
@@ -1554,7 +1798,7 @@ m_shop
 		<td class="relcell">&nbsp;&nbsp;</td>
 		<td class="relcell">&nbsp;</td>
 		<td class="relcell"> &nbsp;</td>
-		<td class="commentcell"><pre>&nbsp;</pre></td>
+		<td class="commentcell"><pre>メールアドレス2 : メールアドレス2</pre></td>
 		<td class="subcell">email2</td>
 		<td class="subcell">String</td>
 	</tr>
@@ -1572,7 +1816,7 @@ m_shop
 		<td class="relcell">&nbsp;&nbsp;</td>
 		<td class="relcell">&nbsp;</td>
 		<td class="relcell"> &nbsp;</td>
-		<td class="commentcell"><pre>&nbsp;</pre></td>
+		<td class="commentcell"><pre>URL : URL</pre></td>
 		<td class="subcell">url</td>
 		<td class="subcell">String</td>
 	</tr>
@@ -1590,7 +1834,7 @@ m_shop
 		<td class="relcell">&nbsp;&nbsp;</td>
 		<td class="relcell">&nbsp;</td>
 		<td class="relcell"> &nbsp;</td>
-		<td class="commentcell"><pre>&nbsp;</pre></td>
+		<td class="commentcell"><pre>都道府県 : 都道府県</pre></td>
 		<td class="subcell">prefecture</td>
 		<td class="subcell">Integer</td>
 	</tr>
@@ -1608,7 +1852,7 @@ m_shop
 		<td class="relcell">&nbsp;&nbsp;</td>
 		<td class="relcell">&nbsp;</td>
 		<td class="relcell"> &nbsp;</td>
-		<td class="commentcell"><pre>&nbsp;</pre></td>
+		<td class="commentcell"><pre>市区町村 : 市区町村</pre></td>
 		<td class="subcell">city</td>
 		<td class="subcell">String</td>
 	</tr>
@@ -1626,7 +1870,7 @@ m_shop
 		<td class="relcell">&nbsp;&nbsp;</td>
 		<td class="relcell">&nbsp;</td>
 		<td class="relcell"> &nbsp;</td>
-		<td class="commentcell"><pre>&nbsp;</pre></td>
+		<td class="commentcell"><pre>その他住所1 : その他住所1</pre></td>
 		<td class="subcell">address1</td>
 		<td class="subcell">String</td>
 	</tr>
@@ -1644,7 +1888,7 @@ m_shop
 		<td class="relcell">&nbsp;&nbsp;</td>
 		<td class="relcell">&nbsp;</td>
 		<td class="relcell"> &nbsp;</td>
-		<td class="commentcell"><pre>&nbsp;</pre></td>
+		<td class="commentcell"><pre>その他住所2 : その他住所2</pre></td>
 		<td class="subcell">address2</td>
 		<td class="subcell">String</td>
 	</tr>
@@ -1662,7 +1906,7 @@ m_shop
 		<td class="relcell">&nbsp;&nbsp;</td>
 		<td class="relcell">&nbsp;</td>
 		<td class="relcell"> &nbsp;</td>
-		<td class="commentcell"><pre>&nbsp;</pre></td>
+		<td class="commentcell"><pre>備考 : 備考</pre></td>
 		<td class="subcell">remarks</td>
 		<td class="subcell">String</td>
 	</tr>
@@ -1680,12 +1924,30 @@ m_shop
 		<td class="relcell">&nbsp;&nbsp;</td>
 		<td class="relcell">&nbsp;</td>
 		<td class="relcell"> &nbsp;</td>
-		<td class="commentcell"><pre>&nbsp;</pre></td>
+		<td class="commentcell"><pre>削除フラグ</pre></td>
 		<td class="subcell">deleteFlag</td>
 		<td class="subcell">Boolean</td>
 	</tr>
 	<tr>
 		<td class="rownumcell">23</td>
+		<td class="flgcell">&nbsp;</td>
+		<td class="flgcell"> &nbsp;</td>
+		<td class="flgcell">&nbsp;</td>
+		<td class="flgcell">&nbsp;</td>
+		<td class="flgcell">*</td>
+		<td class="optcell columnnamecell" id="m_shop_version_no">version_no</td>
+		<td class="typecell">int4</td>
+		<td class="sizecell"> 10 </td>
+		<td class="defvalcell"> 1</td>
+		<td class="relcell">&nbsp;&nbsp;</td>
+		<td class="relcell">&nbsp;</td>
+		<td class="relcell"> &nbsp;</td>
+		<td class="commentcell"><pre>version_no</pre></td>
+		<td class="subcell">versionNo</td>
+		<td class="subcell">Integer</td>
+	</tr>
+	<tr>
+		<td class="rownumcell">24</td>
 		<td class="flgcell">&nbsp;</td>
 		<td class="flgcell"> &nbsp;</td>
 		<td class="flgcell">&nbsp;</td>
@@ -1698,12 +1960,12 @@ m_shop
 		<td class="relcell">&nbsp;&nbsp;</td>
 		<td class="relcell">&nbsp;</td>
 		<td class="relcell"> &nbsp;</td>
-		<td class="commentcell"><pre>&nbsp;</pre></td>
+		<td class="commentcell"><pre>登録日時</pre></td>
 		<td class="subcell">registerDatetime</td>
 		<td class="subcell">LocalDateTime</td>
 	</tr>
 	<tr>
-		<td class="rownumcell">24</td>
+		<td class="rownumcell">25</td>
 		<td class="flgcell">&nbsp;</td>
 		<td class="flgcell"> &nbsp;</td>
 		<td class="flgcell">&nbsp;</td>
@@ -1716,16 +1978,16 @@ m_shop
 		<td class="relcell">&nbsp;&nbsp;</td>
 		<td class="relcell">&nbsp;</td>
 		<td class="relcell"> &nbsp;</td>
-		<td class="commentcell"><pre>&nbsp;</pre></td>
+		<td class="commentcell"><pre>更新日時</pre></td>
 		<td class="subcell">updateDatetime</td>
 		<td class="subcell">LocalDateTime</td>
 	</tr>
 </table>
 
-<h2 id="m_staff" title="type=TABLE, primaryKey={staff_id}, nameLength=7, columnCount=9">
+<h2 id="m_staff" title="type=TABLE, primaryKey={staff_id}, nameLength=7, columnCount=11">
 m_staff
 </h2>
-<div class="tablecomment m_staff_comment" data-name="m_staff"><pre></pre></div>
+<div class="tablecomment m_staff_comment" data-name="m_staff"><pre>スタッフマスタ</pre></div>
 <input type="hidden" value="m_staff">
 <table class="tablecontent">
 	<thead>
@@ -1760,14 +2022,32 @@ m_staff
 		<td class="sizecell"> 10 </td>
 		<td class="defvalcell"> &nbsp;</td>
 		<td class="relcell">&nbsp;&nbsp;</td>
-		<td class="relcell"><a href="#m_working_staff" title="idx_m_working_staff_fk1">m_working_staff</a>,<br><a href="#t_reservation" title="idx_t_reservation_fk2">t_reservation</a>,<br><a href="#t_shift" title="idx_t_shift_fk1">t_shift</a>&nbsp;</td>
+		<td class="relcell"><a href="#m_working_staff" title="idx_m_working_staff_fk1">m_working_staff</a>&nbsp;</td>
 		<td class="relcell"> &nbsp;</td>
-		<td class="commentcell"><pre>&nbsp;</pre></td>
+		<td class="commentcell"><pre>スタッフID : スタッフID</pre></td>
 		<td class="subcell">staffId</td>
 		<td class="subcell">Integer</td>
 	</tr>
 	<tr>
 		<td class="rownumcell">2</td>
+		<td class="flgcell">&nbsp;</td>
+		<td class="flgcell"> &nbsp;</td>
+		<td class="flgcell">&nbsp;</td>
+		<td class="flgcell">&nbsp;</td>
+		<td class="flgcell">*</td>
+		<td class=" columnnamecell" id="m_staff_company_id">company_id</td>
+		<td class="typecell">int4</td>
+		<td class="sizecell"> 10 </td>
+		<td class="defvalcell"> &nbsp;</td>
+		<td class="relcell"><a href="#m_company" title="m_staff_company_id_fkey">m_company</a>&nbsp;</td>
+		<td class="relcell">&nbsp;</td>
+		<td class="relcell"> &nbsp;</td>
+		<td class="commentcell"><pre>会社id : 企業ID</pre></td>
+		<td class="subcell">companyId</td>
+		<td class="subcell">Integer</td>
+	</tr>
+	<tr>
+		<td class="rownumcell">3</td>
 		<td class="flgcell">&nbsp;</td>
 		<td class="flgcell"> &nbsp;</td>
 		<td class="flgcell">&nbsp;</td>
@@ -1780,12 +2060,12 @@ m_staff
 		<td class="relcell">&nbsp;&nbsp;</td>
 		<td class="relcell">&nbsp;</td>
 		<td class="relcell"> &nbsp;</td>
-		<td class="commentcell"><pre>&nbsp;</pre></td>
+		<td class="commentcell"><pre>姓 : 姓</pre></td>
 		<td class="subcell">familyName</td>
 		<td class="subcell">String</td>
 	</tr>
 	<tr>
-		<td class="rownumcell">3</td>
+		<td class="rownumcell">4</td>
 		<td class="flgcell">&nbsp;</td>
 		<td class="flgcell"> &nbsp;</td>
 		<td class="flgcell">&nbsp;</td>
@@ -1798,12 +2078,12 @@ m_staff
 		<td class="relcell">&nbsp;&nbsp;</td>
 		<td class="relcell">&nbsp;</td>
 		<td class="relcell"> &nbsp;</td>
-		<td class="commentcell"><pre>&nbsp;</pre></td>
+		<td class="commentcell"><pre>名 : 名</pre></td>
 		<td class="subcell">givenName</td>
 		<td class="subcell">String</td>
 	</tr>
 	<tr>
-		<td class="rownumcell">4</td>
+		<td class="rownumcell">5</td>
 		<td class="flgcell">&nbsp;</td>
 		<td class="flgcell"> &nbsp;</td>
 		<td class="flgcell">&nbsp;</td>
@@ -1816,12 +2096,12 @@ m_staff
 		<td class="relcell">&nbsp;&nbsp;</td>
 		<td class="relcell">&nbsp;</td>
 		<td class="relcell"> &nbsp;</td>
-		<td class="commentcell"><pre>&nbsp;</pre></td>
+		<td class="commentcell"><pre>電話番号1_1 : 電話番号1_1</pre></td>
 		<td class="subcell">phone11</td>
 		<td class="subcell">String</td>
 	</tr>
 	<tr>
-		<td class="rownumcell">5</td>
+		<td class="rownumcell">6</td>
 		<td class="flgcell">&nbsp;</td>
 		<td class="flgcell"> &nbsp;</td>
 		<td class="flgcell">&nbsp;</td>
@@ -1834,12 +2114,12 @@ m_staff
 		<td class="relcell">&nbsp;&nbsp;</td>
 		<td class="relcell">&nbsp;</td>
 		<td class="relcell"> &nbsp;</td>
-		<td class="commentcell"><pre>&nbsp;</pre></td>
+		<td class="commentcell"><pre>電話番号1_2 : 電話番号1_2</pre></td>
 		<td class="subcell">phone12</td>
 		<td class="subcell">String</td>
 	</tr>
 	<tr>
-		<td class="rownumcell">6</td>
+		<td class="rownumcell">7</td>
 		<td class="flgcell">&nbsp;</td>
 		<td class="flgcell"> &nbsp;</td>
 		<td class="flgcell">&nbsp;</td>
@@ -1852,12 +2132,12 @@ m_staff
 		<td class="relcell">&nbsp;&nbsp;</td>
 		<td class="relcell">&nbsp;</td>
 		<td class="relcell"> &nbsp;</td>
-		<td class="commentcell"><pre>&nbsp;</pre></td>
+		<td class="commentcell"><pre>電話番号1_3 : 電話番号1_3</pre></td>
 		<td class="subcell">phone13</td>
 		<td class="subcell">String</td>
 	</tr>
 	<tr>
-		<td class="rownumcell">7</td>
+		<td class="rownumcell">8</td>
 		<td class="flgcell">&nbsp;</td>
 		<td class="flgcell"> &nbsp;</td>
 		<td class="flgcell">&nbsp;</td>
@@ -1870,12 +2150,30 @@ m_staff
 		<td class="relcell">&nbsp;&nbsp;</td>
 		<td class="relcell">&nbsp;</td>
 		<td class="relcell"> &nbsp;</td>
-		<td class="commentcell"><pre>&nbsp;</pre></td>
+		<td class="commentcell"><pre>削除フラグ</pre></td>
 		<td class="subcell">deleteFlag</td>
 		<td class="subcell">Boolean</td>
 	</tr>
 	<tr>
-		<td class="rownumcell">8</td>
+		<td class="rownumcell">9</td>
+		<td class="flgcell">&nbsp;</td>
+		<td class="flgcell"> &nbsp;</td>
+		<td class="flgcell">&nbsp;</td>
+		<td class="flgcell">&nbsp;</td>
+		<td class="flgcell">*</td>
+		<td class="optcell columnnamecell" id="m_staff_version_no">version_no</td>
+		<td class="typecell">int4</td>
+		<td class="sizecell"> 10 </td>
+		<td class="defvalcell"> 1</td>
+		<td class="relcell">&nbsp;&nbsp;</td>
+		<td class="relcell">&nbsp;</td>
+		<td class="relcell"> &nbsp;</td>
+		<td class="commentcell"><pre>version_no</pre></td>
+		<td class="subcell">versionNo</td>
+		<td class="subcell">Integer</td>
+	</tr>
+	<tr>
+		<td class="rownumcell">10</td>
 		<td class="flgcell">&nbsp;</td>
 		<td class="flgcell"> &nbsp;</td>
 		<td class="flgcell">&nbsp;</td>
@@ -1888,12 +2186,12 @@ m_staff
 		<td class="relcell">&nbsp;&nbsp;</td>
 		<td class="relcell">&nbsp;</td>
 		<td class="relcell"> &nbsp;</td>
-		<td class="commentcell"><pre>&nbsp;</pre></td>
+		<td class="commentcell"><pre>登録日時</pre></td>
 		<td class="subcell">registerDatetime</td>
 		<td class="subcell">LocalDateTime</td>
 	</tr>
 	<tr>
-		<td class="rownumcell">9</td>
+		<td class="rownumcell">11</td>
 		<td class="flgcell">&nbsp;</td>
 		<td class="flgcell"> &nbsp;</td>
 		<td class="flgcell">&nbsp;</td>
@@ -1906,16 +2204,16 @@ m_staff
 		<td class="relcell">&nbsp;&nbsp;</td>
 		<td class="relcell">&nbsp;</td>
 		<td class="relcell"> &nbsp;</td>
-		<td class="commentcell"><pre>&nbsp;</pre></td>
+		<td class="commentcell"><pre>更新日時</pre></td>
 		<td class="subcell">updateDatetime</td>
 		<td class="subcell">LocalDateTime</td>
 	</tr>
 </table>
 
-<h2 id="m_user" title="type=TABLE, primaryKey={user_id}, nameLength=6, columnCount=24">
+<h2 id="m_user" title="type=TABLE, primaryKey={user_id}, nameLength=6, columnCount=27">
 m_user
 </h2>
-<div class="tablecomment m_user_comment" data-name="m_user"><pre></pre></div>
+<div class="tablecomment m_user_comment" data-name="m_user"><pre>ユーザマスタ</pre></div>
 <input type="hidden" value="m_user">
 <table class="tablecontent">
 	<thead>
@@ -1952,12 +2250,48 @@ m_user
 		<td class="relcell">&nbsp;&nbsp;</td>
 		<td class="relcell"><a href="#t_reservation" title="idx_t_reservation_fk0">t_reservation</a>&nbsp;</td>
 		<td class="relcell"> &nbsp;</td>
-		<td class="commentcell"><pre>&nbsp;</pre></td>
+		<td class="commentcell"><pre>ユーザID : ユーザID</pre></td>
 		<td class="subcell">userId</td>
 		<td class="subcell">Integer</td>
 	</tr>
 	<tr>
 		<td class="rownumcell">2</td>
+		<td class="flgcell">&nbsp;</td>
+		<td class="flgcell"> &nbsp;</td>
+		<td class="flgcell">&nbsp;</td>
+		<td class="flgcell">&nbsp;</td>
+		<td class="flgcell"> &nbsp;</td>
+		<td class=" columnnamecell" id="m_user_line_id">line_id</td>
+		<td class="typecell">text</td>
+		<td class="sizecell"> 2147483647 </td>
+		<td class="defvalcell"> &nbsp;</td>
+		<td class="relcell">&nbsp;&nbsp;</td>
+		<td class="relcell">&nbsp;</td>
+		<td class="relcell"> &nbsp;</td>
+		<td class="commentcell"><pre>LINE_ID</pre></td>
+		<td class="subcell">lineId</td>
+		<td class="subcell">String</td>
+	</tr>
+	<tr>
+		<td class="rownumcell">3</td>
+		<td class="flgcell">&nbsp;</td>
+		<td class="flgcell"> &nbsp;</td>
+		<td class="flgcell">&nbsp;</td>
+		<td class="flgcell">&nbsp;</td>
+		<td class="flgcell"> &nbsp;</td>
+		<td class=" columnnamecell" id="m_user_line_name">line_name</td>
+		<td class="typecell">text</td>
+		<td class="sizecell"> 2147483647 </td>
+		<td class="defvalcell"> &nbsp;</td>
+		<td class="relcell">&nbsp;&nbsp;</td>
+		<td class="relcell">&nbsp;</td>
+		<td class="relcell"> &nbsp;</td>
+		<td class="commentcell"><pre>LINE_表示名</pre></td>
+		<td class="subcell">lineName</td>
+		<td class="subcell">String</td>
+	</tr>
+	<tr>
+		<td class="rownumcell">4</td>
 		<td class="flgcell">&nbsp;</td>
 		<td class="flgcell"> &nbsp;</td>
 		<td class="flgcell">&nbsp;</td>
@@ -1970,12 +2304,12 @@ m_user
 		<td class="relcell">&nbsp;&nbsp;</td>
 		<td class="relcell">&nbsp;</td>
 		<td class="relcell"> &nbsp;</td>
-		<td class="commentcell"><pre>&nbsp;</pre></td>
+		<td class="commentcell"><pre>姓 : 姓</pre></td>
 		<td class="subcell">familyName</td>
 		<td class="subcell">String</td>
 	</tr>
 	<tr>
-		<td class="rownumcell">3</td>
+		<td class="rownumcell">5</td>
 		<td class="flgcell">&nbsp;</td>
 		<td class="flgcell"> &nbsp;</td>
 		<td class="flgcell">&nbsp;</td>
@@ -1988,12 +2322,12 @@ m_user
 		<td class="relcell">&nbsp;&nbsp;</td>
 		<td class="relcell">&nbsp;</td>
 		<td class="relcell"> &nbsp;</td>
-		<td class="commentcell"><pre>&nbsp;</pre></td>
+		<td class="commentcell"><pre>名 : 名</pre></td>
 		<td class="subcell">givenName</td>
 		<td class="subcell">String</td>
 	</tr>
 	<tr>
-		<td class="rownumcell">4</td>
+		<td class="rownumcell">6</td>
 		<td class="flgcell">&nbsp;</td>
 		<td class="flgcell"> &nbsp;</td>
 		<td class="flgcell">&nbsp;</td>
@@ -2006,12 +2340,12 @@ m_user
 		<td class="relcell">&nbsp;&nbsp;</td>
 		<td class="relcell">&nbsp;</td>
 		<td class="relcell"> &nbsp;</td>
-		<td class="commentcell"><pre>&nbsp;</pre></td>
+		<td class="commentcell"><pre>姓（カナ） : 姓（カナ）</pre></td>
 		<td class="subcell">familyNameKana</td>
 		<td class="subcell">String</td>
 	</tr>
 	<tr>
-		<td class="rownumcell">5</td>
+		<td class="rownumcell">7</td>
 		<td class="flgcell">&nbsp;</td>
 		<td class="flgcell"> &nbsp;</td>
 		<td class="flgcell">&nbsp;</td>
@@ -2024,12 +2358,12 @@ m_user
 		<td class="relcell">&nbsp;&nbsp;</td>
 		<td class="relcell">&nbsp;</td>
 		<td class="relcell"> &nbsp;</td>
-		<td class="commentcell"><pre>&nbsp;</pre></td>
+		<td class="commentcell"><pre>名（カナ） : 名（カナ）</pre></td>
 		<td class="subcell">givenNameKana</td>
 		<td class="subcell">String</td>
 	</tr>
 	<tr>
-		<td class="rownumcell">6</td>
+		<td class="rownumcell">8</td>
 		<td class="flgcell">&nbsp;</td>
 		<td class="flgcell"> &nbsp;</td>
 		<td class="flgcell">&nbsp;</td>
@@ -2042,12 +2376,12 @@ m_user
 		<td class="relcell">&nbsp;&nbsp;</td>
 		<td class="relcell">&nbsp;</td>
 		<td class="relcell"> &nbsp;</td>
-		<td class="commentcell"><pre>&nbsp;</pre></td>
+		<td class="commentcell"><pre>性別 : 性別</pre></td>
 		<td class="subcell">sex</td>
 		<td class="subcell">Integer</td>
 	</tr>
 	<tr>
-		<td class="rownumcell">7</td>
+		<td class="rownumcell">9</td>
 		<td class="flgcell">&nbsp;</td>
 		<td class="flgcell"> &nbsp;</td>
 		<td class="flgcell">&nbsp;</td>
@@ -2060,12 +2394,12 @@ m_user
 		<td class="relcell">&nbsp;&nbsp;</td>
 		<td class="relcell">&nbsp;</td>
 		<td class="relcell"> &nbsp;</td>
-		<td class="commentcell"><pre>&nbsp;</pre></td>
+		<td class="commentcell"><pre>生年月日 : 生年月日</pre></td>
 		<td class="subcell">birthday</td>
 		<td class="subcell">LocalDate</td>
 	</tr>
 	<tr>
-		<td class="rownumcell">8</td>
+		<td class="rownumcell">10</td>
 		<td class="flgcell">&nbsp;</td>
 		<td class="flgcell"> &nbsp;</td>
 		<td class="flgcell">&nbsp;</td>
@@ -2078,12 +2412,12 @@ m_user
 		<td class="relcell">&nbsp;&nbsp;</td>
 		<td class="relcell">&nbsp;</td>
 		<td class="relcell"> &nbsp;</td>
-		<td class="commentcell"><pre>&nbsp;</pre></td>
+		<td class="commentcell"><pre>電話番号1_1 : 電話番号1_1</pre></td>
 		<td class="subcell">phoneFirst1</td>
 		<td class="subcell">String</td>
 	</tr>
 	<tr>
-		<td class="rownumcell">9</td>
+		<td class="rownumcell">11</td>
 		<td class="flgcell">&nbsp;</td>
 		<td class="flgcell"> &nbsp;</td>
 		<td class="flgcell">&nbsp;</td>
@@ -2096,12 +2430,12 @@ m_user
 		<td class="relcell">&nbsp;&nbsp;</td>
 		<td class="relcell">&nbsp;</td>
 		<td class="relcell"> &nbsp;</td>
-		<td class="commentcell"><pre>&nbsp;</pre></td>
+		<td class="commentcell"><pre>電話番号1_2 : 電話番号1_2</pre></td>
 		<td class="subcell">phoneFirst2</td>
 		<td class="subcell">String</td>
 	</tr>
 	<tr>
-		<td class="rownumcell">10</td>
+		<td class="rownumcell">12</td>
 		<td class="flgcell">&nbsp;</td>
 		<td class="flgcell"> &nbsp;</td>
 		<td class="flgcell">&nbsp;</td>
@@ -2114,12 +2448,12 @@ m_user
 		<td class="relcell">&nbsp;&nbsp;</td>
 		<td class="relcell">&nbsp;</td>
 		<td class="relcell"> &nbsp;</td>
-		<td class="commentcell"><pre>&nbsp;</pre></td>
+		<td class="commentcell"><pre>電話番号1_3 : 電話番号1_3</pre></td>
 		<td class="subcell">phoneFirst3</td>
 		<td class="subcell">String</td>
 	</tr>
 	<tr>
-		<td class="rownumcell">11</td>
+		<td class="rownumcell">13</td>
 		<td class="flgcell">&nbsp;</td>
 		<td class="flgcell"> &nbsp;</td>
 		<td class="flgcell">&nbsp;</td>
@@ -2132,12 +2466,12 @@ m_user
 		<td class="relcell">&nbsp;&nbsp;</td>
 		<td class="relcell">&nbsp;</td>
 		<td class="relcell"> &nbsp;</td>
-		<td class="commentcell"><pre>&nbsp;</pre></td>
+		<td class="commentcell"><pre>電話番号2_1 : 電話番号2_1</pre></td>
 		<td class="subcell">phoneSecond1</td>
 		<td class="subcell">String</td>
 	</tr>
 	<tr>
-		<td class="rownumcell">12</td>
+		<td class="rownumcell">14</td>
 		<td class="flgcell">&nbsp;</td>
 		<td class="flgcell"> &nbsp;</td>
 		<td class="flgcell">&nbsp;</td>
@@ -2150,12 +2484,12 @@ m_user
 		<td class="relcell">&nbsp;&nbsp;</td>
 		<td class="relcell">&nbsp;</td>
 		<td class="relcell"> &nbsp;</td>
-		<td class="commentcell"><pre>&nbsp;</pre></td>
+		<td class="commentcell"><pre>電話番号2_2 : 電話番号2_2</pre></td>
 		<td class="subcell">phoneSecond2</td>
 		<td class="subcell">String</td>
 	</tr>
 	<tr>
-		<td class="rownumcell">13</td>
+		<td class="rownumcell">15</td>
 		<td class="flgcell">&nbsp;</td>
 		<td class="flgcell"> &nbsp;</td>
 		<td class="flgcell">&nbsp;</td>
@@ -2168,12 +2502,12 @@ m_user
 		<td class="relcell">&nbsp;&nbsp;</td>
 		<td class="relcell">&nbsp;</td>
 		<td class="relcell"> &nbsp;</td>
-		<td class="commentcell"><pre>&nbsp;</pre></td>
+		<td class="commentcell"><pre>電話番号2_3 : 電話番号2_3</pre></td>
 		<td class="subcell">phoneSecond3</td>
 		<td class="subcell">String</td>
 	</tr>
 	<tr>
-		<td class="rownumcell">14</td>
+		<td class="rownumcell">16</td>
 		<td class="flgcell">&nbsp;</td>
 		<td class="flgcell"> &nbsp;</td>
 		<td class="flgcell">&nbsp;</td>
@@ -2186,12 +2520,12 @@ m_user
 		<td class="relcell">&nbsp;&nbsp;</td>
 		<td class="relcell">&nbsp;</td>
 		<td class="relcell"> &nbsp;</td>
-		<td class="commentcell"><pre>&nbsp;</pre></td>
+		<td class="commentcell"><pre>メールアドレス1 : メールアドレス1</pre></td>
 		<td class="subcell">email1</td>
 		<td class="subcell">String</td>
 	</tr>
 	<tr>
-		<td class="rownumcell">15</td>
+		<td class="rownumcell">17</td>
 		<td class="flgcell">&nbsp;</td>
 		<td class="flgcell"> &nbsp;</td>
 		<td class="flgcell">&nbsp;</td>
@@ -2204,12 +2538,12 @@ m_user
 		<td class="relcell">&nbsp;&nbsp;</td>
 		<td class="relcell">&nbsp;</td>
 		<td class="relcell"> &nbsp;</td>
-		<td class="commentcell"><pre>&nbsp;</pre></td>
+		<td class="commentcell"><pre>メールアドレス2 : メールアドレス2</pre></td>
 		<td class="subcell">email2</td>
 		<td class="subcell">String</td>
 	</tr>
 	<tr>
-		<td class="rownumcell">16</td>
+		<td class="rownumcell">18</td>
 		<td class="flgcell">&nbsp;</td>
 		<td class="flgcell"> &nbsp;</td>
 		<td class="flgcell">&nbsp;</td>
@@ -2222,12 +2556,12 @@ m_user
 		<td class="relcell">&nbsp;&nbsp;</td>
 		<td class="relcell">&nbsp;</td>
 		<td class="relcell"> &nbsp;</td>
-		<td class="commentcell"><pre>&nbsp;</pre></td>
+		<td class="commentcell"><pre>郵便番号 : 郵便番号</pre></td>
 		<td class="subcell">postalCode</td>
 		<td class="subcell">String</td>
 	</tr>
 	<tr>
-		<td class="rownumcell">17</td>
+		<td class="rownumcell">19</td>
 		<td class="flgcell">&nbsp;</td>
 		<td class="flgcell"> &nbsp;</td>
 		<td class="flgcell">&nbsp;</td>
@@ -2240,12 +2574,12 @@ m_user
 		<td class="relcell">&nbsp;&nbsp;</td>
 		<td class="relcell">&nbsp;</td>
 		<td class="relcell"> &nbsp;</td>
-		<td class="commentcell"><pre>&nbsp;</pre></td>
+		<td class="commentcell"><pre>都道府県 : 都道府県</pre></td>
 		<td class="subcell">prefecture</td>
 		<td class="subcell">Integer</td>
 	</tr>
 	<tr>
-		<td class="rownumcell">18</td>
+		<td class="rownumcell">20</td>
 		<td class="flgcell">&nbsp;</td>
 		<td class="flgcell"> &nbsp;</td>
 		<td class="flgcell">&nbsp;</td>
@@ -2258,12 +2592,12 @@ m_user
 		<td class="relcell">&nbsp;&nbsp;</td>
 		<td class="relcell">&nbsp;</td>
 		<td class="relcell"> &nbsp;</td>
-		<td class="commentcell"><pre>&nbsp;</pre></td>
+		<td class="commentcell"><pre>市区町村 : 市区町村</pre></td>
 		<td class="subcell">city</td>
 		<td class="subcell">String</td>
 	</tr>
 	<tr>
-		<td class="rownumcell">19</td>
+		<td class="rownumcell">21</td>
 		<td class="flgcell">&nbsp;</td>
 		<td class="flgcell"> &nbsp;</td>
 		<td class="flgcell">&nbsp;</td>
@@ -2276,12 +2610,12 @@ m_user
 		<td class="relcell">&nbsp;&nbsp;</td>
 		<td class="relcell">&nbsp;</td>
 		<td class="relcell"> &nbsp;</td>
-		<td class="commentcell"><pre>&nbsp;</pre></td>
+		<td class="commentcell"><pre>その他住所1 : その他住所1</pre></td>
 		<td class="subcell">address1</td>
 		<td class="subcell">String</td>
 	</tr>
 	<tr>
-		<td class="rownumcell">20</td>
+		<td class="rownumcell">22</td>
 		<td class="flgcell">&nbsp;</td>
 		<td class="flgcell"> &nbsp;</td>
 		<td class="flgcell">&nbsp;</td>
@@ -2294,12 +2628,12 @@ m_user
 		<td class="relcell">&nbsp;&nbsp;</td>
 		<td class="relcell">&nbsp;</td>
 		<td class="relcell"> &nbsp;</td>
-		<td class="commentcell"><pre>&nbsp;</pre></td>
+		<td class="commentcell"><pre>その他住所2 : その他住所2</pre></td>
 		<td class="subcell">address2</td>
 		<td class="subcell">String</td>
 	</tr>
 	<tr>
-		<td class="rownumcell">21</td>
+		<td class="rownumcell">23</td>
 		<td class="flgcell">&nbsp;</td>
 		<td class="flgcell"> &nbsp;</td>
 		<td class="flgcell">&nbsp;</td>
@@ -2312,12 +2646,12 @@ m_user
 		<td class="relcell">&nbsp;&nbsp;</td>
 		<td class="relcell">&nbsp;</td>
 		<td class="relcell"> &nbsp;</td>
-		<td class="commentcell"><pre>&nbsp;</pre></td>
+		<td class="commentcell"><pre>備考 : 備考</pre></td>
 		<td class="subcell">remarks</td>
 		<td class="subcell">String</td>
 	</tr>
 	<tr>
-		<td class="rownumcell">22</td>
+		<td class="rownumcell">24</td>
 		<td class="flgcell">&nbsp;</td>
 		<td class="flgcell"> &nbsp;</td>
 		<td class="flgcell">&nbsp;</td>
@@ -2330,12 +2664,30 @@ m_user
 		<td class="relcell">&nbsp;&nbsp;</td>
 		<td class="relcell">&nbsp;</td>
 		<td class="relcell"> &nbsp;</td>
-		<td class="commentcell"><pre>&nbsp;</pre></td>
+		<td class="commentcell"><pre>削除フラグ</pre></td>
 		<td class="subcell">deleteFlag</td>
 		<td class="subcell">Boolean</td>
 	</tr>
 	<tr>
-		<td class="rownumcell">23</td>
+		<td class="rownumcell">25</td>
+		<td class="flgcell">&nbsp;</td>
+		<td class="flgcell"> &nbsp;</td>
+		<td class="flgcell">&nbsp;</td>
+		<td class="flgcell">&nbsp;</td>
+		<td class="flgcell">*</td>
+		<td class="optcell columnnamecell" id="m_user_version_no">version_no</td>
+		<td class="typecell">int4</td>
+		<td class="sizecell"> 10 </td>
+		<td class="defvalcell"> 1</td>
+		<td class="relcell">&nbsp;&nbsp;</td>
+		<td class="relcell">&nbsp;</td>
+		<td class="relcell"> &nbsp;</td>
+		<td class="commentcell"><pre>version_no</pre></td>
+		<td class="subcell">versionNo</td>
+		<td class="subcell">Integer</td>
+	</tr>
+	<tr>
+		<td class="rownumcell">26</td>
 		<td class="flgcell">&nbsp;</td>
 		<td class="flgcell"> &nbsp;</td>
 		<td class="flgcell">&nbsp;</td>
@@ -2348,12 +2700,12 @@ m_user
 		<td class="relcell">&nbsp;&nbsp;</td>
 		<td class="relcell">&nbsp;</td>
 		<td class="relcell"> &nbsp;</td>
-		<td class="commentcell"><pre>&nbsp;</pre></td>
+		<td class="commentcell"><pre>登録日時</pre></td>
 		<td class="subcell">registerDatetime</td>
 		<td class="subcell">LocalDateTime</td>
 	</tr>
 	<tr>
-		<td class="rownumcell">24</td>
+		<td class="rownumcell">27</td>
 		<td class="flgcell">&nbsp;</td>
 		<td class="flgcell"> &nbsp;</td>
 		<td class="flgcell">&nbsp;</td>
@@ -2366,16 +2718,16 @@ m_user
 		<td class="relcell">&nbsp;&nbsp;</td>
 		<td class="relcell">&nbsp;</td>
 		<td class="relcell"> &nbsp;</td>
-		<td class="commentcell"><pre>&nbsp;</pre></td>
+		<td class="commentcell"><pre>更新日時</pre></td>
 		<td class="subcell">updateDatetime</td>
 		<td class="subcell">LocalDateTime</td>
 	</tr>
 </table>
 
-<h2 id="m_working_day" title="type=TABLE, primaryKey={working_day_id}, nameLength=13, columnCount=8">
+<h2 id="m_working_day" title="type=TABLE, primaryKey={working_day_id}, nameLength=13, columnCount=9">
 m_working_day
 </h2>
-<div class="tablecomment m_working_day_comment" data-name="m_working_day"><pre></pre></div>
+<div class="tablecomment m_working_day_comment" data-name="m_working_day"><pre>営業日マスタ</pre></div>
 <input type="hidden" value="m_working_day">
 <table class="tablecontent">
 	<thead>
@@ -2412,7 +2764,7 @@ m_working_day
 		<td class="relcell">&nbsp;&nbsp;</td>
 		<td class="relcell"><a href="#t_shift" title="idx_t_shift_fk0">t_shift</a>&nbsp;</td>
 		<td class="relcell"> &nbsp;</td>
-		<td class="commentcell"><pre>&nbsp;</pre></td>
+		<td class="commentcell"><pre>営業日ID : 営業日ID</pre></td>
 		<td class="subcell">workingDayId</td>
 		<td class="subcell">Integer</td>
 	</tr>
@@ -2430,7 +2782,7 @@ m_working_day
 		<td class="relcell"><a href="#m_shop" title="idx_m_working_day_fk0">m_shop</a>&nbsp;</td>
 		<td class="relcell">&nbsp;</td>
 		<td class="relcell"> &nbsp;</td>
-		<td class="commentcell"><pre>&nbsp;</pre></td>
+		<td class="commentcell"><pre>店舗ID : 店舗ID</pre></td>
 		<td class="subcell">shopId</td>
 		<td class="subcell">Integer</td>
 	</tr>
@@ -2448,7 +2800,7 @@ m_working_day
 		<td class="relcell">&nbsp;&nbsp;</td>
 		<td class="relcell">&nbsp;</td>
 		<td class="relcell"> &nbsp;</td>
-		<td class="commentcell"><pre>&nbsp;</pre></td>
+		<td class="commentcell"><pre>営業日 : 営業日</pre></td>
 		<td class="subcell">workingDate</td>
 		<td class="subcell">LocalDate</td>
 	</tr>
@@ -2466,7 +2818,7 @@ m_working_day
 		<td class="relcell">&nbsp;&nbsp;</td>
 		<td class="relcell">&nbsp;</td>
 		<td class="relcell"> &nbsp;</td>
-		<td class="commentcell"><pre>&nbsp;</pre></td>
+		<td class="commentcell"><pre>営業開始時間 : 営業開始時間</pre></td>
 		<td class="subcell">startTime</td>
 		<td class="subcell">LocalTime</td>
 	</tr>
@@ -2484,7 +2836,7 @@ m_working_day
 		<td class="relcell">&nbsp;&nbsp;</td>
 		<td class="relcell">&nbsp;</td>
 		<td class="relcell"> &nbsp;</td>
-		<td class="commentcell"><pre>&nbsp;</pre></td>
+		<td class="commentcell"><pre>営業終了時間 : 営業終了時間</pre></td>
 		<td class="subcell">endTime</td>
 		<td class="subcell">LocalTime</td>
 	</tr>
@@ -2502,12 +2854,30 @@ m_working_day
 		<td class="relcell">&nbsp;&nbsp;</td>
 		<td class="relcell">&nbsp;</td>
 		<td class="relcell"> &nbsp;</td>
-		<td class="commentcell"><pre>&nbsp;</pre></td>
+		<td class="commentcell"><pre>削除フラグ</pre></td>
 		<td class="subcell">deleteFlag</td>
 		<td class="subcell">Boolean</td>
 	</tr>
 	<tr>
 		<td class="rownumcell">7</td>
+		<td class="flgcell">&nbsp;</td>
+		<td class="flgcell"> &nbsp;</td>
+		<td class="flgcell">&nbsp;</td>
+		<td class="flgcell">&nbsp;</td>
+		<td class="flgcell">*</td>
+		<td class="optcell columnnamecell" id="m_working_day_version_no">version_no</td>
+		<td class="typecell">int4</td>
+		<td class="sizecell"> 10 </td>
+		<td class="defvalcell"> 1</td>
+		<td class="relcell">&nbsp;&nbsp;</td>
+		<td class="relcell">&nbsp;</td>
+		<td class="relcell"> &nbsp;</td>
+		<td class="commentcell"><pre>version_no</pre></td>
+		<td class="subcell">versionNo</td>
+		<td class="subcell">Integer</td>
+	</tr>
+	<tr>
+		<td class="rownumcell">8</td>
 		<td class="flgcell">&nbsp;</td>
 		<td class="flgcell"> &nbsp;</td>
 		<td class="flgcell">&nbsp;</td>
@@ -2520,12 +2890,12 @@ m_working_day
 		<td class="relcell">&nbsp;&nbsp;</td>
 		<td class="relcell">&nbsp;</td>
 		<td class="relcell"> &nbsp;</td>
-		<td class="commentcell"><pre>&nbsp;</pre></td>
+		<td class="commentcell"><pre>登録日時</pre></td>
 		<td class="subcell">registerDatetime</td>
 		<td class="subcell">LocalDateTime</td>
 	</tr>
 	<tr>
-		<td class="rownumcell">8</td>
+		<td class="rownumcell">9</td>
 		<td class="flgcell">&nbsp;</td>
 		<td class="flgcell"> &nbsp;</td>
 		<td class="flgcell">&nbsp;</td>
@@ -2538,16 +2908,16 @@ m_working_day
 		<td class="relcell">&nbsp;&nbsp;</td>
 		<td class="relcell">&nbsp;</td>
 		<td class="relcell"> &nbsp;</td>
-		<td class="commentcell"><pre>&nbsp;</pre></td>
+		<td class="commentcell"><pre>更新日時</pre></td>
 		<td class="subcell">updateDatetime</td>
 		<td class="subcell">LocalDateTime</td>
 	</tr>
 </table>
 
-<h2 id="m_working_day_deff" title="type=TABLE, primaryKey={m_working_day_deff_id}, nameLength=18, columnCount=6">
+<h2 id="m_working_day_deff" title="type=TABLE, primaryKey={m_working_day_deff_id}, nameLength=18, columnCount=7">
 m_working_day_deff
 </h2>
-<div class="tablecomment m_working_day_deff_comment" data-name="m_working_day_deff"><pre></pre></div>
+<div class="tablecomment m_working_day_deff_comment" data-name="m_working_day_deff"><pre>営業日定義マスタ</pre></div>
 <input type="hidden" value="m_working_day_deff">
 <table class="tablecontent">
 	<thead>
@@ -2584,7 +2954,7 @@ m_working_day_deff
 		<td class="relcell">&nbsp;&nbsp;</td>
 		<td class="relcell"><a href="#m_working_day_detail_deff" title="idx_m_working_day_detail_deff_fk1">m_working_day_detail_deff</a>&nbsp;</td>
 		<td class="relcell"> &nbsp;</td>
-		<td class="commentcell"><pre>&nbsp;</pre></td>
+		<td class="commentcell"><pre>営業日定義ID : 営業日定義ID</pre></td>
 		<td class="subcell">MWorkingDayDeffId</td>
 		<td class="subcell">Integer</td>
 	</tr>
@@ -2602,7 +2972,7 @@ m_working_day_deff
 		<td class="relcell"><a href="#m_shop" title="idx_m_working_day_deff_fk0">m_shop</a>&nbsp;</td>
 		<td class="relcell">&nbsp;</td>
 		<td class="relcell"> &nbsp;</td>
-		<td class="commentcell"><pre>&nbsp;</pre></td>
+		<td class="commentcell"><pre>店舗ID : 店舗ID</pre></td>
 		<td class="subcell">shopId</td>
 		<td class="subcell">Integer</td>
 	</tr>
@@ -2620,7 +2990,7 @@ m_working_day_deff
 		<td class="relcell">&nbsp;&nbsp;</td>
 		<td class="relcell">&nbsp;</td>
 		<td class="relcell"> &nbsp;</td>
-		<td class="commentcell"><pre>&nbsp;</pre></td>
+		<td class="commentcell"><pre>start_day</pre></td>
 		<td class="subcell">startDay</td>
 		<td class="subcell">LocalDate</td>
 	</tr>
@@ -2638,12 +3008,30 @@ m_working_day_deff
 		<td class="relcell">&nbsp;&nbsp;</td>
 		<td class="relcell">&nbsp;</td>
 		<td class="relcell"> &nbsp;</td>
-		<td class="commentcell"><pre>&nbsp;</pre></td>
+		<td class="commentcell"><pre>削除フラグ</pre></td>
 		<td class="subcell">deleteFlag</td>
 		<td class="subcell">Boolean</td>
 	</tr>
 	<tr>
 		<td class="rownumcell">5</td>
+		<td class="flgcell">&nbsp;</td>
+		<td class="flgcell"> &nbsp;</td>
+		<td class="flgcell">&nbsp;</td>
+		<td class="flgcell">&nbsp;</td>
+		<td class="flgcell">*</td>
+		<td class="optcell columnnamecell" id="m_working_day_deff_version_no">version_no</td>
+		<td class="typecell">int4</td>
+		<td class="sizecell"> 10 </td>
+		<td class="defvalcell"> 1</td>
+		<td class="relcell">&nbsp;&nbsp;</td>
+		<td class="relcell">&nbsp;</td>
+		<td class="relcell"> &nbsp;</td>
+		<td class="commentcell"><pre>version_no</pre></td>
+		<td class="subcell">versionNo</td>
+		<td class="subcell">Integer</td>
+	</tr>
+	<tr>
+		<td class="rownumcell">6</td>
 		<td class="flgcell">&nbsp;</td>
 		<td class="flgcell"> &nbsp;</td>
 		<td class="flgcell">&nbsp;</td>
@@ -2656,12 +3044,12 @@ m_working_day_deff
 		<td class="relcell">&nbsp;&nbsp;</td>
 		<td class="relcell">&nbsp;</td>
 		<td class="relcell"> &nbsp;</td>
-		<td class="commentcell"><pre>&nbsp;</pre></td>
+		<td class="commentcell"><pre>登録日時</pre></td>
 		<td class="subcell">registerDatetime</td>
 		<td class="subcell">LocalDateTime</td>
 	</tr>
 	<tr>
-		<td class="rownumcell">6</td>
+		<td class="rownumcell">7</td>
 		<td class="flgcell">&nbsp;</td>
 		<td class="flgcell"> &nbsp;</td>
 		<td class="flgcell">&nbsp;</td>
@@ -2674,16 +3062,16 @@ m_working_day_deff
 		<td class="relcell">&nbsp;&nbsp;</td>
 		<td class="relcell">&nbsp;</td>
 		<td class="relcell"> &nbsp;</td>
-		<td class="commentcell"><pre>&nbsp;</pre></td>
+		<td class="commentcell"><pre>更新日時</pre></td>
 		<td class="subcell">updateDatetime</td>
 		<td class="subcell">LocalDateTime</td>
 	</tr>
 </table>
 
-<h2 id="m_working_day_detail_deff" title="type=TABLE, primaryKey={working_day_detail_deff_id}, nameLength=25, columnCount=24">
+<h2 id="m_working_day_detail_deff" title="type=TABLE, primaryKey={working_day_detail_deff_id}, nameLength=25, columnCount=25">
 m_working_day_detail_deff
 </h2>
-<div class="tablecomment m_working_day_detail_deff_comment" data-name="m_working_day_detail_deff"><pre></pre></div>
+<div class="tablecomment m_working_day_detail_deff_comment" data-name="m_working_day_detail_deff"><pre>営業日詳細定義マスタ</pre></div>
 <input type="hidden" value="m_working_day_detail_deff">
 <table class="tablecontent">
 	<thead>
@@ -2720,7 +3108,7 @@ m_working_day_detail_deff
 		<td class="relcell">&nbsp;&nbsp;</td>
 		<td class="relcell">&nbsp;</td>
 		<td class="relcell"> &nbsp;</td>
-		<td class="commentcell"><pre>&nbsp;</pre></td>
+		<td class="commentcell"><pre>営業日詳細定義ID : 営業日詳細定義ID</pre></td>
 		<td class="subcell">workingDayDetailDeffId</td>
 		<td class="subcell">Integer</td>
 	</tr>
@@ -2738,7 +3126,7 @@ m_working_day_detail_deff
 		<td class="relcell"><a href="#m_working_day_deff" title="idx_m_working_day_detail_deff_fk1">m_working_day_deff</a>&nbsp;</td>
 		<td class="relcell">&nbsp;</td>
 		<td class="relcell"> &nbsp;</td>
-		<td class="commentcell"><pre>&nbsp;</pre></td>
+		<td class="commentcell"><pre>営業日定義ID : 営業日定義ID</pre></td>
 		<td class="subcell">MWorkingDayDeffId</td>
 		<td class="subcell">Integer</td>
 	</tr>
@@ -2756,7 +3144,7 @@ m_working_day_detail_deff
 		<td class="relcell">&nbsp;&nbsp;</td>
 		<td class="relcell">&nbsp;</td>
 		<td class="relcell"> &nbsp;</td>
-		<td class="commentcell"><pre>&nbsp;</pre></td>
+		<td class="commentcell"><pre>適応フラグ : 適応フラグ</pre></td>
 		<td class="subcell">effectiveFlag</td>
 		<td class="subcell">Boolean</td>
 	</tr>
@@ -2774,7 +3162,7 @@ m_working_day_detail_deff
 		<td class="relcell">&nbsp;&nbsp;</td>
 		<td class="relcell">&nbsp;</td>
 		<td class="relcell"> &nbsp;</td>
-		<td class="commentcell"><pre>&nbsp;</pre></td>
+		<td class="commentcell"><pre>営業日Flag : 営業日Flag</pre></td>
 		<td class="subcell">workingDayFlg</td>
 		<td class="subcell">Boolean</td>
 	</tr>
@@ -2792,7 +3180,7 @@ m_working_day_detail_deff
 		<td class="relcell">&nbsp;&nbsp;</td>
 		<td class="relcell">&nbsp;</td>
 		<td class="relcell"> &nbsp;</td>
-		<td class="commentcell"><pre>&nbsp;</pre></td>
+		<td class="commentcell"><pre>第1週Flag : 第1週Flag</pre></td>
 		<td class="subcell">week1Flag</td>
 		<td class="subcell">Boolean</td>
 	</tr>
@@ -2810,7 +3198,7 @@ m_working_day_detail_deff
 		<td class="relcell">&nbsp;&nbsp;</td>
 		<td class="relcell">&nbsp;</td>
 		<td class="relcell"> &nbsp;</td>
-		<td class="commentcell"><pre>&nbsp;</pre></td>
+		<td class="commentcell"><pre>第2週Flag : 第2週Flag</pre></td>
 		<td class="subcell">week2Flag</td>
 		<td class="subcell">Boolean</td>
 	</tr>
@@ -2828,7 +3216,7 @@ m_working_day_detail_deff
 		<td class="relcell">&nbsp;&nbsp;</td>
 		<td class="relcell">&nbsp;</td>
 		<td class="relcell"> &nbsp;</td>
-		<td class="commentcell"><pre>&nbsp;</pre></td>
+		<td class="commentcell"><pre>第3週Flag : 第3週Flag</pre></td>
 		<td class="subcell">week3Flag</td>
 		<td class="subcell">Boolean</td>
 	</tr>
@@ -2846,7 +3234,7 @@ m_working_day_detail_deff
 		<td class="relcell">&nbsp;&nbsp;</td>
 		<td class="relcell">&nbsp;</td>
 		<td class="relcell"> &nbsp;</td>
-		<td class="commentcell"><pre>&nbsp;</pre></td>
+		<td class="commentcell"><pre>第4週Flag : 第4週Flag</pre></td>
 		<td class="subcell">week4Flag</td>
 		<td class="subcell">Boolean</td>
 	</tr>
@@ -2864,7 +3252,7 @@ m_working_day_detail_deff
 		<td class="relcell">&nbsp;&nbsp;</td>
 		<td class="relcell">&nbsp;</td>
 		<td class="relcell"> &nbsp;</td>
-		<td class="commentcell"><pre>&nbsp;</pre></td>
+		<td class="commentcell"><pre>第5週Flag : 第5週Flag</pre></td>
 		<td class="subcell">week5Flag</td>
 		<td class="subcell">Boolean</td>
 	</tr>
@@ -2882,7 +3270,7 @@ m_working_day_detail_deff
 		<td class="relcell">&nbsp;&nbsp;</td>
 		<td class="relcell">&nbsp;</td>
 		<td class="relcell"> &nbsp;</td>
-		<td class="commentcell"><pre>&nbsp;</pre></td>
+		<td class="commentcell"><pre>月曜日Flag : 月曜日Flag</pre></td>
 		<td class="subcell">monFlg</td>
 		<td class="subcell">Boolean</td>
 	</tr>
@@ -2900,7 +3288,7 @@ m_working_day_detail_deff
 		<td class="relcell">&nbsp;&nbsp;</td>
 		<td class="relcell">&nbsp;</td>
 		<td class="relcell"> &nbsp;</td>
-		<td class="commentcell"><pre>&nbsp;</pre></td>
+		<td class="commentcell"><pre>火曜日Flag : 火曜日Flag</pre></td>
 		<td class="subcell">tueFlg</td>
 		<td class="subcell">Boolean</td>
 	</tr>
@@ -2918,7 +3306,7 @@ m_working_day_detail_deff
 		<td class="relcell">&nbsp;&nbsp;</td>
 		<td class="relcell">&nbsp;</td>
 		<td class="relcell"> &nbsp;</td>
-		<td class="commentcell"><pre>&nbsp;</pre></td>
+		<td class="commentcell"><pre>水曜日Flag : 水曜日Flag</pre></td>
 		<td class="subcell">webFlg</td>
 		<td class="subcell">Boolean</td>
 	</tr>
@@ -2936,7 +3324,7 @@ m_working_day_detail_deff
 		<td class="relcell">&nbsp;&nbsp;</td>
 		<td class="relcell">&nbsp;</td>
 		<td class="relcell"> &nbsp;</td>
-		<td class="commentcell"><pre>&nbsp;</pre></td>
+		<td class="commentcell"><pre>木曜日Flag : 木曜日Flag</pre></td>
 		<td class="subcell">thuFlg</td>
 		<td class="subcell">Boolean</td>
 	</tr>
@@ -2954,7 +3342,7 @@ m_working_day_detail_deff
 		<td class="relcell">&nbsp;&nbsp;</td>
 		<td class="relcell">&nbsp;</td>
 		<td class="relcell"> &nbsp;</td>
-		<td class="commentcell"><pre>&nbsp;</pre></td>
+		<td class="commentcell"><pre>金曜日Flag : 金曜日Flag</pre></td>
 		<td class="subcell">friFlg</td>
 		<td class="subcell">Boolean</td>
 	</tr>
@@ -2972,7 +3360,7 @@ m_working_day_detail_deff
 		<td class="relcell">&nbsp;&nbsp;</td>
 		<td class="relcell">&nbsp;</td>
 		<td class="relcell"> &nbsp;</td>
-		<td class="commentcell"><pre>&nbsp;</pre></td>
+		<td class="commentcell"><pre>土曜日Flag : 土曜日Flag</pre></td>
 		<td class="subcell">satFlg</td>
 		<td class="subcell">Boolean</td>
 	</tr>
@@ -2990,7 +3378,7 @@ m_working_day_detail_deff
 		<td class="relcell">&nbsp;&nbsp;</td>
 		<td class="relcell">&nbsp;</td>
 		<td class="relcell"> &nbsp;</td>
-		<td class="commentcell"><pre>&nbsp;</pre></td>
+		<td class="commentcell"><pre>日曜日Flag : 日曜日Flag</pre></td>
 		<td class="subcell">sunFlg</td>
 		<td class="subcell">Boolean</td>
 	</tr>
@@ -3008,7 +3396,7 @@ m_working_day_detail_deff
 		<td class="relcell">&nbsp;&nbsp;</td>
 		<td class="relcell">&nbsp;</td>
 		<td class="relcell"> &nbsp;</td>
-		<td class="commentcell"><pre>&nbsp;</pre></td>
+		<td class="commentcell"><pre>祝日Flag : 祝日Flag</pre></td>
 		<td class="subcell">holidayFlg</td>
 		<td class="subcell">Boolean</td>
 	</tr>
@@ -3026,7 +3414,7 @@ m_working_day_detail_deff
 		<td class="relcell">&nbsp;&nbsp;</td>
 		<td class="relcell">&nbsp;</td>
 		<td class="relcell"> &nbsp;</td>
-		<td class="commentcell"><pre>&nbsp;</pre></td>
+		<td class="commentcell"><pre>毎月指定日 : 毎月指定日</pre></td>
 		<td class="subcell">dayOfMonth</td>
 		<td class="subcell">Integer</td>
 	</tr>
@@ -3044,7 +3432,7 @@ m_working_day_detail_deff
 		<td class="relcell">&nbsp;&nbsp;</td>
 		<td class="relcell">&nbsp;</td>
 		<td class="relcell"> &nbsp;</td>
-		<td class="commentcell"><pre>&nbsp;</pre></td>
+		<td class="commentcell"><pre>指定日 : 指定日</pre></td>
 		<td class="subcell">specifiedDay</td>
 		<td class="subcell">LocalDate</td>
 	</tr>
@@ -3062,7 +3450,7 @@ m_working_day_detail_deff
 		<td class="relcell">&nbsp;&nbsp;</td>
 		<td class="relcell">&nbsp;</td>
 		<td class="relcell"> &nbsp;</td>
-		<td class="commentcell"><pre>&nbsp;</pre></td>
+		<td class="commentcell"><pre>営業開始時間 : 営業開始時間</pre></td>
 		<td class="subcell">startTime</td>
 		<td class="subcell">LocalTime</td>
 	</tr>
@@ -3080,7 +3468,7 @@ m_working_day_detail_deff
 		<td class="relcell">&nbsp;&nbsp;</td>
 		<td class="relcell">&nbsp;</td>
 		<td class="relcell"> &nbsp;</td>
-		<td class="commentcell"><pre>&nbsp;</pre></td>
+		<td class="commentcell"><pre>営業終了時間 : 営業終了時間</pre></td>
 		<td class="subcell">endTime</td>
 		<td class="subcell">LocalTime</td>
 	</tr>
@@ -3098,12 +3486,30 @@ m_working_day_detail_deff
 		<td class="relcell">&nbsp;&nbsp;</td>
 		<td class="relcell">&nbsp;</td>
 		<td class="relcell"> &nbsp;</td>
-		<td class="commentcell"><pre>&nbsp;</pre></td>
+		<td class="commentcell"><pre>削除フラグ</pre></td>
 		<td class="subcell">deleteFlag</td>
 		<td class="subcell">Boolean</td>
 	</tr>
 	<tr>
 		<td class="rownumcell">23</td>
+		<td class="flgcell">&nbsp;</td>
+		<td class="flgcell"> &nbsp;</td>
+		<td class="flgcell">&nbsp;</td>
+		<td class="flgcell">&nbsp;</td>
+		<td class="flgcell">*</td>
+		<td class="optcell columnnamecell" id="m_working_day_detail_deff_version_no">version_no</td>
+		<td class="typecell">int4</td>
+		<td class="sizecell"> 10 </td>
+		<td class="defvalcell"> 1</td>
+		<td class="relcell">&nbsp;&nbsp;</td>
+		<td class="relcell">&nbsp;</td>
+		<td class="relcell"> &nbsp;</td>
+		<td class="commentcell"><pre>version_no</pre></td>
+		<td class="subcell">versionNo</td>
+		<td class="subcell">Integer</td>
+	</tr>
+	<tr>
+		<td class="rownumcell">24</td>
 		<td class="flgcell">&nbsp;</td>
 		<td class="flgcell"> &nbsp;</td>
 		<td class="flgcell">&nbsp;</td>
@@ -3116,12 +3522,12 @@ m_working_day_detail_deff
 		<td class="relcell">&nbsp;&nbsp;</td>
 		<td class="relcell">&nbsp;</td>
 		<td class="relcell"> &nbsp;</td>
-		<td class="commentcell"><pre>&nbsp;</pre></td>
+		<td class="commentcell"><pre>登録日時</pre></td>
 		<td class="subcell">registerDatetime</td>
 		<td class="subcell">LocalDateTime</td>
 	</tr>
 	<tr>
-		<td class="rownumcell">24</td>
+		<td class="rownumcell">25</td>
 		<td class="flgcell">&nbsp;</td>
 		<td class="flgcell"> &nbsp;</td>
 		<td class="flgcell">&nbsp;</td>
@@ -3134,16 +3540,16 @@ m_working_day_detail_deff
 		<td class="relcell">&nbsp;&nbsp;</td>
 		<td class="relcell">&nbsp;</td>
 		<td class="relcell"> &nbsp;</td>
-		<td class="commentcell"><pre>&nbsp;</pre></td>
+		<td class="commentcell"><pre>更新日時</pre></td>
 		<td class="subcell">updateDatetime</td>
 		<td class="subcell">LocalDateTime</td>
 	</tr>
 </table>
 
-<h2 id="m_working_staff" title="type=TABLE, primaryKey={working_staff_id}, nameLength=15, columnCount=6">
+<h2 id="m_working_staff" title="type=TABLE, primaryKey={working_staff_id}, nameLength=15, columnCount=7">
 m_working_staff
 </h2>
-<div class="tablecomment m_working_staff_comment" data-name="m_working_staff"><pre></pre></div>
+<div class="tablecomment m_working_staff_comment" data-name="m_working_staff"><pre>所属スタッフマスタ</pre></div>
 <input type="hidden" value="m_working_staff">
 <table class="tablecontent">
 	<thead>
@@ -3178,9 +3584,9 @@ m_working_staff
 		<td class="sizecell"> 10 </td>
 		<td class="defvalcell"> &nbsp;</td>
 		<td class="relcell">&nbsp;&nbsp;</td>
-		<td class="relcell">&nbsp;</td>
+		<td class="relcell"><a href="#t_reservation" title="t_reservation_working_staff_id_fkey">t_reservation</a>,<br><a href="#t_shift" title="t_shift_working_staff_id_fkey">t_shift</a>&nbsp;</td>
 		<td class="relcell"> &nbsp;</td>
-		<td class="commentcell"><pre>&nbsp;</pre></td>
+		<td class="commentcell"><pre>所属スタッフID : 所属スタッフID</pre></td>
 		<td class="subcell">workingStaffId</td>
 		<td class="subcell">Integer</td>
 	</tr>
@@ -3198,7 +3604,7 @@ m_working_staff
 		<td class="relcell"><a href="#m_shop" title="idx_m_working_staff_fk0">m_shop</a>&nbsp;</td>
 		<td class="relcell">&nbsp;</td>
 		<td class="relcell"> &nbsp;</td>
-		<td class="commentcell"><pre>&nbsp;</pre></td>
+		<td class="commentcell"><pre>店舗ID : 店舗ID</pre></td>
 		<td class="subcell">shopId</td>
 		<td class="subcell">Integer</td>
 	</tr>
@@ -3216,7 +3622,7 @@ m_working_staff
 		<td class="relcell"><a href="#m_staff" title="idx_m_working_staff_fk1">m_staff</a>&nbsp;</td>
 		<td class="relcell">&nbsp;</td>
 		<td class="relcell"> &nbsp;</td>
-		<td class="commentcell"><pre>&nbsp;</pre></td>
+		<td class="commentcell"><pre>スタッフID : スタッフID</pre></td>
 		<td class="subcell">staffId</td>
 		<td class="subcell">Integer</td>
 	</tr>
@@ -3234,12 +3640,30 @@ m_working_staff
 		<td class="relcell">&nbsp;&nbsp;</td>
 		<td class="relcell">&nbsp;</td>
 		<td class="relcell"> &nbsp;</td>
-		<td class="commentcell"><pre>&nbsp;</pre></td>
+		<td class="commentcell"><pre>削除フラグ</pre></td>
 		<td class="subcell">deleteFlag</td>
 		<td class="subcell">Boolean</td>
 	</tr>
 	<tr>
 		<td class="rownumcell">5</td>
+		<td class="flgcell">&nbsp;</td>
+		<td class="flgcell"> &nbsp;</td>
+		<td class="flgcell">&nbsp;</td>
+		<td class="flgcell">&nbsp;</td>
+		<td class="flgcell">*</td>
+		<td class="optcell columnnamecell" id="m_working_staff_version_no">version_no</td>
+		<td class="typecell">int4</td>
+		<td class="sizecell"> 10 </td>
+		<td class="defvalcell"> 1</td>
+		<td class="relcell">&nbsp;&nbsp;</td>
+		<td class="relcell">&nbsp;</td>
+		<td class="relcell"> &nbsp;</td>
+		<td class="commentcell"><pre>version_no</pre></td>
+		<td class="subcell">versionNo</td>
+		<td class="subcell">Integer</td>
+	</tr>
+	<tr>
+		<td class="rownumcell">6</td>
 		<td class="flgcell">&nbsp;</td>
 		<td class="flgcell"> &nbsp;</td>
 		<td class="flgcell">&nbsp;</td>
@@ -3252,12 +3676,12 @@ m_working_staff
 		<td class="relcell">&nbsp;&nbsp;</td>
 		<td class="relcell">&nbsp;</td>
 		<td class="relcell"> &nbsp;</td>
-		<td class="commentcell"><pre>&nbsp;</pre></td>
+		<td class="commentcell"><pre>登録日時</pre></td>
 		<td class="subcell">registerDatetime</td>
 		<td class="subcell">LocalDateTime</td>
 	</tr>
 	<tr>
-		<td class="rownumcell">6</td>
+		<td class="rownumcell">7</td>
 		<td class="flgcell">&nbsp;</td>
 		<td class="flgcell"> &nbsp;</td>
 		<td class="flgcell">&nbsp;</td>
@@ -3270,16 +3694,188 @@ m_working_staff
 		<td class="relcell">&nbsp;&nbsp;</td>
 		<td class="relcell">&nbsp;</td>
 		<td class="relcell"> &nbsp;</td>
-		<td class="commentcell"><pre>&nbsp;</pre></td>
+		<td class="commentcell"><pre>更新日時</pre></td>
 		<td class="subcell">updateDatetime</td>
 		<td class="subcell">LocalDateTime</td>
 	</tr>
 </table>
 
-<h2 id="t_reservation" title="type=TABLE, primaryKey={reservation_id}, nameLength=13, columnCount=16">
+<h2 id="system_property_m" title="type=TABLE, primaryKey={prop_key}, nameLength=17, columnCount=8">
+system_property_m
+</h2>
+<div class="tablecomment system_property_m_comment" data-name="system_property_m"><pre>システムプロパティ_M</pre></div>
+<input type="hidden" value="system_property_m">
+<table class="tablecontent">
+	<thead>
+	<tr>
+		<th class="rownumhead">No.</th>
+		<th>PK</th>
+		<th>ID</th>
+		<th>UQ</th>
+		<th>IX</th>
+		<th>Not<br />Null</th>
+		<th>Name</th>
+		<th>Type</th>
+		<th>Size</th>
+		<th>Default</th>
+		<th>ForeignTable</th>
+		<th>ReferrerTable</th>
+		<th>Classification</th>
+		<th>ColumnComment</th>
+		<th>PropertyName</th>
+		<th>JavaType</th>
+	</tr>
+	</thead>
+	<tr>
+		<td class="rownumcell">1</td>
+		<td class="flgcell" title="system_property_m_pkey">o</td>
+		<td class="flgcell"> &nbsp;</td>
+		<td class="flgcell">&nbsp;</td>
+		<td class="flgcell">&nbsp;</td>
+		<td class="flgcell">*</td>
+		<td class=" columnnamecell" id="system_property_m_prop_key">prop_key</td>
+		<td class="typecell">text</td>
+		<td class="sizecell"> 2147483647 </td>
+		<td class="defvalcell"> &nbsp;</td>
+		<td class="relcell">&nbsp;&nbsp;</td>
+		<td class="relcell">&nbsp;</td>
+		<td class="relcell"> &nbsp;</td>
+		<td class="commentcell"><pre>プロパティキー : プロパティキー</pre></td>
+		<td class="subcell">propKey</td>
+		<td class="subcell">String</td>
+	</tr>
+	<tr>
+		<td class="rownumcell">2</td>
+		<td class="flgcell">&nbsp;</td>
+		<td class="flgcell"> &nbsp;</td>
+		<td class="flgcell">&nbsp;</td>
+		<td class="flgcell">&nbsp;</td>
+		<td class="flgcell"> &nbsp;</td>
+		<td class=" columnnamecell" id="system_property_m_prop_group">prop_group</td>
+		<td class="typecell">text</td>
+		<td class="sizecell"> 2147483647 </td>
+		<td class="defvalcell"> &nbsp;</td>
+		<td class="relcell">&nbsp;&nbsp;</td>
+		<td class="relcell">&nbsp;</td>
+		<td class="relcell"> &nbsp;</td>
+		<td class="commentcell"><pre>プロパティグループ</pre></td>
+		<td class="subcell">propGroup</td>
+		<td class="subcell">String</td>
+	</tr>
+	<tr>
+		<td class="rownumcell">3</td>
+		<td class="flgcell">&nbsp;</td>
+		<td class="flgcell"> &nbsp;</td>
+		<td class="flgcell">&nbsp;</td>
+		<td class="flgcell">&nbsp;</td>
+		<td class="flgcell"> &nbsp;</td>
+		<td class=" columnnamecell" id="system_property_m_prop_value">prop_value</td>
+		<td class="typecell">text</td>
+		<td class="sizecell"> 2147483647 </td>
+		<td class="defvalcell"> &nbsp;</td>
+		<td class="relcell">&nbsp;&nbsp;</td>
+		<td class="relcell">&nbsp;</td>
+		<td class="relcell"> &nbsp;</td>
+		<td class="commentcell"><pre>値 : 値</pre></td>
+		<td class="subcell">propValue</td>
+		<td class="subcell">String</td>
+	</tr>
+	<tr>
+		<td class="rownumcell">4</td>
+		<td class="flgcell">&nbsp;</td>
+		<td class="flgcell"> &nbsp;</td>
+		<td class="flgcell">&nbsp;</td>
+		<td class="flgcell">&nbsp;</td>
+		<td class="flgcell"> &nbsp;</td>
+		<td class=" columnnamecell" id="system_property_m_description">description</td>
+		<td class="typecell">text</td>
+		<td class="sizecell"> 2147483647 </td>
+		<td class="defvalcell"> &nbsp;</td>
+		<td class="relcell">&nbsp;&nbsp;</td>
+		<td class="relcell">&nbsp;</td>
+		<td class="relcell"> &nbsp;</td>
+		<td class="commentcell"><pre>説明 : 説明</pre></td>
+		<td class="subcell">description</td>
+		<td class="subcell">String</td>
+	</tr>
+	<tr>
+		<td class="rownumcell">5</td>
+		<td class="flgcell">&nbsp;</td>
+		<td class="flgcell"> &nbsp;</td>
+		<td class="flgcell">&nbsp;</td>
+		<td class="flgcell">&nbsp;</td>
+		<td class="flgcell">*</td>
+		<td class=" columnnamecell" id="system_property_m_delete_flag">delete_flag</td>
+		<td class="typecell">bool</td>
+		<td class="sizecell"> 1 </td>
+		<td class="defvalcell"> false</td>
+		<td class="relcell">&nbsp;&nbsp;</td>
+		<td class="relcell">&nbsp;</td>
+		<td class="relcell"> &nbsp;</td>
+		<td class="commentcell"><pre>削除フラグ</pre></td>
+		<td class="subcell">deleteFlag</td>
+		<td class="subcell">Boolean</td>
+	</tr>
+	<tr>
+		<td class="rownumcell">6</td>
+		<td class="flgcell">&nbsp;</td>
+		<td class="flgcell"> &nbsp;</td>
+		<td class="flgcell">&nbsp;</td>
+		<td class="flgcell">&nbsp;</td>
+		<td class="flgcell">*</td>
+		<td class="optcell columnnamecell" id="system_property_m_version_no">version_no</td>
+		<td class="typecell">int4</td>
+		<td class="sizecell"> 10 </td>
+		<td class="defvalcell"> 1</td>
+		<td class="relcell">&nbsp;&nbsp;</td>
+		<td class="relcell">&nbsp;</td>
+		<td class="relcell"> &nbsp;</td>
+		<td class="commentcell"><pre>version_no</pre></td>
+		<td class="subcell">versionNo</td>
+		<td class="subcell">Integer</td>
+	</tr>
+	<tr>
+		<td class="rownumcell">7</td>
+		<td class="flgcell">&nbsp;</td>
+		<td class="flgcell"> &nbsp;</td>
+		<td class="flgcell">&nbsp;</td>
+		<td class="flgcell">&nbsp;</td>
+		<td class="flgcell">*</td>
+		<td class="comcolcell columnnamecell" id="system_property_m_register_datetime">register_datetime</td>
+		<td class="typecell">timestamp</td>
+		<td class="sizecell"> 26, 3 </td>
+		<td class="defvalcell"> now()</td>
+		<td class="relcell">&nbsp;&nbsp;</td>
+		<td class="relcell">&nbsp;</td>
+		<td class="relcell"> &nbsp;</td>
+		<td class="commentcell"><pre>登録日時</pre></td>
+		<td class="subcell">registerDatetime</td>
+		<td class="subcell">LocalDateTime</td>
+	</tr>
+	<tr>
+		<td class="rownumcell">8</td>
+		<td class="flgcell">&nbsp;</td>
+		<td class="flgcell"> &nbsp;</td>
+		<td class="flgcell">&nbsp;</td>
+		<td class="flgcell">&nbsp;</td>
+		<td class="flgcell"> &nbsp;</td>
+		<td class="comcolcell columnnamecell" id="system_property_m_update_datetime">update_datetime</td>
+		<td class="typecell">timestamp</td>
+		<td class="sizecell"> 26, 3 </td>
+		<td class="defvalcell"> &nbsp;</td>
+		<td class="relcell">&nbsp;&nbsp;</td>
+		<td class="relcell">&nbsp;</td>
+		<td class="relcell"> &nbsp;</td>
+		<td class="commentcell"><pre>更新日時</pre></td>
+		<td class="subcell">updateDatetime</td>
+		<td class="subcell">LocalDateTime</td>
+	</tr>
+</table>
+
+<h2 id="t_reservation" title="type=TABLE, primaryKey={reservation_id}, nameLength=13, columnCount=17">
 t_reservation
 </h2>
-<div class="tablecomment t_reservation_comment" data-name="t_reservation"><pre></pre></div>
+<div class="tablecomment t_reservation_comment" data-name="t_reservation"><pre>予約テーブル</pre></div>
 <input type="hidden" value="t_reservation">
 <table class="tablecontent">
 	<thead>
@@ -3316,7 +3912,7 @@ t_reservation
 		<td class="relcell">&nbsp;&nbsp;</td>
 		<td class="relcell"><a href="#t_reservation_detail" title="idx_t_reservation_detail_fk0">t_reservation_detail</a>&nbsp;</td>
 		<td class="relcell"> &nbsp;</td>
-		<td class="commentcell"><pre>&nbsp;</pre></td>
+		<td class="commentcell"><pre>予約ID : 予約ID</pre></td>
 		<td class="subcell">reservationId</td>
 		<td class="subcell">Long</td>
 	</tr>
@@ -3334,7 +3930,7 @@ t_reservation
 		<td class="relcell"><a href="#m_shop" title="idx_t_reservation_fk1">m_shop</a>&nbsp;</td>
 		<td class="relcell">&nbsp;</td>
 		<td class="relcell"> &nbsp;</td>
-		<td class="commentcell"><pre>&nbsp;</pre></td>
+		<td class="commentcell"><pre>店舗ID : 店舗ID</pre></td>
 		<td class="subcell">shopId</td>
 		<td class="subcell">Integer</td>
 	</tr>
@@ -3344,128 +3940,20 @@ t_reservation
 		<td class="flgcell"> &nbsp;</td>
 		<td class="flgcell">&nbsp;</td>
 		<td class="flgcell">&nbsp;</td>
-		<td class="flgcell">*</td>
-		<td class=" columnnamecell" id="t_reservation_staff_id">staff_id</td>
+		<td class="flgcell"> &nbsp;</td>
+		<td class=" columnnamecell" id="t_reservation_working_staff_id">working_staff_id</td>
 		<td class="typecell">int4</td>
 		<td class="sizecell"> 10 </td>
 		<td class="defvalcell"> &nbsp;</td>
-		<td class="relcell"><a href="#m_staff" title="idx_t_reservation_fk2">m_staff</a>&nbsp;</td>
+		<td class="relcell"><a href="#m_working_staff" title="t_reservation_working_staff_id_fkey">m_working_staff</a>&nbsp;</td>
 		<td class="relcell">&nbsp;</td>
 		<td class="relcell"> &nbsp;</td>
-		<td class="commentcell"><pre>&nbsp;</pre></td>
-		<td class="subcell">staffId</td>
+		<td class="commentcell"><pre>作業ing_staff_id : 所属スタッフID</pre></td>
+		<td class="subcell">workingStaffId</td>
 		<td class="subcell">Integer</td>
 	</tr>
 	<tr>
 		<td class="rownumcell">4</td>
-		<td class="flgcell">&nbsp;</td>
-		<td class="flgcell"> &nbsp;</td>
-		<td class="flgcell">&nbsp;</td>
-		<td class="flgcell">&nbsp;</td>
-		<td class="flgcell"> &nbsp;</td>
-		<td class=" columnnamecell" id="t_reservation_hist_staff_family_name">hist_staff_family_name</td>
-		<td class="typecell">text</td>
-		<td class="sizecell"> 2147483647 </td>
-		<td class="defvalcell"> &nbsp;</td>
-		<td class="relcell">&nbsp;&nbsp;</td>
-		<td class="relcell">&nbsp;</td>
-		<td class="relcell"> &nbsp;</td>
-		<td class="commentcell"><pre>&nbsp;</pre></td>
-		<td class="subcell">histStaffFamilyName</td>
-		<td class="subcell">String</td>
-	</tr>
-	<tr>
-		<td class="rownumcell">5</td>
-		<td class="flgcell">&nbsp;</td>
-		<td class="flgcell"> &nbsp;</td>
-		<td class="flgcell">&nbsp;</td>
-		<td class="flgcell">&nbsp;</td>
-		<td class="flgcell"> &nbsp;</td>
-		<td class=" columnnamecell" id="t_reservation_hist_shop_name">hist_shop_name</td>
-		<td class="typecell">text</td>
-		<td class="sizecell"> 2147483647 </td>
-		<td class="defvalcell"> &nbsp;</td>
-		<td class="relcell">&nbsp;&nbsp;</td>
-		<td class="relcell">&nbsp;</td>
-		<td class="relcell"> &nbsp;</td>
-		<td class="commentcell"><pre>&nbsp;</pre></td>
-		<td class="subcell">histShopName</td>
-		<td class="subcell">String</td>
-	</tr>
-	<tr>
-		<td class="rownumcell">6</td>
-		<td class="flgcell">&nbsp;</td>
-		<td class="flgcell"> &nbsp;</td>
-		<td class="flgcell">&nbsp;</td>
-		<td class="flgcell">&nbsp;</td>
-		<td class="flgcell"> &nbsp;</td>
-		<td class=" columnnamecell" id="t_reservation_hist_shop_abbreviated_name">hist_shop_abbreviated_name</td>
-		<td class="typecell">text</td>
-		<td class="sizecell"> 2147483647 </td>
-		<td class="defvalcell"> &nbsp;</td>
-		<td class="relcell">&nbsp;&nbsp;</td>
-		<td class="relcell">&nbsp;</td>
-		<td class="relcell"> &nbsp;</td>
-		<td class="commentcell"><pre>&nbsp;</pre></td>
-		<td class="subcell">histShopAbbreviatedName</td>
-		<td class="subcell">String</td>
-	</tr>
-	<tr>
-		<td class="rownumcell">7</td>
-		<td class="flgcell">&nbsp;</td>
-		<td class="flgcell"> &nbsp;</td>
-		<td class="flgcell">&nbsp;</td>
-		<td class="flgcell">&nbsp;</td>
-		<td class="flgcell"> &nbsp;</td>
-		<td class=" columnnamecell" id="t_reservation_hist_staff_given_name">hist_staff_given_name</td>
-		<td class="typecell">text</td>
-		<td class="sizecell"> 2147483647 </td>
-		<td class="defvalcell"> &nbsp;</td>
-		<td class="relcell">&nbsp;&nbsp;</td>
-		<td class="relcell">&nbsp;</td>
-		<td class="relcell"> &nbsp;</td>
-		<td class="commentcell"><pre>&nbsp;</pre></td>
-		<td class="subcell">histStaffGivenName</td>
-		<td class="subcell">String</td>
-	</tr>
-	<tr>
-		<td class="rownumcell">8</td>
-		<td class="flgcell">&nbsp;</td>
-		<td class="flgcell"> &nbsp;</td>
-		<td class="flgcell">&nbsp;</td>
-		<td class="flgcell">&nbsp;</td>
-		<td class="flgcell"> &nbsp;</td>
-		<td class=" columnnamecell" id="t_reservation_reservation_date">reservation_date</td>
-		<td class="typecell">date</td>
-		<td class="sizecell"> 13 </td>
-		<td class="defvalcell"> &nbsp;</td>
-		<td class="relcell">&nbsp;&nbsp;</td>
-		<td class="relcell">&nbsp;</td>
-		<td class="relcell"> &nbsp;</td>
-		<td class="commentcell"><pre>&nbsp;</pre></td>
-		<td class="subcell">reservationDate</td>
-		<td class="subcell">LocalDate</td>
-	</tr>
-	<tr>
-		<td class="rownumcell">9</td>
-		<td class="flgcell">&nbsp;</td>
-		<td class="flgcell"> &nbsp;</td>
-		<td class="flgcell">&nbsp;</td>
-		<td class="flgcell">&nbsp;</td>
-		<td class="flgcell"> &nbsp;</td>
-		<td class=" columnnamecell" id="t_reservation_reservation_time">reservation_time</td>
-		<td class="typecell">time</td>
-		<td class="sizecell"> 15, 6 </td>
-		<td class="defvalcell"> &nbsp;</td>
-		<td class="relcell">&nbsp;&nbsp;</td>
-		<td class="relcell">&nbsp;</td>
-		<td class="relcell"> &nbsp;</td>
-		<td class="commentcell"><pre>&nbsp;</pre></td>
-		<td class="subcell">reservationTime</td>
-		<td class="subcell">LocalTime</td>
-	</tr>
-	<tr>
-		<td class="rownumcell">10</td>
 		<td class="flgcell">&nbsp;</td>
 		<td class="flgcell"> &nbsp;</td>
 		<td class="flgcell">&nbsp;</td>
@@ -3478,9 +3966,117 @@ t_reservation
 		<td class="relcell"><a href="#m_user" title="idx_t_reservation_fk0">m_user</a>&nbsp;</td>
 		<td class="relcell">&nbsp;</td>
 		<td class="relcell"> &nbsp;</td>
-		<td class="commentcell"><pre>&nbsp;</pre></td>
+		<td class="commentcell"><pre>ユーザID : ユーザID</pre></td>
 		<td class="subcell">userId</td>
 		<td class="subcell">Integer</td>
+	</tr>
+	<tr>
+		<td class="rownumcell">5</td>
+		<td class="flgcell">&nbsp;</td>
+		<td class="flgcell"> &nbsp;</td>
+		<td class="flgcell">&nbsp;</td>
+		<td class="flgcell">&nbsp;</td>
+		<td class="flgcell"> &nbsp;</td>
+		<td class=" columnnamecell" id="t_reservation_hist_staff_family_name">hist_staff_family_name</td>
+		<td class="typecell">text</td>
+		<td class="sizecell"> 2147483647 </td>
+		<td class="defvalcell"> &nbsp;</td>
+		<td class="relcell">&nbsp;&nbsp;</td>
+		<td class="relcell">&nbsp;</td>
+		<td class="relcell"> &nbsp;</td>
+		<td class="commentcell"><pre>履歴用スタッフ姓 : 履歴用スタッフ姓</pre></td>
+		<td class="subcell">histStaffFamilyName</td>
+		<td class="subcell">String</td>
+	</tr>
+	<tr>
+		<td class="rownumcell">6</td>
+		<td class="flgcell">&nbsp;</td>
+		<td class="flgcell"> &nbsp;</td>
+		<td class="flgcell">&nbsp;</td>
+		<td class="flgcell">&nbsp;</td>
+		<td class="flgcell"> &nbsp;</td>
+		<td class=" columnnamecell" id="t_reservation_hist_shop_name">hist_shop_name</td>
+		<td class="typecell">text</td>
+		<td class="sizecell"> 2147483647 </td>
+		<td class="defvalcell"> &nbsp;</td>
+		<td class="relcell">&nbsp;&nbsp;</td>
+		<td class="relcell">&nbsp;</td>
+		<td class="relcell"> &nbsp;</td>
+		<td class="commentcell"><pre>履歴用店舗名 : 履歴用店舗名</pre></td>
+		<td class="subcell">histShopName</td>
+		<td class="subcell">String</td>
+	</tr>
+	<tr>
+		<td class="rownumcell">7</td>
+		<td class="flgcell">&nbsp;</td>
+		<td class="flgcell"> &nbsp;</td>
+		<td class="flgcell">&nbsp;</td>
+		<td class="flgcell">&nbsp;</td>
+		<td class="flgcell"> &nbsp;</td>
+		<td class=" columnnamecell" id="t_reservation_hist_shop_abbreviated_name">hist_shop_abbreviated_name</td>
+		<td class="typecell">text</td>
+		<td class="sizecell"> 2147483647 </td>
+		<td class="defvalcell"> &nbsp;</td>
+		<td class="relcell">&nbsp;&nbsp;</td>
+		<td class="relcell">&nbsp;</td>
+		<td class="relcell"> &nbsp;</td>
+		<td class="commentcell"><pre>履歴用店舗略名 : 履歴用店舗略名</pre></td>
+		<td class="subcell">histShopAbbreviatedName</td>
+		<td class="subcell">String</td>
+	</tr>
+	<tr>
+		<td class="rownumcell">8</td>
+		<td class="flgcell">&nbsp;</td>
+		<td class="flgcell"> &nbsp;</td>
+		<td class="flgcell">&nbsp;</td>
+		<td class="flgcell">&nbsp;</td>
+		<td class="flgcell"> &nbsp;</td>
+		<td class=" columnnamecell" id="t_reservation_hist_staff_given_name">hist_staff_given_name</td>
+		<td class="typecell">text</td>
+		<td class="sizecell"> 2147483647 </td>
+		<td class="defvalcell"> &nbsp;</td>
+		<td class="relcell">&nbsp;&nbsp;</td>
+		<td class="relcell">&nbsp;</td>
+		<td class="relcell"> &nbsp;</td>
+		<td class="commentcell"><pre>履歴用スタッフ名 : 履歴用スタッフ名</pre></td>
+		<td class="subcell">histStaffGivenName</td>
+		<td class="subcell">String</td>
+	</tr>
+	<tr>
+		<td class="rownumcell">9</td>
+		<td class="flgcell">&nbsp;</td>
+		<td class="flgcell"> &nbsp;</td>
+		<td class="flgcell">&nbsp;</td>
+		<td class="flgcell">&nbsp;</td>
+		<td class="flgcell"> &nbsp;</td>
+		<td class=" columnnamecell" id="t_reservation_reservation_date">reservation_date</td>
+		<td class="typecell">date</td>
+		<td class="sizecell"> 13 </td>
+		<td class="defvalcell"> &nbsp;</td>
+		<td class="relcell">&nbsp;&nbsp;</td>
+		<td class="relcell">&nbsp;</td>
+		<td class="relcell"> &nbsp;</td>
+		<td class="commentcell"><pre>予約日付 : 予約日付</pre></td>
+		<td class="subcell">reservationDate</td>
+		<td class="subcell">LocalDate</td>
+	</tr>
+	<tr>
+		<td class="rownumcell">10</td>
+		<td class="flgcell">&nbsp;</td>
+		<td class="flgcell"> &nbsp;</td>
+		<td class="flgcell">&nbsp;</td>
+		<td class="flgcell">&nbsp;</td>
+		<td class="flgcell"> &nbsp;</td>
+		<td class=" columnnamecell" id="t_reservation_reservation_time">reservation_time</td>
+		<td class="typecell">time</td>
+		<td class="sizecell"> 15, 6 </td>
+		<td class="defvalcell"> &nbsp;</td>
+		<td class="relcell">&nbsp;&nbsp;</td>
+		<td class="relcell">&nbsp;</td>
+		<td class="relcell"> &nbsp;</td>
+		<td class="commentcell"><pre>予約時間 : 予約時間</pre></td>
+		<td class="subcell">reservationTime</td>
+		<td class="subcell">LocalTime</td>
 	</tr>
 	<tr>
 		<td class="rownumcell">11</td>
@@ -3496,7 +4092,7 @@ t_reservation
 		<td class="relcell">&nbsp;&nbsp;</td>
 		<td class="relcell">&nbsp;</td>
 		<td class="relcell"> &nbsp;</td>
-		<td class="commentcell"><pre>&nbsp;</pre></td>
+		<td class="commentcell"><pre>合計料金 : 合計料金</pre></td>
 		<td class="subcell">totalAmount</td>
 		<td class="subcell">Integer</td>
 	</tr>
@@ -3514,7 +4110,7 @@ t_reservation
 		<td class="relcell">&nbsp;&nbsp;</td>
 		<td class="relcell">&nbsp;</td>
 		<td class="relcell"> &nbsp;</td>
-		<td class="commentcell"><pre>&nbsp;</pre></td>
+		<td class="commentcell"><pre>備考 : 備考</pre></td>
 		<td class="subcell">remarks</td>
 		<td class="subcell">String</td>
 	</tr>
@@ -3532,7 +4128,7 @@ t_reservation
 		<td class="relcell">&nbsp;&nbsp;</td>
 		<td class="relcell">&nbsp;</td>
 		<td class="relcell"> &nbsp;</td>
-		<td class="commentcell"><pre>&nbsp;</pre></td>
+		<td class="commentcell"><pre>状態 : 状態</pre></td>
 		<td class="subcell">status</td>
 		<td class="subcell">Integer</td>
 	</tr>
@@ -3550,12 +4146,30 @@ t_reservation
 		<td class="relcell">&nbsp;&nbsp;</td>
 		<td class="relcell">&nbsp;</td>
 		<td class="relcell"> &nbsp;</td>
-		<td class="commentcell"><pre>&nbsp;</pre></td>
+		<td class="commentcell"><pre>削除フラグ</pre></td>
 		<td class="subcell">deleteFlag</td>
 		<td class="subcell">Boolean</td>
 	</tr>
 	<tr>
 		<td class="rownumcell">15</td>
+		<td class="flgcell">&nbsp;</td>
+		<td class="flgcell"> &nbsp;</td>
+		<td class="flgcell">&nbsp;</td>
+		<td class="flgcell">&nbsp;</td>
+		<td class="flgcell">*</td>
+		<td class="optcell columnnamecell" id="t_reservation_version_no">version_no</td>
+		<td class="typecell">int4</td>
+		<td class="sizecell"> 10 </td>
+		<td class="defvalcell"> 1</td>
+		<td class="relcell">&nbsp;&nbsp;</td>
+		<td class="relcell">&nbsp;</td>
+		<td class="relcell"> &nbsp;</td>
+		<td class="commentcell"><pre>version_no</pre></td>
+		<td class="subcell">versionNo</td>
+		<td class="subcell">Integer</td>
+	</tr>
+	<tr>
+		<td class="rownumcell">16</td>
 		<td class="flgcell">&nbsp;</td>
 		<td class="flgcell"> &nbsp;</td>
 		<td class="flgcell">&nbsp;</td>
@@ -3568,12 +4182,12 @@ t_reservation
 		<td class="relcell">&nbsp;&nbsp;</td>
 		<td class="relcell">&nbsp;</td>
 		<td class="relcell"> &nbsp;</td>
-		<td class="commentcell"><pre>&nbsp;</pre></td>
+		<td class="commentcell"><pre>登録日時</pre></td>
 		<td class="subcell">registerDatetime</td>
 		<td class="subcell">LocalDateTime</td>
 	</tr>
 	<tr>
-		<td class="rownumcell">16</td>
+		<td class="rownumcell">17</td>
 		<td class="flgcell">&nbsp;</td>
 		<td class="flgcell"> &nbsp;</td>
 		<td class="flgcell">&nbsp;</td>
@@ -3586,16 +4200,16 @@ t_reservation
 		<td class="relcell">&nbsp;&nbsp;</td>
 		<td class="relcell">&nbsp;</td>
 		<td class="relcell"> &nbsp;</td>
-		<td class="commentcell"><pre>&nbsp;</pre></td>
+		<td class="commentcell"><pre>更新日時</pre></td>
 		<td class="subcell">updateDatetime</td>
 		<td class="subcell">LocalDateTime</td>
 	</tr>
 </table>
 
-<h2 id="t_reservation_detail" title="type=TABLE, primaryKey={reservation_detail_id}, nameLength=20, columnCount=7">
+<h2 id="t_reservation_detail" title="type=TABLE, primaryKey={reservation_detail_id}, nameLength=20, columnCount=8">
 t_reservation_detail
 </h2>
-<div class="tablecomment t_reservation_detail_comment" data-name="t_reservation_detail"><pre></pre></div>
+<div class="tablecomment t_reservation_detail_comment" data-name="t_reservation_detail"><pre>予約明細テーブル</pre></div>
 <input type="hidden" value="t_reservation_detail">
 <table class="tablecontent">
 	<thead>
@@ -3632,7 +4246,7 @@ t_reservation_detail
 		<td class="relcell">&nbsp;&nbsp;</td>
 		<td class="relcell">&nbsp;</td>
 		<td class="relcell"> &nbsp;</td>
-		<td class="commentcell"><pre>&nbsp;</pre></td>
+		<td class="commentcell"><pre>予約明細ID : 予約明細ID</pre></td>
 		<td class="subcell">reservationDetailId</td>
 		<td class="subcell">Long</td>
 	</tr>
@@ -3650,7 +4264,7 @@ t_reservation_detail
 		<td class="relcell"><a href="#t_reservation" title="idx_t_reservation_detail_fk0">t_reservation</a>&nbsp;</td>
 		<td class="relcell">&nbsp;</td>
 		<td class="relcell"> &nbsp;</td>
-		<td class="commentcell"><pre>&nbsp;</pre></td>
+		<td class="commentcell"><pre>予約ID : 予約ID</pre></td>
 		<td class="subcell">reservationId</td>
 		<td class="subcell">Long</td>
 	</tr>
@@ -3668,7 +4282,7 @@ t_reservation_detail
 		<td class="relcell"><a href="#m_course" title="idx_t_reservation_detail_fk2">m_course</a>&nbsp;</td>
 		<td class="relcell">&nbsp;</td>
 		<td class="relcell"> &nbsp;</td>
-		<td class="commentcell"><pre>&nbsp;</pre></td>
+		<td class="commentcell"><pre>コースID : コースID</pre></td>
 		<td class="subcell">courseId</td>
 		<td class="subcell">Integer</td>
 	</tr>
@@ -3686,7 +4300,7 @@ t_reservation_detail
 		<td class="relcell">&nbsp;&nbsp;</td>
 		<td class="relcell">&nbsp;</td>
 		<td class="relcell"> &nbsp;</td>
-		<td class="commentcell"><pre>&nbsp;</pre></td>
+		<td class="commentcell"><pre>履歴用コース名 : 履歴用コース名</pre></td>
 		<td class="subcell">histCourseName</td>
 		<td class="subcell">String</td>
 	</tr>
@@ -3704,12 +4318,30 @@ t_reservation_detail
 		<td class="relcell">&nbsp;&nbsp;</td>
 		<td class="relcell">&nbsp;</td>
 		<td class="relcell"> &nbsp;</td>
-		<td class="commentcell"><pre>&nbsp;</pre></td>
+		<td class="commentcell"><pre>削除フラグ</pre></td>
 		<td class="subcell">deleteFlag</td>
 		<td class="subcell">Boolean</td>
 	</tr>
 	<tr>
 		<td class="rownumcell">6</td>
+		<td class="flgcell">&nbsp;</td>
+		<td class="flgcell"> &nbsp;</td>
+		<td class="flgcell">&nbsp;</td>
+		<td class="flgcell">&nbsp;</td>
+		<td class="flgcell">*</td>
+		<td class="optcell columnnamecell" id="t_reservation_detail_version_no">version_no</td>
+		<td class="typecell">int4</td>
+		<td class="sizecell"> 10 </td>
+		<td class="defvalcell"> 1</td>
+		<td class="relcell">&nbsp;&nbsp;</td>
+		<td class="relcell">&nbsp;</td>
+		<td class="relcell"> &nbsp;</td>
+		<td class="commentcell"><pre>version_no</pre></td>
+		<td class="subcell">versionNo</td>
+		<td class="subcell">Integer</td>
+	</tr>
+	<tr>
+		<td class="rownumcell">7</td>
 		<td class="flgcell">&nbsp;</td>
 		<td class="flgcell"> &nbsp;</td>
 		<td class="flgcell">&nbsp;</td>
@@ -3722,12 +4354,12 @@ t_reservation_detail
 		<td class="relcell">&nbsp;&nbsp;</td>
 		<td class="relcell">&nbsp;</td>
 		<td class="relcell"> &nbsp;</td>
-		<td class="commentcell"><pre>&nbsp;</pre></td>
+		<td class="commentcell"><pre>登録日時</pre></td>
 		<td class="subcell">registerDatetime</td>
 		<td class="subcell">LocalDateTime</td>
 	</tr>
 	<tr>
-		<td class="rownumcell">7</td>
+		<td class="rownumcell">8</td>
 		<td class="flgcell">&nbsp;</td>
 		<td class="flgcell"> &nbsp;</td>
 		<td class="flgcell">&nbsp;</td>
@@ -3740,16 +4372,16 @@ t_reservation_detail
 		<td class="relcell">&nbsp;&nbsp;</td>
 		<td class="relcell">&nbsp;</td>
 		<td class="relcell"> &nbsp;</td>
-		<td class="commentcell"><pre>&nbsp;</pre></td>
+		<td class="commentcell"><pre>更新日時</pre></td>
 		<td class="subcell">updateDatetime</td>
 		<td class="subcell">LocalDateTime</td>
 	</tr>
 </table>
 
-<h2 id="t_shift" title="type=TABLE, primaryKey={shift_id}, nameLength=7, columnCount=8">
+<h2 id="t_shift" title="type=TABLE, primaryKey={shift_id}, nameLength=7, columnCount=9">
 t_shift
 </h2>
-<div class="tablecomment t_shift_comment" data-name="t_shift"><pre></pre></div>
+<div class="tablecomment t_shift_comment" data-name="t_shift"><pre>シフトテーブル</pre></div>
 <input type="hidden" value="t_shift">
 <table class="tablecontent">
 	<thead>
@@ -3786,12 +4418,30 @@ t_shift
 		<td class="relcell">&nbsp;&nbsp;</td>
 		<td class="relcell">&nbsp;</td>
 		<td class="relcell"> &nbsp;</td>
-		<td class="commentcell"><pre>&nbsp;</pre></td>
+		<td class="commentcell"><pre>シフトID : シフトID</pre></td>
 		<td class="subcell">shiftId</td>
 		<td class="subcell">Integer</td>
 	</tr>
 	<tr>
 		<td class="rownumcell">2</td>
+		<td class="flgcell">&nbsp;</td>
+		<td class="flgcell"> &nbsp;</td>
+		<td class="flgcell">&nbsp;</td>
+		<td class="flgcell">&nbsp;</td>
+		<td class="flgcell">*</td>
+		<td class=" columnnamecell" id="t_shift_working_staff_id">working_staff_id</td>
+		<td class="typecell">int4</td>
+		<td class="sizecell"> 10 </td>
+		<td class="defvalcell"> &nbsp;</td>
+		<td class="relcell"><a href="#m_working_staff" title="t_shift_working_staff_id_fkey">m_working_staff</a>&nbsp;</td>
+		<td class="relcell">&nbsp;</td>
+		<td class="relcell"> &nbsp;</td>
+		<td class="commentcell"><pre>作業ing_staff_id : 所属スタッフID</pre></td>
+		<td class="subcell">workingStaffId</td>
+		<td class="subcell">Integer</td>
+	</tr>
+	<tr>
+		<td class="rownumcell">3</td>
 		<td class="flgcell">&nbsp;</td>
 		<td class="flgcell"> &nbsp;</td>
 		<td class="flgcell">&nbsp;</td>
@@ -3804,26 +4454,8 @@ t_shift
 		<td class="relcell"><a href="#m_working_day" title="idx_t_shift_fk0">m_working_day</a>&nbsp;</td>
 		<td class="relcell">&nbsp;</td>
 		<td class="relcell"> &nbsp;</td>
-		<td class="commentcell"><pre>&nbsp;</pre></td>
+		<td class="commentcell"><pre>営業日ID : 営業日ID</pre></td>
 		<td class="subcell">workingDayId</td>
-		<td class="subcell">Integer</td>
-	</tr>
-	<tr>
-		<td class="rownumcell">3</td>
-		<td class="flgcell">&nbsp;</td>
-		<td class="flgcell"> &nbsp;</td>
-		<td class="flgcell">&nbsp;</td>
-		<td class="flgcell">&nbsp;</td>
-		<td class="flgcell"> &nbsp;</td>
-		<td class=" columnnamecell" id="t_shift_staff_id">staff_id</td>
-		<td class="typecell">int4</td>
-		<td class="sizecell"> 10 </td>
-		<td class="defvalcell"> &nbsp;</td>
-		<td class="relcell"><a href="#m_staff" title="idx_t_shift_fk1">m_staff</a>&nbsp;</td>
-		<td class="relcell">&nbsp;</td>
-		<td class="relcell"> &nbsp;</td>
-		<td class="commentcell"><pre>&nbsp;</pre></td>
-		<td class="subcell">staffId</td>
 		<td class="subcell">Integer</td>
 	</tr>
 	<tr>
@@ -3840,7 +4472,7 @@ t_shift
 		<td class="relcell">&nbsp;&nbsp;</td>
 		<td class="relcell">&nbsp;</td>
 		<td class="relcell"> &nbsp;</td>
-		<td class="commentcell"><pre>&nbsp;</pre></td>
+		<td class="commentcell"><pre>開始時間 : 開始時間</pre></td>
 		<td class="subcell">startTime</td>
 		<td class="subcell">LocalTime</td>
 	</tr>
@@ -3858,7 +4490,7 @@ t_shift
 		<td class="relcell">&nbsp;&nbsp;</td>
 		<td class="relcell">&nbsp;</td>
 		<td class="relcell"> &nbsp;</td>
-		<td class="commentcell"><pre>&nbsp;</pre></td>
+		<td class="commentcell"><pre>終了時間 : 終了時間</pre></td>
 		<td class="subcell">endTime</td>
 		<td class="subcell">LocalTime</td>
 	</tr>
@@ -3876,12 +4508,30 @@ t_shift
 		<td class="relcell">&nbsp;&nbsp;</td>
 		<td class="relcell">&nbsp;</td>
 		<td class="relcell"> &nbsp;</td>
-		<td class="commentcell"><pre>&nbsp;</pre></td>
+		<td class="commentcell"><pre>削除フラグ</pre></td>
 		<td class="subcell">deleteFlag</td>
 		<td class="subcell">Boolean</td>
 	</tr>
 	<tr>
 		<td class="rownumcell">7</td>
+		<td class="flgcell">&nbsp;</td>
+		<td class="flgcell"> &nbsp;</td>
+		<td class="flgcell">&nbsp;</td>
+		<td class="flgcell">&nbsp;</td>
+		<td class="flgcell">*</td>
+		<td class="optcell columnnamecell" id="t_shift_version_no">version_no</td>
+		<td class="typecell">int4</td>
+		<td class="sizecell"> 10 </td>
+		<td class="defvalcell"> 1</td>
+		<td class="relcell">&nbsp;&nbsp;</td>
+		<td class="relcell">&nbsp;</td>
+		<td class="relcell"> &nbsp;</td>
+		<td class="commentcell"><pre>version_no</pre></td>
+		<td class="subcell">versionNo</td>
+		<td class="subcell">Integer</td>
+	</tr>
+	<tr>
+		<td class="rownumcell">8</td>
 		<td class="flgcell">&nbsp;</td>
 		<td class="flgcell"> &nbsp;</td>
 		<td class="flgcell">&nbsp;</td>
@@ -3894,12 +4544,12 @@ t_shift
 		<td class="relcell">&nbsp;&nbsp;</td>
 		<td class="relcell">&nbsp;</td>
 		<td class="relcell"> &nbsp;</td>
-		<td class="commentcell"><pre>&nbsp;</pre></td>
+		<td class="commentcell"><pre>登録日時</pre></td>
 		<td class="subcell">registerDatetime</td>
 		<td class="subcell">LocalDateTime</td>
 	</tr>
 	<tr>
-		<td class="rownumcell">8</td>
+		<td class="rownumcell">9</td>
 		<td class="flgcell">&nbsp;</td>
 		<td class="flgcell"> &nbsp;</td>
 		<td class="flgcell">&nbsp;</td>
@@ -3912,7 +4562,7 @@ t_shift
 		<td class="relcell">&nbsp;&nbsp;</td>
 		<td class="relcell">&nbsp;</td>
 		<td class="relcell"> &nbsp;</td>
-		<td class="commentcell"><pre>&nbsp;</pre></td>
+		<td class="commentcell"><pre>更新日時</pre></td>
 		<td class="subcell">updateDatetime</td>
 		<td class="subcell">LocalDateTime</td>
 	</tr>
@@ -4297,579 +4947,685 @@ function Decomment() {
 		]
 	}
 	this.pickupStore = {
-		'm_code': {
-			'databaseComment': ''
+		'display_def_m': {
+			'databaseComment': '画面名定義_M'
 			, 'columns': {
-				'code_id': {
-					'databaseComment': ''
+				'display_id': {
+					'databaseComment': '画面ID&nbsp;:&nbsp;画面ID'
 				}
-				, 'group_code': {
-					'databaseComment': ''
-				}
-				, 'code1': {
-					'databaseComment': ''
-				}
-				, 'code2': {
-					'databaseComment': ''
-				}
-				, 'name': {
-					'databaseComment': ''
+				, 'display_name': {
+					'databaseComment': '画面名&nbsp;:&nbsp;画面名'
 				}
 				, 'delete_flag': {
-					'databaseComment': ''
+					'databaseComment': '削除フラグ'
+				}
+				, 'version_no': {
+					'databaseComment': 'version_no'
 				}
 				, 'register_datetime': {
-					'databaseComment': ''
+					'databaseComment': '登録日時'
 				}
 				, 'update_datetime': {
-					'databaseComment': ''
+					'databaseComment': '更新日時'
+				}
+			}
+		}
+		, 'm_code': {
+			'databaseComment': 'コードマスタ'
+			, 'columns': {
+				'code_id': {
+					'databaseComment': 'コードID&nbsp;:&nbsp;コードID'
+				}
+				, 'group_code': {
+					'databaseComment': 'グループコード&nbsp;:&nbsp;グループコード'
+				}
+				, 'code1': {
+					'databaseComment': 'コード1&nbsp;:&nbsp;コード1'
+				}
+				, 'code2': {
+					'databaseComment': 'コード2&nbsp;:&nbsp;コード2'
+				}
+				, 'name': {
+					'databaseComment': '名称&nbsp;:&nbsp;名称'
+				}
+				, 'delete_flag': {
+					'databaseComment': '削除フラグ'
+				}
+				, 'version_no': {
+					'databaseComment': 'version_no'
+				}
+				, 'register_datetime': {
+					'databaseComment': '登録日時'
+				}
+				, 'update_datetime': {
+					'databaseComment': '更新日時'
 				}
 			}
 		}
 		, 'm_company': {
-			'databaseComment': ''
+			'databaseComment': '企業マスタ'
 			, 'columns': {
 				'company_id': {
-					'databaseComment': ''
+					'databaseComment': '企業ID&nbsp;:&nbsp;企業ID'
 				}
 				, 'company_name': {
-					'databaseComment': ''
+					'databaseComment': '企業名&nbsp;:&nbsp;企業名'
 				}
 				, 'delete_flag': {
-					'databaseComment': ''
+					'databaseComment': '削除フラグ'
+				}
+				, 'version_no': {
+					'databaseComment': 'version_no'
 				}
 				, 'register_datetime': {
-					'databaseComment': ''
+					'databaseComment': '登録日時'
 				}
 				, 'update_datetime': {
-					'databaseComment': ''
+					'databaseComment': '更新日時'
 				}
 			}
 		}
 		, 'm_course': {
-			'databaseComment': ''
+			'databaseComment': 'コースマスタ'
 			, 'columns': {
 				'course_id': {
-					'databaseComment': ''
+					'databaseComment': 'コースID&nbsp;:&nbsp;コースID'
 				}
 				, 'course_group_id': {
-					'databaseComment': ''
+					'databaseComment': 'コースグループID&nbsp;:&nbsp;コースグループID'
 				}
 				, 'course_name': {
-					'databaseComment': ''
+					'databaseComment': 'コース名&nbsp;:&nbsp;コース名'
 				}
 				, 'charge': {
-					'databaseComment': ''
+					'databaseComment': '料金&nbsp;:&nbsp;料金'
 				}
 				, 'required_time': {
-					'databaseComment': ''
+					'databaseComment': '所要時間&nbsp;:&nbsp;所要時間'
 				}
 				, 'delete_flag': {
-					'databaseComment': ''
+					'databaseComment': '削除フラグ'
+				}
+				, 'version_no': {
+					'databaseComment': 'version_no'
 				}
 				, 'register_datetime': {
-					'databaseComment': ''
+					'databaseComment': '登録日時'
 				}
 				, 'update_datetime': {
-					'databaseComment': ''
+					'databaseComment': '更新日時'
 				}
 			}
 		}
 		, 'm_course_group': {
-			'databaseComment': ''
+			'databaseComment': 'コースグループマスタ'
 			, 'columns': {
-				'course_group_id': {
-					'databaseComment': ''
-				}
-				, 'shop_id': {
-					'databaseComment': ''
+				'shop_id': {
+					'databaseComment': '店舗ID&nbsp;:&nbsp;店舗ID'
 				}
 				, 'group_name': {
-					'databaseComment': ''
+					'databaseComment': 'グループ名&nbsp;:&nbsp;グループ名'
+				}
+				, 'course_group_id': {
+					'databaseComment': 'コースグループID&nbsp;:&nbsp;コースグループID'
 				}
 				, 'required_flg': {
-					'databaseComment': ''
+					'databaseComment': '必須フラグ&nbsp;:&nbsp;必須フラグ'
 				}
 				, 'reamarks': {
-					'databaseComment': ''
+					'databaseComment': '備考&nbsp;:&nbsp;備考'
 				}
 				, 'delete_flag': {
-					'databaseComment': ''
+					'databaseComment': '削除フラグ'
+				}
+				, 'version_no': {
+					'databaseComment': 'version_no'
 				}
 				, 'register_datetime': {
-					'databaseComment': ''
+					'databaseComment': '登録日時'
 				}
 				, 'update_datetime': {
-					'databaseComment': ''
+					'databaseComment': '更新日時'
 				}
 			}
 		}
 		, 'm_holiday': {
-			'databaseComment': ''
+			'databaseComment': '祝日マスタ'
 			, 'columns': {
 				'holiday_id': {
-					'databaseComment': ''
+					'databaseComment': '祝日ID'
 				}
 				, 'holiday_name': {
-					'databaseComment': ''
+					'databaseComment': '祝日名'
 				}
 				, 'holiday': {
-					'databaseComment': ''
+					'databaseComment': '祝日'
 				}
 				, 'delete_flag': {
-					'databaseComment': ''
+					'databaseComment': '削除フラグ'
+				}
+				, 'version_no': {
+					'databaseComment': 'version_no'
 				}
 				, 'register_datetime': {
-					'databaseComment': ''
+					'databaseComment': '登録日時'
 				}
 				, 'update_datetime': {
-					'databaseComment': ''
+					'databaseComment': '更新日時'
 				}
 			}
 		}
 		, 'm_shop': {
-			'databaseComment': ''
+			'databaseComment': '店舗マスタ'
 			, 'columns': {
 				'shop_id': {
-					'databaseComment': ''
+					'databaseComment': '店舗ID&nbsp;:&nbsp;店舗ID'
 				}
 				, 'company_id': {
-					'databaseComment': ''
+					'databaseComment': '企業ID&nbsp;:&nbsp;企業ID'
 				}
 				, 'shop_abbreviated_name': {
-					'databaseComment': ''
+					'databaseComment': '店舗略名&nbsp;:&nbsp;店舗略名'
 				}
 				, 'shop_name': {
-					'databaseComment': ''
+					'databaseComment': '店舗名&nbsp;:&nbsp;店舗名'
 				}
 				, 'phone1_1': {
-					'databaseComment': ''
+					'databaseComment': '電話番号1_1&nbsp;:&nbsp;電話番号1_1'
 				}
 				, 'phone1_2': {
-					'databaseComment': ''
+					'databaseComment': '電話番号1_2&nbsp;:&nbsp;電話番号1_2'
 				}
 				, 'phone1_3': {
-					'databaseComment': ''
+					'databaseComment': '電話番号1_3&nbsp;:&nbsp;電話番号1_3'
 				}
 				, 'phone2_1': {
-					'databaseComment': ''
+					'databaseComment': '電話番号2_1&nbsp;:&nbsp;電話番号2_1'
 				}
 				, 'phone2_2': {
-					'databaseComment': ''
+					'databaseComment': '電話番号2_2&nbsp;:&nbsp;電話番号2_2'
 				}
 				, 'phone2_3': {
-					'databaseComment': ''
+					'databaseComment': '電話番号2_3&nbsp;:&nbsp;電話番号2_3'
 				}
 				, 'fax_1': {
-					'databaseComment': ''
+					'databaseComment': 'FAX_1&nbsp;:&nbsp;FAX_1'
 				}
 				, 'fax_2': {
-					'databaseComment': ''
+					'databaseComment': 'FAX_2&nbsp;:&nbsp;FAX_2'
 				}
 				, 'fax_3': {
-					'databaseComment': ''
+					'databaseComment': 'FAX_3&nbsp;:&nbsp;FAX_3'
 				}
 				, 'email1': {
-					'databaseComment': ''
+					'databaseComment': 'メールアドレス1&nbsp;:&nbsp;メールアドレス1'
 				}
 				, 'email2': {
-					'databaseComment': ''
+					'databaseComment': 'メールアドレス2&nbsp;:&nbsp;メールアドレス2'
 				}
 				, 'url': {
-					'databaseComment': ''
+					'databaseComment': 'URL&nbsp;:&nbsp;URL'
 				}
 				, 'prefecture': {
-					'databaseComment': ''
+					'databaseComment': '都道府県&nbsp;:&nbsp;都道府県'
 				}
 				, 'city': {
-					'databaseComment': ''
+					'databaseComment': '市区町村&nbsp;:&nbsp;市区町村'
 				}
 				, 'address1': {
-					'databaseComment': ''
+					'databaseComment': 'その他住所1&nbsp;:&nbsp;その他住所1'
 				}
 				, 'address2': {
-					'databaseComment': ''
+					'databaseComment': 'その他住所2&nbsp;:&nbsp;その他住所2'
 				}
 				, 'remarks': {
-					'databaseComment': ''
+					'databaseComment': '備考&nbsp;:&nbsp;備考'
 				}
 				, 'delete_flag': {
-					'databaseComment': ''
+					'databaseComment': '削除フラグ'
+				}
+				, 'version_no': {
+					'databaseComment': 'version_no'
 				}
 				, 'register_datetime': {
-					'databaseComment': ''
+					'databaseComment': '登録日時'
 				}
 				, 'update_datetime': {
-					'databaseComment': ''
+					'databaseComment': '更新日時'
 				}
 			}
 		}
 		, 'm_staff': {
-			'databaseComment': ''
+			'databaseComment': 'スタッフマスタ'
 			, 'columns': {
 				'staff_id': {
-					'databaseComment': ''
+					'databaseComment': 'スタッフID&nbsp;:&nbsp;スタッフID'
+				}
+				, 'company_id': {
+					'databaseComment': '会社id&nbsp;:&nbsp;企業ID'
 				}
 				, 'family_name': {
-					'databaseComment': ''
+					'databaseComment': '姓&nbsp;:&nbsp;姓'
 				}
 				, 'given_name': {
-					'databaseComment': ''
+					'databaseComment': '名&nbsp;:&nbsp;名'
 				}
 				, 'phone1_1': {
-					'databaseComment': ''
+					'databaseComment': '電話番号1_1&nbsp;:&nbsp;電話番号1_1'
 				}
 				, 'phone1_2': {
-					'databaseComment': ''
+					'databaseComment': '電話番号1_2&nbsp;:&nbsp;電話番号1_2'
 				}
 				, 'phone1_3': {
-					'databaseComment': ''
+					'databaseComment': '電話番号1_3&nbsp;:&nbsp;電話番号1_3'
 				}
 				, 'delete_flag': {
-					'databaseComment': ''
+					'databaseComment': '削除フラグ'
+				}
+				, 'version_no': {
+					'databaseComment': 'version_no'
 				}
 				, 'register_datetime': {
-					'databaseComment': ''
+					'databaseComment': '登録日時'
 				}
 				, 'update_datetime': {
-					'databaseComment': ''
+					'databaseComment': '更新日時'
 				}
 			}
 		}
 		, 'm_user': {
-			'databaseComment': ''
+			'databaseComment': 'ユーザマスタ'
 			, 'columns': {
 				'user_id': {
-					'databaseComment': ''
+					'databaseComment': 'ユーザID&nbsp;:&nbsp;ユーザID'
+				}
+				, 'line_id': {
+					'databaseComment': 'LINE_ID'
+				}
+				, 'line_name': {
+					'databaseComment': 'LINE_表示名'
 				}
 				, 'family_name': {
-					'databaseComment': ''
+					'databaseComment': '姓&nbsp;:&nbsp;姓'
 				}
 				, 'given_name': {
-					'databaseComment': ''
+					'databaseComment': '名&nbsp;:&nbsp;名'
 				}
 				, 'family_name_kana': {
-					'databaseComment': ''
+					'databaseComment': '姓（カナ）&nbsp;:&nbsp;姓（カナ）'
 				}
 				, 'given_name_kana': {
-					'databaseComment': ''
+					'databaseComment': '名（カナ）&nbsp;:&nbsp;名（カナ）'
 				}
 				, 'sex': {
-					'databaseComment': ''
+					'databaseComment': '性別&nbsp;:&nbsp;性別'
 				}
 				, 'birthday': {
-					'databaseComment': ''
+					'databaseComment': '生年月日&nbsp;:&nbsp;生年月日'
 				}
 				, 'phone_first1': {
-					'databaseComment': ''
+					'databaseComment': '電話番号1_1&nbsp;:&nbsp;電話番号1_1'
 				}
 				, 'phone_first2': {
-					'databaseComment': ''
+					'databaseComment': '電話番号1_2&nbsp;:&nbsp;電話番号1_2'
 				}
 				, 'phone_first3': {
-					'databaseComment': ''
+					'databaseComment': '電話番号1_3&nbsp;:&nbsp;電話番号1_3'
 				}
 				, 'phone_second1': {
-					'databaseComment': ''
+					'databaseComment': '電話番号2_1&nbsp;:&nbsp;電話番号2_1'
 				}
 				, 'phone_second2': {
-					'databaseComment': ''
+					'databaseComment': '電話番号2_2&nbsp;:&nbsp;電話番号2_2'
 				}
 				, 'phone_second3': {
-					'databaseComment': ''
+					'databaseComment': '電話番号2_3&nbsp;:&nbsp;電話番号2_3'
 				}
 				, 'email1': {
-					'databaseComment': ''
+					'databaseComment': 'メールアドレス1&nbsp;:&nbsp;メールアドレス1'
 				}
 				, 'email2': {
-					'databaseComment': ''
+					'databaseComment': 'メールアドレス2&nbsp;:&nbsp;メールアドレス2'
 				}
 				, 'postal_code': {
-					'databaseComment': ''
+					'databaseComment': '郵便番号&nbsp;:&nbsp;郵便番号'
 				}
 				, 'prefecture': {
-					'databaseComment': ''
+					'databaseComment': '都道府県&nbsp;:&nbsp;都道府県'
 				}
 				, 'city': {
-					'databaseComment': ''
+					'databaseComment': '市区町村&nbsp;:&nbsp;市区町村'
 				}
 				, 'address1': {
-					'databaseComment': ''
+					'databaseComment': 'その他住所1&nbsp;:&nbsp;その他住所1'
 				}
 				, 'address2': {
-					'databaseComment': ''
+					'databaseComment': 'その他住所2&nbsp;:&nbsp;その他住所2'
 				}
 				, 'remarks': {
-					'databaseComment': ''
+					'databaseComment': '備考&nbsp;:&nbsp;備考'
 				}
 				, 'delete_flag': {
-					'databaseComment': ''
+					'databaseComment': '削除フラグ'
+				}
+				, 'version_no': {
+					'databaseComment': 'version_no'
 				}
 				, 'register_datetime': {
-					'databaseComment': ''
+					'databaseComment': '登録日時'
 				}
 				, 'update_datetime': {
-					'databaseComment': ''
+					'databaseComment': '更新日時'
 				}
 			}
 		}
 		, 'm_working_day': {
-			'databaseComment': ''
+			'databaseComment': '営業日マスタ'
 			, 'columns': {
 				'working_day_id': {
-					'databaseComment': ''
+					'databaseComment': '営業日ID&nbsp;:&nbsp;営業日ID'
 				}
 				, 'shop_id': {
-					'databaseComment': ''
+					'databaseComment': '店舗ID&nbsp;:&nbsp;店舗ID'
 				}
 				, 'working_date': {
-					'databaseComment': ''
+					'databaseComment': '営業日&nbsp;:&nbsp;営業日'
 				}
 				, 'start_time': {
-					'databaseComment': ''
+					'databaseComment': '営業開始時間&nbsp;:&nbsp;営業開始時間'
 				}
 				, 'end_time': {
-					'databaseComment': ''
+					'databaseComment': '営業終了時間&nbsp;:&nbsp;営業終了時間'
 				}
 				, 'delete_flag': {
-					'databaseComment': ''
+					'databaseComment': '削除フラグ'
+				}
+				, 'version_no': {
+					'databaseComment': 'version_no'
 				}
 				, 'register_datetime': {
-					'databaseComment': ''
+					'databaseComment': '登録日時'
 				}
 				, 'update_datetime': {
-					'databaseComment': ''
+					'databaseComment': '更新日時'
 				}
 			}
 		}
 		, 'm_working_day_deff': {
-			'databaseComment': ''
+			'databaseComment': '営業日定義マスタ'
 			, 'columns': {
 				'm_working_day_deff_id': {
-					'databaseComment': ''
+					'databaseComment': '営業日定義ID&nbsp;:&nbsp;営業日定義ID'
 				}
 				, 'shop_id': {
-					'databaseComment': ''
+					'databaseComment': '店舗ID&nbsp;:&nbsp;店舗ID'
 				}
 				, 'start_day': {
-					'databaseComment': ''
+					'databaseComment': 'start_day'
 				}
 				, 'delete_flag': {
-					'databaseComment': ''
+					'databaseComment': '削除フラグ'
+				}
+				, 'version_no': {
+					'databaseComment': 'version_no'
 				}
 				, 'register_datetime': {
-					'databaseComment': ''
+					'databaseComment': '登録日時'
 				}
 				, 'update_datetime': {
-					'databaseComment': ''
+					'databaseComment': '更新日時'
 				}
 			}
 		}
 		, 'm_working_day_detail_deff': {
-			'databaseComment': ''
+			'databaseComment': '営業日詳細定義マスタ'
 			, 'columns': {
 				'working_day_detail_deff_id': {
-					'databaseComment': ''
+					'databaseComment': '営業日詳細定義ID&nbsp;:&nbsp;営業日詳細定義ID'
 				}
 				, 'm_working_day_deff_id': {
-					'databaseComment': ''
+					'databaseComment': '営業日定義ID&nbsp;:&nbsp;営業日定義ID'
 				}
 				, 'effective_flag': {
-					'databaseComment': ''
+					'databaseComment': '適応フラグ&nbsp;:&nbsp;適応フラグ'
 				}
 				, 'working_day_flg': {
-					'databaseComment': ''
+					'databaseComment': '営業日Flag&nbsp;:&nbsp;営業日Flag'
 				}
 				, 'week_1_flag': {
-					'databaseComment': ''
+					'databaseComment': '第1週Flag&nbsp;:&nbsp;第1週Flag'
 				}
 				, 'week_2_flag': {
-					'databaseComment': ''
+					'databaseComment': '第2週Flag&nbsp;:&nbsp;第2週Flag'
 				}
 				, 'week_3_flag': {
-					'databaseComment': ''
+					'databaseComment': '第3週Flag&nbsp;:&nbsp;第3週Flag'
 				}
 				, 'week4_flag': {
-					'databaseComment': ''
+					'databaseComment': '第4週Flag&nbsp;:&nbsp;第4週Flag'
 				}
 				, 'week5_flag': {
-					'databaseComment': ''
+					'databaseComment': '第5週Flag&nbsp;:&nbsp;第5週Flag'
 				}
 				, 'mon_flg': {
-					'databaseComment': ''
+					'databaseComment': '月曜日Flag&nbsp;:&nbsp;月曜日Flag'
 				}
 				, 'tue_flg': {
-					'databaseComment': ''
+					'databaseComment': '火曜日Flag&nbsp;:&nbsp;火曜日Flag'
 				}
 				, 'web_flg': {
-					'databaseComment': ''
+					'databaseComment': '水曜日Flag&nbsp;:&nbsp;水曜日Flag'
 				}
 				, 'thu_flg': {
-					'databaseComment': ''
+					'databaseComment': '木曜日Flag&nbsp;:&nbsp;木曜日Flag'
 				}
 				, 'fri_flg': {
-					'databaseComment': ''
+					'databaseComment': '金曜日Flag&nbsp;:&nbsp;金曜日Flag'
 				}
 				, 'sat_flg': {
-					'databaseComment': ''
+					'databaseComment': '土曜日Flag&nbsp;:&nbsp;土曜日Flag'
 				}
 				, 'sun_flg': {
-					'databaseComment': ''
+					'databaseComment': '日曜日Flag&nbsp;:&nbsp;日曜日Flag'
 				}
 				, 'holiday_flg': {
-					'databaseComment': ''
+					'databaseComment': '祝日Flag&nbsp;:&nbsp;祝日Flag'
 				}
 				, 'day_of_month': {
-					'databaseComment': ''
+					'databaseComment': '毎月指定日&nbsp;:&nbsp;毎月指定日'
 				}
 				, 'specified_day': {
-					'databaseComment': ''
+					'databaseComment': '指定日&nbsp;:&nbsp;指定日'
 				}
 				, 'start_time': {
-					'databaseComment': ''
+					'databaseComment': '営業開始時間&nbsp;:&nbsp;営業開始時間'
 				}
 				, 'end_time': {
-					'databaseComment': ''
+					'databaseComment': '営業終了時間&nbsp;:&nbsp;営業終了時間'
 				}
 				, 'delete_flag': {
-					'databaseComment': ''
+					'databaseComment': '削除フラグ'
+				}
+				, 'version_no': {
+					'databaseComment': 'version_no'
 				}
 				, 'register_datetime': {
-					'databaseComment': ''
+					'databaseComment': '登録日時'
 				}
 				, 'update_datetime': {
-					'databaseComment': ''
+					'databaseComment': '更新日時'
 				}
 			}
 		}
 		, 'm_working_staff': {
-			'databaseComment': ''
+			'databaseComment': '所属スタッフマスタ'
 			, 'columns': {
 				'working_staff_id': {
-					'databaseComment': ''
+					'databaseComment': '所属スタッフID&nbsp;:&nbsp;所属スタッフID'
 				}
 				, 'shop_id': {
-					'databaseComment': ''
+					'databaseComment': '店舗ID&nbsp;:&nbsp;店舗ID'
 				}
 				, 'staff_id': {
-					'databaseComment': ''
+					'databaseComment': 'スタッフID&nbsp;:&nbsp;スタッフID'
 				}
 				, 'delete_flag': {
-					'databaseComment': ''
+					'databaseComment': '削除フラグ'
+				}
+				, 'version_no': {
+					'databaseComment': 'version_no'
 				}
 				, 'register_datetime': {
-					'databaseComment': ''
+					'databaseComment': '登録日時'
 				}
 				, 'update_datetime': {
-					'databaseComment': ''
+					'databaseComment': '更新日時'
+				}
+			}
+		}
+		, 'system_property_m': {
+			'databaseComment': 'システムプロパティ_M'
+			, 'columns': {
+				'prop_key': {
+					'databaseComment': 'プロパティキー&nbsp;:&nbsp;プロパティキー'
+				}
+				, 'prop_group': {
+					'databaseComment': 'プロパティグループ'
+				}
+				, 'prop_value': {
+					'databaseComment': '値&nbsp;:&nbsp;値'
+				}
+				, 'description': {
+					'databaseComment': '説明&nbsp;:&nbsp;説明'
+				}
+				, 'delete_flag': {
+					'databaseComment': '削除フラグ'
+				}
+				, 'version_no': {
+					'databaseComment': 'version_no'
+				}
+				, 'register_datetime': {
+					'databaseComment': '登録日時'
+				}
+				, 'update_datetime': {
+					'databaseComment': '更新日時'
 				}
 			}
 		}
 		, 't_reservation': {
-			'databaseComment': ''
+			'databaseComment': '予約テーブル'
 			, 'columns': {
 				'reservation_id': {
-					'databaseComment': ''
+					'databaseComment': '予約ID&nbsp;:&nbsp;予約ID'
 				}
 				, 'shop_id': {
-					'databaseComment': ''
+					'databaseComment': '店舗ID&nbsp;:&nbsp;店舗ID'
 				}
-				, 'staff_id': {
-					'databaseComment': ''
-				}
-				, 'hist_staff_family_name': {
-					'databaseComment': ''
-				}
-				, 'hist_shop_name': {
-					'databaseComment': ''
-				}
-				, 'hist_shop_abbreviated_name': {
-					'databaseComment': ''
-				}
-				, 'hist_staff_given_name': {
-					'databaseComment': ''
-				}
-				, 'reservation_date': {
-					'databaseComment': ''
-				}
-				, 'reservation_time': {
-					'databaseComment': ''
+				, 'working_staff_id': {
+					'databaseComment': '作業ing_staff_id&nbsp;:&nbsp;所属スタッフID'
 				}
 				, 'user_id': {
-					'databaseComment': ''
+					'databaseComment': 'ユーザID&nbsp;:&nbsp;ユーザID'
+				}
+				, 'hist_staff_family_name': {
+					'databaseComment': '履歴用スタッフ姓&nbsp;:&nbsp;履歴用スタッフ姓'
+				}
+				, 'hist_shop_name': {
+					'databaseComment': '履歴用店舗名&nbsp;:&nbsp;履歴用店舗名'
+				}
+				, 'hist_shop_abbreviated_name': {
+					'databaseComment': '履歴用店舗略名&nbsp;:&nbsp;履歴用店舗略名'
+				}
+				, 'hist_staff_given_name': {
+					'databaseComment': '履歴用スタッフ名&nbsp;:&nbsp;履歴用スタッフ名'
+				}
+				, 'reservation_date': {
+					'databaseComment': '予約日付&nbsp;:&nbsp;予約日付'
+				}
+				, 'reservation_time': {
+					'databaseComment': '予約時間&nbsp;:&nbsp;予約時間'
 				}
 				, 'total_amount': {
-					'databaseComment': ''
+					'databaseComment': '合計料金&nbsp;:&nbsp;合計料金'
 				}
 				, 'remarks': {
-					'databaseComment': ''
+					'databaseComment': '備考&nbsp;:&nbsp;備考'
 				}
 				, 'status': {
-					'databaseComment': ''
+					'databaseComment': '状態&nbsp;:&nbsp;状態'
 				}
 				, 'delete_flag': {
-					'databaseComment': ''
+					'databaseComment': '削除フラグ'
+				}
+				, 'version_no': {
+					'databaseComment': 'version_no'
 				}
 				, 'register_datetime': {
-					'databaseComment': ''
+					'databaseComment': '登録日時'
 				}
 				, 'update_datetime': {
-					'databaseComment': ''
+					'databaseComment': '更新日時'
 				}
 			}
 		}
 		, 't_reservation_detail': {
-			'databaseComment': ''
+			'databaseComment': '予約明細テーブル'
 			, 'columns': {
 				'reservation_detail_id': {
-					'databaseComment': ''
+					'databaseComment': '予約明細ID&nbsp;:&nbsp;予約明細ID'
 				}
 				, 'reservation_id': {
-					'databaseComment': ''
+					'databaseComment': '予約ID&nbsp;:&nbsp;予約ID'
 				}
 				, 'course_id': {
-					'databaseComment': ''
+					'databaseComment': 'コースID&nbsp;:&nbsp;コースID'
 				}
 				, 'hist_course_name': {
-					'databaseComment': ''
+					'databaseComment': '履歴用コース名&nbsp;:&nbsp;履歴用コース名'
 				}
 				, 'delete_flag': {
-					'databaseComment': ''
+					'databaseComment': '削除フラグ'
+				}
+				, 'version_no': {
+					'databaseComment': 'version_no'
 				}
 				, 'register_datetime': {
-					'databaseComment': ''
+					'databaseComment': '登録日時'
 				}
 				, 'update_datetime': {
-					'databaseComment': ''
+					'databaseComment': '更新日時'
 				}
 			}
 		}
 		, 't_shift': {
-			'databaseComment': ''
+			'databaseComment': 'シフトテーブル'
 			, 'columns': {
 				'shift_id': {
-					'databaseComment': ''
+					'databaseComment': 'シフトID&nbsp;:&nbsp;シフトID'
+				}
+				, 'working_staff_id': {
+					'databaseComment': '作業ing_staff_id&nbsp;:&nbsp;所属スタッフID'
 				}
 				, 'working_day_id': {
-					'databaseComment': ''
-				}
-				, 'staff_id': {
-					'databaseComment': ''
+					'databaseComment': '営業日ID&nbsp;:&nbsp;営業日ID'
 				}
 				, 'start_time': {
-					'databaseComment': ''
+					'databaseComment': '開始時間&nbsp;:&nbsp;開始時間'
 				}
 				, 'end_time': {
-					'databaseComment': ''
+					'databaseComment': '終了時間&nbsp;:&nbsp;終了時間'
 				}
 				, 'delete_flag': {
-					'databaseComment': ''
+					'databaseComment': '削除フラグ'
+				}
+				, 'version_no': {
+					'databaseComment': 'version_no'
 				}
 				, 'register_datetime': {
-					'databaseComment': ''
+					'databaseComment': '登録日時'
 				}
 				, 'update_datetime': {
-					'databaseComment': ''
+					'databaseComment': '更新日時'
 				}
 			}
 		}

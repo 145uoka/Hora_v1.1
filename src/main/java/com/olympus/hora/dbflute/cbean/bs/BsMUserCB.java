@@ -288,6 +288,16 @@ public class BsMUserCB extends AbstractConditionBean {
          */
         public SpecifiedColumn columnUserId() { return doColumn("user_id"); }
         /**
+         * line_id: {text(2147483647)}
+         * @return The information object of specified column. (NotNull)
+         */
+        public SpecifiedColumn columnLineId() { return doColumn("line_id"); }
+        /**
+         * line_name: {text(2147483647)}
+         * @return The information object of specified column. (NotNull)
+         */
+        public SpecifiedColumn columnLineName() { return doColumn("line_name"); }
+        /**
          * family_name: {text(2147483647)}
          * @return The information object of specified column. (NotNull)
          */
@@ -392,6 +402,11 @@ public class BsMUserCB extends AbstractConditionBean {
          * @return The information object of specified column. (NotNull)
          */
         public SpecifiedColumn columnDeleteFlag() { return doColumn("delete_flag"); }
+        /**
+         * version_no: {NotNull, int4(10), default=[1]}
+         * @return The information object of specified column. (NotNull)
+         */
+        public SpecifiedColumn columnVersionNo() { return doColumn("version_no"); }
         /**
          * register_datetime: {NotNull, timestamp(26, 3), default=[now()]}
          * @return The information object of specified column. (NotNull)

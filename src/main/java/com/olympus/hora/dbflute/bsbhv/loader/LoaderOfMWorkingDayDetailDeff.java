@@ -13,7 +13,7 @@ import com.olympus.hora.dbflute.exentity.*;
  *     working_day_detail_deff_id
  *
  * [column]
- *     working_day_detail_deff_id, m_working_day_deff_id, effective_flag, working_day_flg, week_1_flag, week_2_flag, week_3_flag, week4_flag, week5_flag, mon_flg, tue_flg, web_flg, thu_flg, fri_flg, sat_flg, sun_flg, holiday_flg, day_of_month, specified_day, start_time, end_time, delete_flag, register_datetime, update_datetime
+ *     working_day_detail_deff_id, m_working_day_deff_id, effective_flag, working_day_flg, week_1_flag, week_2_flag, week_3_flag, week4_flag, week5_flag, mon_flg, tue_flg, web_flg, thu_flg, fri_flg, sat_flg, sun_flg, holiday_flg, day_of_month, specified_day, start_time, end_time, delete_flag, version_no, register_datetime, update_datetime
  *
  * [sequence]
  *     m_working_day_detail_deff_working_day_detail_deff_id_seq
@@ -22,7 +22,7 @@ import com.olympus.hora.dbflute.exentity.*;
  *     
  *
  * [version-no]
- *     
+ *     version_no
  *
  * [foreign table]
  *     m_working_day_deff

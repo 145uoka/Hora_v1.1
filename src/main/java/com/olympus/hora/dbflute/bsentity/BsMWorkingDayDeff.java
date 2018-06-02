@@ -14,12 +14,13 @@ import com.olympus.hora.dbflute.exentity.*;
 
 /**
  * The entity of m_working_day_deff as TABLE. <br>
+ * 営業日定義マスタ
  * <pre>
  * [primary-key]
  *     m_working_day_deff_id
  *
  * [column]
- *     m_working_day_deff_id, shop_id, start_day, delete_flag, register_datetime, update_datetime
+ *     m_working_day_deff_id, shop_id, start_day, delete_flag, version_no, register_datetime, update_datetime
  *
  * [sequence]
  *     m_working_day_deff_m_working_day_deff_id_seq
@@ -28,7 +29,7 @@ import com.olympus.hora.dbflute.exentity.*;
  *     
  *
  * [version-no]
- *     
+ *     version_no
  *
  * [foreign table]
  *     m_shop
@@ -48,12 +49,14 @@ import com.olympus.hora.dbflute.exentity.*;
  * Integer shopId = entity.getShopId();
  * java.time.LocalDate startDay = entity.getStartDay();
  * Boolean deleteFlag = entity.getDeleteFlag();
+ * Integer versionNo = entity.getVersionNo();
  * java.time.LocalDateTime registerDatetime = entity.getRegisterDatetime();
  * java.time.LocalDateTime updateDatetime = entity.getUpdateDatetime();
  * entity.setMWorkingDayDeffId(mWorkingDayDeffId);
  * entity.setShopId(shopId);
  * entity.setStartDay(startDay);
  * entity.setDeleteFlag(deleteFlag);
+ * entity.setVersionNo(versionNo);
  * entity.setRegisterDatetime(registerDatetime);
  * entity.setUpdateDatetime(updateDatetime);
  * = = = = = = = = = =/
@@ -82,6 +85,9 @@ public abstract class BsMWorkingDayDeff extends AbstractEntity implements Domain
 
     /** delete_flag: {NotNull, bool(1), default=[false]} */
     protected Boolean _deleteFlag;
+
+    /** version_no: {NotNull, int4(10), default=[1]} */
+    protected Integer _versionNo;
 
     /** register_datetime: {NotNull, timestamp(26, 3), default=[now()]} */
     protected java.time.LocalDateTime _registerDatetime;
@@ -204,6 +210,7 @@ public abstract class BsMWorkingDayDeff extends AbstractEntity implements Domain
         sb.append(dm).append(xfND(_shopId));
         sb.append(dm).append(xfND(_startDay));
         sb.append(dm).append(xfND(_deleteFlag));
+        sb.append(dm).append(xfND(_versionNo));
         sb.append(dm).append(xfND(_registerDatetime));
         sb.append(dm).append(xfND(_updateDatetime));
         if (sb.length() > dm.length()) {
@@ -236,6 +243,7 @@ public abstract class BsMWorkingDayDeff extends AbstractEntity implements Domain
     //                                                                            ========
     /**
      * [get] m_working_day_deff_id: {PK, ID, NotNull, serial(10)} <br>
+     * 営業日定義ID : 営業日定義ID
      * @return The value of the column 'm_working_day_deff_id'. (basically NotNull if selected: for the constraint)
      */
     public Integer getMWorkingDayDeffId() {
@@ -245,6 +253,7 @@ public abstract class BsMWorkingDayDeff extends AbstractEntity implements Domain
 
     /**
      * [set] m_working_day_deff_id: {PK, ID, NotNull, serial(10)} <br>
+     * 営業日定義ID : 営業日定義ID
      * @param mWorkingDayDeffId The value of the column 'm_working_day_deff_id'. (basically NotNull if update: for the constraint)
      */
     public void setMWorkingDayDeffId(Integer mWorkingDayDeffId) {
@@ -254,6 +263,7 @@ public abstract class BsMWorkingDayDeff extends AbstractEntity implements Domain
 
     /**
      * [get] shop_id: {NotNull, int4(10), FK to m_shop} <br>
+     * 店舗ID : 店舗ID
      * @return The value of the column 'shop_id'. (basically NotNull if selected: for the constraint)
      */
     public Integer getShopId() {
@@ -263,6 +273,7 @@ public abstract class BsMWorkingDayDeff extends AbstractEntity implements Domain
 
     /**
      * [set] shop_id: {NotNull, int4(10), FK to m_shop} <br>
+     * 店舗ID : 店舗ID
      * @param shopId The value of the column 'shop_id'. (basically NotNull if update: for the constraint)
      */
     public void setShopId(Integer shopId) {
@@ -272,6 +283,7 @@ public abstract class BsMWorkingDayDeff extends AbstractEntity implements Domain
 
     /**
      * [get] start_day: {NotNull, date(13)} <br>
+     * start_day
      * @return The value of the column 'start_day'. (basically NotNull if selected: for the constraint)
      */
     public java.time.LocalDate getStartDay() {
@@ -281,6 +293,7 @@ public abstract class BsMWorkingDayDeff extends AbstractEntity implements Domain
 
     /**
      * [set] start_day: {NotNull, date(13)} <br>
+     * start_day
      * @param startDay The value of the column 'start_day'. (basically NotNull if update: for the constraint)
      */
     public void setStartDay(java.time.LocalDate startDay) {
@@ -290,6 +303,7 @@ public abstract class BsMWorkingDayDeff extends AbstractEntity implements Domain
 
     /**
      * [get] delete_flag: {NotNull, bool(1), default=[false]} <br>
+     * 削除フラグ
      * @return The value of the column 'delete_flag'. (basically NotNull if selected: for the constraint)
      */
     public Boolean getDeleteFlag() {
@@ -299,6 +313,7 @@ public abstract class BsMWorkingDayDeff extends AbstractEntity implements Domain
 
     /**
      * [set] delete_flag: {NotNull, bool(1), default=[false]} <br>
+     * 削除フラグ
      * @param deleteFlag The value of the column 'delete_flag'. (basically NotNull if update: for the constraint)
      */
     public void setDeleteFlag(Boolean deleteFlag) {
@@ -307,7 +322,28 @@ public abstract class BsMWorkingDayDeff extends AbstractEntity implements Domain
     }
 
     /**
+     * [get] version_no: {NotNull, int4(10), default=[1]} <br>
+     * version_no
+     * @return The value of the column 'version_no'. (basically NotNull if selected: for the constraint)
+     */
+    public Integer getVersionNo() {
+        checkSpecifiedProperty("versionNo");
+        return _versionNo;
+    }
+
+    /**
+     * [set] version_no: {NotNull, int4(10), default=[1]} <br>
+     * version_no
+     * @param versionNo The value of the column 'version_no'. (basically NotNull if update: for the constraint)
+     */
+    public void setVersionNo(Integer versionNo) {
+        registerModifiedProperty("versionNo");
+        _versionNo = versionNo;
+    }
+
+    /**
      * [get] register_datetime: {NotNull, timestamp(26, 3), default=[now()]} <br>
+     * 登録日時
      * @return The value of the column 'register_datetime'. (basically NotNull if selected: for the constraint)
      */
     public java.time.LocalDateTime getRegisterDatetime() {
@@ -317,6 +353,7 @@ public abstract class BsMWorkingDayDeff extends AbstractEntity implements Domain
 
     /**
      * [set] register_datetime: {NotNull, timestamp(26, 3), default=[now()]} <br>
+     * 登録日時
      * @param registerDatetime The value of the column 'register_datetime'. (basically NotNull if update: for the constraint)
      */
     public void setRegisterDatetime(java.time.LocalDateTime registerDatetime) {
@@ -326,6 +363,7 @@ public abstract class BsMWorkingDayDeff extends AbstractEntity implements Domain
 
     /**
      * [get] update_datetime: {timestamp(26, 3)} <br>
+     * 更新日時
      * @return The value of the column 'update_datetime'. (NullAllowed even if selected: for no constraint)
      */
     public java.time.LocalDateTime getUpdateDatetime() {
@@ -335,6 +373,7 @@ public abstract class BsMWorkingDayDeff extends AbstractEntity implements Domain
 
     /**
      * [set] update_datetime: {timestamp(26, 3)} <br>
+     * 更新日時
      * @param updateDatetime The value of the column 'update_datetime'. (NullAllowed: null update allowed for no constraint)
      */
     public void setUpdateDatetime(java.time.LocalDateTime updateDatetime) {

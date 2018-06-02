@@ -376,120 +376,261 @@ public abstract class AbstractBsTReservationCQ extends AbstractConditionQuery {
 
     /**
      * Equal(=). And NullIgnored, OnlyOnceRegistered. <br>
-     * staff_id: {NotNull, int4(10), FK to m_staff}
-     * @param staffId The value of staffId as equal. (basically NotNull: error as default, or no condition as option)
+     * working_staff_id: {int4(10), FK to m_working_staff}
+     * @param workingStaffId The value of workingStaffId as equal. (basically NotNull: error as default, or no condition as option)
      */
-    public void setStaffId_Equal(Integer staffId) {
-        doSetStaffId_Equal(staffId);
+    public void setWorkingStaffId_Equal(Integer workingStaffId) {
+        doSetWorkingStaffId_Equal(workingStaffId);
     }
 
-    protected void doSetStaffId_Equal(Integer staffId) {
-        regStaffId(CK_EQ, staffId);
+    protected void doSetWorkingStaffId_Equal(Integer workingStaffId) {
+        regWorkingStaffId(CK_EQ, workingStaffId);
     }
 
     /**
      * NotEqual(&lt;&gt;). And NullIgnored, OnlyOnceRegistered. <br>
-     * staff_id: {NotNull, int4(10), FK to m_staff}
-     * @param staffId The value of staffId as notEqual. (basically NotNull: error as default, or no condition as option)
+     * working_staff_id: {int4(10), FK to m_working_staff}
+     * @param workingStaffId The value of workingStaffId as notEqual. (basically NotNull: error as default, or no condition as option)
      */
-    public void setStaffId_NotEqual(Integer staffId) {
-        doSetStaffId_NotEqual(staffId);
+    public void setWorkingStaffId_NotEqual(Integer workingStaffId) {
+        doSetWorkingStaffId_NotEqual(workingStaffId);
     }
 
-    protected void doSetStaffId_NotEqual(Integer staffId) {
-        regStaffId(CK_NES, staffId);
+    protected void doSetWorkingStaffId_NotEqual(Integer workingStaffId) {
+        regWorkingStaffId(CK_NES, workingStaffId);
     }
 
     /**
      * GreaterThan(&gt;). And NullIgnored, OnlyOnceRegistered. <br>
-     * staff_id: {NotNull, int4(10), FK to m_staff}
-     * @param staffId The value of staffId as greaterThan. (basically NotNull: error as default, or no condition as option)
+     * working_staff_id: {int4(10), FK to m_working_staff}
+     * @param workingStaffId The value of workingStaffId as greaterThan. (basically NotNull: error as default, or no condition as option)
      */
-    public void setStaffId_GreaterThan(Integer staffId) {
-        regStaffId(CK_GT, staffId);
+    public void setWorkingStaffId_GreaterThan(Integer workingStaffId) {
+        regWorkingStaffId(CK_GT, workingStaffId);
     }
 
     /**
      * LessThan(&lt;). And NullIgnored, OnlyOnceRegistered. <br>
-     * staff_id: {NotNull, int4(10), FK to m_staff}
-     * @param staffId The value of staffId as lessThan. (basically NotNull: error as default, or no condition as option)
+     * working_staff_id: {int4(10), FK to m_working_staff}
+     * @param workingStaffId The value of workingStaffId as lessThan. (basically NotNull: error as default, or no condition as option)
      */
-    public void setStaffId_LessThan(Integer staffId) {
-        regStaffId(CK_LT, staffId);
+    public void setWorkingStaffId_LessThan(Integer workingStaffId) {
+        regWorkingStaffId(CK_LT, workingStaffId);
     }
 
     /**
      * GreaterEqual(&gt;=). And NullIgnored, OnlyOnceRegistered. <br>
-     * staff_id: {NotNull, int4(10), FK to m_staff}
-     * @param staffId The value of staffId as greaterEqual. (basically NotNull: error as default, or no condition as option)
+     * working_staff_id: {int4(10), FK to m_working_staff}
+     * @param workingStaffId The value of workingStaffId as greaterEqual. (basically NotNull: error as default, or no condition as option)
      */
-    public void setStaffId_GreaterEqual(Integer staffId) {
-        regStaffId(CK_GE, staffId);
+    public void setWorkingStaffId_GreaterEqual(Integer workingStaffId) {
+        regWorkingStaffId(CK_GE, workingStaffId);
     }
 
     /**
      * LessEqual(&lt;=). And NullIgnored, OnlyOnceRegistered. <br>
-     * staff_id: {NotNull, int4(10), FK to m_staff}
-     * @param staffId The value of staffId as lessEqual. (basically NotNull: error as default, or no condition as option)
+     * working_staff_id: {int4(10), FK to m_working_staff}
+     * @param workingStaffId The value of workingStaffId as lessEqual. (basically NotNull: error as default, or no condition as option)
      */
-    public void setStaffId_LessEqual(Integer staffId) {
-        regStaffId(CK_LE, staffId);
+    public void setWorkingStaffId_LessEqual(Integer workingStaffId) {
+        regWorkingStaffId(CK_LE, workingStaffId);
     }
 
     /**
      * RangeOf with various options. (versatile) <br>
      * {(default) minNumber &lt;= column &lt;= maxNumber} <br>
      * And NullIgnored, OnlyOnceRegistered. <br>
-     * staff_id: {NotNull, int4(10), FK to m_staff}
-     * @param minNumber The min number of staffId. (basically NotNull: if op.allowOneSide(), null allowed)
-     * @param maxNumber The max number of staffId. (basically NotNull: if op.allowOneSide(), null allowed)
+     * working_staff_id: {int4(10), FK to m_working_staff}
+     * @param minNumber The min number of workingStaffId. (basically NotNull: if op.allowOneSide(), null allowed)
+     * @param maxNumber The max number of workingStaffId. (basically NotNull: if op.allowOneSide(), null allowed)
      * @param opLambda The callback for option of range-of. (NotNull)
      */
-    public void setStaffId_RangeOf(Integer minNumber, Integer maxNumber, ConditionOptionCall<RangeOfOption> opLambda) {
-        setStaffId_RangeOf(minNumber, maxNumber, xcROOP(opLambda));
+    public void setWorkingStaffId_RangeOf(Integer minNumber, Integer maxNumber, ConditionOptionCall<RangeOfOption> opLambda) {
+        setWorkingStaffId_RangeOf(minNumber, maxNumber, xcROOP(opLambda));
     }
 
     /**
      * RangeOf with various options. (versatile) <br>
      * {(default) minNumber &lt;= column &lt;= maxNumber} <br>
      * And NullIgnored, OnlyOnceRegistered. <br>
-     * staff_id: {NotNull, int4(10), FK to m_staff}
-     * @param minNumber The min number of staffId. (basically NotNull: if op.allowOneSide(), null allowed)
-     * @param maxNumber The max number of staffId. (basically NotNull: if op.allowOneSide(), null allowed)
+     * working_staff_id: {int4(10), FK to m_working_staff}
+     * @param minNumber The min number of workingStaffId. (basically NotNull: if op.allowOneSide(), null allowed)
+     * @param maxNumber The max number of workingStaffId. (basically NotNull: if op.allowOneSide(), null allowed)
      * @param rangeOfOption The option of range-of. (NotNull)
      */
-    protected void setStaffId_RangeOf(Integer minNumber, Integer maxNumber, RangeOfOption rangeOfOption) {
-        regROO(minNumber, maxNumber, xgetCValueStaffId(), "staff_id", rangeOfOption);
+    protected void setWorkingStaffId_RangeOf(Integer minNumber, Integer maxNumber, RangeOfOption rangeOfOption) {
+        regROO(minNumber, maxNumber, xgetCValueWorkingStaffId(), "working_staff_id", rangeOfOption);
     }
 
     /**
      * InScope {in (1, 2)}. And NullIgnored, NullElementIgnored, SeveralRegistered. <br>
-     * staff_id: {NotNull, int4(10), FK to m_staff}
-     * @param staffIdList The collection of staffId as inScope. (basically NotNull, NotEmpty: error as default, or no condition as option)
+     * working_staff_id: {int4(10), FK to m_working_staff}
+     * @param workingStaffIdList The collection of workingStaffId as inScope. (basically NotNull, NotEmpty: error as default, or no condition as option)
      */
-    public void setStaffId_InScope(Collection<Integer> staffIdList) {
-        doSetStaffId_InScope(staffIdList);
+    public void setWorkingStaffId_InScope(Collection<Integer> workingStaffIdList) {
+        doSetWorkingStaffId_InScope(workingStaffIdList);
     }
 
-    protected void doSetStaffId_InScope(Collection<Integer> staffIdList) {
-        regINS(CK_INS, cTL(staffIdList), xgetCValueStaffId(), "staff_id");
+    protected void doSetWorkingStaffId_InScope(Collection<Integer> workingStaffIdList) {
+        regINS(CK_INS, cTL(workingStaffIdList), xgetCValueWorkingStaffId(), "working_staff_id");
     }
 
     /**
      * NotInScope {not in (1, 2)}. And NullIgnored, NullElementIgnored, SeveralRegistered. <br>
-     * staff_id: {NotNull, int4(10), FK to m_staff}
-     * @param staffIdList The collection of staffId as notInScope. (basically NotNull, NotEmpty: error as default, or no condition as option)
+     * working_staff_id: {int4(10), FK to m_working_staff}
+     * @param workingStaffIdList The collection of workingStaffId as notInScope. (basically NotNull, NotEmpty: error as default, or no condition as option)
      */
-    public void setStaffId_NotInScope(Collection<Integer> staffIdList) {
-        doSetStaffId_NotInScope(staffIdList);
+    public void setWorkingStaffId_NotInScope(Collection<Integer> workingStaffIdList) {
+        doSetWorkingStaffId_NotInScope(workingStaffIdList);
     }
 
-    protected void doSetStaffId_NotInScope(Collection<Integer> staffIdList) {
-        regINS(CK_NINS, cTL(staffIdList), xgetCValueStaffId(), "staff_id");
+    protected void doSetWorkingStaffId_NotInScope(Collection<Integer> workingStaffIdList) {
+        regINS(CK_NINS, cTL(workingStaffIdList), xgetCValueWorkingStaffId(), "working_staff_id");
     }
 
-    protected void regStaffId(ConditionKey ky, Object vl) { regQ(ky, vl, xgetCValueStaffId(), "staff_id"); }
-    protected abstract ConditionValue xgetCValueStaffId();
+    /**
+     * IsNull {is null}. And OnlyOnceRegistered. <br>
+     * working_staff_id: {int4(10), FK to m_working_staff}
+     */
+    public void setWorkingStaffId_IsNull() { regWorkingStaffId(CK_ISN, DOBJ); }
+
+    /**
+     * IsNotNull {is not null}. And OnlyOnceRegistered. <br>
+     * working_staff_id: {int4(10), FK to m_working_staff}
+     */
+    public void setWorkingStaffId_IsNotNull() { regWorkingStaffId(CK_ISNN, DOBJ); }
+
+    protected void regWorkingStaffId(ConditionKey ky, Object vl) { regQ(ky, vl, xgetCValueWorkingStaffId(), "working_staff_id"); }
+    protected abstract ConditionValue xgetCValueWorkingStaffId();
+
+    /**
+     * Equal(=). And NullIgnored, OnlyOnceRegistered. <br>
+     * user_id: {int4(10), FK to m_user}
+     * @param userId The value of userId as equal. (basically NotNull: error as default, or no condition as option)
+     */
+    public void setUserId_Equal(Integer userId) {
+        doSetUserId_Equal(userId);
+    }
+
+    protected void doSetUserId_Equal(Integer userId) {
+        regUserId(CK_EQ, userId);
+    }
+
+    /**
+     * NotEqual(&lt;&gt;). And NullIgnored, OnlyOnceRegistered. <br>
+     * user_id: {int4(10), FK to m_user}
+     * @param userId The value of userId as notEqual. (basically NotNull: error as default, or no condition as option)
+     */
+    public void setUserId_NotEqual(Integer userId) {
+        doSetUserId_NotEqual(userId);
+    }
+
+    protected void doSetUserId_NotEqual(Integer userId) {
+        regUserId(CK_NES, userId);
+    }
+
+    /**
+     * GreaterThan(&gt;). And NullIgnored, OnlyOnceRegistered. <br>
+     * user_id: {int4(10), FK to m_user}
+     * @param userId The value of userId as greaterThan. (basically NotNull: error as default, or no condition as option)
+     */
+    public void setUserId_GreaterThan(Integer userId) {
+        regUserId(CK_GT, userId);
+    }
+
+    /**
+     * LessThan(&lt;). And NullIgnored, OnlyOnceRegistered. <br>
+     * user_id: {int4(10), FK to m_user}
+     * @param userId The value of userId as lessThan. (basically NotNull: error as default, or no condition as option)
+     */
+    public void setUserId_LessThan(Integer userId) {
+        regUserId(CK_LT, userId);
+    }
+
+    /**
+     * GreaterEqual(&gt;=). And NullIgnored, OnlyOnceRegistered. <br>
+     * user_id: {int4(10), FK to m_user}
+     * @param userId The value of userId as greaterEqual. (basically NotNull: error as default, or no condition as option)
+     */
+    public void setUserId_GreaterEqual(Integer userId) {
+        regUserId(CK_GE, userId);
+    }
+
+    /**
+     * LessEqual(&lt;=). And NullIgnored, OnlyOnceRegistered. <br>
+     * user_id: {int4(10), FK to m_user}
+     * @param userId The value of userId as lessEqual. (basically NotNull: error as default, or no condition as option)
+     */
+    public void setUserId_LessEqual(Integer userId) {
+        regUserId(CK_LE, userId);
+    }
+
+    /**
+     * RangeOf with various options. (versatile) <br>
+     * {(default) minNumber &lt;= column &lt;= maxNumber} <br>
+     * And NullIgnored, OnlyOnceRegistered. <br>
+     * user_id: {int4(10), FK to m_user}
+     * @param minNumber The min number of userId. (basically NotNull: if op.allowOneSide(), null allowed)
+     * @param maxNumber The max number of userId. (basically NotNull: if op.allowOneSide(), null allowed)
+     * @param opLambda The callback for option of range-of. (NotNull)
+     */
+    public void setUserId_RangeOf(Integer minNumber, Integer maxNumber, ConditionOptionCall<RangeOfOption> opLambda) {
+        setUserId_RangeOf(minNumber, maxNumber, xcROOP(opLambda));
+    }
+
+    /**
+     * RangeOf with various options. (versatile) <br>
+     * {(default) minNumber &lt;= column &lt;= maxNumber} <br>
+     * And NullIgnored, OnlyOnceRegistered. <br>
+     * user_id: {int4(10), FK to m_user}
+     * @param minNumber The min number of userId. (basically NotNull: if op.allowOneSide(), null allowed)
+     * @param maxNumber The max number of userId. (basically NotNull: if op.allowOneSide(), null allowed)
+     * @param rangeOfOption The option of range-of. (NotNull)
+     */
+    protected void setUserId_RangeOf(Integer minNumber, Integer maxNumber, RangeOfOption rangeOfOption) {
+        regROO(minNumber, maxNumber, xgetCValueUserId(), "user_id", rangeOfOption);
+    }
+
+    /**
+     * InScope {in (1, 2)}. And NullIgnored, NullElementIgnored, SeveralRegistered. <br>
+     * user_id: {int4(10), FK to m_user}
+     * @param userIdList The collection of userId as inScope. (basically NotNull, NotEmpty: error as default, or no condition as option)
+     */
+    public void setUserId_InScope(Collection<Integer> userIdList) {
+        doSetUserId_InScope(userIdList);
+    }
+
+    protected void doSetUserId_InScope(Collection<Integer> userIdList) {
+        regINS(CK_INS, cTL(userIdList), xgetCValueUserId(), "user_id");
+    }
+
+    /**
+     * NotInScope {not in (1, 2)}. And NullIgnored, NullElementIgnored, SeveralRegistered. <br>
+     * user_id: {int4(10), FK to m_user}
+     * @param userIdList The collection of userId as notInScope. (basically NotNull, NotEmpty: error as default, or no condition as option)
+     */
+    public void setUserId_NotInScope(Collection<Integer> userIdList) {
+        doSetUserId_NotInScope(userIdList);
+    }
+
+    protected void doSetUserId_NotInScope(Collection<Integer> userIdList) {
+        regINS(CK_NINS, cTL(userIdList), xgetCValueUserId(), "user_id");
+    }
+
+    /**
+     * IsNull {is null}. And OnlyOnceRegistered. <br>
+     * user_id: {int4(10), FK to m_user}
+     */
+    public void setUserId_IsNull() { regUserId(CK_ISN, DOBJ); }
+
+    /**
+     * IsNotNull {is not null}. And OnlyOnceRegistered. <br>
+     * user_id: {int4(10), FK to m_user}
+     */
+    public void setUserId_IsNotNull() { regUserId(CK_ISNN, DOBJ); }
+
+    protected void regUserId(ConditionKey ky, Object vl) { regQ(ky, vl, xgetCValueUserId(), "user_id"); }
+    protected abstract ConditionValue xgetCValueUserId();
 
     /**
      * Equal(=). And NullOrEmptyIgnored, OnlyOnceRegistered. <br>
@@ -1252,135 +1393,6 @@ public abstract class AbstractBsTReservationCQ extends AbstractConditionQuery {
 
     /**
      * Equal(=). And NullIgnored, OnlyOnceRegistered. <br>
-     * user_id: {int4(10), FK to m_user}
-     * @param userId The value of userId as equal. (basically NotNull: error as default, or no condition as option)
-     */
-    public void setUserId_Equal(Integer userId) {
-        doSetUserId_Equal(userId);
-    }
-
-    protected void doSetUserId_Equal(Integer userId) {
-        regUserId(CK_EQ, userId);
-    }
-
-    /**
-     * NotEqual(&lt;&gt;). And NullIgnored, OnlyOnceRegistered. <br>
-     * user_id: {int4(10), FK to m_user}
-     * @param userId The value of userId as notEqual. (basically NotNull: error as default, or no condition as option)
-     */
-    public void setUserId_NotEqual(Integer userId) {
-        doSetUserId_NotEqual(userId);
-    }
-
-    protected void doSetUserId_NotEqual(Integer userId) {
-        regUserId(CK_NES, userId);
-    }
-
-    /**
-     * GreaterThan(&gt;). And NullIgnored, OnlyOnceRegistered. <br>
-     * user_id: {int4(10), FK to m_user}
-     * @param userId The value of userId as greaterThan. (basically NotNull: error as default, or no condition as option)
-     */
-    public void setUserId_GreaterThan(Integer userId) {
-        regUserId(CK_GT, userId);
-    }
-
-    /**
-     * LessThan(&lt;). And NullIgnored, OnlyOnceRegistered. <br>
-     * user_id: {int4(10), FK to m_user}
-     * @param userId The value of userId as lessThan. (basically NotNull: error as default, or no condition as option)
-     */
-    public void setUserId_LessThan(Integer userId) {
-        regUserId(CK_LT, userId);
-    }
-
-    /**
-     * GreaterEqual(&gt;=). And NullIgnored, OnlyOnceRegistered. <br>
-     * user_id: {int4(10), FK to m_user}
-     * @param userId The value of userId as greaterEqual. (basically NotNull: error as default, or no condition as option)
-     */
-    public void setUserId_GreaterEqual(Integer userId) {
-        regUserId(CK_GE, userId);
-    }
-
-    /**
-     * LessEqual(&lt;=). And NullIgnored, OnlyOnceRegistered. <br>
-     * user_id: {int4(10), FK to m_user}
-     * @param userId The value of userId as lessEqual. (basically NotNull: error as default, or no condition as option)
-     */
-    public void setUserId_LessEqual(Integer userId) {
-        regUserId(CK_LE, userId);
-    }
-
-    /**
-     * RangeOf with various options. (versatile) <br>
-     * {(default) minNumber &lt;= column &lt;= maxNumber} <br>
-     * And NullIgnored, OnlyOnceRegistered. <br>
-     * user_id: {int4(10), FK to m_user}
-     * @param minNumber The min number of userId. (basically NotNull: if op.allowOneSide(), null allowed)
-     * @param maxNumber The max number of userId. (basically NotNull: if op.allowOneSide(), null allowed)
-     * @param opLambda The callback for option of range-of. (NotNull)
-     */
-    public void setUserId_RangeOf(Integer minNumber, Integer maxNumber, ConditionOptionCall<RangeOfOption> opLambda) {
-        setUserId_RangeOf(minNumber, maxNumber, xcROOP(opLambda));
-    }
-
-    /**
-     * RangeOf with various options. (versatile) <br>
-     * {(default) minNumber &lt;= column &lt;= maxNumber} <br>
-     * And NullIgnored, OnlyOnceRegistered. <br>
-     * user_id: {int4(10), FK to m_user}
-     * @param minNumber The min number of userId. (basically NotNull: if op.allowOneSide(), null allowed)
-     * @param maxNumber The max number of userId. (basically NotNull: if op.allowOneSide(), null allowed)
-     * @param rangeOfOption The option of range-of. (NotNull)
-     */
-    protected void setUserId_RangeOf(Integer minNumber, Integer maxNumber, RangeOfOption rangeOfOption) {
-        regROO(minNumber, maxNumber, xgetCValueUserId(), "user_id", rangeOfOption);
-    }
-
-    /**
-     * InScope {in (1, 2)}. And NullIgnored, NullElementIgnored, SeveralRegistered. <br>
-     * user_id: {int4(10), FK to m_user}
-     * @param userIdList The collection of userId as inScope. (basically NotNull, NotEmpty: error as default, or no condition as option)
-     */
-    public void setUserId_InScope(Collection<Integer> userIdList) {
-        doSetUserId_InScope(userIdList);
-    }
-
-    protected void doSetUserId_InScope(Collection<Integer> userIdList) {
-        regINS(CK_INS, cTL(userIdList), xgetCValueUserId(), "user_id");
-    }
-
-    /**
-     * NotInScope {not in (1, 2)}. And NullIgnored, NullElementIgnored, SeveralRegistered. <br>
-     * user_id: {int4(10), FK to m_user}
-     * @param userIdList The collection of userId as notInScope. (basically NotNull, NotEmpty: error as default, or no condition as option)
-     */
-    public void setUserId_NotInScope(Collection<Integer> userIdList) {
-        doSetUserId_NotInScope(userIdList);
-    }
-
-    protected void doSetUserId_NotInScope(Collection<Integer> userIdList) {
-        regINS(CK_NINS, cTL(userIdList), xgetCValueUserId(), "user_id");
-    }
-
-    /**
-     * IsNull {is null}. And OnlyOnceRegistered. <br>
-     * user_id: {int4(10), FK to m_user}
-     */
-    public void setUserId_IsNull() { regUserId(CK_ISN, DOBJ); }
-
-    /**
-     * IsNotNull {is not null}. And OnlyOnceRegistered. <br>
-     * user_id: {int4(10), FK to m_user}
-     */
-    public void setUserId_IsNotNull() { regUserId(CK_ISNN, DOBJ); }
-
-    protected void regUserId(ConditionKey ky, Object vl) { regQ(ky, vl, xgetCValueUserId(), "user_id"); }
-    protected abstract ConditionValue xgetCValueUserId();
-
-    /**
-     * Equal(=). And NullIgnored, OnlyOnceRegistered. <br>
      * total_amount: {int4(10)}
      * @param totalAmount The value of totalAmount as equal. (basically NotNull: error as default, or no condition as option)
      */
@@ -1801,6 +1813,123 @@ public abstract class AbstractBsTReservationCQ extends AbstractConditionQuery {
 
     protected void regDeleteFlag(ConditionKey ky, Object vl) { regQ(ky, vl, xgetCValueDeleteFlag(), "delete_flag"); }
     protected abstract ConditionValue xgetCValueDeleteFlag();
+
+    /**
+     * Equal(=). And NullIgnored, OnlyOnceRegistered. <br>
+     * version_no: {NotNull, int4(10), default=[1]}
+     * @param versionNo The value of versionNo as equal. (basically NotNull: error as default, or no condition as option)
+     */
+    public void setVersionNo_Equal(Integer versionNo) {
+        doSetVersionNo_Equal(versionNo);
+    }
+
+    protected void doSetVersionNo_Equal(Integer versionNo) {
+        regVersionNo(CK_EQ, versionNo);
+    }
+
+    /**
+     * NotEqual(&lt;&gt;). And NullIgnored, OnlyOnceRegistered. <br>
+     * version_no: {NotNull, int4(10), default=[1]}
+     * @param versionNo The value of versionNo as notEqual. (basically NotNull: error as default, or no condition as option)
+     */
+    public void setVersionNo_NotEqual(Integer versionNo) {
+        doSetVersionNo_NotEqual(versionNo);
+    }
+
+    protected void doSetVersionNo_NotEqual(Integer versionNo) {
+        regVersionNo(CK_NES, versionNo);
+    }
+
+    /**
+     * GreaterThan(&gt;). And NullIgnored, OnlyOnceRegistered. <br>
+     * version_no: {NotNull, int4(10), default=[1]}
+     * @param versionNo The value of versionNo as greaterThan. (basically NotNull: error as default, or no condition as option)
+     */
+    public void setVersionNo_GreaterThan(Integer versionNo) {
+        regVersionNo(CK_GT, versionNo);
+    }
+
+    /**
+     * LessThan(&lt;). And NullIgnored, OnlyOnceRegistered. <br>
+     * version_no: {NotNull, int4(10), default=[1]}
+     * @param versionNo The value of versionNo as lessThan. (basically NotNull: error as default, or no condition as option)
+     */
+    public void setVersionNo_LessThan(Integer versionNo) {
+        regVersionNo(CK_LT, versionNo);
+    }
+
+    /**
+     * GreaterEqual(&gt;=). And NullIgnored, OnlyOnceRegistered. <br>
+     * version_no: {NotNull, int4(10), default=[1]}
+     * @param versionNo The value of versionNo as greaterEqual. (basically NotNull: error as default, or no condition as option)
+     */
+    public void setVersionNo_GreaterEqual(Integer versionNo) {
+        regVersionNo(CK_GE, versionNo);
+    }
+
+    /**
+     * LessEqual(&lt;=). And NullIgnored, OnlyOnceRegistered. <br>
+     * version_no: {NotNull, int4(10), default=[1]}
+     * @param versionNo The value of versionNo as lessEqual. (basically NotNull: error as default, or no condition as option)
+     */
+    public void setVersionNo_LessEqual(Integer versionNo) {
+        regVersionNo(CK_LE, versionNo);
+    }
+
+    /**
+     * RangeOf with various options. (versatile) <br>
+     * {(default) minNumber &lt;= column &lt;= maxNumber} <br>
+     * And NullIgnored, OnlyOnceRegistered. <br>
+     * version_no: {NotNull, int4(10), default=[1]}
+     * @param minNumber The min number of versionNo. (basically NotNull: if op.allowOneSide(), null allowed)
+     * @param maxNumber The max number of versionNo. (basically NotNull: if op.allowOneSide(), null allowed)
+     * @param opLambda The callback for option of range-of. (NotNull)
+     */
+    public void setVersionNo_RangeOf(Integer minNumber, Integer maxNumber, ConditionOptionCall<RangeOfOption> opLambda) {
+        setVersionNo_RangeOf(minNumber, maxNumber, xcROOP(opLambda));
+    }
+
+    /**
+     * RangeOf with various options. (versatile) <br>
+     * {(default) minNumber &lt;= column &lt;= maxNumber} <br>
+     * And NullIgnored, OnlyOnceRegistered. <br>
+     * version_no: {NotNull, int4(10), default=[1]}
+     * @param minNumber The min number of versionNo. (basically NotNull: if op.allowOneSide(), null allowed)
+     * @param maxNumber The max number of versionNo. (basically NotNull: if op.allowOneSide(), null allowed)
+     * @param rangeOfOption The option of range-of. (NotNull)
+     */
+    protected void setVersionNo_RangeOf(Integer minNumber, Integer maxNumber, RangeOfOption rangeOfOption) {
+        regROO(minNumber, maxNumber, xgetCValueVersionNo(), "version_no", rangeOfOption);
+    }
+
+    /**
+     * InScope {in (1, 2)}. And NullIgnored, NullElementIgnored, SeveralRegistered. <br>
+     * version_no: {NotNull, int4(10), default=[1]}
+     * @param versionNoList The collection of versionNo as inScope. (basically NotNull, NotEmpty: error as default, or no condition as option)
+     */
+    public void setVersionNo_InScope(Collection<Integer> versionNoList) {
+        doSetVersionNo_InScope(versionNoList);
+    }
+
+    protected void doSetVersionNo_InScope(Collection<Integer> versionNoList) {
+        regINS(CK_INS, cTL(versionNoList), xgetCValueVersionNo(), "version_no");
+    }
+
+    /**
+     * NotInScope {not in (1, 2)}. And NullIgnored, NullElementIgnored, SeveralRegistered. <br>
+     * version_no: {NotNull, int4(10), default=[1]}
+     * @param versionNoList The collection of versionNo as notInScope. (basically NotNull, NotEmpty: error as default, or no condition as option)
+     */
+    public void setVersionNo_NotInScope(Collection<Integer> versionNoList) {
+        doSetVersionNo_NotInScope(versionNoList);
+    }
+
+    protected void doSetVersionNo_NotInScope(Collection<Integer> versionNoList) {
+        regINS(CK_NINS, cTL(versionNoList), xgetCValueVersionNo(), "version_no");
+    }
+
+    protected void regVersionNo(ConditionKey ky, Object vl) { regQ(ky, vl, xgetCValueVersionNo(), "version_no"); }
+    protected abstract ConditionValue xgetCValueVersionNo();
 
     /**
      * Equal(=). And NullIgnored, OnlyOnceRegistered. <br>

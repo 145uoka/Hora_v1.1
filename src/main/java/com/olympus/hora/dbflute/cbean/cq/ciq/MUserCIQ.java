@@ -72,6 +72,8 @@ public class MUserCIQ extends AbstractBsMUserCQ {
     { throwIICBOE("(Query)DerivedReferrer"); return null; }
     public String keepUserId_QueryDerivedReferrer_TReservationListParameter(Object vl)
     { throwIICBOE("(Query)DerivedReferrer"); return null; }
+    protected ConditionValue xgetCValueLineId() { return _myCQ.xdfgetLineId(); }
+    protected ConditionValue xgetCValueLineName() { return _myCQ.xdfgetLineName(); }
     protected ConditionValue xgetCValueFamilyName() { return _myCQ.xdfgetFamilyName(); }
     protected ConditionValue xgetCValueGivenName() { return _myCQ.xdfgetGivenName(); }
     protected ConditionValue xgetCValueFamilyNameKana() { return _myCQ.xdfgetFamilyNameKana(); }
@@ -93,6 +95,7 @@ public class MUserCIQ extends AbstractBsMUserCQ {
     protected ConditionValue xgetCValueAddress2() { return _myCQ.xdfgetAddress2(); }
     protected ConditionValue xgetCValueRemarks() { return _myCQ.xdfgetRemarks(); }
     protected ConditionValue xgetCValueDeleteFlag() { return _myCQ.xdfgetDeleteFlag(); }
+    protected ConditionValue xgetCValueVersionNo() { return _myCQ.xdfgetVersionNo(); }
     protected ConditionValue xgetCValueRegisterDatetime() { return _myCQ.xdfgetRegisterDatetime(); }
     protected ConditionValue xgetCValueUpdateDatetime() { return _myCQ.xdfgetUpdateDatetime(); }
     protected Map<String, Object> xfindFixedConditionDynamicParameterMap(String pp) { return null; }

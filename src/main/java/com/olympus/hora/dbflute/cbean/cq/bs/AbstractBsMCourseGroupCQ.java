@@ -45,208 +45,6 @@ public abstract class AbstractBsMCourseGroupCQ extends AbstractConditionQuery {
     //                                                                               =====
     /**
      * Equal(=). And NullIgnored, OnlyOnceRegistered. <br>
-     * course_group_id: {PK, ID, NotNull, serial(10)}
-     * @param courseGroupId The value of courseGroupId as equal. (basically NotNull: error as default, or no condition as option)
-     */
-    public void setCourseGroupId_Equal(Integer courseGroupId) {
-        doSetCourseGroupId_Equal(courseGroupId);
-    }
-
-    protected void doSetCourseGroupId_Equal(Integer courseGroupId) {
-        regCourseGroupId(CK_EQ, courseGroupId);
-    }
-
-    /**
-     * NotEqual(&lt;&gt;). And NullIgnored, OnlyOnceRegistered. <br>
-     * course_group_id: {PK, ID, NotNull, serial(10)}
-     * @param courseGroupId The value of courseGroupId as notEqual. (basically NotNull: error as default, or no condition as option)
-     */
-    public void setCourseGroupId_NotEqual(Integer courseGroupId) {
-        doSetCourseGroupId_NotEqual(courseGroupId);
-    }
-
-    protected void doSetCourseGroupId_NotEqual(Integer courseGroupId) {
-        regCourseGroupId(CK_NES, courseGroupId);
-    }
-
-    /**
-     * GreaterThan(&gt;). And NullIgnored, OnlyOnceRegistered. <br>
-     * course_group_id: {PK, ID, NotNull, serial(10)}
-     * @param courseGroupId The value of courseGroupId as greaterThan. (basically NotNull: error as default, or no condition as option)
-     */
-    public void setCourseGroupId_GreaterThan(Integer courseGroupId) {
-        regCourseGroupId(CK_GT, courseGroupId);
-    }
-
-    /**
-     * LessThan(&lt;). And NullIgnored, OnlyOnceRegistered. <br>
-     * course_group_id: {PK, ID, NotNull, serial(10)}
-     * @param courseGroupId The value of courseGroupId as lessThan. (basically NotNull: error as default, or no condition as option)
-     */
-    public void setCourseGroupId_LessThan(Integer courseGroupId) {
-        regCourseGroupId(CK_LT, courseGroupId);
-    }
-
-    /**
-     * GreaterEqual(&gt;=). And NullIgnored, OnlyOnceRegistered. <br>
-     * course_group_id: {PK, ID, NotNull, serial(10)}
-     * @param courseGroupId The value of courseGroupId as greaterEqual. (basically NotNull: error as default, or no condition as option)
-     */
-    public void setCourseGroupId_GreaterEqual(Integer courseGroupId) {
-        regCourseGroupId(CK_GE, courseGroupId);
-    }
-
-    /**
-     * LessEqual(&lt;=). And NullIgnored, OnlyOnceRegistered. <br>
-     * course_group_id: {PK, ID, NotNull, serial(10)}
-     * @param courseGroupId The value of courseGroupId as lessEqual. (basically NotNull: error as default, or no condition as option)
-     */
-    public void setCourseGroupId_LessEqual(Integer courseGroupId) {
-        regCourseGroupId(CK_LE, courseGroupId);
-    }
-
-    /**
-     * RangeOf with various options. (versatile) <br>
-     * {(default) minNumber &lt;= column &lt;= maxNumber} <br>
-     * And NullIgnored, OnlyOnceRegistered. <br>
-     * course_group_id: {PK, ID, NotNull, serial(10)}
-     * @param minNumber The min number of courseGroupId. (basically NotNull: if op.allowOneSide(), null allowed)
-     * @param maxNumber The max number of courseGroupId. (basically NotNull: if op.allowOneSide(), null allowed)
-     * @param opLambda The callback for option of range-of. (NotNull)
-     */
-    public void setCourseGroupId_RangeOf(Integer minNumber, Integer maxNumber, ConditionOptionCall<RangeOfOption> opLambda) {
-        setCourseGroupId_RangeOf(minNumber, maxNumber, xcROOP(opLambda));
-    }
-
-    /**
-     * RangeOf with various options. (versatile) <br>
-     * {(default) minNumber &lt;= column &lt;= maxNumber} <br>
-     * And NullIgnored, OnlyOnceRegistered. <br>
-     * course_group_id: {PK, ID, NotNull, serial(10)}
-     * @param minNumber The min number of courseGroupId. (basically NotNull: if op.allowOneSide(), null allowed)
-     * @param maxNumber The max number of courseGroupId. (basically NotNull: if op.allowOneSide(), null allowed)
-     * @param rangeOfOption The option of range-of. (NotNull)
-     */
-    protected void setCourseGroupId_RangeOf(Integer minNumber, Integer maxNumber, RangeOfOption rangeOfOption) {
-        regROO(minNumber, maxNumber, xgetCValueCourseGroupId(), "course_group_id", rangeOfOption);
-    }
-
-    /**
-     * InScope {in (1, 2)}. And NullIgnored, NullElementIgnored, SeveralRegistered. <br>
-     * course_group_id: {PK, ID, NotNull, serial(10)}
-     * @param courseGroupIdList The collection of courseGroupId as inScope. (basically NotNull, NotEmpty: error as default, or no condition as option)
-     */
-    public void setCourseGroupId_InScope(Collection<Integer> courseGroupIdList) {
-        doSetCourseGroupId_InScope(courseGroupIdList);
-    }
-
-    protected void doSetCourseGroupId_InScope(Collection<Integer> courseGroupIdList) {
-        regINS(CK_INS, cTL(courseGroupIdList), xgetCValueCourseGroupId(), "course_group_id");
-    }
-
-    /**
-     * NotInScope {not in (1, 2)}. And NullIgnored, NullElementIgnored, SeveralRegistered. <br>
-     * course_group_id: {PK, ID, NotNull, serial(10)}
-     * @param courseGroupIdList The collection of courseGroupId as notInScope. (basically NotNull, NotEmpty: error as default, or no condition as option)
-     */
-    public void setCourseGroupId_NotInScope(Collection<Integer> courseGroupIdList) {
-        doSetCourseGroupId_NotInScope(courseGroupIdList);
-    }
-
-    protected void doSetCourseGroupId_NotInScope(Collection<Integer> courseGroupIdList) {
-        regINS(CK_NINS, cTL(courseGroupIdList), xgetCValueCourseGroupId(), "course_group_id");
-    }
-
-    /**
-     * Set up ExistsReferrer (correlated sub-query). <br>
-     * {exists (select course_group_id from m_course where ...)} <br>
-     * m_course by course_group_id, named 'MCourseAsOne'.
-     * <pre>
-     * cb.query().<span style="color: #CC4747">existsMCourse</span>(courseCB <span style="color: #90226C; font-weight: bold"><span style="font-size: 120%">-</span>&gt;</span> {
-     *     courseCB.query().set...
-     * });
-     * </pre>
-     * @param subCBLambda The callback for sub-query of MCourseList for 'exists'. (NotNull)
-     */
-    public void existsMCourse(SubQuery<MCourseCB> subCBLambda) {
-        assertObjectNotNull("subCBLambda", subCBLambda);
-        MCourseCB cb = new MCourseCB(); cb.xsetupForExistsReferrer(this);
-        lockCall(() -> subCBLambda.query(cb)); String pp = keepCourseGroupId_ExistsReferrer_MCourseList(cb.query());
-        registerExistsReferrer(cb.query(), "course_group_id", "course_group_id", pp, "mCourseList");
-    }
-    public abstract String keepCourseGroupId_ExistsReferrer_MCourseList(MCourseCQ sq);
-
-    /**
-     * Set up NotExistsReferrer (correlated sub-query). <br>
-     * {not exists (select course_group_id from m_course where ...)} <br>
-     * m_course by course_group_id, named 'MCourseAsOne'.
-     * <pre>
-     * cb.query().<span style="color: #CC4747">notExistsMCourse</span>(courseCB <span style="color: #90226C; font-weight: bold"><span style="font-size: 120%">-</span>&gt;</span> {
-     *     courseCB.query().set...
-     * });
-     * </pre>
-     * @param subCBLambda The callback for sub-query of CourseGroupId_NotExistsReferrer_MCourseList for 'not exists'. (NotNull)
-     */
-    public void notExistsMCourse(SubQuery<MCourseCB> subCBLambda) {
-        assertObjectNotNull("subCBLambda", subCBLambda);
-        MCourseCB cb = new MCourseCB(); cb.xsetupForExistsReferrer(this);
-        lockCall(() -> subCBLambda.query(cb)); String pp = keepCourseGroupId_NotExistsReferrer_MCourseList(cb.query());
-        registerNotExistsReferrer(cb.query(), "course_group_id", "course_group_id", pp, "mCourseList");
-    }
-    public abstract String keepCourseGroupId_NotExistsReferrer_MCourseList(MCourseCQ sq);
-
-    public void xsderiveMCourseList(String fn, SubQuery<MCourseCB> sq, String al, DerivedReferrerOption op) {
-        assertObjectNotNull("subQuery", sq);
-        MCourseCB cb = new MCourseCB(); cb.xsetupForDerivedReferrer(this);
-        lockCall(() -> sq.query(cb)); String pp = keepCourseGroupId_SpecifyDerivedReferrer_MCourseList(cb.query());
-        registerSpecifyDerivedReferrer(fn, cb.query(), "course_group_id", "course_group_id", pp, "mCourseList", al, op);
-    }
-    public abstract String keepCourseGroupId_SpecifyDerivedReferrer_MCourseList(MCourseCQ sq);
-
-    /**
-     * Prepare for (Query)DerivedReferrer (correlated sub-query). <br>
-     * {FOO &lt;= (select max(BAR) from m_course where ...)} <br>
-     * m_course by course_group_id, named 'MCourseAsOne'.
-     * <pre>
-     * cb.query().<span style="color: #CC4747">derivedMCourse()</span>.<span style="color: #CC4747">max</span>(courseCB <span style="color: #90226C; font-weight: bold"><span style="font-size: 120%">-</span>&gt;</span> {
-     *     courseCB.specify().<span style="color: #CC4747">columnFoo...</span> <span style="color: #3F7E5E">// derived column by function</span>
-     *     courseCB.query().setBar... <span style="color: #3F7E5E">// referrer condition</span>
-     * }).<span style="color: #CC4747">greaterEqual</span>(123); <span style="color: #3F7E5E">// condition to derived column</span>
-     * </pre>
-     * @return The object to set up a function for referrer table. (NotNull)
-     */
-    public HpQDRFunction<MCourseCB> derivedMCourse() {
-        return xcreateQDRFunctionMCourseList();
-    }
-    protected HpQDRFunction<MCourseCB> xcreateQDRFunctionMCourseList() {
-        return xcQDRFunc((fn, sq, rd, vl, op) -> xqderiveMCourseList(fn, sq, rd, vl, op));
-    }
-    public void xqderiveMCourseList(String fn, SubQuery<MCourseCB> sq, String rd, Object vl, DerivedReferrerOption op) {
-        assertObjectNotNull("subQuery", sq);
-        MCourseCB cb = new MCourseCB(); cb.xsetupForDerivedReferrer(this);
-        lockCall(() -> sq.query(cb)); String sqpp = keepCourseGroupId_QueryDerivedReferrer_MCourseList(cb.query()); String prpp = keepCourseGroupId_QueryDerivedReferrer_MCourseListParameter(vl);
-        registerQueryDerivedReferrer(fn, cb.query(), "course_group_id", "course_group_id", sqpp, "mCourseList", rd, vl, prpp, op);
-    }
-    public abstract String keepCourseGroupId_QueryDerivedReferrer_MCourseList(MCourseCQ sq);
-    public abstract String keepCourseGroupId_QueryDerivedReferrer_MCourseListParameter(Object vl);
-
-    /**
-     * IsNull {is null}. And OnlyOnceRegistered. <br>
-     * course_group_id: {PK, ID, NotNull, serial(10)}
-     */
-    public void setCourseGroupId_IsNull() { regCourseGroupId(CK_ISN, DOBJ); }
-
-    /**
-     * IsNotNull {is not null}. And OnlyOnceRegistered. <br>
-     * course_group_id: {PK, ID, NotNull, serial(10)}
-     */
-    public void setCourseGroupId_IsNotNull() { regCourseGroupId(CK_ISNN, DOBJ); }
-
-    protected void regCourseGroupId(ConditionKey ky, Object vl) { regQ(ky, vl, xgetCValueCourseGroupId(), "course_group_id"); }
-    protected abstract ConditionValue xgetCValueCourseGroupId();
-
-    /**
-     * Equal(=). And NullIgnored, OnlyOnceRegistered. <br>
      * shop_id: {int4(10), FK to m_shop}
      * @param shopId The value of shopId as equal. (basically NotNull: error as default, or no condition as option)
      */
@@ -526,6 +324,208 @@ public abstract class AbstractBsMCourseGroupCQ extends AbstractConditionQuery {
 
     protected void regGroupName(ConditionKey ky, Object vl) { regQ(ky, vl, xgetCValueGroupName(), "group_name"); }
     protected abstract ConditionValue xgetCValueGroupName();
+
+    /**
+     * Equal(=). And NullIgnored, OnlyOnceRegistered. <br>
+     * course_group_id: {PK, ID, NotNull, serial(10)}
+     * @param courseGroupId The value of courseGroupId as equal. (basically NotNull: error as default, or no condition as option)
+     */
+    public void setCourseGroupId_Equal(Integer courseGroupId) {
+        doSetCourseGroupId_Equal(courseGroupId);
+    }
+
+    protected void doSetCourseGroupId_Equal(Integer courseGroupId) {
+        regCourseGroupId(CK_EQ, courseGroupId);
+    }
+
+    /**
+     * NotEqual(&lt;&gt;). And NullIgnored, OnlyOnceRegistered. <br>
+     * course_group_id: {PK, ID, NotNull, serial(10)}
+     * @param courseGroupId The value of courseGroupId as notEqual. (basically NotNull: error as default, or no condition as option)
+     */
+    public void setCourseGroupId_NotEqual(Integer courseGroupId) {
+        doSetCourseGroupId_NotEqual(courseGroupId);
+    }
+
+    protected void doSetCourseGroupId_NotEqual(Integer courseGroupId) {
+        regCourseGroupId(CK_NES, courseGroupId);
+    }
+
+    /**
+     * GreaterThan(&gt;). And NullIgnored, OnlyOnceRegistered. <br>
+     * course_group_id: {PK, ID, NotNull, serial(10)}
+     * @param courseGroupId The value of courseGroupId as greaterThan. (basically NotNull: error as default, or no condition as option)
+     */
+    public void setCourseGroupId_GreaterThan(Integer courseGroupId) {
+        regCourseGroupId(CK_GT, courseGroupId);
+    }
+
+    /**
+     * LessThan(&lt;). And NullIgnored, OnlyOnceRegistered. <br>
+     * course_group_id: {PK, ID, NotNull, serial(10)}
+     * @param courseGroupId The value of courseGroupId as lessThan. (basically NotNull: error as default, or no condition as option)
+     */
+    public void setCourseGroupId_LessThan(Integer courseGroupId) {
+        regCourseGroupId(CK_LT, courseGroupId);
+    }
+
+    /**
+     * GreaterEqual(&gt;=). And NullIgnored, OnlyOnceRegistered. <br>
+     * course_group_id: {PK, ID, NotNull, serial(10)}
+     * @param courseGroupId The value of courseGroupId as greaterEqual. (basically NotNull: error as default, or no condition as option)
+     */
+    public void setCourseGroupId_GreaterEqual(Integer courseGroupId) {
+        regCourseGroupId(CK_GE, courseGroupId);
+    }
+
+    /**
+     * LessEqual(&lt;=). And NullIgnored, OnlyOnceRegistered. <br>
+     * course_group_id: {PK, ID, NotNull, serial(10)}
+     * @param courseGroupId The value of courseGroupId as lessEqual. (basically NotNull: error as default, or no condition as option)
+     */
+    public void setCourseGroupId_LessEqual(Integer courseGroupId) {
+        regCourseGroupId(CK_LE, courseGroupId);
+    }
+
+    /**
+     * RangeOf with various options. (versatile) <br>
+     * {(default) minNumber &lt;= column &lt;= maxNumber} <br>
+     * And NullIgnored, OnlyOnceRegistered. <br>
+     * course_group_id: {PK, ID, NotNull, serial(10)}
+     * @param minNumber The min number of courseGroupId. (basically NotNull: if op.allowOneSide(), null allowed)
+     * @param maxNumber The max number of courseGroupId. (basically NotNull: if op.allowOneSide(), null allowed)
+     * @param opLambda The callback for option of range-of. (NotNull)
+     */
+    public void setCourseGroupId_RangeOf(Integer minNumber, Integer maxNumber, ConditionOptionCall<RangeOfOption> opLambda) {
+        setCourseGroupId_RangeOf(minNumber, maxNumber, xcROOP(opLambda));
+    }
+
+    /**
+     * RangeOf with various options. (versatile) <br>
+     * {(default) minNumber &lt;= column &lt;= maxNumber} <br>
+     * And NullIgnored, OnlyOnceRegistered. <br>
+     * course_group_id: {PK, ID, NotNull, serial(10)}
+     * @param minNumber The min number of courseGroupId. (basically NotNull: if op.allowOneSide(), null allowed)
+     * @param maxNumber The max number of courseGroupId. (basically NotNull: if op.allowOneSide(), null allowed)
+     * @param rangeOfOption The option of range-of. (NotNull)
+     */
+    protected void setCourseGroupId_RangeOf(Integer minNumber, Integer maxNumber, RangeOfOption rangeOfOption) {
+        regROO(minNumber, maxNumber, xgetCValueCourseGroupId(), "course_group_id", rangeOfOption);
+    }
+
+    /**
+     * InScope {in (1, 2)}. And NullIgnored, NullElementIgnored, SeveralRegistered. <br>
+     * course_group_id: {PK, ID, NotNull, serial(10)}
+     * @param courseGroupIdList The collection of courseGroupId as inScope. (basically NotNull, NotEmpty: error as default, or no condition as option)
+     */
+    public void setCourseGroupId_InScope(Collection<Integer> courseGroupIdList) {
+        doSetCourseGroupId_InScope(courseGroupIdList);
+    }
+
+    protected void doSetCourseGroupId_InScope(Collection<Integer> courseGroupIdList) {
+        regINS(CK_INS, cTL(courseGroupIdList), xgetCValueCourseGroupId(), "course_group_id");
+    }
+
+    /**
+     * NotInScope {not in (1, 2)}. And NullIgnored, NullElementIgnored, SeveralRegistered. <br>
+     * course_group_id: {PK, ID, NotNull, serial(10)}
+     * @param courseGroupIdList The collection of courseGroupId as notInScope. (basically NotNull, NotEmpty: error as default, or no condition as option)
+     */
+    public void setCourseGroupId_NotInScope(Collection<Integer> courseGroupIdList) {
+        doSetCourseGroupId_NotInScope(courseGroupIdList);
+    }
+
+    protected void doSetCourseGroupId_NotInScope(Collection<Integer> courseGroupIdList) {
+        regINS(CK_NINS, cTL(courseGroupIdList), xgetCValueCourseGroupId(), "course_group_id");
+    }
+
+    /**
+     * Set up ExistsReferrer (correlated sub-query). <br>
+     * {exists (select course_group_id from m_course where ...)} <br>
+     * m_course by course_group_id, named 'MCourseAsOne'.
+     * <pre>
+     * cb.query().<span style="color: #CC4747">existsMCourse</span>(courseCB <span style="color: #90226C; font-weight: bold"><span style="font-size: 120%">-</span>&gt;</span> {
+     *     courseCB.query().set...
+     * });
+     * </pre>
+     * @param subCBLambda The callback for sub-query of MCourseList for 'exists'. (NotNull)
+     */
+    public void existsMCourse(SubQuery<MCourseCB> subCBLambda) {
+        assertObjectNotNull("subCBLambda", subCBLambda);
+        MCourseCB cb = new MCourseCB(); cb.xsetupForExistsReferrer(this);
+        lockCall(() -> subCBLambda.query(cb)); String pp = keepCourseGroupId_ExistsReferrer_MCourseList(cb.query());
+        registerExistsReferrer(cb.query(), "course_group_id", "course_group_id", pp, "mCourseList");
+    }
+    public abstract String keepCourseGroupId_ExistsReferrer_MCourseList(MCourseCQ sq);
+
+    /**
+     * Set up NotExistsReferrer (correlated sub-query). <br>
+     * {not exists (select course_group_id from m_course where ...)} <br>
+     * m_course by course_group_id, named 'MCourseAsOne'.
+     * <pre>
+     * cb.query().<span style="color: #CC4747">notExistsMCourse</span>(courseCB <span style="color: #90226C; font-weight: bold"><span style="font-size: 120%">-</span>&gt;</span> {
+     *     courseCB.query().set...
+     * });
+     * </pre>
+     * @param subCBLambda The callback for sub-query of CourseGroupId_NotExistsReferrer_MCourseList for 'not exists'. (NotNull)
+     */
+    public void notExistsMCourse(SubQuery<MCourseCB> subCBLambda) {
+        assertObjectNotNull("subCBLambda", subCBLambda);
+        MCourseCB cb = new MCourseCB(); cb.xsetupForExistsReferrer(this);
+        lockCall(() -> subCBLambda.query(cb)); String pp = keepCourseGroupId_NotExistsReferrer_MCourseList(cb.query());
+        registerNotExistsReferrer(cb.query(), "course_group_id", "course_group_id", pp, "mCourseList");
+    }
+    public abstract String keepCourseGroupId_NotExistsReferrer_MCourseList(MCourseCQ sq);
+
+    public void xsderiveMCourseList(String fn, SubQuery<MCourseCB> sq, String al, DerivedReferrerOption op) {
+        assertObjectNotNull("subQuery", sq);
+        MCourseCB cb = new MCourseCB(); cb.xsetupForDerivedReferrer(this);
+        lockCall(() -> sq.query(cb)); String pp = keepCourseGroupId_SpecifyDerivedReferrer_MCourseList(cb.query());
+        registerSpecifyDerivedReferrer(fn, cb.query(), "course_group_id", "course_group_id", pp, "mCourseList", al, op);
+    }
+    public abstract String keepCourseGroupId_SpecifyDerivedReferrer_MCourseList(MCourseCQ sq);
+
+    /**
+     * Prepare for (Query)DerivedReferrer (correlated sub-query). <br>
+     * {FOO &lt;= (select max(BAR) from m_course where ...)} <br>
+     * m_course by course_group_id, named 'MCourseAsOne'.
+     * <pre>
+     * cb.query().<span style="color: #CC4747">derivedMCourse()</span>.<span style="color: #CC4747">max</span>(courseCB <span style="color: #90226C; font-weight: bold"><span style="font-size: 120%">-</span>&gt;</span> {
+     *     courseCB.specify().<span style="color: #CC4747">columnFoo...</span> <span style="color: #3F7E5E">// derived column by function</span>
+     *     courseCB.query().setBar... <span style="color: #3F7E5E">// referrer condition</span>
+     * }).<span style="color: #CC4747">greaterEqual</span>(123); <span style="color: #3F7E5E">// condition to derived column</span>
+     * </pre>
+     * @return The object to set up a function for referrer table. (NotNull)
+     */
+    public HpQDRFunction<MCourseCB> derivedMCourse() {
+        return xcreateQDRFunctionMCourseList();
+    }
+    protected HpQDRFunction<MCourseCB> xcreateQDRFunctionMCourseList() {
+        return xcQDRFunc((fn, sq, rd, vl, op) -> xqderiveMCourseList(fn, sq, rd, vl, op));
+    }
+    public void xqderiveMCourseList(String fn, SubQuery<MCourseCB> sq, String rd, Object vl, DerivedReferrerOption op) {
+        assertObjectNotNull("subQuery", sq);
+        MCourseCB cb = new MCourseCB(); cb.xsetupForDerivedReferrer(this);
+        lockCall(() -> sq.query(cb)); String sqpp = keepCourseGroupId_QueryDerivedReferrer_MCourseList(cb.query()); String prpp = keepCourseGroupId_QueryDerivedReferrer_MCourseListParameter(vl);
+        registerQueryDerivedReferrer(fn, cb.query(), "course_group_id", "course_group_id", sqpp, "mCourseList", rd, vl, prpp, op);
+    }
+    public abstract String keepCourseGroupId_QueryDerivedReferrer_MCourseList(MCourseCQ sq);
+    public abstract String keepCourseGroupId_QueryDerivedReferrer_MCourseListParameter(Object vl);
+
+    /**
+     * IsNull {is null}. And OnlyOnceRegistered. <br>
+     * course_group_id: {PK, ID, NotNull, serial(10)}
+     */
+    public void setCourseGroupId_IsNull() { regCourseGroupId(CK_ISN, DOBJ); }
+
+    /**
+     * IsNotNull {is not null}. And OnlyOnceRegistered. <br>
+     * course_group_id: {PK, ID, NotNull, serial(10)}
+     */
+    public void setCourseGroupId_IsNotNull() { regCourseGroupId(CK_ISNN, DOBJ); }
+
+    protected void regCourseGroupId(ConditionKey ky, Object vl) { regQ(ky, vl, xgetCValueCourseGroupId(), "course_group_id"); }
+    protected abstract ConditionValue xgetCValueCourseGroupId();
 
     /**
      * Equal(=). And NullIgnored, OnlyOnceRegistered. <br>
@@ -820,6 +820,123 @@ public abstract class AbstractBsMCourseGroupCQ extends AbstractConditionQuery {
 
     protected void regDeleteFlag(ConditionKey ky, Object vl) { regQ(ky, vl, xgetCValueDeleteFlag(), "delete_flag"); }
     protected abstract ConditionValue xgetCValueDeleteFlag();
+
+    /**
+     * Equal(=). And NullIgnored, OnlyOnceRegistered. <br>
+     * version_no: {NotNull, int4(10), default=[1]}
+     * @param versionNo The value of versionNo as equal. (basically NotNull: error as default, or no condition as option)
+     */
+    public void setVersionNo_Equal(Integer versionNo) {
+        doSetVersionNo_Equal(versionNo);
+    }
+
+    protected void doSetVersionNo_Equal(Integer versionNo) {
+        regVersionNo(CK_EQ, versionNo);
+    }
+
+    /**
+     * NotEqual(&lt;&gt;). And NullIgnored, OnlyOnceRegistered. <br>
+     * version_no: {NotNull, int4(10), default=[1]}
+     * @param versionNo The value of versionNo as notEqual. (basically NotNull: error as default, or no condition as option)
+     */
+    public void setVersionNo_NotEqual(Integer versionNo) {
+        doSetVersionNo_NotEqual(versionNo);
+    }
+
+    protected void doSetVersionNo_NotEqual(Integer versionNo) {
+        regVersionNo(CK_NES, versionNo);
+    }
+
+    /**
+     * GreaterThan(&gt;). And NullIgnored, OnlyOnceRegistered. <br>
+     * version_no: {NotNull, int4(10), default=[1]}
+     * @param versionNo The value of versionNo as greaterThan. (basically NotNull: error as default, or no condition as option)
+     */
+    public void setVersionNo_GreaterThan(Integer versionNo) {
+        regVersionNo(CK_GT, versionNo);
+    }
+
+    /**
+     * LessThan(&lt;). And NullIgnored, OnlyOnceRegistered. <br>
+     * version_no: {NotNull, int4(10), default=[1]}
+     * @param versionNo The value of versionNo as lessThan. (basically NotNull: error as default, or no condition as option)
+     */
+    public void setVersionNo_LessThan(Integer versionNo) {
+        regVersionNo(CK_LT, versionNo);
+    }
+
+    /**
+     * GreaterEqual(&gt;=). And NullIgnored, OnlyOnceRegistered. <br>
+     * version_no: {NotNull, int4(10), default=[1]}
+     * @param versionNo The value of versionNo as greaterEqual. (basically NotNull: error as default, or no condition as option)
+     */
+    public void setVersionNo_GreaterEqual(Integer versionNo) {
+        regVersionNo(CK_GE, versionNo);
+    }
+
+    /**
+     * LessEqual(&lt;=). And NullIgnored, OnlyOnceRegistered. <br>
+     * version_no: {NotNull, int4(10), default=[1]}
+     * @param versionNo The value of versionNo as lessEqual. (basically NotNull: error as default, or no condition as option)
+     */
+    public void setVersionNo_LessEqual(Integer versionNo) {
+        regVersionNo(CK_LE, versionNo);
+    }
+
+    /**
+     * RangeOf with various options. (versatile) <br>
+     * {(default) minNumber &lt;= column &lt;= maxNumber} <br>
+     * And NullIgnored, OnlyOnceRegistered. <br>
+     * version_no: {NotNull, int4(10), default=[1]}
+     * @param minNumber The min number of versionNo. (basically NotNull: if op.allowOneSide(), null allowed)
+     * @param maxNumber The max number of versionNo. (basically NotNull: if op.allowOneSide(), null allowed)
+     * @param opLambda The callback for option of range-of. (NotNull)
+     */
+    public void setVersionNo_RangeOf(Integer minNumber, Integer maxNumber, ConditionOptionCall<RangeOfOption> opLambda) {
+        setVersionNo_RangeOf(minNumber, maxNumber, xcROOP(opLambda));
+    }
+
+    /**
+     * RangeOf with various options. (versatile) <br>
+     * {(default) minNumber &lt;= column &lt;= maxNumber} <br>
+     * And NullIgnored, OnlyOnceRegistered. <br>
+     * version_no: {NotNull, int4(10), default=[1]}
+     * @param minNumber The min number of versionNo. (basically NotNull: if op.allowOneSide(), null allowed)
+     * @param maxNumber The max number of versionNo. (basically NotNull: if op.allowOneSide(), null allowed)
+     * @param rangeOfOption The option of range-of. (NotNull)
+     */
+    protected void setVersionNo_RangeOf(Integer minNumber, Integer maxNumber, RangeOfOption rangeOfOption) {
+        regROO(minNumber, maxNumber, xgetCValueVersionNo(), "version_no", rangeOfOption);
+    }
+
+    /**
+     * InScope {in (1, 2)}. And NullIgnored, NullElementIgnored, SeveralRegistered. <br>
+     * version_no: {NotNull, int4(10), default=[1]}
+     * @param versionNoList The collection of versionNo as inScope. (basically NotNull, NotEmpty: error as default, or no condition as option)
+     */
+    public void setVersionNo_InScope(Collection<Integer> versionNoList) {
+        doSetVersionNo_InScope(versionNoList);
+    }
+
+    protected void doSetVersionNo_InScope(Collection<Integer> versionNoList) {
+        regINS(CK_INS, cTL(versionNoList), xgetCValueVersionNo(), "version_no");
+    }
+
+    /**
+     * NotInScope {not in (1, 2)}. And NullIgnored, NullElementIgnored, SeveralRegistered. <br>
+     * version_no: {NotNull, int4(10), default=[1]}
+     * @param versionNoList The collection of versionNo as notInScope. (basically NotNull, NotEmpty: error as default, or no condition as option)
+     */
+    public void setVersionNo_NotInScope(Collection<Integer> versionNoList) {
+        doSetVersionNo_NotInScope(versionNoList);
+    }
+
+    protected void doSetVersionNo_NotInScope(Collection<Integer> versionNoList) {
+        regINS(CK_NINS, cTL(versionNoList), xgetCValueVersionNo(), "version_no");
+    }
+
+    protected void regVersionNo(ConditionKey ky, Object vl) { regQ(ky, vl, xgetCValueVersionNo(), "version_no"); }
+    protected abstract ConditionValue xgetCValueVersionNo();
 
     /**
      * Equal(=). And NullIgnored, OnlyOnceRegistered. <br>

@@ -15,7 +15,7 @@ import com.olympus.hora.dbflute.cbean.*;
  *     company_id
  *
  * [column]
- *     company_id, company_name, delete_flag, register_datetime, update_datetime
+ *     company_id, company_name, delete_flag, version_no, register_datetime, update_datetime
  *
  * [sequence]
  *     m_company_company_id_seq
@@ -24,19 +24,19 @@ import com.olympus.hora.dbflute.cbean.*;
  *     
  *
  * [version-no]
- *     
+ *     version_no
  *
  * [foreign table]
  *     
  *
  * [referrer table]
- *     m_shop
+ *     m_shop, m_staff
  *
  * [foreign property]
  *     
  *
  * [referrer property]
- *     mShopList
+ *     mShopList, mStaffList
  * </pre>
  * @author DBFlute(AutoGenerator)
  */
@@ -93,6 +93,40 @@ public class LoaderOfMCompany {
     public NestedReferrerLoaderGateway<LoaderOfMShop> loadMShop(ReferrerConditionSetupper<MShopCB> refCBLambda) {
         myBhv().loadMShop(_selectedList, refCBLambda).withNestedReferrer(refLs -> _referrerMShop = refLs);
         return hd -> hd.handle(new LoaderOfMShop().ready(_referrerMShop, _selector));
+    }
+
+    protected List<MStaff> _referrerMStaff;
+
+    /**
+     * Load referrer of MStaffList by the set-upper of referrer. <br>
+     * m_staff by company_id, named 'MStaffList'.
+     * <pre>
+     * <span style="color: #0000C0">mCompanyBhv</span>.<span style="color: #994747">load</span>(<span style="color: #553000">mCompanyList</span>, <span style="color: #553000">companyLoader</span> <span style="color: #90226C; font-weight: bold"><span style="font-size: 120%">-</span>&gt;</span> {
+     *     <span style="color: #553000">companyLoader</span>.<span style="color: #CC4747">loadMStaff</span>(<span style="color: #553000">staffCB</span> <span style="color: #90226C; font-weight: bold"><span style="font-size: 120%">-</span>&gt;</span> {
+     *         <span style="color: #553000">staffCB</span>.setupSelect...
+     *         <span style="color: #553000">staffCB</span>.query().set...
+     *         <span style="color: #553000">staffCB</span>.query().addOrderBy...
+     *     }); <span style="color: #3F7E5E">// you can load nested referrer from here</span>
+     *     <span style="color: #3F7E5E">//}).withNestedReferrer(<span style="color: #553000">staffLoader</span> -&gt; {</span>
+     *     <span style="color: #3F7E5E">//    staffLoader.load...</span>
+     *     <span style="color: #3F7E5E">//});</span>
+     * });
+     * for (MCompany mCompany : <span style="color: #553000">mCompanyList</span>) {
+     *     ... = mCompany.<span style="color: #CC4747">getMStaffList()</span>;
+     * }
+     * </pre>
+     * About internal policy, the value of primary key (and others too) is treated as case-insensitive. <br>
+     * The condition-bean, which the set-upper provides, has settings before callback as follows:
+     * <pre>
+     * cb.query().setCompanyId_InScope(pkList);
+     * cb.query().addOrderBy_CompanyId_Asc();
+     * </pre>
+     * @param refCBLambda The callback to set up referrer condition-bean for loading referrer. (NotNull)
+     * @return The callback interface which you can load nested referrer by calling withNestedReferrer(). (NotNull)
+     */
+    public NestedReferrerLoaderGateway<LoaderOfMStaff> loadMStaff(ReferrerConditionSetupper<MStaffCB> refCBLambda) {
+        myBhv().loadMStaff(_selectedList, refCBLambda).withNestedReferrer(refLs -> _referrerMStaff = refLs);
+        return hd -> hd.handle(new LoaderOfMStaff().ready(_referrerMStaff, _selector));
     }
 
     // ===================================================================================

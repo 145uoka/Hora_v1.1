@@ -121,14 +121,14 @@ public class BsMHolidayCQ extends AbstractBsMHolidayCQ {
 
     /**
      * Add order-by as ascend. <br>
-     * holiday: {date(13)}
+     * holiday: {NotNull, date(13)}
      * @return this. (NotNull)
      */
     public BsMHolidayCQ addOrderBy_Holiday_Asc() { regOBA("holiday"); return this; }
 
     /**
      * Add order-by as descend. <br>
-     * holiday: {date(13)}
+     * holiday: {NotNull, date(13)}
      * @return this. (NotNull)
      */
     public BsMHolidayCQ addOrderBy_Holiday_Desc() { regOBD("holiday"); return this; }
@@ -152,6 +152,26 @@ public class BsMHolidayCQ extends AbstractBsMHolidayCQ {
      * @return this. (NotNull)
      */
     public BsMHolidayCQ addOrderBy_DeleteFlag_Desc() { regOBD("delete_flag"); return this; }
+
+    protected ConditionValue _versionNo;
+    public ConditionValue xdfgetVersionNo()
+    { if (_versionNo == null) { _versionNo = nCV(); }
+      return _versionNo; }
+    protected ConditionValue xgetCValueVersionNo() { return xdfgetVersionNo(); }
+
+    /**
+     * Add order-by as ascend. <br>
+     * version_no: {NotNull, int4(10), default=[1]}
+     * @return this. (NotNull)
+     */
+    public BsMHolidayCQ addOrderBy_VersionNo_Asc() { regOBA("version_no"); return this; }
+
+    /**
+     * Add order-by as descend. <br>
+     * version_no: {NotNull, int4(10), default=[1]}
+     * @return this. (NotNull)
+     */
+    public BsMHolidayCQ addOrderBy_VersionNo_Desc() { regOBD("version_no"); return this; }
 
     protected ConditionValue _registerDatetime;
     public ConditionValue xdfgetRegisterDatetime()

@@ -12,12 +12,13 @@ import com.olympus.hora.dbflute.exentity.*;
 
 /**
  * The entity of m_user as TABLE. <br>
+ * ユーザマスタ
  * <pre>
  * [primary-key]
  *     user_id
  *
  * [column]
- *     user_id, family_name, given_name, family_name_kana, given_name_kana, sex, birthday, phone_first1, phone_first2, phone_first3, phone_second1, phone_second2, phone_second3, email1, email2, postal_code, prefecture, city, address1, address2, remarks, delete_flag, register_datetime, update_datetime
+ *     user_id, line_id, line_name, family_name, given_name, family_name_kana, given_name_kana, sex, birthday, phone_first1, phone_first2, phone_first3, phone_second1, phone_second2, phone_second3, email1, email2, postal_code, prefecture, city, address1, address2, remarks, delete_flag, version_no, register_datetime, update_datetime
  *
  * [sequence]
  *     m_user_user_id_seq
@@ -26,7 +27,7 @@ import com.olympus.hora.dbflute.exentity.*;
  *     
  *
  * [version-no]
- *     
+ *     version_no
  *
  * [foreign table]
  *     
@@ -43,6 +44,8 @@ import com.olympus.hora.dbflute.exentity.*;
  * [get/set template]
  * /= = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = =
  * Integer userId = entity.getUserId();
+ * String lineId = entity.getLineId();
+ * String lineName = entity.getLineName();
  * String familyName = entity.getFamilyName();
  * String givenName = entity.getGivenName();
  * String familyNameKana = entity.getFamilyNameKana();
@@ -64,9 +67,12 @@ import com.olympus.hora.dbflute.exentity.*;
  * String address2 = entity.getAddress2();
  * String remarks = entity.getRemarks();
  * Boolean deleteFlag = entity.getDeleteFlag();
+ * Integer versionNo = entity.getVersionNo();
  * java.time.LocalDateTime registerDatetime = entity.getRegisterDatetime();
  * java.time.LocalDateTime updateDatetime = entity.getUpdateDatetime();
  * entity.setUserId(userId);
+ * entity.setLineId(lineId);
+ * entity.setLineName(lineName);
  * entity.setFamilyName(familyName);
  * entity.setGivenName(givenName);
  * entity.setFamilyNameKana(familyNameKana);
@@ -88,6 +94,7 @@ import com.olympus.hora.dbflute.exentity.*;
  * entity.setAddress2(address2);
  * entity.setRemarks(remarks);
  * entity.setDeleteFlag(deleteFlag);
+ * entity.setVersionNo(versionNo);
  * entity.setRegisterDatetime(registerDatetime);
  * entity.setUpdateDatetime(updateDatetime);
  * = = = = = = = = = =/
@@ -107,6 +114,12 @@ public abstract class BsMUser extends AbstractEntity implements DomainEntity, En
     //                                                                           =========
     /** user_id: {PK, ID, NotNull, serial(10)} */
     protected Integer _userId;
+
+    /** line_id: {text(2147483647)} */
+    protected String _lineId;
+
+    /** line_name: {text(2147483647)} */
+    protected String _lineName;
 
     /** family_name: {text(2147483647)} */
     protected String _familyName;
@@ -170,6 +183,9 @@ public abstract class BsMUser extends AbstractEntity implements DomainEntity, En
 
     /** delete_flag: {NotNull, bool(1), default=[false]} */
     protected Boolean _deleteFlag;
+
+    /** version_no: {NotNull, int4(10), default=[1]} */
+    protected Integer _versionNo;
 
     /** register_datetime: {NotNull, timestamp(26, 3), default=[now()]} */
     protected java.time.LocalDateTime _registerDatetime;
@@ -263,6 +279,8 @@ public abstract class BsMUser extends AbstractEntity implements DomainEntity, En
     protected String doBuildColumnString(String dm) {
         StringBuilder sb = new StringBuilder();
         sb.append(dm).append(xfND(_userId));
+        sb.append(dm).append(xfND(_lineId));
+        sb.append(dm).append(xfND(_lineName));
         sb.append(dm).append(xfND(_familyName));
         sb.append(dm).append(xfND(_givenName));
         sb.append(dm).append(xfND(_familyNameKana));
@@ -284,6 +302,7 @@ public abstract class BsMUser extends AbstractEntity implements DomainEntity, En
         sb.append(dm).append(xfND(_address2));
         sb.append(dm).append(xfND(_remarks));
         sb.append(dm).append(xfND(_deleteFlag));
+        sb.append(dm).append(xfND(_versionNo));
         sb.append(dm).append(xfND(_registerDatetime));
         sb.append(dm).append(xfND(_updateDatetime));
         if (sb.length() > dm.length()) {
@@ -314,6 +333,7 @@ public abstract class BsMUser extends AbstractEntity implements DomainEntity, En
     //                                                                            ========
     /**
      * [get] user_id: {PK, ID, NotNull, serial(10)} <br>
+     * ユーザID : ユーザID
      * @return The value of the column 'user_id'. (basically NotNull if selected: for the constraint)
      */
     public Integer getUserId() {
@@ -323,6 +343,7 @@ public abstract class BsMUser extends AbstractEntity implements DomainEntity, En
 
     /**
      * [set] user_id: {PK, ID, NotNull, serial(10)} <br>
+     * ユーザID : ユーザID
      * @param userId The value of the column 'user_id'. (basically NotNull if update: for the constraint)
      */
     public void setUserId(Integer userId) {
@@ -331,7 +352,48 @@ public abstract class BsMUser extends AbstractEntity implements DomainEntity, En
     }
 
     /**
+     * [get] line_id: {text(2147483647)} <br>
+     * LINE_ID
+     * @return The value of the column 'line_id'. (NullAllowed even if selected: for no constraint)
+     */
+    public String getLineId() {
+        checkSpecifiedProperty("lineId");
+        return _lineId;
+    }
+
+    /**
+     * [set] line_id: {text(2147483647)} <br>
+     * LINE_ID
+     * @param lineId The value of the column 'line_id'. (NullAllowed: null update allowed for no constraint)
+     */
+    public void setLineId(String lineId) {
+        registerModifiedProperty("lineId");
+        _lineId = lineId;
+    }
+
+    /**
+     * [get] line_name: {text(2147483647)} <br>
+     * LINE_表示名
+     * @return The value of the column 'line_name'. (NullAllowed even if selected: for no constraint)
+     */
+    public String getLineName() {
+        checkSpecifiedProperty("lineName");
+        return _lineName;
+    }
+
+    /**
+     * [set] line_name: {text(2147483647)} <br>
+     * LINE_表示名
+     * @param lineName The value of the column 'line_name'. (NullAllowed: null update allowed for no constraint)
+     */
+    public void setLineName(String lineName) {
+        registerModifiedProperty("lineName");
+        _lineName = lineName;
+    }
+
+    /**
      * [get] family_name: {text(2147483647)} <br>
+     * 姓 : 姓
      * @return The value of the column 'family_name'. (NullAllowed even if selected: for no constraint)
      */
     public String getFamilyName() {
@@ -341,6 +403,7 @@ public abstract class BsMUser extends AbstractEntity implements DomainEntity, En
 
     /**
      * [set] family_name: {text(2147483647)} <br>
+     * 姓 : 姓
      * @param familyName The value of the column 'family_name'. (NullAllowed: null update allowed for no constraint)
      */
     public void setFamilyName(String familyName) {
@@ -350,6 +413,7 @@ public abstract class BsMUser extends AbstractEntity implements DomainEntity, En
 
     /**
      * [get] given_name: {text(2147483647)} <br>
+     * 名 : 名
      * @return The value of the column 'given_name'. (NullAllowed even if selected: for no constraint)
      */
     public String getGivenName() {
@@ -359,6 +423,7 @@ public abstract class BsMUser extends AbstractEntity implements DomainEntity, En
 
     /**
      * [set] given_name: {text(2147483647)} <br>
+     * 名 : 名
      * @param givenName The value of the column 'given_name'. (NullAllowed: null update allowed for no constraint)
      */
     public void setGivenName(String givenName) {
@@ -368,6 +433,7 @@ public abstract class BsMUser extends AbstractEntity implements DomainEntity, En
 
     /**
      * [get] family_name_kana: {text(2147483647)} <br>
+     * 姓（カナ） : 姓（カナ）
      * @return The value of the column 'family_name_kana'. (NullAllowed even if selected: for no constraint)
      */
     public String getFamilyNameKana() {
@@ -377,6 +443,7 @@ public abstract class BsMUser extends AbstractEntity implements DomainEntity, En
 
     /**
      * [set] family_name_kana: {text(2147483647)} <br>
+     * 姓（カナ） : 姓（カナ）
      * @param familyNameKana The value of the column 'family_name_kana'. (NullAllowed: null update allowed for no constraint)
      */
     public void setFamilyNameKana(String familyNameKana) {
@@ -386,6 +453,7 @@ public abstract class BsMUser extends AbstractEntity implements DomainEntity, En
 
     /**
      * [get] given_name_kana: {text(2147483647)} <br>
+     * 名（カナ） : 名（カナ）
      * @return The value of the column 'given_name_kana'. (NullAllowed even if selected: for no constraint)
      */
     public String getGivenNameKana() {
@@ -395,6 +463,7 @@ public abstract class BsMUser extends AbstractEntity implements DomainEntity, En
 
     /**
      * [set] given_name_kana: {text(2147483647)} <br>
+     * 名（カナ） : 名（カナ）
      * @param givenNameKana The value of the column 'given_name_kana'. (NullAllowed: null update allowed for no constraint)
      */
     public void setGivenNameKana(String givenNameKana) {
@@ -404,6 +473,7 @@ public abstract class BsMUser extends AbstractEntity implements DomainEntity, En
 
     /**
      * [get] sex: {int4(10)} <br>
+     * 性別 : 性別
      * @return The value of the column 'sex'. (NullAllowed even if selected: for no constraint)
      */
     public Integer getSex() {
@@ -413,6 +483,7 @@ public abstract class BsMUser extends AbstractEntity implements DomainEntity, En
 
     /**
      * [set] sex: {int4(10)} <br>
+     * 性別 : 性別
      * @param sex The value of the column 'sex'. (NullAllowed: null update allowed for no constraint)
      */
     public void setSex(Integer sex) {
@@ -422,6 +493,7 @@ public abstract class BsMUser extends AbstractEntity implements DomainEntity, En
 
     /**
      * [get] birthday: {date(13)} <br>
+     * 生年月日 : 生年月日
      * @return The value of the column 'birthday'. (NullAllowed even if selected: for no constraint)
      */
     public java.time.LocalDate getBirthday() {
@@ -431,6 +503,7 @@ public abstract class BsMUser extends AbstractEntity implements DomainEntity, En
 
     /**
      * [set] birthday: {date(13)} <br>
+     * 生年月日 : 生年月日
      * @param birthday The value of the column 'birthday'. (NullAllowed: null update allowed for no constraint)
      */
     public void setBirthday(java.time.LocalDate birthday) {
@@ -440,6 +513,7 @@ public abstract class BsMUser extends AbstractEntity implements DomainEntity, En
 
     /**
      * [get] phone_first1: {text(2147483647)} <br>
+     * 電話番号1_1 : 電話番号1_1
      * @return The value of the column 'phone_first1'. (NullAllowed even if selected: for no constraint)
      */
     public String getPhoneFirst1() {
@@ -449,6 +523,7 @@ public abstract class BsMUser extends AbstractEntity implements DomainEntity, En
 
     /**
      * [set] phone_first1: {text(2147483647)} <br>
+     * 電話番号1_1 : 電話番号1_1
      * @param phoneFirst1 The value of the column 'phone_first1'. (NullAllowed: null update allowed for no constraint)
      */
     public void setPhoneFirst1(String phoneFirst1) {
@@ -458,6 +533,7 @@ public abstract class BsMUser extends AbstractEntity implements DomainEntity, En
 
     /**
      * [get] phone_first2: {text(2147483647)} <br>
+     * 電話番号1_2 : 電話番号1_2
      * @return The value of the column 'phone_first2'. (NullAllowed even if selected: for no constraint)
      */
     public String getPhoneFirst2() {
@@ -467,6 +543,7 @@ public abstract class BsMUser extends AbstractEntity implements DomainEntity, En
 
     /**
      * [set] phone_first2: {text(2147483647)} <br>
+     * 電話番号1_2 : 電話番号1_2
      * @param phoneFirst2 The value of the column 'phone_first2'. (NullAllowed: null update allowed for no constraint)
      */
     public void setPhoneFirst2(String phoneFirst2) {
@@ -476,6 +553,7 @@ public abstract class BsMUser extends AbstractEntity implements DomainEntity, En
 
     /**
      * [get] phone_first3: {text(2147483647)} <br>
+     * 電話番号1_3 : 電話番号1_3
      * @return The value of the column 'phone_first3'. (NullAllowed even if selected: for no constraint)
      */
     public String getPhoneFirst3() {
@@ -485,6 +563,7 @@ public abstract class BsMUser extends AbstractEntity implements DomainEntity, En
 
     /**
      * [set] phone_first3: {text(2147483647)} <br>
+     * 電話番号1_3 : 電話番号1_3
      * @param phoneFirst3 The value of the column 'phone_first3'. (NullAllowed: null update allowed for no constraint)
      */
     public void setPhoneFirst3(String phoneFirst3) {
@@ -494,6 +573,7 @@ public abstract class BsMUser extends AbstractEntity implements DomainEntity, En
 
     /**
      * [get] phone_second1: {text(2147483647)} <br>
+     * 電話番号2_1 : 電話番号2_1
      * @return The value of the column 'phone_second1'. (NullAllowed even if selected: for no constraint)
      */
     public String getPhoneSecond1() {
@@ -503,6 +583,7 @@ public abstract class BsMUser extends AbstractEntity implements DomainEntity, En
 
     /**
      * [set] phone_second1: {text(2147483647)} <br>
+     * 電話番号2_1 : 電話番号2_1
      * @param phoneSecond1 The value of the column 'phone_second1'. (NullAllowed: null update allowed for no constraint)
      */
     public void setPhoneSecond1(String phoneSecond1) {
@@ -512,6 +593,7 @@ public abstract class BsMUser extends AbstractEntity implements DomainEntity, En
 
     /**
      * [get] phone_second2: {text(2147483647)} <br>
+     * 電話番号2_2 : 電話番号2_2
      * @return The value of the column 'phone_second2'. (NullAllowed even if selected: for no constraint)
      */
     public String getPhoneSecond2() {
@@ -521,6 +603,7 @@ public abstract class BsMUser extends AbstractEntity implements DomainEntity, En
 
     /**
      * [set] phone_second2: {text(2147483647)} <br>
+     * 電話番号2_2 : 電話番号2_2
      * @param phoneSecond2 The value of the column 'phone_second2'. (NullAllowed: null update allowed for no constraint)
      */
     public void setPhoneSecond2(String phoneSecond2) {
@@ -530,6 +613,7 @@ public abstract class BsMUser extends AbstractEntity implements DomainEntity, En
 
     /**
      * [get] phone_second3: {text(2147483647)} <br>
+     * 電話番号2_3 : 電話番号2_3
      * @return The value of the column 'phone_second3'. (NullAllowed even if selected: for no constraint)
      */
     public String getPhoneSecond3() {
@@ -539,6 +623,7 @@ public abstract class BsMUser extends AbstractEntity implements DomainEntity, En
 
     /**
      * [set] phone_second3: {text(2147483647)} <br>
+     * 電話番号2_3 : 電話番号2_3
      * @param phoneSecond3 The value of the column 'phone_second3'. (NullAllowed: null update allowed for no constraint)
      */
     public void setPhoneSecond3(String phoneSecond3) {
@@ -548,6 +633,7 @@ public abstract class BsMUser extends AbstractEntity implements DomainEntity, En
 
     /**
      * [get] email1: {text(2147483647)} <br>
+     * メールアドレス1 : メールアドレス1
      * @return The value of the column 'email1'. (NullAllowed even if selected: for no constraint)
      */
     public String getEmail1() {
@@ -557,6 +643,7 @@ public abstract class BsMUser extends AbstractEntity implements DomainEntity, En
 
     /**
      * [set] email1: {text(2147483647)} <br>
+     * メールアドレス1 : メールアドレス1
      * @param email1 The value of the column 'email1'. (NullAllowed: null update allowed for no constraint)
      */
     public void setEmail1(String email1) {
@@ -566,6 +653,7 @@ public abstract class BsMUser extends AbstractEntity implements DomainEntity, En
 
     /**
      * [get] email2: {text(2147483647)} <br>
+     * メールアドレス2 : メールアドレス2
      * @return The value of the column 'email2'. (NullAllowed even if selected: for no constraint)
      */
     public String getEmail2() {
@@ -575,6 +663,7 @@ public abstract class BsMUser extends AbstractEntity implements DomainEntity, En
 
     /**
      * [set] email2: {text(2147483647)} <br>
+     * メールアドレス2 : メールアドレス2
      * @param email2 The value of the column 'email2'. (NullAllowed: null update allowed for no constraint)
      */
     public void setEmail2(String email2) {
@@ -584,6 +673,7 @@ public abstract class BsMUser extends AbstractEntity implements DomainEntity, En
 
     /**
      * [get] postal_code: {bpchar(7)} <br>
+     * 郵便番号 : 郵便番号
      * @return The value of the column 'postal_code'. (NullAllowed even if selected: for no constraint)
      */
     public String getPostalCode() {
@@ -593,6 +683,7 @@ public abstract class BsMUser extends AbstractEntity implements DomainEntity, En
 
     /**
      * [set] postal_code: {bpchar(7)} <br>
+     * 郵便番号 : 郵便番号
      * @param postalCode The value of the column 'postal_code'. (NullAllowed: null update allowed for no constraint)
      */
     public void setPostalCode(String postalCode) {
@@ -602,6 +693,7 @@ public abstract class BsMUser extends AbstractEntity implements DomainEntity, En
 
     /**
      * [get] prefecture: {int2(5)} <br>
+     * 都道府県 : 都道府県
      * @return The value of the column 'prefecture'. (NullAllowed even if selected: for no constraint)
      */
     public Integer getPrefecture() {
@@ -611,6 +703,7 @@ public abstract class BsMUser extends AbstractEntity implements DomainEntity, En
 
     /**
      * [set] prefecture: {int2(5)} <br>
+     * 都道府県 : 都道府県
      * @param prefecture The value of the column 'prefecture'. (NullAllowed: null update allowed for no constraint)
      */
     public void setPrefecture(Integer prefecture) {
@@ -620,6 +713,7 @@ public abstract class BsMUser extends AbstractEntity implements DomainEntity, En
 
     /**
      * [get] city: {text(2147483647)} <br>
+     * 市区町村 : 市区町村
      * @return The value of the column 'city'. (NullAllowed even if selected: for no constraint)
      */
     public String getCity() {
@@ -629,6 +723,7 @@ public abstract class BsMUser extends AbstractEntity implements DomainEntity, En
 
     /**
      * [set] city: {text(2147483647)} <br>
+     * 市区町村 : 市区町村
      * @param city The value of the column 'city'. (NullAllowed: null update allowed for no constraint)
      */
     public void setCity(String city) {
@@ -638,6 +733,7 @@ public abstract class BsMUser extends AbstractEntity implements DomainEntity, En
 
     /**
      * [get] address1: {text(2147483647)} <br>
+     * その他住所1 : その他住所1
      * @return The value of the column 'address1'. (NullAllowed even if selected: for no constraint)
      */
     public String getAddress1() {
@@ -647,6 +743,7 @@ public abstract class BsMUser extends AbstractEntity implements DomainEntity, En
 
     /**
      * [set] address1: {text(2147483647)} <br>
+     * その他住所1 : その他住所1
      * @param address1 The value of the column 'address1'. (NullAllowed: null update allowed for no constraint)
      */
     public void setAddress1(String address1) {
@@ -656,6 +753,7 @@ public abstract class BsMUser extends AbstractEntity implements DomainEntity, En
 
     /**
      * [get] address2: {text(2147483647)} <br>
+     * その他住所2 : その他住所2
      * @return The value of the column 'address2'. (NullAllowed even if selected: for no constraint)
      */
     public String getAddress2() {
@@ -665,6 +763,7 @@ public abstract class BsMUser extends AbstractEntity implements DomainEntity, En
 
     /**
      * [set] address2: {text(2147483647)} <br>
+     * その他住所2 : その他住所2
      * @param address2 The value of the column 'address2'. (NullAllowed: null update allowed for no constraint)
      */
     public void setAddress2(String address2) {
@@ -674,6 +773,7 @@ public abstract class BsMUser extends AbstractEntity implements DomainEntity, En
 
     /**
      * [get] remarks: {text(2147483647)} <br>
+     * 備考 : 備考
      * @return The value of the column 'remarks'. (NullAllowed even if selected: for no constraint)
      */
     public String getRemarks() {
@@ -683,6 +783,7 @@ public abstract class BsMUser extends AbstractEntity implements DomainEntity, En
 
     /**
      * [set] remarks: {text(2147483647)} <br>
+     * 備考 : 備考
      * @param remarks The value of the column 'remarks'. (NullAllowed: null update allowed for no constraint)
      */
     public void setRemarks(String remarks) {
@@ -692,6 +793,7 @@ public abstract class BsMUser extends AbstractEntity implements DomainEntity, En
 
     /**
      * [get] delete_flag: {NotNull, bool(1), default=[false]} <br>
+     * 削除フラグ
      * @return The value of the column 'delete_flag'. (basically NotNull if selected: for the constraint)
      */
     public Boolean getDeleteFlag() {
@@ -701,6 +803,7 @@ public abstract class BsMUser extends AbstractEntity implements DomainEntity, En
 
     /**
      * [set] delete_flag: {NotNull, bool(1), default=[false]} <br>
+     * 削除フラグ
      * @param deleteFlag The value of the column 'delete_flag'. (basically NotNull if update: for the constraint)
      */
     public void setDeleteFlag(Boolean deleteFlag) {
@@ -709,7 +812,28 @@ public abstract class BsMUser extends AbstractEntity implements DomainEntity, En
     }
 
     /**
+     * [get] version_no: {NotNull, int4(10), default=[1]} <br>
+     * version_no
+     * @return The value of the column 'version_no'. (basically NotNull if selected: for the constraint)
+     */
+    public Integer getVersionNo() {
+        checkSpecifiedProperty("versionNo");
+        return _versionNo;
+    }
+
+    /**
+     * [set] version_no: {NotNull, int4(10), default=[1]} <br>
+     * version_no
+     * @param versionNo The value of the column 'version_no'. (basically NotNull if update: for the constraint)
+     */
+    public void setVersionNo(Integer versionNo) {
+        registerModifiedProperty("versionNo");
+        _versionNo = versionNo;
+    }
+
+    /**
      * [get] register_datetime: {NotNull, timestamp(26, 3), default=[now()]} <br>
+     * 登録日時
      * @return The value of the column 'register_datetime'. (basically NotNull if selected: for the constraint)
      */
     public java.time.LocalDateTime getRegisterDatetime() {
@@ -719,6 +843,7 @@ public abstract class BsMUser extends AbstractEntity implements DomainEntity, En
 
     /**
      * [set] register_datetime: {NotNull, timestamp(26, 3), default=[now()]} <br>
+     * 登録日時
      * @param registerDatetime The value of the column 'register_datetime'. (basically NotNull if update: for the constraint)
      */
     public void setRegisterDatetime(java.time.LocalDateTime registerDatetime) {
@@ -728,6 +853,7 @@ public abstract class BsMUser extends AbstractEntity implements DomainEntity, En
 
     /**
      * [get] update_datetime: {timestamp(26, 3)} <br>
+     * 更新日時
      * @return The value of the column 'update_datetime'. (NullAllowed even if selected: for no constraint)
      */
     public java.time.LocalDateTime getUpdateDatetime() {
@@ -737,6 +863,7 @@ public abstract class BsMUser extends AbstractEntity implements DomainEntity, En
 
     /**
      * [set] update_datetime: {timestamp(26, 3)} <br>
+     * 更新日時
      * @param updateDatetime The value of the column 'update_datetime'. (NullAllowed: null update allowed for no constraint)
      */
     public void setUpdateDatetime(java.time.LocalDateTime updateDatetime) {

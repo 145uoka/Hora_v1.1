@@ -15,7 +15,7 @@ import com.olympus.hora.dbflute.cbean.*;
  *     staff_id
  *
  * [column]
- *     staff_id, family_name, given_name, phone1_1, phone1_2, phone1_3, delete_flag, register_datetime, update_datetime
+ *     staff_id, company_id, family_name, given_name, phone1_1, phone1_2, phone1_3, delete_flag, version_no, register_datetime, update_datetime
  *
  * [sequence]
  *     m_staff_staff_id_seq
@@ -24,19 +24,19 @@ import com.olympus.hora.dbflute.cbean.*;
  *     
  *
  * [version-no]
- *     
+ *     version_no
  *
  * [foreign table]
- *     
+ *     m_company
  *
  * [referrer table]
- *     m_working_staff, t_reservation, t_shift
+ *     m_working_staff
  *
  * [foreign property]
- *     
+ *     mCompany
  *
  * [referrer property]
- *     mWorkingStaffList, tReservationList, tShiftList
+ *     mWorkingStaffList
  * </pre>
  * @author DBFlute(AutoGenerator)
  */
@@ -95,77 +95,16 @@ public class LoaderOfMStaff {
         return hd -> hd.handle(new LoaderOfMWorkingStaff().ready(_referrerMWorkingStaff, _selector));
     }
 
-    protected List<TReservation> _referrerTReservation;
-
-    /**
-     * Load referrer of TReservationList by the set-upper of referrer. <br>
-     * t_reservation by staff_id, named 'TReservationList'.
-     * <pre>
-     * <span style="color: #0000C0">mStaffBhv</span>.<span style="color: #994747">load</span>(<span style="color: #553000">mStaffList</span>, <span style="color: #553000">staffLoader</span> <span style="color: #90226C; font-weight: bold"><span style="font-size: 120%">-</span>&gt;</span> {
-     *     <span style="color: #553000">staffLoader</span>.<span style="color: #CC4747">loadTReservation</span>(<span style="color: #553000">reservationCB</span> <span style="color: #90226C; font-weight: bold"><span style="font-size: 120%">-</span>&gt;</span> {
-     *         <span style="color: #553000">reservationCB</span>.setupSelect...
-     *         <span style="color: #553000">reservationCB</span>.query().set...
-     *         <span style="color: #553000">reservationCB</span>.query().addOrderBy...
-     *     }); <span style="color: #3F7E5E">// you can load nested referrer from here</span>
-     *     <span style="color: #3F7E5E">//}).withNestedReferrer(<span style="color: #553000">reservationLoader</span> -&gt; {</span>
-     *     <span style="color: #3F7E5E">//    reservationLoader.load...</span>
-     *     <span style="color: #3F7E5E">//});</span>
-     * });
-     * for (MStaff mStaff : <span style="color: #553000">mStaffList</span>) {
-     *     ... = mStaff.<span style="color: #CC4747">getTReservationList()</span>;
-     * }
-     * </pre>
-     * About internal policy, the value of primary key (and others too) is treated as case-insensitive. <br>
-     * The condition-bean, which the set-upper provides, has settings before callback as follows:
-     * <pre>
-     * cb.query().setStaffId_InScope(pkList);
-     * cb.query().addOrderBy_StaffId_Asc();
-     * </pre>
-     * @param refCBLambda The callback to set up referrer condition-bean for loading referrer. (NotNull)
-     * @return The callback interface which you can load nested referrer by calling withNestedReferrer(). (NotNull)
-     */
-    public NestedReferrerLoaderGateway<LoaderOfTReservation> loadTReservation(ReferrerConditionSetupper<TReservationCB> refCBLambda) {
-        myBhv().loadTReservation(_selectedList, refCBLambda).withNestedReferrer(refLs -> _referrerTReservation = refLs);
-        return hd -> hd.handle(new LoaderOfTReservation().ready(_referrerTReservation, _selector));
-    }
-
-    protected List<TShift> _referrerTShift;
-
-    /**
-     * Load referrer of TShiftList by the set-upper of referrer. <br>
-     * t_shift by staff_id, named 'TShiftList'.
-     * <pre>
-     * <span style="color: #0000C0">mStaffBhv</span>.<span style="color: #994747">load</span>(<span style="color: #553000">mStaffList</span>, <span style="color: #553000">staffLoader</span> <span style="color: #90226C; font-weight: bold"><span style="font-size: 120%">-</span>&gt;</span> {
-     *     <span style="color: #553000">staffLoader</span>.<span style="color: #CC4747">loadTShift</span>(<span style="color: #553000">shiftCB</span> <span style="color: #90226C; font-weight: bold"><span style="font-size: 120%">-</span>&gt;</span> {
-     *         <span style="color: #553000">shiftCB</span>.setupSelect...
-     *         <span style="color: #553000">shiftCB</span>.query().set...
-     *         <span style="color: #553000">shiftCB</span>.query().addOrderBy...
-     *     }); <span style="color: #3F7E5E">// you can load nested referrer from here</span>
-     *     <span style="color: #3F7E5E">//}).withNestedReferrer(<span style="color: #553000">shiftLoader</span> -&gt; {</span>
-     *     <span style="color: #3F7E5E">//    shiftLoader.load...</span>
-     *     <span style="color: #3F7E5E">//});</span>
-     * });
-     * for (MStaff mStaff : <span style="color: #553000">mStaffList</span>) {
-     *     ... = mStaff.<span style="color: #CC4747">getTShiftList()</span>;
-     * }
-     * </pre>
-     * About internal policy, the value of primary key (and others too) is treated as case-insensitive. <br>
-     * The condition-bean, which the set-upper provides, has settings before callback as follows:
-     * <pre>
-     * cb.query().setStaffId_InScope(pkList);
-     * cb.query().addOrderBy_StaffId_Asc();
-     * </pre>
-     * @param refCBLambda The callback to set up referrer condition-bean for loading referrer. (NotNull)
-     * @return The callback interface which you can load nested referrer by calling withNestedReferrer(). (NotNull)
-     */
-    public NestedReferrerLoaderGateway<LoaderOfTShift> loadTShift(ReferrerConditionSetupper<TShiftCB> refCBLambda) {
-        myBhv().loadTShift(_selectedList, refCBLambda).withNestedReferrer(refLs -> _referrerTShift = refLs);
-        return hd -> hd.handle(new LoaderOfTShift().ready(_referrerTShift, _selector));
-    }
-
     // ===================================================================================
     //                                                                    Pull out Foreign
     //                                                                    ================
+    protected LoaderOfMCompany _foreignMCompanyLoader;
+    public LoaderOfMCompany pulloutMCompany() {
+        if (_foreignMCompanyLoader == null)
+        { _foreignMCompanyLoader = new LoaderOfMCompany().ready(myBhv().pulloutMCompany(_selectedList), _selector); }
+        return _foreignMCompanyLoader;
+    }
+
     // ===================================================================================
     //                                                                            Accessor
     //                                                                            ========

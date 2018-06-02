@@ -67,6 +67,7 @@ public class MCodeCIQ extends AbstractBsMCodeCQ {
     protected ConditionValue xgetCValueCode2() { return _myCQ.xdfgetCode2(); }
     protected ConditionValue xgetCValueName() { return _myCQ.xdfgetName(); }
     protected ConditionValue xgetCValueDeleteFlag() { return _myCQ.xdfgetDeleteFlag(); }
+    protected ConditionValue xgetCValueVersionNo() { return _myCQ.xdfgetVersionNo(); }
     protected ConditionValue xgetCValueRegisterDatetime() { return _myCQ.xdfgetRegisterDatetime(); }
     protected ConditionValue xgetCValueUpdateDatetime() { return _myCQ.xdfgetUpdateDatetime(); }
     protected Map<String, Object> xfindFixedConditionDynamicParameterMap(String pp) { return null; }

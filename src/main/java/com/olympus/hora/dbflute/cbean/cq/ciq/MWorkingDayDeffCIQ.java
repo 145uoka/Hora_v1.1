@@ -75,6 +75,7 @@ public class MWorkingDayDeffCIQ extends AbstractBsMWorkingDayDeffCQ {
     protected ConditionValue xgetCValueShopId() { return _myCQ.xdfgetShopId(); }
     protected ConditionValue xgetCValueStartDay() { return _myCQ.xdfgetStartDay(); }
     protected ConditionValue xgetCValueDeleteFlag() { return _myCQ.xdfgetDeleteFlag(); }
+    protected ConditionValue xgetCValueVersionNo() { return _myCQ.xdfgetVersionNo(); }
     protected ConditionValue xgetCValueRegisterDatetime() { return _myCQ.xdfgetRegisterDatetime(); }
     protected ConditionValue xgetCValueUpdateDatetime() { return _myCQ.xdfgetUpdateDatetime(); }
     protected Map<String, Object> xfindFixedConditionDynamicParameterMap(String pp) { return null; }

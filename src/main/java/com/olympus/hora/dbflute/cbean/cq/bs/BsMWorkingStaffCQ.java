@@ -79,6 +79,34 @@ public class BsMWorkingStaffCQ extends AbstractBsMWorkingStaffCQ {
       return _workingStaffId; }
     protected ConditionValue xgetCValueWorkingStaffId() { return xdfgetWorkingStaffId(); }
 
+    public Map<String, TReservationCQ> xdfgetWorkingStaffId_ExistsReferrer_TReservationList() { return xgetSQueMap("workingStaffId_ExistsReferrer_TReservationList"); }
+    public String keepWorkingStaffId_ExistsReferrer_TReservationList(TReservationCQ sq) { return xkeepSQue("workingStaffId_ExistsReferrer_TReservationList", sq); }
+
+    public Map<String, TShiftCQ> xdfgetWorkingStaffId_ExistsReferrer_TShiftList() { return xgetSQueMap("workingStaffId_ExistsReferrer_TShiftList"); }
+    public String keepWorkingStaffId_ExistsReferrer_TShiftList(TShiftCQ sq) { return xkeepSQue("workingStaffId_ExistsReferrer_TShiftList", sq); }
+
+    public Map<String, TReservationCQ> xdfgetWorkingStaffId_NotExistsReferrer_TReservationList() { return xgetSQueMap("workingStaffId_NotExistsReferrer_TReservationList"); }
+    public String keepWorkingStaffId_NotExistsReferrer_TReservationList(TReservationCQ sq) { return xkeepSQue("workingStaffId_NotExistsReferrer_TReservationList", sq); }
+
+    public Map<String, TShiftCQ> xdfgetWorkingStaffId_NotExistsReferrer_TShiftList() { return xgetSQueMap("workingStaffId_NotExistsReferrer_TShiftList"); }
+    public String keepWorkingStaffId_NotExistsReferrer_TShiftList(TShiftCQ sq) { return xkeepSQue("workingStaffId_NotExistsReferrer_TShiftList", sq); }
+
+    public Map<String, TReservationCQ> xdfgetWorkingStaffId_SpecifyDerivedReferrer_TReservationList() { return xgetSQueMap("workingStaffId_SpecifyDerivedReferrer_TReservationList"); }
+    public String keepWorkingStaffId_SpecifyDerivedReferrer_TReservationList(TReservationCQ sq) { return xkeepSQue("workingStaffId_SpecifyDerivedReferrer_TReservationList", sq); }
+
+    public Map<String, TShiftCQ> xdfgetWorkingStaffId_SpecifyDerivedReferrer_TShiftList() { return xgetSQueMap("workingStaffId_SpecifyDerivedReferrer_TShiftList"); }
+    public String keepWorkingStaffId_SpecifyDerivedReferrer_TShiftList(TShiftCQ sq) { return xkeepSQue("workingStaffId_SpecifyDerivedReferrer_TShiftList", sq); }
+
+    public Map<String, TReservationCQ> xdfgetWorkingStaffId_QueryDerivedReferrer_TReservationList() { return xgetSQueMap("workingStaffId_QueryDerivedReferrer_TReservationList"); }
+    public String keepWorkingStaffId_QueryDerivedReferrer_TReservationList(TReservationCQ sq) { return xkeepSQue("workingStaffId_QueryDerivedReferrer_TReservationList", sq); }
+    public Map<String, Object> xdfgetWorkingStaffId_QueryDerivedReferrer_TReservationListParameter() { return xgetSQuePmMap("workingStaffId_QueryDerivedReferrer_TReservationList"); }
+    public String keepWorkingStaffId_QueryDerivedReferrer_TReservationListParameter(Object pm) { return xkeepSQuePm("workingStaffId_QueryDerivedReferrer_TReservationList", pm); }
+
+    public Map<String, TShiftCQ> xdfgetWorkingStaffId_QueryDerivedReferrer_TShiftList() { return xgetSQueMap("workingStaffId_QueryDerivedReferrer_TShiftList"); }
+    public String keepWorkingStaffId_QueryDerivedReferrer_TShiftList(TShiftCQ sq) { return xkeepSQue("workingStaffId_QueryDerivedReferrer_TShiftList", sq); }
+    public Map<String, Object> xdfgetWorkingStaffId_QueryDerivedReferrer_TShiftListParameter() { return xgetSQuePmMap("workingStaffId_QueryDerivedReferrer_TShiftList"); }
+    public String keepWorkingStaffId_QueryDerivedReferrer_TShiftListParameter(Object pm) { return xkeepSQuePm("workingStaffId_QueryDerivedReferrer_TShiftList", pm); }
+
     /**
      * Add order-by as ascend. <br>
      * working_staff_id: {PK, ID, NotNull, serial(10)}
@@ -152,6 +180,26 @@ public class BsMWorkingStaffCQ extends AbstractBsMWorkingStaffCQ {
      * @return this. (NotNull)
      */
     public BsMWorkingStaffCQ addOrderBy_DeleteFlag_Desc() { regOBD("delete_flag"); return this; }
+
+    protected ConditionValue _versionNo;
+    public ConditionValue xdfgetVersionNo()
+    { if (_versionNo == null) { _versionNo = nCV(); }
+      return _versionNo; }
+    protected ConditionValue xgetCValueVersionNo() { return xdfgetVersionNo(); }
+
+    /**
+     * Add order-by as ascend. <br>
+     * version_no: {NotNull, int4(10), default=[1]}
+     * @return this. (NotNull)
+     */
+    public BsMWorkingStaffCQ addOrderBy_VersionNo_Asc() { regOBA("version_no"); return this; }
+
+    /**
+     * Add order-by as descend. <br>
+     * version_no: {NotNull, int4(10), default=[1]}
+     * @return this. (NotNull)
+     */
+    public BsMWorkingStaffCQ addOrderBy_VersionNo_Desc() { regOBD("version_no"); return this; }
 
     protected ConditionValue _registerDatetime;
     public ConditionValue xdfgetRegisterDatetime()

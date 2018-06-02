@@ -107,6 +107,46 @@ public class BsMUserCQ extends AbstractBsMUserCQ {
      */
     public BsMUserCQ addOrderBy_UserId_Desc() { regOBD("user_id"); return this; }
 
+    protected ConditionValue _lineId;
+    public ConditionValue xdfgetLineId()
+    { if (_lineId == null) { _lineId = nCV(); }
+      return _lineId; }
+    protected ConditionValue xgetCValueLineId() { return xdfgetLineId(); }
+
+    /**
+     * Add order-by as ascend. <br>
+     * line_id: {text(2147483647)}
+     * @return this. (NotNull)
+     */
+    public BsMUserCQ addOrderBy_LineId_Asc() { regOBA("line_id"); return this; }
+
+    /**
+     * Add order-by as descend. <br>
+     * line_id: {text(2147483647)}
+     * @return this. (NotNull)
+     */
+    public BsMUserCQ addOrderBy_LineId_Desc() { regOBD("line_id"); return this; }
+
+    protected ConditionValue _lineName;
+    public ConditionValue xdfgetLineName()
+    { if (_lineName == null) { _lineName = nCV(); }
+      return _lineName; }
+    protected ConditionValue xgetCValueLineName() { return xdfgetLineName(); }
+
+    /**
+     * Add order-by as ascend. <br>
+     * line_name: {text(2147483647)}
+     * @return this. (NotNull)
+     */
+    public BsMUserCQ addOrderBy_LineName_Asc() { regOBA("line_name"); return this; }
+
+    /**
+     * Add order-by as descend. <br>
+     * line_name: {text(2147483647)}
+     * @return this. (NotNull)
+     */
+    public BsMUserCQ addOrderBy_LineName_Desc() { regOBD("line_name"); return this; }
+
     protected ConditionValue _familyName;
     public ConditionValue xdfgetFamilyName()
     { if (_familyName == null) { _familyName = nCV(); }
@@ -526,6 +566,26 @@ public class BsMUserCQ extends AbstractBsMUserCQ {
      * @return this. (NotNull)
      */
     public BsMUserCQ addOrderBy_DeleteFlag_Desc() { regOBD("delete_flag"); return this; }
+
+    protected ConditionValue _versionNo;
+    public ConditionValue xdfgetVersionNo()
+    { if (_versionNo == null) { _versionNo = nCV(); }
+      return _versionNo; }
+    protected ConditionValue xgetCValueVersionNo() { return xdfgetVersionNo(); }
+
+    /**
+     * Add order-by as ascend. <br>
+     * version_no: {NotNull, int4(10), default=[1]}
+     * @return this. (NotNull)
+     */
+    public BsMUserCQ addOrderBy_VersionNo_Asc() { regOBA("version_no"); return this; }
+
+    /**
+     * Add order-by as descend. <br>
+     * version_no: {NotNull, int4(10), default=[1]}
+     * @return this. (NotNull)
+     */
+    public BsMUserCQ addOrderBy_VersionNo_Desc() { regOBD("version_no"); return this; }
 
     protected ConditionValue _registerDatetime;
     public ConditionValue xdfgetRegisterDatetime()

@@ -13,7 +13,7 @@ import com.olympus.hora.dbflute.exentity.*;
  *     reservation_detail_id
  *
  * [column]
- *     reservation_detail_id, reservation_id, course_id, hist_course_name, delete_flag, register_datetime, update_datetime
+ *     reservation_detail_id, reservation_id, course_id, hist_course_name, delete_flag, version_no, register_datetime, update_datetime
  *
  * [sequence]
  *     t_reservation_detail_reservation_detail_id_seq
@@ -22,7 +22,7 @@ import com.olympus.hora.dbflute.exentity.*;
  *     
  *
  * [version-no]
- *     
+ *     version_no
  *
  * [foreign table]
  *     m_course, t_reservation

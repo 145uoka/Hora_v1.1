@@ -61,6 +61,8 @@ public class MCourseGroupCIQ extends AbstractBsMCourseGroupCQ {
     // ===================================================================================
     //                                                                Override about Query
     //                                                                ====================
+    protected ConditionValue xgetCValueShopId() { return _myCQ.xdfgetShopId(); }
+    protected ConditionValue xgetCValueGroupName() { return _myCQ.xdfgetGroupName(); }
     protected ConditionValue xgetCValueCourseGroupId() { return _myCQ.xdfgetCourseGroupId(); }
     public String keepCourseGroupId_ExistsReferrer_MCourseList(MCourseCQ sq)
     { throwIICBOE("ExistsReferrer"); return null; }
@@ -72,11 +74,10 @@ public class MCourseGroupCIQ extends AbstractBsMCourseGroupCQ {
     { throwIICBOE("(Query)DerivedReferrer"); return null; }
     public String keepCourseGroupId_QueryDerivedReferrer_MCourseListParameter(Object vl)
     { throwIICBOE("(Query)DerivedReferrer"); return null; }
-    protected ConditionValue xgetCValueShopId() { return _myCQ.xdfgetShopId(); }
-    protected ConditionValue xgetCValueGroupName() { return _myCQ.xdfgetGroupName(); }
     protected ConditionValue xgetCValueRequiredFlg() { return _myCQ.xdfgetRequiredFlg(); }
     protected ConditionValue xgetCValueReamarks() { return _myCQ.xdfgetReamarks(); }
     protected ConditionValue xgetCValueDeleteFlag() { return _myCQ.xdfgetDeleteFlag(); }
+    protected ConditionValue xgetCValueVersionNo() { return _myCQ.xdfgetVersionNo(); }
     protected ConditionValue xgetCValueRegisterDatetime() { return _myCQ.xdfgetRegisterDatetime(); }
     protected ConditionValue xgetCValueUpdateDatetime() { return _myCQ.xdfgetUpdateDatetime(); }
     protected Map<String, Object> xfindFixedConditionDynamicParameterMap(String pp) { return null; }

@@ -13,7 +13,7 @@ import com.olympus.hora.dbflute.exentity.*;
  *     shift_id
  *
  * [column]
- *     shift_id, working_day_id, staff_id, start_time, end_time, delete_flag, register_datetime, update_datetime
+ *     shift_id, working_staff_id, working_day_id, start_time, end_time, delete_flag, version_no, register_datetime, update_datetime
  *
  * [sequence]
  *     t_shift_shift_id_seq
@@ -22,16 +22,16 @@ import com.olympus.hora.dbflute.exentity.*;
  *     
  *
  * [version-no]
- *     
+ *     version_no
  *
  * [foreign table]
- *     m_staff, m_working_day
+ *     m_working_day, m_working_staff
  *
  * [referrer table]
  *     
  *
  * [foreign property]
- *     mStaff, mWorkingDay
+ *     mWorkingDay, mWorkingStaff
  *
  * [referrer property]
  *     
@@ -59,18 +59,18 @@ public class LoaderOfTShift {
     // ===================================================================================
     //                                                                    Pull out Foreign
     //                                                                    ================
-    protected LoaderOfMStaff _foreignMStaffLoader;
-    public LoaderOfMStaff pulloutMStaff() {
-        if (_foreignMStaffLoader == null)
-        { _foreignMStaffLoader = new LoaderOfMStaff().ready(myBhv().pulloutMStaff(_selectedList), _selector); }
-        return _foreignMStaffLoader;
-    }
-
     protected LoaderOfMWorkingDay _foreignMWorkingDayLoader;
     public LoaderOfMWorkingDay pulloutMWorkingDay() {
         if (_foreignMWorkingDayLoader == null)
         { _foreignMWorkingDayLoader = new LoaderOfMWorkingDay().ready(myBhv().pulloutMWorkingDay(_selectedList), _selector); }
         return _foreignMWorkingDayLoader;
+    }
+
+    protected LoaderOfMWorkingStaff _foreignMWorkingStaffLoader;
+    public LoaderOfMWorkingStaff pulloutMWorkingStaff() {
+        if (_foreignMWorkingStaffLoader == null)
+        { _foreignMWorkingStaffLoader = new LoaderOfMWorkingStaff().ready(myBhv().pulloutMWorkingStaff(_selectedList), _selector); }
+        return _foreignMWorkingStaffLoader;
     }
 
     // ===================================================================================

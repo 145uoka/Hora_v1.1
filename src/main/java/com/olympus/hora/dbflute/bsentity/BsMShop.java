@@ -14,12 +14,13 @@ import com.olympus.hora.dbflute.exentity.*;
 
 /**
  * The entity of m_shop as TABLE. <br>
+ * 店舗マスタ
  * <pre>
  * [primary-key]
  *     shop_id
  *
  * [column]
- *     shop_id, company_id, shop_abbreviated_name, shop_name, phone1_1, phone1_2, phone1_3, phone2_1, phone2_2, phone2_3, fax_1, fax_2, fax_3, email1, email2, url, prefecture, city, address1, address2, remarks, delete_flag, register_datetime, update_datetime
+ *     shop_id, company_id, shop_abbreviated_name, shop_name, phone1_1, phone1_2, phone1_3, phone2_1, phone2_2, phone2_3, fax_1, fax_2, fax_3, email1, email2, url, prefecture, city, address1, address2, remarks, delete_flag, version_no, register_datetime, update_datetime
  *
  * [sequence]
  *     m_shop_shop_id_seq
@@ -28,7 +29,7 @@ import com.olympus.hora.dbflute.exentity.*;
  *     
  *
  * [version-no]
- *     
+ *     version_no
  *
  * [foreign table]
  *     m_company
@@ -66,6 +67,7 @@ import com.olympus.hora.dbflute.exentity.*;
  * String address2 = entity.getAddress2();
  * String remarks = entity.getRemarks();
  * Boolean deleteFlag = entity.getDeleteFlag();
+ * Integer versionNo = entity.getVersionNo();
  * java.time.LocalDateTime registerDatetime = entity.getRegisterDatetime();
  * java.time.LocalDateTime updateDatetime = entity.getUpdateDatetime();
  * entity.setShopId(shopId);
@@ -90,6 +92,7 @@ import com.olympus.hora.dbflute.exentity.*;
  * entity.setAddress2(address2);
  * entity.setRemarks(remarks);
  * entity.setDeleteFlag(deleteFlag);
+ * entity.setVersionNo(versionNo);
  * entity.setRegisterDatetime(registerDatetime);
  * entity.setUpdateDatetime(updateDatetime);
  * = = = = = = = = = =/
@@ -172,6 +175,9 @@ public abstract class BsMShop extends AbstractEntity implements DomainEntity, En
 
     /** delete_flag: {NotNull, bool(1), default=[false]} */
     protected Boolean _deleteFlag;
+
+    /** version_no: {NotNull, int4(10), default=[1]} */
+    protected Integer _versionNo;
 
     /** register_datetime: {NotNull, timestamp(26, 3), default=[now()]} */
     protected java.time.LocalDateTime _registerDatetime;
@@ -400,6 +406,7 @@ public abstract class BsMShop extends AbstractEntity implements DomainEntity, En
         sb.append(dm).append(xfND(_address2));
         sb.append(dm).append(xfND(_remarks));
         sb.append(dm).append(xfND(_deleteFlag));
+        sb.append(dm).append(xfND(_versionNo));
         sb.append(dm).append(xfND(_registerDatetime));
         sb.append(dm).append(xfND(_updateDatetime));
         if (sb.length() > dm.length()) {
@@ -440,6 +447,7 @@ public abstract class BsMShop extends AbstractEntity implements DomainEntity, En
     //                                                                            ========
     /**
      * [get] shop_id: {PK, ID, NotNull, serial(10)} <br>
+     * 店舗ID : 店舗ID
      * @return The value of the column 'shop_id'. (basically NotNull if selected: for the constraint)
      */
     public Integer getShopId() {
@@ -449,6 +457,7 @@ public abstract class BsMShop extends AbstractEntity implements DomainEntity, En
 
     /**
      * [set] shop_id: {PK, ID, NotNull, serial(10)} <br>
+     * 店舗ID : 店舗ID
      * @param shopId The value of the column 'shop_id'. (basically NotNull if update: for the constraint)
      */
     public void setShopId(Integer shopId) {
@@ -458,6 +467,7 @@ public abstract class BsMShop extends AbstractEntity implements DomainEntity, En
 
     /**
      * [get] company_id: {int4(10), FK to m_company} <br>
+     * 企業ID : 企業ID
      * @return The value of the column 'company_id'. (NullAllowed even if selected: for no constraint)
      */
     public Integer getCompanyId() {
@@ -467,6 +477,7 @@ public abstract class BsMShop extends AbstractEntity implements DomainEntity, En
 
     /**
      * [set] company_id: {int4(10), FK to m_company} <br>
+     * 企業ID : 企業ID
      * @param companyId The value of the column 'company_id'. (NullAllowed: null update allowed for no constraint)
      */
     public void setCompanyId(Integer companyId) {
@@ -476,6 +487,7 @@ public abstract class BsMShop extends AbstractEntity implements DomainEntity, En
 
     /**
      * [get] shop_abbreviated_name: {text(2147483647)} <br>
+     * 店舗略名 : 店舗略名
      * @return The value of the column 'shop_abbreviated_name'. (NullAllowed even if selected: for no constraint)
      */
     public String getShopAbbreviatedName() {
@@ -485,6 +497,7 @@ public abstract class BsMShop extends AbstractEntity implements DomainEntity, En
 
     /**
      * [set] shop_abbreviated_name: {text(2147483647)} <br>
+     * 店舗略名 : 店舗略名
      * @param shopAbbreviatedName The value of the column 'shop_abbreviated_name'. (NullAllowed: null update allowed for no constraint)
      */
     public void setShopAbbreviatedName(String shopAbbreviatedName) {
@@ -494,6 +507,7 @@ public abstract class BsMShop extends AbstractEntity implements DomainEntity, En
 
     /**
      * [get] shop_name: {text(2147483647)} <br>
+     * 店舗名 : 店舗名
      * @return The value of the column 'shop_name'. (NullAllowed even if selected: for no constraint)
      */
     public String getShopName() {
@@ -503,6 +517,7 @@ public abstract class BsMShop extends AbstractEntity implements DomainEntity, En
 
     /**
      * [set] shop_name: {text(2147483647)} <br>
+     * 店舗名 : 店舗名
      * @param shopName The value of the column 'shop_name'. (NullAllowed: null update allowed for no constraint)
      */
     public void setShopName(String shopName) {
@@ -512,6 +527,7 @@ public abstract class BsMShop extends AbstractEntity implements DomainEntity, En
 
     /**
      * [get] phone1_1: {text(2147483647)} <br>
+     * 電話番号1_1 : 電話番号1_1
      * @return The value of the column 'phone1_1'. (NullAllowed even if selected: for no constraint)
      */
     public String getPhone11() {
@@ -521,6 +537,7 @@ public abstract class BsMShop extends AbstractEntity implements DomainEntity, En
 
     /**
      * [set] phone1_1: {text(2147483647)} <br>
+     * 電話番号1_1 : 電話番号1_1
      * @param phone11 The value of the column 'phone1_1'. (NullAllowed: null update allowed for no constraint)
      */
     public void setPhone11(String phone11) {
@@ -530,6 +547,7 @@ public abstract class BsMShop extends AbstractEntity implements DomainEntity, En
 
     /**
      * [get] phone1_2: {text(2147483647)} <br>
+     * 電話番号1_2 : 電話番号1_2
      * @return The value of the column 'phone1_2'. (NullAllowed even if selected: for no constraint)
      */
     public String getPhone12() {
@@ -539,6 +557,7 @@ public abstract class BsMShop extends AbstractEntity implements DomainEntity, En
 
     /**
      * [set] phone1_2: {text(2147483647)} <br>
+     * 電話番号1_2 : 電話番号1_2
      * @param phone12 The value of the column 'phone1_2'. (NullAllowed: null update allowed for no constraint)
      */
     public void setPhone12(String phone12) {
@@ -548,6 +567,7 @@ public abstract class BsMShop extends AbstractEntity implements DomainEntity, En
 
     /**
      * [get] phone1_3: {text(2147483647)} <br>
+     * 電話番号1_3 : 電話番号1_3
      * @return The value of the column 'phone1_3'. (NullAllowed even if selected: for no constraint)
      */
     public String getPhone13() {
@@ -557,6 +577,7 @@ public abstract class BsMShop extends AbstractEntity implements DomainEntity, En
 
     /**
      * [set] phone1_3: {text(2147483647)} <br>
+     * 電話番号1_3 : 電話番号1_3
      * @param phone13 The value of the column 'phone1_3'. (NullAllowed: null update allowed for no constraint)
      */
     public void setPhone13(String phone13) {
@@ -566,6 +587,7 @@ public abstract class BsMShop extends AbstractEntity implements DomainEntity, En
 
     /**
      * [get] phone2_1: {text(2147483647)} <br>
+     * 電話番号2_1 : 電話番号2_1
      * @return The value of the column 'phone2_1'. (NullAllowed even if selected: for no constraint)
      */
     public String getPhone21() {
@@ -575,6 +597,7 @@ public abstract class BsMShop extends AbstractEntity implements DomainEntity, En
 
     /**
      * [set] phone2_1: {text(2147483647)} <br>
+     * 電話番号2_1 : 電話番号2_1
      * @param phone21 The value of the column 'phone2_1'. (NullAllowed: null update allowed for no constraint)
      */
     public void setPhone21(String phone21) {
@@ -584,6 +607,7 @@ public abstract class BsMShop extends AbstractEntity implements DomainEntity, En
 
     /**
      * [get] phone2_2: {text(2147483647)} <br>
+     * 電話番号2_2 : 電話番号2_2
      * @return The value of the column 'phone2_2'. (NullAllowed even if selected: for no constraint)
      */
     public String getPhone22() {
@@ -593,6 +617,7 @@ public abstract class BsMShop extends AbstractEntity implements DomainEntity, En
 
     /**
      * [set] phone2_2: {text(2147483647)} <br>
+     * 電話番号2_2 : 電話番号2_2
      * @param phone22 The value of the column 'phone2_2'. (NullAllowed: null update allowed for no constraint)
      */
     public void setPhone22(String phone22) {
@@ -602,6 +627,7 @@ public abstract class BsMShop extends AbstractEntity implements DomainEntity, En
 
     /**
      * [get] phone2_3: {text(2147483647)} <br>
+     * 電話番号2_3 : 電話番号2_3
      * @return The value of the column 'phone2_3'. (NullAllowed even if selected: for no constraint)
      */
     public String getPhone23() {
@@ -611,6 +637,7 @@ public abstract class BsMShop extends AbstractEntity implements DomainEntity, En
 
     /**
      * [set] phone2_3: {text(2147483647)} <br>
+     * 電話番号2_3 : 電話番号2_3
      * @param phone23 The value of the column 'phone2_3'. (NullAllowed: null update allowed for no constraint)
      */
     public void setPhone23(String phone23) {
@@ -620,6 +647,7 @@ public abstract class BsMShop extends AbstractEntity implements DomainEntity, En
 
     /**
      * [get] fax_1: {text(2147483647)} <br>
+     * FAX_1 : FAX_1
      * @return The value of the column 'fax_1'. (NullAllowed even if selected: for no constraint)
      */
     public String getFax1() {
@@ -629,6 +657,7 @@ public abstract class BsMShop extends AbstractEntity implements DomainEntity, En
 
     /**
      * [set] fax_1: {text(2147483647)} <br>
+     * FAX_1 : FAX_1
      * @param fax1 The value of the column 'fax_1'. (NullAllowed: null update allowed for no constraint)
      */
     public void setFax1(String fax1) {
@@ -638,6 +667,7 @@ public abstract class BsMShop extends AbstractEntity implements DomainEntity, En
 
     /**
      * [get] fax_2: {text(2147483647)} <br>
+     * FAX_2 : FAX_2
      * @return The value of the column 'fax_2'. (NullAllowed even if selected: for no constraint)
      */
     public String getFax2() {
@@ -647,6 +677,7 @@ public abstract class BsMShop extends AbstractEntity implements DomainEntity, En
 
     /**
      * [set] fax_2: {text(2147483647)} <br>
+     * FAX_2 : FAX_2
      * @param fax2 The value of the column 'fax_2'. (NullAllowed: null update allowed for no constraint)
      */
     public void setFax2(String fax2) {
@@ -656,6 +687,7 @@ public abstract class BsMShop extends AbstractEntity implements DomainEntity, En
 
     /**
      * [get] fax_3: {text(2147483647)} <br>
+     * FAX_3 : FAX_3
      * @return The value of the column 'fax_3'. (NullAllowed even if selected: for no constraint)
      */
     public String getFax3() {
@@ -665,6 +697,7 @@ public abstract class BsMShop extends AbstractEntity implements DomainEntity, En
 
     /**
      * [set] fax_3: {text(2147483647)} <br>
+     * FAX_3 : FAX_3
      * @param fax3 The value of the column 'fax_3'. (NullAllowed: null update allowed for no constraint)
      */
     public void setFax3(String fax3) {
@@ -674,6 +707,7 @@ public abstract class BsMShop extends AbstractEntity implements DomainEntity, En
 
     /**
      * [get] email1: {text(2147483647)} <br>
+     * メールアドレス1 : メールアドレス1
      * @return The value of the column 'email1'. (NullAllowed even if selected: for no constraint)
      */
     public String getEmail1() {
@@ -683,6 +717,7 @@ public abstract class BsMShop extends AbstractEntity implements DomainEntity, En
 
     /**
      * [set] email1: {text(2147483647)} <br>
+     * メールアドレス1 : メールアドレス1
      * @param email1 The value of the column 'email1'. (NullAllowed: null update allowed for no constraint)
      */
     public void setEmail1(String email1) {
@@ -692,6 +727,7 @@ public abstract class BsMShop extends AbstractEntity implements DomainEntity, En
 
     /**
      * [get] email2: {text(2147483647)} <br>
+     * メールアドレス2 : メールアドレス2
      * @return The value of the column 'email2'. (NullAllowed even if selected: for no constraint)
      */
     public String getEmail2() {
@@ -701,6 +737,7 @@ public abstract class BsMShop extends AbstractEntity implements DomainEntity, En
 
     /**
      * [set] email2: {text(2147483647)} <br>
+     * メールアドレス2 : メールアドレス2
      * @param email2 The value of the column 'email2'. (NullAllowed: null update allowed for no constraint)
      */
     public void setEmail2(String email2) {
@@ -710,6 +747,7 @@ public abstract class BsMShop extends AbstractEntity implements DomainEntity, En
 
     /**
      * [get] url: {text(2147483647)} <br>
+     * URL : URL
      * @return The value of the column 'url'. (NullAllowed even if selected: for no constraint)
      */
     public String getUrl() {
@@ -719,6 +757,7 @@ public abstract class BsMShop extends AbstractEntity implements DomainEntity, En
 
     /**
      * [set] url: {text(2147483647)} <br>
+     * URL : URL
      * @param url The value of the column 'url'. (NullAllowed: null update allowed for no constraint)
      */
     public void setUrl(String url) {
@@ -728,6 +767,7 @@ public abstract class BsMShop extends AbstractEntity implements DomainEntity, En
 
     /**
      * [get] prefecture: {int2(5)} <br>
+     * 都道府県 : 都道府県
      * @return The value of the column 'prefecture'. (NullAllowed even if selected: for no constraint)
      */
     public Integer getPrefecture() {
@@ -737,6 +777,7 @@ public abstract class BsMShop extends AbstractEntity implements DomainEntity, En
 
     /**
      * [set] prefecture: {int2(5)} <br>
+     * 都道府県 : 都道府県
      * @param prefecture The value of the column 'prefecture'. (NullAllowed: null update allowed for no constraint)
      */
     public void setPrefecture(Integer prefecture) {
@@ -746,6 +787,7 @@ public abstract class BsMShop extends AbstractEntity implements DomainEntity, En
 
     /**
      * [get] city: {text(2147483647)} <br>
+     * 市区町村 : 市区町村
      * @return The value of the column 'city'. (NullAllowed even if selected: for no constraint)
      */
     public String getCity() {
@@ -755,6 +797,7 @@ public abstract class BsMShop extends AbstractEntity implements DomainEntity, En
 
     /**
      * [set] city: {text(2147483647)} <br>
+     * 市区町村 : 市区町村
      * @param city The value of the column 'city'. (NullAllowed: null update allowed for no constraint)
      */
     public void setCity(String city) {
@@ -764,6 +807,7 @@ public abstract class BsMShop extends AbstractEntity implements DomainEntity, En
 
     /**
      * [get] address1: {text(2147483647)} <br>
+     * その他住所1 : その他住所1
      * @return The value of the column 'address1'. (NullAllowed even if selected: for no constraint)
      */
     public String getAddress1() {
@@ -773,6 +817,7 @@ public abstract class BsMShop extends AbstractEntity implements DomainEntity, En
 
     /**
      * [set] address1: {text(2147483647)} <br>
+     * その他住所1 : その他住所1
      * @param address1 The value of the column 'address1'. (NullAllowed: null update allowed for no constraint)
      */
     public void setAddress1(String address1) {
@@ -782,6 +827,7 @@ public abstract class BsMShop extends AbstractEntity implements DomainEntity, En
 
     /**
      * [get] address2: {text(2147483647)} <br>
+     * その他住所2 : その他住所2
      * @return The value of the column 'address2'. (NullAllowed even if selected: for no constraint)
      */
     public String getAddress2() {
@@ -791,6 +837,7 @@ public abstract class BsMShop extends AbstractEntity implements DomainEntity, En
 
     /**
      * [set] address2: {text(2147483647)} <br>
+     * その他住所2 : その他住所2
      * @param address2 The value of the column 'address2'. (NullAllowed: null update allowed for no constraint)
      */
     public void setAddress2(String address2) {
@@ -800,6 +847,7 @@ public abstract class BsMShop extends AbstractEntity implements DomainEntity, En
 
     /**
      * [get] remarks: {text(2147483647)} <br>
+     * 備考 : 備考
      * @return The value of the column 'remarks'. (NullAllowed even if selected: for no constraint)
      */
     public String getRemarks() {
@@ -809,6 +857,7 @@ public abstract class BsMShop extends AbstractEntity implements DomainEntity, En
 
     /**
      * [set] remarks: {text(2147483647)} <br>
+     * 備考 : 備考
      * @param remarks The value of the column 'remarks'. (NullAllowed: null update allowed for no constraint)
      */
     public void setRemarks(String remarks) {
@@ -818,6 +867,7 @@ public abstract class BsMShop extends AbstractEntity implements DomainEntity, En
 
     /**
      * [get] delete_flag: {NotNull, bool(1), default=[false]} <br>
+     * 削除フラグ
      * @return The value of the column 'delete_flag'. (basically NotNull if selected: for the constraint)
      */
     public Boolean getDeleteFlag() {
@@ -827,6 +877,7 @@ public abstract class BsMShop extends AbstractEntity implements DomainEntity, En
 
     /**
      * [set] delete_flag: {NotNull, bool(1), default=[false]} <br>
+     * 削除フラグ
      * @param deleteFlag The value of the column 'delete_flag'. (basically NotNull if update: for the constraint)
      */
     public void setDeleteFlag(Boolean deleteFlag) {
@@ -835,7 +886,28 @@ public abstract class BsMShop extends AbstractEntity implements DomainEntity, En
     }
 
     /**
+     * [get] version_no: {NotNull, int4(10), default=[1]} <br>
+     * version_no
+     * @return The value of the column 'version_no'. (basically NotNull if selected: for the constraint)
+     */
+    public Integer getVersionNo() {
+        checkSpecifiedProperty("versionNo");
+        return _versionNo;
+    }
+
+    /**
+     * [set] version_no: {NotNull, int4(10), default=[1]} <br>
+     * version_no
+     * @param versionNo The value of the column 'version_no'. (basically NotNull if update: for the constraint)
+     */
+    public void setVersionNo(Integer versionNo) {
+        registerModifiedProperty("versionNo");
+        _versionNo = versionNo;
+    }
+
+    /**
      * [get] register_datetime: {NotNull, timestamp(26, 3), default=[now()]} <br>
+     * 登録日時
      * @return The value of the column 'register_datetime'. (basically NotNull if selected: for the constraint)
      */
     public java.time.LocalDateTime getRegisterDatetime() {
@@ -845,6 +917,7 @@ public abstract class BsMShop extends AbstractEntity implements DomainEntity, En
 
     /**
      * [set] register_datetime: {NotNull, timestamp(26, 3), default=[now()]} <br>
+     * 登録日時
      * @param registerDatetime The value of the column 'register_datetime'. (basically NotNull if update: for the constraint)
      */
     public void setRegisterDatetime(java.time.LocalDateTime registerDatetime) {
@@ -854,6 +927,7 @@ public abstract class BsMShop extends AbstractEntity implements DomainEntity, En
 
     /**
      * [get] update_datetime: {timestamp(26, 3)} <br>
+     * 更新日時
      * @return The value of the column 'update_datetime'. (NullAllowed even if selected: for no constraint)
      */
     public java.time.LocalDateTime getUpdateDatetime() {
@@ -863,6 +937,7 @@ public abstract class BsMShop extends AbstractEntity implements DomainEntity, En
 
     /**
      * [set] update_datetime: {timestamp(26, 3)} <br>
+     * 更新日時
      * @param updateDatetime The value of the column 'update_datetime'. (NullAllowed: null update allowed for no constraint)
      */
     public void setUpdateDatetime(java.time.LocalDateTime updateDatetime) {

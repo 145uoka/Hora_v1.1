@@ -15,7 +15,7 @@ import com.olympus.hora.dbflute.cbean.*;
  *     working_day_id
  *
  * [column]
- *     working_day_id, shop_id, working_date, start_time, end_time, delete_flag, register_datetime, update_datetime
+ *     working_day_id, shop_id, working_date, start_time, end_time, delete_flag, version_no, register_datetime, update_datetime
  *
  * [sequence]
  *     m_working_day_working_day_id_seq
@@ -24,7 +24,7 @@ import com.olympus.hora.dbflute.cbean.*;
  *     
  *
  * [version-no]
- *     
+ *     version_no
  *
  * [foreign table]
  *     m_shop

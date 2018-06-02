@@ -65,6 +65,7 @@ public class MShopDbm extends AbstractDBMeta {
         setupEpg(_epgMap, et -> ((MShop)et).getAddress2(), (et, vl) -> ((MShop)et).setAddress2((String)vl), "address2");
         setupEpg(_epgMap, et -> ((MShop)et).getRemarks(), (et, vl) -> ((MShop)et).setRemarks((String)vl), "remarks");
         setupEpg(_epgMap, et -> ((MShop)et).getDeleteFlag(), (et, vl) -> ((MShop)et).setDeleteFlag((Boolean)vl), "deleteFlag");
+        setupEpg(_epgMap, et -> ((MShop)et).getVersionNo(), (et, vl) -> ((MShop)et).setVersionNo(cti(vl)), "versionNo");
         setupEpg(_epgMap, et -> ((MShop)et).getRegisterDatetime(), (et, vl) -> ((MShop)et).setRegisterDatetime(ctldt(vl)), "registerDatetime");
         setupEpg(_epgMap, et -> ((MShop)et).getUpdateDatetime(), (et, vl) -> ((MShop)et).setUpdateDatetime(ctldt(vl)), "updateDatetime");
     }
@@ -121,6 +122,7 @@ public class MShopDbm extends AbstractDBMeta {
     protected final ColumnInfo _columnAddress2 = cci("address2", "address2", null, null, String.class, "address2", null, false, false, false, "text", 2147483647, 0, null, null, false, null, null, null, null, null, false);
     protected final ColumnInfo _columnRemarks = cci("remarks", "remarks", null, null, String.class, "remarks", null, false, false, false, "text", 2147483647, 0, null, null, false, null, null, null, null, null, false);
     protected final ColumnInfo _columnDeleteFlag = cci("delete_flag", "delete_flag", null, null, Boolean.class, "deleteFlag", null, false, false, true, "bool", 1, 0, null, "false", false, null, null, null, null, null, false);
+    protected final ColumnInfo _columnVersionNo = cci("version_no", "version_no", null, null, Integer.class, "versionNo", null, false, false, true, "int4", 10, 0, null, "1", false, OptimisticLockType.VERSION_NO, null, null, null, null, false);
     protected final ColumnInfo _columnRegisterDatetime = cci("register_datetime", "register_datetime", null, null, java.time.LocalDateTime.class, "registerDatetime", null, false, false, true, "timestamp", 26, 3, null, "now()", true, null, null, null, null, null, false);
     protected final ColumnInfo _columnUpdateDatetime = cci("update_datetime", "update_datetime", null, null, java.time.LocalDateTime.class, "updateDatetime", null, false, false, false, "timestamp", 26, 3, null, null, true, null, null, null, null, null, false);
 
@@ -235,6 +237,11 @@ public class MShopDbm extends AbstractDBMeta {
      */
     public ColumnInfo columnDeleteFlag() { return _columnDeleteFlag; }
     /**
+     * version_no: {NotNull, int4(10), default=[1]}
+     * @return The information object of specified column. (NotNull)
+     */
+    public ColumnInfo columnVersionNo() { return _columnVersionNo; }
+    /**
      * register_datetime: {NotNull, timestamp(26, 3), default=[now()]}
      * @return The information object of specified column. (NotNull)
      */
@@ -269,6 +276,7 @@ public class MShopDbm extends AbstractDBMeta {
         ls.add(columnAddress2());
         ls.add(columnRemarks());
         ls.add(columnDeleteFlag());
+        ls.add(columnVersionNo());
         ls.add(columnRegisterDatetime());
         ls.add(columnUpdateDatetime());
         return ls;
@@ -354,6 +362,8 @@ public class MShopDbm extends AbstractDBMeta {
     public String getSequenceName() { return "m_shop_shop_id_seq"; }
     public Integer getSequenceIncrementSize() { return 1; }
     public Integer getSequenceCacheSize() { return null; }
+    public boolean hasVersionNo() { return true; }
+    public ColumnInfo getVersionNoColumnInfo() { return _columnVersionNo; }
     public boolean hasCommonColumn() { return true; }
     public List<ColumnInfo> getCommonColumnInfoList()
     { return newArrayList(columnRegisterDatetime(), columnUpdateDatetime()); }

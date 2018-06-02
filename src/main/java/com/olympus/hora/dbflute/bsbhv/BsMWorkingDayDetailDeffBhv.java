@@ -26,7 +26,7 @@ import com.olympus.hora.dbflute.cbean.*;
  *     working_day_detail_deff_id
  *
  * [column]
- *     working_day_detail_deff_id, m_working_day_deff_id, effective_flag, working_day_flg, week_1_flag, week_2_flag, week_3_flag, week4_flag, week5_flag, mon_flg, tue_flg, web_flg, thu_flg, fri_flg, sat_flg, sun_flg, holiday_flg, day_of_month, specified_day, start_time, end_time, delete_flag, register_datetime, update_datetime
+ *     working_day_detail_deff_id, m_working_day_deff_id, effective_flag, working_day_flg, week_1_flag, week_2_flag, week_3_flag, week4_flag, week5_flag, mon_flg, tue_flg, web_flg, thu_flg, fri_flg, sat_flg, sun_flg, holiday_flg, day_of_month, specified_day, start_time, end_time, delete_flag, version_no, register_datetime, update_datetime
  *
  * [sequence]
  *     m_working_day_detail_deff_working_day_detail_deff_id_seq
@@ -35,7 +35,7 @@ import com.olympus.hora.dbflute.cbean.*;
  *     
  *
  * [version-no]
- *     
+ *     version_no
  *
  * [foreign table]
  *     m_working_day_deff
@@ -423,7 +423,7 @@ public abstract class BsMWorkingDayDetailDeffBhv extends AbstractBehaviorWritabl
     }
 
     /**
-     * Update the entity modified-only. (ZeroUpdateException, NonExclusiveControl) <br>
+     * Update the entity modified-only. (ZeroUpdateException, ExclusiveControl) <br>
      * By PK as default, and also you can update by unique keys using entity's uniqueOf().
      * <pre>
      * MWorkingDayDetailDeff mWorkingDayDetailDeff = <span style="color: #70226C">new</span> MWorkingDayDetailDeff();
@@ -436,8 +436,8 @@ public abstract class BsMWorkingDayDetailDeffBhv extends AbstractBehaviorWritabl
      * mWorkingDayDetailDeff.<span style="color: #CC4747">setVersionNo</span>(value);
      * <span style="color: #0000C0">mWorkingDayDetailDeffBhv</span>.<span style="color: #CC4747">update</span>(mWorkingDayDetailDeff);
      * </pre>
-     * @param mWorkingDayDetailDeff The entity of update. (NotNull, PrimaryKeyNotNull)
-     * @throws EntityAlreadyDeletedException When the entity has already been deleted. (not found)
+     * @param mWorkingDayDetailDeff The entity of update. (NotNull, PrimaryKeyNotNull, ConcurrencyColumnNotNull)
+     * @throws EntityAlreadyUpdatedException When the entity has already been updated.
      * @throws EntityDuplicatedException When the entity has been duplicated.
      * @throws EntityAlreadyExistsException When the entity already exists. (unique constraint violation)
      */
@@ -446,11 +446,35 @@ public abstract class BsMWorkingDayDetailDeffBhv extends AbstractBehaviorWritabl
     }
 
     /**
-     * Insert or update the entity modified-only. (DefaultConstraintsEnabled, NonExclusiveControl) <br>
+     * Update the entity non-strictly modified-only. (ZeroUpdateException, NonExclusiveControl) <br>
+     * By PK as default, and also you can update by unique keys using entity's uniqueOf().
+     * <pre>
+     * MWorkingDayDetailDeff mWorkingDayDetailDeff = <span style="color: #70226C">new</span> MWorkingDayDetailDeff();
+     * mWorkingDayDetailDeff.setPK...(value); <span style="color: #3F7E5E">// required</span>
+     * mWorkingDayDetailDeff.setFoo...(value); <span style="color: #3F7E5E">// you should set only modified columns</span>
+     * <span style="color: #3F7E5E">// you don't need to set values of common columns</span>
+     * <span style="color: #3F7E5E">//mWorkingDayDetailDeff.setRegisterUser(value);</span>
+     * <span style="color: #3F7E5E">//mWorkingDayDetailDeff.set...;</span>
+     * <span style="color: #3F7E5E">// you don't need to set a value of concurrency column</span>
+     * <span style="color: #3F7E5E">// (auto-increment for version number is valid though non-exclusive control)</span>
+     * <span style="color: #3F7E5E">//mWorkingDayDetailDeff.setVersionNo(value);</span>
+     * <span style="color: #0000C0">mWorkingDayDetailDeffBhv</span>.<span style="color: #CC4747">updateNonstrict</span>(mWorkingDayDetailDeff);
+     * </pre>
+     * @param mWorkingDayDetailDeff The entity of update. (NotNull, PrimaryKeyNotNull)
+     * @throws EntityAlreadyDeletedException When the entity has already been deleted. (not found)
+     * @throws EntityDuplicatedException When the entity has been duplicated.
+     * @throws EntityAlreadyExistsException When the entity already exists. (unique constraint violation)
+     */
+    public void updateNonstrict(MWorkingDayDetailDeff mWorkingDayDetailDeff) {
+        doUpdateNonstrict(mWorkingDayDetailDeff, null);
+    }
+
+    /**
+     * Insert or update the entity modified-only. (DefaultConstraintsEnabled, ExclusiveControl) <br>
      * if (the entity has no PK) { insert() } else { update(), but no data, insert() } <br>
      * <p><span style="color: #994747; font-size: 120%">Also you can update by unique keys using entity's uniqueOf().</span></p>
      * @param mWorkingDayDetailDeff The entity of insert or update. (NotNull, ...depends on insert or update)
-     * @throws EntityAlreadyDeletedException When the entity has already been deleted. (not found)
+     * @throws EntityAlreadyUpdatedException When the entity has already been updated.
      * @throws EntityDuplicatedException When the entity has been duplicated.
      * @throws EntityAlreadyExistsException When the entity already exists. (unique constraint violation)
      */
@@ -459,7 +483,20 @@ public abstract class BsMWorkingDayDetailDeffBhv extends AbstractBehaviorWritabl
     }
 
     /**
-     * Delete the entity. (ZeroUpdateException, NonExclusiveControl) <br>
+     * Insert or update the entity non-strictly modified-only. (DefaultConstraintsEnabled, NonExclusiveControl) <br>
+     * if (the entity has no PK) { insert() } else { update(), but no data, insert() }
+     * <p><span style="color: #994747; font-size: 120%">Also you can update by unique keys using entity's uniqueOf().</span></p>
+     * @param mWorkingDayDetailDeff The entity of insert or update. (NotNull, ...depends on insert or update)
+     * @throws EntityAlreadyDeletedException When the entity has already been deleted. (not found)
+     * @throws EntityDuplicatedException When the entity has been duplicated.
+     * @throws EntityAlreadyExistsException When the entity already exists. (unique constraint violation)
+     */
+    public void insertOrUpdateNonstrict(MWorkingDayDetailDeff mWorkingDayDetailDeff) {
+        doInsertOrUpdateNonstrict(mWorkingDayDetailDeff, null, null);
+    }
+
+    /**
+     * Delete the entity. (ZeroUpdateException, ExclusiveControl) <br>
      * By PK as default, and also you can delete by unique keys using entity's uniqueOf().
      * <pre>
      * MWorkingDayDetailDeff mWorkingDayDetailDeff = <span style="color: #70226C">new</span> MWorkingDayDetailDeff();
@@ -472,12 +509,31 @@ public abstract class BsMWorkingDayDetailDeffBhv extends AbstractBehaviorWritabl
      *     ...
      * }
      * </pre>
-     * @param mWorkingDayDetailDeff The entity of delete. (NotNull, PrimaryKeyNotNull)
-     * @throws EntityAlreadyDeletedException When the entity has already been deleted. (not found)
+     * @param mWorkingDayDetailDeff The entity of delete. (NotNull, PrimaryKeyNotNull, ConcurrencyColumnNotNull)
+     * @throws EntityAlreadyUpdatedException When the entity has already been updated.
      * @throws EntityDuplicatedException When the entity has been duplicated.
      */
     public void delete(MWorkingDayDetailDeff mWorkingDayDetailDeff) {
         doDelete(mWorkingDayDetailDeff, null);
+    }
+
+    /**
+     * Delete the entity non-strictly. {ZeroUpdateException, NonExclusiveControl} <br>
+     * By PK as default, and also you can delete by unique keys using entity's uniqueOf().
+     * <pre>
+     * MWorkingDayDetailDeff mWorkingDayDetailDeff = <span style="color: #70226C">new</span> MWorkingDayDetailDeff();
+     * mWorkingDayDetailDeff.setPK...(value); <span style="color: #3F7E5E">// required</span>
+     * <span style="color: #3F7E5E">// you don't need to set a value of concurrency column</span>
+     * <span style="color: #3F7E5E">// (auto-increment for version number is valid though non-exclusive control)</span>
+     * <span style="color: #3F7E5E">//mWorkingDayDetailDeff.setVersionNo(value);</span>
+     * <span style="color: #0000C0">mWorkingDayDetailDeffBhv</span>.<span style="color: #CC4747">deleteNonstrict</span>(mWorkingDayDetailDeff);
+     * </pre>
+     * @param mWorkingDayDetailDeff The entity of delete. (NotNull, PrimaryKeyNotNull)
+     * @throws EntityAlreadyDeletedException When the entity has already been deleted. (not found)
+     * @throws EntityDuplicatedException When the entity has been duplicated.
+     */
+    public void deleteNonstrict(MWorkingDayDetailDeff mWorkingDayDetailDeff) {
+        doDeleteNonstrict(mWorkingDayDetailDeff, null);
     }
 
     // ===================================================================================
@@ -512,7 +568,7 @@ public abstract class BsMWorkingDayDetailDeffBhv extends AbstractBehaviorWritabl
     }
 
     /**
-     * Batch-update the entity list modified-only of same-set columns. (NonExclusiveControl) <br>
+     * Batch-update the entity list modified-only of same-set columns. (ExclusiveControl) <br>
      * This method uses executeBatch() of java.sql.PreparedStatement. <br>
      * <span style="color: #CC4747; font-size: 120%">You should specify same-set columns to all entities like this:</span>
      * <pre>
@@ -531,23 +587,62 @@ public abstract class BsMWorkingDayDetailDeffBhv extends AbstractBehaviorWritabl
      * }
      * <span style="color: #0000C0">mWorkingDayDetailDeffBhv</span>.<span style="color: #CC4747">batchUpdate</span>(mWorkingDayDetailDeffList);
      * </pre>
-     * @param mWorkingDayDetailDeffList The list of the entity. (NotNull, EmptyAllowed, PrimaryKeyNotNull)
+     * @param mWorkingDayDetailDeffList The list of the entity. (NotNull, EmptyAllowed, PrimaryKeyNotNull, ConcurrencyColumnNotNull)
      * @return The array of updated count. (NotNull, EmptyAllowed)
-     * @throws EntityAlreadyDeletedException When the entity has already been deleted. (not found)
+     * @throws BatchEntityAlreadyUpdatedException When the entity has already been updated. This exception extends EntityAlreadyUpdatedException.
      */
     public int[] batchUpdate(List<MWorkingDayDetailDeff> mWorkingDayDetailDeffList) {
         return doBatchUpdate(mWorkingDayDetailDeffList, null);
     }
 
     /**
-     * Batch-delete the entity list. (NonExclusiveControl) <br>
+     * Batch-update the entity list non-strictly modified-only of same-set columns. (NonExclusiveControl) <br>
+     * This method uses executeBatch() of java.sql.PreparedStatement. <br>
+     * <span style="color: #CC4747; font-size: 140%">You should specify same-set columns to all entities like this:</span>
+     * <pre>
+     * <span style="color: #70226C">for</span> (... : ...) {
+     *     MWorkingDayDetailDeff mWorkingDayDetailDeff = <span style="color: #70226C">new</span> MWorkingDayDetailDeff();
+     *     mWorkingDayDetailDeff.setFooName("foo");
+     *     <span style="color: #70226C">if</span> (...) {
+     *         mWorkingDayDetailDeff.setFooPrice(123);
+     *     } <span style="color: #70226C">else</span> {
+     *         mWorkingDayDetailDeff.setFooPrice(null); <span style="color: #3F7E5E">// updated as null</span>
+     *         <span style="color: #3F7E5E">//mWorkingDayDetailDeff.setFooDate(...); // *not allowed, fragmented</span>
+     *     }
+     *     <span style="color: #3F7E5E">// FOO_NAME and FOO_PRICE (and record meta columns) are updated</span>
+     *     <span style="color: #3F7E5E">// (others are not updated: their values are kept)</span>
+     *     mWorkingDayDetailDeffList.add(mWorkingDayDetailDeff);
+     * }
+     * <span style="color: #0000C0">mWorkingDayDetailDeffBhv</span>.<span style="color: #CC4747">batchUpdate</span>(mWorkingDayDetailDeffList);
+     * </pre>
+     * @param mWorkingDayDetailDeffList The list of the entity. (NotNull, EmptyAllowed, PrimaryKeyNotNull)
+     * @return The array of updated count. (NotNull, EmptyAllowed)
+     * @throws EntityAlreadyDeletedException When the entity has already been deleted. (not found)
+     */
+    public int[] batchUpdateNonstrict(List<MWorkingDayDetailDeff> mWorkingDayDetailDeffList) {
+        return doBatchUpdateNonstrict(mWorkingDayDetailDeffList, null);
+    }
+
+    /**
+     * Batch-delete the entity list. (ExclusiveControl) <br>
+     * This method uses executeBatch() of java.sql.PreparedStatement.
+     * @param mWorkingDayDetailDeffList The list of the entity. (NotNull, EmptyAllowed, PrimaryKeyNotNull)
+     * @return The array of deleted count. (NotNull, EmptyAllowed)
+     * @throws BatchEntityAlreadyUpdatedException When the entity has already been updated. This exception extends EntityAlreadyUpdatedException.
+     */
+    public int[] batchDelete(List<MWorkingDayDetailDeff> mWorkingDayDetailDeffList) {
+        return doBatchDelete(mWorkingDayDetailDeffList, null);
+    }
+
+    /**
+     * Batch-delete the entity list non-strictly. {NonExclusiveControl} <br>
      * This method uses executeBatch() of java.sql.PreparedStatement.
      * @param mWorkingDayDetailDeffList The list of the entity. (NotNull, EmptyAllowed, PrimaryKeyNotNull)
      * @return The array of deleted count. (NotNull, EmptyAllowed)
      * @throws EntityAlreadyDeletedException When the entity has already been deleted. (not found)
      */
-    public int[] batchDelete(List<MWorkingDayDetailDeff> mWorkingDayDetailDeffList) {
-        return doBatchDelete(mWorkingDayDetailDeffList, null);
+    public int[] batchDeleteNonstrict(List<MWorkingDayDetailDeff> mWorkingDayDetailDeffList) {
+        return doBatchDeleteNonstrict(mWorkingDayDetailDeffList, null);
     }
 
     // ===================================================================================
@@ -654,7 +749,7 @@ public abstract class BsMWorkingDayDetailDeffBhv extends AbstractBehaviorWritabl
     }
 
     /**
-     * Update the entity with varying requests modified-only. (ZeroUpdateException, NonExclusiveControl) <br>
+     * Update the entity with varying requests modified-only. (ZeroUpdateException, ExclusiveControl) <br>
      * For example, self(selfCalculationSpecification), specify(updateColumnSpecification), disableCommonColumnAutoSetup(). <br>
      * Other specifications are same as update(entity).
      * <pre>
@@ -670,9 +765,9 @@ public abstract class BsMWorkingDayDetailDeffBhv extends AbstractBehaviorWritabl
      *     }).plus(1); <span style="color: #3F7E5E">// XXX_COUNT = XXX_COUNT + 1</span>
      * });
      * </pre>
-     * @param mWorkingDayDetailDeff The entity of update. (NotNull, PrimaryKeyNotNull)
+     * @param mWorkingDayDetailDeff The entity of update. (NotNull, PrimaryKeyNotNull, ConcurrencyColumnNotNull)
      * @param opLambda The callback for option of update for varying requests. (NotNull)
-     * @throws EntityAlreadyDeletedException When the entity has already been deleted. (not found)
+     * @throws EntityAlreadyUpdatedException When the entity has already been updated.
      * @throws EntityDuplicatedException When the entity has been duplicated.
      * @throws EntityAlreadyExistsException When the entity already exists. (unique constraint violation)
      */
@@ -681,12 +776,40 @@ public abstract class BsMWorkingDayDetailDeffBhv extends AbstractBehaviorWritabl
     }
 
     /**
+     * Update the entity with varying requests non-strictly modified-only. (ZeroUpdateException, NonExclusiveControl) <br>
+     * For example, self(selfCalculationSpecification), specify(updateColumnSpecification), disableCommonColumnAutoSetup(). <br>
+     * Other specifications are same as updateNonstrict(entity).
+     * <pre>
+     * <span style="color: #3F7E5E">// ex) you can update by self calculation values</span>
+     * MWorkingDayDetailDeff mWorkingDayDetailDeff = <span style="color: #70226C">new</span> MWorkingDayDetailDeff();
+     * mWorkingDayDetailDeff.setPK...(value); <span style="color: #3F7E5E">// required</span>
+     * mWorkingDayDetailDeff.setOther...(value); <span style="color: #3F7E5E">// you should set only modified columns</span>
+     * <span style="color: #3F7E5E">// you don't need to set a value of concurrency column</span>
+     * <span style="color: #3F7E5E">// (auto-increment for version number is valid though non-exclusive control)</span>
+     * <span style="color: #3F7E5E">//mWorkingDayDetailDeff.setVersionNo(value);</span>
+     * <span style="color: #0000C0">mWorkingDayDetailDeffBhv</span>.<span style="color: #CC4747">varyingUpdateNonstrict</span>(mWorkingDayDetailDeff, <span style="color: #553000">op</span> <span style="color: #90226C; font-weight: bold"><span style="font-size: 120%">-</span>&gt;</span> {
+     *     <span style="color: #553000">op</span>.self(<span style="color: #553000">cb</span> <span style="color: #90226C; font-weight: bold"><span style="font-size: 120%">-</span>&gt;</span> {
+     *         <span style="color: #553000">cb</span>.specify().<span style="color: #CC4747">columnXxxCount()</span>;
+     *     }).plus(1); <span style="color: #3F7E5E">// XXX_COUNT = XXX_COUNT + 1</span>
+     * });
+     * </pre>
+     * @param mWorkingDayDetailDeff The entity of update. (NotNull, PrimaryKeyNotNull)
+     * @param opLambda The callback for option of update for varying requests. (NotNull)
+     * @throws EntityAlreadyDeletedException When the entity has already been deleted. (not found)
+     * @throws EntityDuplicatedException When the entity has been duplicated.
+     * @throws EntityAlreadyExistsException When the entity already exists. (unique constraint violation)
+     */
+    public void varyingUpdateNonstrict(MWorkingDayDetailDeff mWorkingDayDetailDeff, WritableOptionCall<MWorkingDayDetailDeffCB, UpdateOption<MWorkingDayDetailDeffCB>> opLambda) {
+        doUpdateNonstrict(mWorkingDayDetailDeff, createUpdateOption(opLambda));
+    }
+
+    /**
      * Insert or update the entity with varying requests. (ExclusiveControl: when update) <br>
      * Other specifications are same as insertOrUpdate(entity).
      * @param mWorkingDayDetailDeff The entity of insert or update. (NotNull)
      * @param insertOpLambda The callback for option of insert for varying requests. (NotNull)
      * @param updateOpLambda The callback for option of update for varying requests. (NotNull)
-     * @throws EntityAlreadyDeletedException When the entity has already been deleted. (not found)
+     * @throws EntityAlreadyUpdatedException When the entity has already been updated.
      * @throws EntityDuplicatedException When the entity has been duplicated.
      * @throws EntityAlreadyExistsException When the entity already exists. (unique constraint violation)
      */
@@ -695,16 +818,43 @@ public abstract class BsMWorkingDayDetailDeffBhv extends AbstractBehaviorWritabl
     }
 
     /**
-     * Delete the entity with varying requests. (ZeroUpdateException, NonExclusiveControl) <br>
+     * Insert or update the entity with varying requests non-strictly. (NonExclusiveControl: when update) <br>
+     * Other specifications are same as insertOrUpdateNonstrict(entity).
+     * @param mWorkingDayDetailDeff The entity of insert or update. (NotNull)
+     * @param insertOpLambda The callback for option of insert for varying requests. (NotNull)
+     * @param updateOpLambda The callback for option of update for varying requests. (NotNull)
+     * @throws EntityAlreadyDeletedException When the entity has already been deleted. (not found)
+     * @throws EntityDuplicatedException When the entity has been duplicated.
+     * @throws EntityAlreadyExistsException When the entity already exists. (unique constraint violation)
+     */
+    public void varyingInsertOrUpdateNonstrict(MWorkingDayDetailDeff mWorkingDayDetailDeff, WritableOptionCall<MWorkingDayDetailDeffCB, InsertOption<MWorkingDayDetailDeffCB>> insertOpLambda, WritableOptionCall<MWorkingDayDetailDeffCB, UpdateOption<MWorkingDayDetailDeffCB>> updateOpLambda) {
+        doInsertOrUpdateNonstrict(mWorkingDayDetailDeff, createInsertOption(insertOpLambda), createUpdateOption(updateOpLambda));
+    }
+
+    /**
+     * Delete the entity with varying requests. (ZeroUpdateException, ExclusiveControl) <br>
      * Now a valid option does not exist. <br>
      * Other specifications are same as delete(entity).
+     * @param mWorkingDayDetailDeff The entity of delete. (NotNull, PrimaryKeyNotNull, ConcurrencyColumnNotNull)
+     * @param opLambda The callback for option of delete for varying requests. (NotNull)
+     * @throws EntityAlreadyUpdatedException When the entity has already been updated.
+     * @throws EntityDuplicatedException When the entity has been duplicated.
+     */
+    public void varyingDelete(MWorkingDayDetailDeff mWorkingDayDetailDeff, WritableOptionCall<MWorkingDayDetailDeffCB, DeleteOption<MWorkingDayDetailDeffCB>> opLambda) {
+        doDelete(mWorkingDayDetailDeff, createDeleteOption(opLambda));
+    }
+
+    /**
+     * Delete the entity with varying requests non-strictly. (ZeroUpdateException, NonExclusiveControl) <br>
+     * Now a valid option does not exist. <br>
+     * Other specifications are same as deleteNonstrict(entity).
      * @param mWorkingDayDetailDeff The entity of delete. (NotNull, PrimaryKeyNotNull, ConcurrencyColumnNotNull)
      * @param opLambda The callback for option of delete for varying requests. (NotNull)
      * @throws EntityAlreadyDeletedException When the entity has already been deleted. (not found)
      * @throws EntityDuplicatedException When the entity has been duplicated.
      */
-    public void varyingDelete(MWorkingDayDetailDeff mWorkingDayDetailDeff, WritableOptionCall<MWorkingDayDetailDeffCB, DeleteOption<MWorkingDayDetailDeffCB>> opLambda) {
-        doDelete(mWorkingDayDetailDeff, createDeleteOption(opLambda));
+    public void varyingDeleteNonstrict(MWorkingDayDetailDeff mWorkingDayDetailDeff, WritableOptionCall<MWorkingDayDetailDeffCB, DeleteOption<MWorkingDayDetailDeffCB>> opLambda) {
+        doDeleteNonstrict(mWorkingDayDetailDeff, createDeleteOption(opLambda));
     }
 
     // -----------------------------------------------------
@@ -737,6 +887,19 @@ public abstract class BsMWorkingDayDetailDeffBhv extends AbstractBehaviorWritabl
     }
 
     /**
+     * Batch-update the list with varying requests non-strictly. <br>
+     * For example, self(selfCalculationSpecification), specify(updateColumnSpecification)
+     * , disableCommonColumnAutoSetup(), limitBatchUpdateLogging(). <br>
+     * Other specifications are same as batchUpdateNonstrict(entityList).
+     * @param mWorkingDayDetailDeffList The list of the entity. (NotNull, EmptyAllowed, PrimaryKeyNotNull)
+     * @param opLambda The callback for option of update for varying requests. (NotNull)
+     * @return The array of updated count. (NotNull, EmptyAllowed)
+     */
+    public int[] varyingBatchUpdateNonstrict(List<MWorkingDayDetailDeff> mWorkingDayDetailDeffList, WritableOptionCall<MWorkingDayDetailDeffCB, UpdateOption<MWorkingDayDetailDeffCB>> opLambda) {
+        return doBatchUpdateNonstrict(mWorkingDayDetailDeffList, createUpdateOption(opLambda));
+    }
+
+    /**
      * Batch-delete the list with varying requests. <br>
      * For example, limitBatchDeleteLogging(). <br>
      * Other specifications are same as batchDelete(entityList).
@@ -746,6 +909,18 @@ public abstract class BsMWorkingDayDetailDeffBhv extends AbstractBehaviorWritabl
      */
     public int[] varyingBatchDelete(List<MWorkingDayDetailDeff> mWorkingDayDetailDeffList, WritableOptionCall<MWorkingDayDetailDeffCB, DeleteOption<MWorkingDayDetailDeffCB>> opLambda) {
         return doBatchDelete(mWorkingDayDetailDeffList, createDeleteOption(opLambda));
+    }
+
+    /**
+     * Batch-delete the list with varying requests non-strictly. <br>
+     * For example, limitBatchDeleteLogging(). <br>
+     * Other specifications are same as batchDeleteNonstrict(entityList).
+     * @param mWorkingDayDetailDeffList The list of the entity. (NotNull, EmptyAllowed, PrimaryKeyNotNull)
+     * @param opLambda The callback for option of delete for varying requests. (NotNull)
+     * @return The array of deleted count. (NotNull, EmptyAllowed)
+     */
+    public int[] varyingBatchDeleteNonstrict(List<MWorkingDayDetailDeff> mWorkingDayDetailDeffList, WritableOptionCall<MWorkingDayDetailDeffCB, DeleteOption<MWorkingDayDetailDeffCB>> opLambda) {
+        return doBatchDeleteNonstrict(mWorkingDayDetailDeffList, createDeleteOption(opLambda));
     }
 
     // -----------------------------------------------------
@@ -849,6 +1024,12 @@ public abstract class BsMWorkingDayDetailDeffBhv extends AbstractBehaviorWritabl
     public OutsideSqlAllFacadeExecutor<MWorkingDayDetailDeffBhv> outsideSql() {
         return doOutsideSql();
     }
+
+    // ===================================================================================
+    //                                                                Optimistic Lock Info
+    //                                                                ====================
+    @Override
+    protected boolean hasVersionNoValue(Entity et) { return downcast(et).getVersionNo() != null; }
 
     // ===================================================================================
     //                                                                         Type Helper

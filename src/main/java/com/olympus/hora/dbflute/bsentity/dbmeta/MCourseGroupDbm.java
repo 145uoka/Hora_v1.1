@@ -43,12 +43,13 @@ public class MCourseGroupDbm extends AbstractDBMeta {
     protected final Map<String, PropertyGateway> _epgMap = newHashMap();
     { xsetupEpg(); }
     protected void xsetupEpg() {
-        setupEpg(_epgMap, et -> ((MCourseGroup)et).getCourseGroupId(), (et, vl) -> ((MCourseGroup)et).setCourseGroupId(cti(vl)), "courseGroupId");
         setupEpg(_epgMap, et -> ((MCourseGroup)et).getShopId(), (et, vl) -> ((MCourseGroup)et).setShopId(cti(vl)), "shopId");
         setupEpg(_epgMap, et -> ((MCourseGroup)et).getGroupName(), (et, vl) -> ((MCourseGroup)et).setGroupName((String)vl), "groupName");
+        setupEpg(_epgMap, et -> ((MCourseGroup)et).getCourseGroupId(), (et, vl) -> ((MCourseGroup)et).setCourseGroupId(cti(vl)), "courseGroupId");
         setupEpg(_epgMap, et -> ((MCourseGroup)et).getRequiredFlg(), (et, vl) -> ((MCourseGroup)et).setRequiredFlg(cti(vl)), "requiredFlg");
         setupEpg(_epgMap, et -> ((MCourseGroup)et).getReamarks(), (et, vl) -> ((MCourseGroup)et).setReamarks((String)vl), "reamarks");
         setupEpg(_epgMap, et -> ((MCourseGroup)et).getDeleteFlag(), (et, vl) -> ((MCourseGroup)et).setDeleteFlag((Boolean)vl), "deleteFlag");
+        setupEpg(_epgMap, et -> ((MCourseGroup)et).getVersionNo(), (et, vl) -> ((MCourseGroup)et).setVersionNo(cti(vl)), "versionNo");
         setupEpg(_epgMap, et -> ((MCourseGroup)et).getRegisterDatetime(), (et, vl) -> ((MCourseGroup)et).setRegisterDatetime(ctldt(vl)), "registerDatetime");
         setupEpg(_epgMap, et -> ((MCourseGroup)et).getUpdateDatetime(), (et, vl) -> ((MCourseGroup)et).setUpdateDatetime(ctldt(vl)), "updateDatetime");
     }
@@ -83,20 +84,16 @@ public class MCourseGroupDbm extends AbstractDBMeta {
     // ===================================================================================
     //                                                                         Column Info
     //                                                                         ===========
-    protected final ColumnInfo _columnCourseGroupId = cci("course_group_id", "course_group_id", null, null, Integer.class, "courseGroupId", null, true, true, true, "serial", 10, 0, null, "nextval('m_course_group_course_group_id_seq'::regclass)", false, null, null, null, "MCourseList", null, false);
     protected final ColumnInfo _columnShopId = cci("shop_id", "shop_id", null, null, Integer.class, "shopId", null, false, false, false, "int4", 10, 0, null, null, false, null, null, "MShop", null, null, false);
     protected final ColumnInfo _columnGroupName = cci("group_name", "group_name", null, null, String.class, "groupName", null, false, false, false, "text", 2147483647, 0, null, null, false, null, null, null, null, null, false);
+    protected final ColumnInfo _columnCourseGroupId = cci("course_group_id", "course_group_id", null, null, Integer.class, "courseGroupId", null, true, true, true, "serial", 10, 0, null, "nextval('m_course_group_course_group_id_seq'::regclass)", false, null, null, null, "MCourseList", null, false);
     protected final ColumnInfo _columnRequiredFlg = cci("required_flg", "required_flg", null, null, Integer.class, "requiredFlg", null, false, false, false, "int2", 5, 0, null, null, false, null, null, null, null, null, false);
     protected final ColumnInfo _columnReamarks = cci("reamarks", "reamarks", null, null, String.class, "reamarks", null, false, false, false, "text", 2147483647, 0, null, null, false, null, null, null, null, null, false);
     protected final ColumnInfo _columnDeleteFlag = cci("delete_flag", "delete_flag", null, null, Boolean.class, "deleteFlag", null, false, false, true, "bool", 1, 0, null, "false", false, null, null, null, null, null, false);
+    protected final ColumnInfo _columnVersionNo = cci("version_no", "version_no", null, null, Integer.class, "versionNo", null, false, false, true, "int4", 10, 0, null, "1", false, OptimisticLockType.VERSION_NO, null, null, null, null, false);
     protected final ColumnInfo _columnRegisterDatetime = cci("register_datetime", "register_datetime", null, null, java.time.LocalDateTime.class, "registerDatetime", null, false, false, true, "timestamp", 26, 3, null, "now()", true, null, null, null, null, null, false);
     protected final ColumnInfo _columnUpdateDatetime = cci("update_datetime", "update_datetime", null, null, java.time.LocalDateTime.class, "updateDatetime", null, false, false, false, "timestamp", 26, 3, null, null, true, null, null, null, null, null, false);
 
-    /**
-     * course_group_id: {PK, ID, NotNull, serial(10)}
-     * @return The information object of specified column. (NotNull)
-     */
-    public ColumnInfo columnCourseGroupId() { return _columnCourseGroupId; }
     /**
      * shop_id: {int4(10), FK to m_shop}
      * @return The information object of specified column. (NotNull)
@@ -107,6 +104,11 @@ public class MCourseGroupDbm extends AbstractDBMeta {
      * @return The information object of specified column. (NotNull)
      */
     public ColumnInfo columnGroupName() { return _columnGroupName; }
+    /**
+     * course_group_id: {PK, ID, NotNull, serial(10)}
+     * @return The information object of specified column. (NotNull)
+     */
+    public ColumnInfo columnCourseGroupId() { return _columnCourseGroupId; }
     /**
      * required_flg: {int2(5)}
      * @return The information object of specified column. (NotNull)
@@ -123,6 +125,11 @@ public class MCourseGroupDbm extends AbstractDBMeta {
      */
     public ColumnInfo columnDeleteFlag() { return _columnDeleteFlag; }
     /**
+     * version_no: {NotNull, int4(10), default=[1]}
+     * @return The information object of specified column. (NotNull)
+     */
+    public ColumnInfo columnVersionNo() { return _columnVersionNo; }
+    /**
      * register_datetime: {NotNull, timestamp(26, 3), default=[now()]}
      * @return The information object of specified column. (NotNull)
      */
@@ -135,12 +142,13 @@ public class MCourseGroupDbm extends AbstractDBMeta {
 
     protected List<ColumnInfo> ccil() {
         List<ColumnInfo> ls = newArrayList();
-        ls.add(columnCourseGroupId());
         ls.add(columnShopId());
         ls.add(columnGroupName());
+        ls.add(columnCourseGroupId());
         ls.add(columnRequiredFlg());
         ls.add(columnReamarks());
         ls.add(columnDeleteFlag());
+        ls.add(columnVersionNo());
         ls.add(columnRegisterDatetime());
         ls.add(columnUpdateDatetime());
         return ls;
@@ -194,6 +202,8 @@ public class MCourseGroupDbm extends AbstractDBMeta {
     public String getSequenceName() { return "m_course_group_course_group_id_seq"; }
     public Integer getSequenceIncrementSize() { return 1; }
     public Integer getSequenceCacheSize() { return null; }
+    public boolean hasVersionNo() { return true; }
+    public ColumnInfo getVersionNoColumnInfo() { return _columnVersionNo; }
     public boolean hasCommonColumn() { return true; }
     public List<ColumnInfo> getCommonColumnInfoList()
     { return newArrayList(columnRegisterDatetime(), columnUpdateDatetime()); }

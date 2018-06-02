@@ -26,7 +26,7 @@ import com.olympus.hora.dbflute.cbean.*;
  *     reservation_detail_id
  *
  * [column]
- *     reservation_detail_id, reservation_id, course_id, hist_course_name, delete_flag, register_datetime, update_datetime
+ *     reservation_detail_id, reservation_id, course_id, hist_course_name, delete_flag, version_no, register_datetime, update_datetime
  *
  * [sequence]
  *     t_reservation_detail_reservation_detail_id_seq
@@ -35,7 +35,7 @@ import com.olympus.hora.dbflute.cbean.*;
  *     
  *
  * [version-no]
- *     
+ *     version_no
  *
  * [foreign table]
  *     m_course, t_reservation
@@ -431,7 +431,7 @@ public abstract class BsTReservationDetailBhv extends AbstractBehaviorWritable<T
     }
 
     /**
-     * Update the entity modified-only. (ZeroUpdateException, NonExclusiveControl) <br>
+     * Update the entity modified-only. (ZeroUpdateException, ExclusiveControl) <br>
      * By PK as default, and also you can update by unique keys using entity's uniqueOf().
      * <pre>
      * TReservationDetail tReservationDetail = <span style="color: #70226C">new</span> TReservationDetail();
@@ -444,8 +444,8 @@ public abstract class BsTReservationDetailBhv extends AbstractBehaviorWritable<T
      * tReservationDetail.<span style="color: #CC4747">setVersionNo</span>(value);
      * <span style="color: #0000C0">tReservationDetailBhv</span>.<span style="color: #CC4747">update</span>(tReservationDetail);
      * </pre>
-     * @param tReservationDetail The entity of update. (NotNull, PrimaryKeyNotNull)
-     * @throws EntityAlreadyDeletedException When the entity has already been deleted. (not found)
+     * @param tReservationDetail The entity of update. (NotNull, PrimaryKeyNotNull, ConcurrencyColumnNotNull)
+     * @throws EntityAlreadyUpdatedException When the entity has already been updated.
      * @throws EntityDuplicatedException When the entity has been duplicated.
      * @throws EntityAlreadyExistsException When the entity already exists. (unique constraint violation)
      */
@@ -454,11 +454,35 @@ public abstract class BsTReservationDetailBhv extends AbstractBehaviorWritable<T
     }
 
     /**
-     * Insert or update the entity modified-only. (DefaultConstraintsEnabled, NonExclusiveControl) <br>
+     * Update the entity non-strictly modified-only. (ZeroUpdateException, NonExclusiveControl) <br>
+     * By PK as default, and also you can update by unique keys using entity's uniqueOf().
+     * <pre>
+     * TReservationDetail tReservationDetail = <span style="color: #70226C">new</span> TReservationDetail();
+     * tReservationDetail.setPK...(value); <span style="color: #3F7E5E">// required</span>
+     * tReservationDetail.setFoo...(value); <span style="color: #3F7E5E">// you should set only modified columns</span>
+     * <span style="color: #3F7E5E">// you don't need to set values of common columns</span>
+     * <span style="color: #3F7E5E">//tReservationDetail.setRegisterUser(value);</span>
+     * <span style="color: #3F7E5E">//tReservationDetail.set...;</span>
+     * <span style="color: #3F7E5E">// you don't need to set a value of concurrency column</span>
+     * <span style="color: #3F7E5E">// (auto-increment for version number is valid though non-exclusive control)</span>
+     * <span style="color: #3F7E5E">//tReservationDetail.setVersionNo(value);</span>
+     * <span style="color: #0000C0">tReservationDetailBhv</span>.<span style="color: #CC4747">updateNonstrict</span>(tReservationDetail);
+     * </pre>
+     * @param tReservationDetail The entity of update. (NotNull, PrimaryKeyNotNull)
+     * @throws EntityAlreadyDeletedException When the entity has already been deleted. (not found)
+     * @throws EntityDuplicatedException When the entity has been duplicated.
+     * @throws EntityAlreadyExistsException When the entity already exists. (unique constraint violation)
+     */
+    public void updateNonstrict(TReservationDetail tReservationDetail) {
+        doUpdateNonstrict(tReservationDetail, null);
+    }
+
+    /**
+     * Insert or update the entity modified-only. (DefaultConstraintsEnabled, ExclusiveControl) <br>
      * if (the entity has no PK) { insert() } else { update(), but no data, insert() } <br>
      * <p><span style="color: #994747; font-size: 120%">Also you can update by unique keys using entity's uniqueOf().</span></p>
      * @param tReservationDetail The entity of insert or update. (NotNull, ...depends on insert or update)
-     * @throws EntityAlreadyDeletedException When the entity has already been deleted. (not found)
+     * @throws EntityAlreadyUpdatedException When the entity has already been updated.
      * @throws EntityDuplicatedException When the entity has been duplicated.
      * @throws EntityAlreadyExistsException When the entity already exists. (unique constraint violation)
      */
@@ -467,7 +491,20 @@ public abstract class BsTReservationDetailBhv extends AbstractBehaviorWritable<T
     }
 
     /**
-     * Delete the entity. (ZeroUpdateException, NonExclusiveControl) <br>
+     * Insert or update the entity non-strictly modified-only. (DefaultConstraintsEnabled, NonExclusiveControl) <br>
+     * if (the entity has no PK) { insert() } else { update(), but no data, insert() }
+     * <p><span style="color: #994747; font-size: 120%">Also you can update by unique keys using entity's uniqueOf().</span></p>
+     * @param tReservationDetail The entity of insert or update. (NotNull, ...depends on insert or update)
+     * @throws EntityAlreadyDeletedException When the entity has already been deleted. (not found)
+     * @throws EntityDuplicatedException When the entity has been duplicated.
+     * @throws EntityAlreadyExistsException When the entity already exists. (unique constraint violation)
+     */
+    public void insertOrUpdateNonstrict(TReservationDetail tReservationDetail) {
+        doInsertOrUpdateNonstrict(tReservationDetail, null, null);
+    }
+
+    /**
+     * Delete the entity. (ZeroUpdateException, ExclusiveControl) <br>
      * By PK as default, and also you can delete by unique keys using entity's uniqueOf().
      * <pre>
      * TReservationDetail tReservationDetail = <span style="color: #70226C">new</span> TReservationDetail();
@@ -480,12 +517,31 @@ public abstract class BsTReservationDetailBhv extends AbstractBehaviorWritable<T
      *     ...
      * }
      * </pre>
-     * @param tReservationDetail The entity of delete. (NotNull, PrimaryKeyNotNull)
-     * @throws EntityAlreadyDeletedException When the entity has already been deleted. (not found)
+     * @param tReservationDetail The entity of delete. (NotNull, PrimaryKeyNotNull, ConcurrencyColumnNotNull)
+     * @throws EntityAlreadyUpdatedException When the entity has already been updated.
      * @throws EntityDuplicatedException When the entity has been duplicated.
      */
     public void delete(TReservationDetail tReservationDetail) {
         doDelete(tReservationDetail, null);
+    }
+
+    /**
+     * Delete the entity non-strictly. {ZeroUpdateException, NonExclusiveControl} <br>
+     * By PK as default, and also you can delete by unique keys using entity's uniqueOf().
+     * <pre>
+     * TReservationDetail tReservationDetail = <span style="color: #70226C">new</span> TReservationDetail();
+     * tReservationDetail.setPK...(value); <span style="color: #3F7E5E">// required</span>
+     * <span style="color: #3F7E5E">// you don't need to set a value of concurrency column</span>
+     * <span style="color: #3F7E5E">// (auto-increment for version number is valid though non-exclusive control)</span>
+     * <span style="color: #3F7E5E">//tReservationDetail.setVersionNo(value);</span>
+     * <span style="color: #0000C0">tReservationDetailBhv</span>.<span style="color: #CC4747">deleteNonstrict</span>(tReservationDetail);
+     * </pre>
+     * @param tReservationDetail The entity of delete. (NotNull, PrimaryKeyNotNull)
+     * @throws EntityAlreadyDeletedException When the entity has already been deleted. (not found)
+     * @throws EntityDuplicatedException When the entity has been duplicated.
+     */
+    public void deleteNonstrict(TReservationDetail tReservationDetail) {
+        doDeleteNonstrict(tReservationDetail, null);
     }
 
     // ===================================================================================
@@ -520,7 +576,7 @@ public abstract class BsTReservationDetailBhv extends AbstractBehaviorWritable<T
     }
 
     /**
-     * Batch-update the entity list modified-only of same-set columns. (NonExclusiveControl) <br>
+     * Batch-update the entity list modified-only of same-set columns. (ExclusiveControl) <br>
      * This method uses executeBatch() of java.sql.PreparedStatement. <br>
      * <span style="color: #CC4747; font-size: 120%">You should specify same-set columns to all entities like this:</span>
      * <pre>
@@ -539,23 +595,62 @@ public abstract class BsTReservationDetailBhv extends AbstractBehaviorWritable<T
      * }
      * <span style="color: #0000C0">tReservationDetailBhv</span>.<span style="color: #CC4747">batchUpdate</span>(tReservationDetailList);
      * </pre>
-     * @param tReservationDetailList The list of the entity. (NotNull, EmptyAllowed, PrimaryKeyNotNull)
+     * @param tReservationDetailList The list of the entity. (NotNull, EmptyAllowed, PrimaryKeyNotNull, ConcurrencyColumnNotNull)
      * @return The array of updated count. (NotNull, EmptyAllowed)
-     * @throws EntityAlreadyDeletedException When the entity has already been deleted. (not found)
+     * @throws BatchEntityAlreadyUpdatedException When the entity has already been updated. This exception extends EntityAlreadyUpdatedException.
      */
     public int[] batchUpdate(List<TReservationDetail> tReservationDetailList) {
         return doBatchUpdate(tReservationDetailList, null);
     }
 
     /**
-     * Batch-delete the entity list. (NonExclusiveControl) <br>
+     * Batch-update the entity list non-strictly modified-only of same-set columns. (NonExclusiveControl) <br>
+     * This method uses executeBatch() of java.sql.PreparedStatement. <br>
+     * <span style="color: #CC4747; font-size: 140%">You should specify same-set columns to all entities like this:</span>
+     * <pre>
+     * <span style="color: #70226C">for</span> (... : ...) {
+     *     TReservationDetail tReservationDetail = <span style="color: #70226C">new</span> TReservationDetail();
+     *     tReservationDetail.setFooName("foo");
+     *     <span style="color: #70226C">if</span> (...) {
+     *         tReservationDetail.setFooPrice(123);
+     *     } <span style="color: #70226C">else</span> {
+     *         tReservationDetail.setFooPrice(null); <span style="color: #3F7E5E">// updated as null</span>
+     *         <span style="color: #3F7E5E">//tReservationDetail.setFooDate(...); // *not allowed, fragmented</span>
+     *     }
+     *     <span style="color: #3F7E5E">// FOO_NAME and FOO_PRICE (and record meta columns) are updated</span>
+     *     <span style="color: #3F7E5E">// (others are not updated: their values are kept)</span>
+     *     tReservationDetailList.add(tReservationDetail);
+     * }
+     * <span style="color: #0000C0">tReservationDetailBhv</span>.<span style="color: #CC4747">batchUpdate</span>(tReservationDetailList);
+     * </pre>
+     * @param tReservationDetailList The list of the entity. (NotNull, EmptyAllowed, PrimaryKeyNotNull)
+     * @return The array of updated count. (NotNull, EmptyAllowed)
+     * @throws EntityAlreadyDeletedException When the entity has already been deleted. (not found)
+     */
+    public int[] batchUpdateNonstrict(List<TReservationDetail> tReservationDetailList) {
+        return doBatchUpdateNonstrict(tReservationDetailList, null);
+    }
+
+    /**
+     * Batch-delete the entity list. (ExclusiveControl) <br>
+     * This method uses executeBatch() of java.sql.PreparedStatement.
+     * @param tReservationDetailList The list of the entity. (NotNull, EmptyAllowed, PrimaryKeyNotNull)
+     * @return The array of deleted count. (NotNull, EmptyAllowed)
+     * @throws BatchEntityAlreadyUpdatedException When the entity has already been updated. This exception extends EntityAlreadyUpdatedException.
+     */
+    public int[] batchDelete(List<TReservationDetail> tReservationDetailList) {
+        return doBatchDelete(tReservationDetailList, null);
+    }
+
+    /**
+     * Batch-delete the entity list non-strictly. {NonExclusiveControl} <br>
      * This method uses executeBatch() of java.sql.PreparedStatement.
      * @param tReservationDetailList The list of the entity. (NotNull, EmptyAllowed, PrimaryKeyNotNull)
      * @return The array of deleted count. (NotNull, EmptyAllowed)
      * @throws EntityAlreadyDeletedException When the entity has already been deleted. (not found)
      */
-    public int[] batchDelete(List<TReservationDetail> tReservationDetailList) {
-        return doBatchDelete(tReservationDetailList, null);
+    public int[] batchDeleteNonstrict(List<TReservationDetail> tReservationDetailList) {
+        return doBatchDeleteNonstrict(tReservationDetailList, null);
     }
 
     // ===================================================================================
@@ -662,7 +757,7 @@ public abstract class BsTReservationDetailBhv extends AbstractBehaviorWritable<T
     }
 
     /**
-     * Update the entity with varying requests modified-only. (ZeroUpdateException, NonExclusiveControl) <br>
+     * Update the entity with varying requests modified-only. (ZeroUpdateException, ExclusiveControl) <br>
      * For example, self(selfCalculationSpecification), specify(updateColumnSpecification), disableCommonColumnAutoSetup(). <br>
      * Other specifications are same as update(entity).
      * <pre>
@@ -678,9 +773,9 @@ public abstract class BsTReservationDetailBhv extends AbstractBehaviorWritable<T
      *     }).plus(1); <span style="color: #3F7E5E">// XXX_COUNT = XXX_COUNT + 1</span>
      * });
      * </pre>
-     * @param tReservationDetail The entity of update. (NotNull, PrimaryKeyNotNull)
+     * @param tReservationDetail The entity of update. (NotNull, PrimaryKeyNotNull, ConcurrencyColumnNotNull)
      * @param opLambda The callback for option of update for varying requests. (NotNull)
-     * @throws EntityAlreadyDeletedException When the entity has already been deleted. (not found)
+     * @throws EntityAlreadyUpdatedException When the entity has already been updated.
      * @throws EntityDuplicatedException When the entity has been duplicated.
      * @throws EntityAlreadyExistsException When the entity already exists. (unique constraint violation)
      */
@@ -689,12 +784,40 @@ public abstract class BsTReservationDetailBhv extends AbstractBehaviorWritable<T
     }
 
     /**
+     * Update the entity with varying requests non-strictly modified-only. (ZeroUpdateException, NonExclusiveControl) <br>
+     * For example, self(selfCalculationSpecification), specify(updateColumnSpecification), disableCommonColumnAutoSetup(). <br>
+     * Other specifications are same as updateNonstrict(entity).
+     * <pre>
+     * <span style="color: #3F7E5E">// ex) you can update by self calculation values</span>
+     * TReservationDetail tReservationDetail = <span style="color: #70226C">new</span> TReservationDetail();
+     * tReservationDetail.setPK...(value); <span style="color: #3F7E5E">// required</span>
+     * tReservationDetail.setOther...(value); <span style="color: #3F7E5E">// you should set only modified columns</span>
+     * <span style="color: #3F7E5E">// you don't need to set a value of concurrency column</span>
+     * <span style="color: #3F7E5E">// (auto-increment for version number is valid though non-exclusive control)</span>
+     * <span style="color: #3F7E5E">//tReservationDetail.setVersionNo(value);</span>
+     * <span style="color: #0000C0">tReservationDetailBhv</span>.<span style="color: #CC4747">varyingUpdateNonstrict</span>(tReservationDetail, <span style="color: #553000">op</span> <span style="color: #90226C; font-weight: bold"><span style="font-size: 120%">-</span>&gt;</span> {
+     *     <span style="color: #553000">op</span>.self(<span style="color: #553000">cb</span> <span style="color: #90226C; font-weight: bold"><span style="font-size: 120%">-</span>&gt;</span> {
+     *         <span style="color: #553000">cb</span>.specify().<span style="color: #CC4747">columnXxxCount()</span>;
+     *     }).plus(1); <span style="color: #3F7E5E">// XXX_COUNT = XXX_COUNT + 1</span>
+     * });
+     * </pre>
+     * @param tReservationDetail The entity of update. (NotNull, PrimaryKeyNotNull)
+     * @param opLambda The callback for option of update for varying requests. (NotNull)
+     * @throws EntityAlreadyDeletedException When the entity has already been deleted. (not found)
+     * @throws EntityDuplicatedException When the entity has been duplicated.
+     * @throws EntityAlreadyExistsException When the entity already exists. (unique constraint violation)
+     */
+    public void varyingUpdateNonstrict(TReservationDetail tReservationDetail, WritableOptionCall<TReservationDetailCB, UpdateOption<TReservationDetailCB>> opLambda) {
+        doUpdateNonstrict(tReservationDetail, createUpdateOption(opLambda));
+    }
+
+    /**
      * Insert or update the entity with varying requests. (ExclusiveControl: when update) <br>
      * Other specifications are same as insertOrUpdate(entity).
      * @param tReservationDetail The entity of insert or update. (NotNull)
      * @param insertOpLambda The callback for option of insert for varying requests. (NotNull)
      * @param updateOpLambda The callback for option of update for varying requests. (NotNull)
-     * @throws EntityAlreadyDeletedException When the entity has already been deleted. (not found)
+     * @throws EntityAlreadyUpdatedException When the entity has already been updated.
      * @throws EntityDuplicatedException When the entity has been duplicated.
      * @throws EntityAlreadyExistsException When the entity already exists. (unique constraint violation)
      */
@@ -703,16 +826,43 @@ public abstract class BsTReservationDetailBhv extends AbstractBehaviorWritable<T
     }
 
     /**
-     * Delete the entity with varying requests. (ZeroUpdateException, NonExclusiveControl) <br>
+     * Insert or update the entity with varying requests non-strictly. (NonExclusiveControl: when update) <br>
+     * Other specifications are same as insertOrUpdateNonstrict(entity).
+     * @param tReservationDetail The entity of insert or update. (NotNull)
+     * @param insertOpLambda The callback for option of insert for varying requests. (NotNull)
+     * @param updateOpLambda The callback for option of update for varying requests. (NotNull)
+     * @throws EntityAlreadyDeletedException When the entity has already been deleted. (not found)
+     * @throws EntityDuplicatedException When the entity has been duplicated.
+     * @throws EntityAlreadyExistsException When the entity already exists. (unique constraint violation)
+     */
+    public void varyingInsertOrUpdateNonstrict(TReservationDetail tReservationDetail, WritableOptionCall<TReservationDetailCB, InsertOption<TReservationDetailCB>> insertOpLambda, WritableOptionCall<TReservationDetailCB, UpdateOption<TReservationDetailCB>> updateOpLambda) {
+        doInsertOrUpdateNonstrict(tReservationDetail, createInsertOption(insertOpLambda), createUpdateOption(updateOpLambda));
+    }
+
+    /**
+     * Delete the entity with varying requests. (ZeroUpdateException, ExclusiveControl) <br>
      * Now a valid option does not exist. <br>
      * Other specifications are same as delete(entity).
+     * @param tReservationDetail The entity of delete. (NotNull, PrimaryKeyNotNull, ConcurrencyColumnNotNull)
+     * @param opLambda The callback for option of delete for varying requests. (NotNull)
+     * @throws EntityAlreadyUpdatedException When the entity has already been updated.
+     * @throws EntityDuplicatedException When the entity has been duplicated.
+     */
+    public void varyingDelete(TReservationDetail tReservationDetail, WritableOptionCall<TReservationDetailCB, DeleteOption<TReservationDetailCB>> opLambda) {
+        doDelete(tReservationDetail, createDeleteOption(opLambda));
+    }
+
+    /**
+     * Delete the entity with varying requests non-strictly. (ZeroUpdateException, NonExclusiveControl) <br>
+     * Now a valid option does not exist. <br>
+     * Other specifications are same as deleteNonstrict(entity).
      * @param tReservationDetail The entity of delete. (NotNull, PrimaryKeyNotNull, ConcurrencyColumnNotNull)
      * @param opLambda The callback for option of delete for varying requests. (NotNull)
      * @throws EntityAlreadyDeletedException When the entity has already been deleted. (not found)
      * @throws EntityDuplicatedException When the entity has been duplicated.
      */
-    public void varyingDelete(TReservationDetail tReservationDetail, WritableOptionCall<TReservationDetailCB, DeleteOption<TReservationDetailCB>> opLambda) {
-        doDelete(tReservationDetail, createDeleteOption(opLambda));
+    public void varyingDeleteNonstrict(TReservationDetail tReservationDetail, WritableOptionCall<TReservationDetailCB, DeleteOption<TReservationDetailCB>> opLambda) {
+        doDeleteNonstrict(tReservationDetail, createDeleteOption(opLambda));
     }
 
     // -----------------------------------------------------
@@ -745,6 +895,19 @@ public abstract class BsTReservationDetailBhv extends AbstractBehaviorWritable<T
     }
 
     /**
+     * Batch-update the list with varying requests non-strictly. <br>
+     * For example, self(selfCalculationSpecification), specify(updateColumnSpecification)
+     * , disableCommonColumnAutoSetup(), limitBatchUpdateLogging(). <br>
+     * Other specifications are same as batchUpdateNonstrict(entityList).
+     * @param tReservationDetailList The list of the entity. (NotNull, EmptyAllowed, PrimaryKeyNotNull)
+     * @param opLambda The callback for option of update for varying requests. (NotNull)
+     * @return The array of updated count. (NotNull, EmptyAllowed)
+     */
+    public int[] varyingBatchUpdateNonstrict(List<TReservationDetail> tReservationDetailList, WritableOptionCall<TReservationDetailCB, UpdateOption<TReservationDetailCB>> opLambda) {
+        return doBatchUpdateNonstrict(tReservationDetailList, createUpdateOption(opLambda));
+    }
+
+    /**
      * Batch-delete the list with varying requests. <br>
      * For example, limitBatchDeleteLogging(). <br>
      * Other specifications are same as batchDelete(entityList).
@@ -754,6 +917,18 @@ public abstract class BsTReservationDetailBhv extends AbstractBehaviorWritable<T
      */
     public int[] varyingBatchDelete(List<TReservationDetail> tReservationDetailList, WritableOptionCall<TReservationDetailCB, DeleteOption<TReservationDetailCB>> opLambda) {
         return doBatchDelete(tReservationDetailList, createDeleteOption(opLambda));
+    }
+
+    /**
+     * Batch-delete the list with varying requests non-strictly. <br>
+     * For example, limitBatchDeleteLogging(). <br>
+     * Other specifications are same as batchDeleteNonstrict(entityList).
+     * @param tReservationDetailList The list of the entity. (NotNull, EmptyAllowed, PrimaryKeyNotNull)
+     * @param opLambda The callback for option of delete for varying requests. (NotNull)
+     * @return The array of deleted count. (NotNull, EmptyAllowed)
+     */
+    public int[] varyingBatchDeleteNonstrict(List<TReservationDetail> tReservationDetailList, WritableOptionCall<TReservationDetailCB, DeleteOption<TReservationDetailCB>> opLambda) {
+        return doBatchDeleteNonstrict(tReservationDetailList, createDeleteOption(opLambda));
     }
 
     // -----------------------------------------------------
@@ -857,6 +1032,12 @@ public abstract class BsTReservationDetailBhv extends AbstractBehaviorWritable<T
     public OutsideSqlAllFacadeExecutor<TReservationDetailBhv> outsideSql() {
         return doOutsideSql();
     }
+
+    // ===================================================================================
+    //                                                                Optimistic Lock Info
+    //                                                                ====================
+    @Override
+    protected boolean hasVersionNoValue(Entity et) { return downcast(et).getVersionNo() != null; }
 
     // ===================================================================================
     //                                                                         Type Helper

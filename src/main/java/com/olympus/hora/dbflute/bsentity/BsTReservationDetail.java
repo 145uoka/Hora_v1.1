@@ -14,12 +14,13 @@ import com.olympus.hora.dbflute.exentity.*;
 
 /**
  * The entity of t_reservation_detail as TABLE. <br>
+ * 予約明細テーブル
  * <pre>
  * [primary-key]
  *     reservation_detail_id
  *
  * [column]
- *     reservation_detail_id, reservation_id, course_id, hist_course_name, delete_flag, register_datetime, update_datetime
+ *     reservation_detail_id, reservation_id, course_id, hist_course_name, delete_flag, version_no, register_datetime, update_datetime
  *
  * [sequence]
  *     t_reservation_detail_reservation_detail_id_seq
@@ -28,7 +29,7 @@ import com.olympus.hora.dbflute.exentity.*;
  *     
  *
  * [version-no]
- *     
+ *     version_no
  *
  * [foreign table]
  *     m_course, t_reservation
@@ -49,6 +50,7 @@ import com.olympus.hora.dbflute.exentity.*;
  * Integer courseId = entity.getCourseId();
  * String histCourseName = entity.getHistCourseName();
  * Boolean deleteFlag = entity.getDeleteFlag();
+ * Integer versionNo = entity.getVersionNo();
  * java.time.LocalDateTime registerDatetime = entity.getRegisterDatetime();
  * java.time.LocalDateTime updateDatetime = entity.getUpdateDatetime();
  * entity.setReservationDetailId(reservationDetailId);
@@ -56,6 +58,7 @@ import com.olympus.hora.dbflute.exentity.*;
  * entity.setCourseId(courseId);
  * entity.setHistCourseName(histCourseName);
  * entity.setDeleteFlag(deleteFlag);
+ * entity.setVersionNo(versionNo);
  * entity.setRegisterDatetime(registerDatetime);
  * entity.setUpdateDatetime(updateDatetime);
  * = = = = = = = = = =/
@@ -87,6 +90,9 @@ public abstract class BsTReservationDetail extends AbstractEntity implements Dom
 
     /** delete_flag: {NotNull, bool(1), default=[false]} */
     protected Boolean _deleteFlag;
+
+    /** version_no: {NotNull, int4(10), default=[1]} */
+    protected Integer _versionNo;
 
     /** register_datetime: {NotNull, timestamp(26, 3), default=[now()]} */
     protected java.time.LocalDateTime _registerDatetime;
@@ -211,6 +217,7 @@ public abstract class BsTReservationDetail extends AbstractEntity implements Dom
         sb.append(dm).append(xfND(_courseId));
         sb.append(dm).append(xfND(_histCourseName));
         sb.append(dm).append(xfND(_deleteFlag));
+        sb.append(dm).append(xfND(_versionNo));
         sb.append(dm).append(xfND(_registerDatetime));
         sb.append(dm).append(xfND(_updateDatetime));
         if (sb.length() > dm.length()) {
@@ -243,6 +250,7 @@ public abstract class BsTReservationDetail extends AbstractEntity implements Dom
     //                                                                            ========
     /**
      * [get] reservation_detail_id: {PK, ID, NotNull, bigserial(19)} <br>
+     * 予約明細ID : 予約明細ID
      * @return The value of the column 'reservation_detail_id'. (basically NotNull if selected: for the constraint)
      */
     public Long getReservationDetailId() {
@@ -252,6 +260,7 @@ public abstract class BsTReservationDetail extends AbstractEntity implements Dom
 
     /**
      * [set] reservation_detail_id: {PK, ID, NotNull, bigserial(19)} <br>
+     * 予約明細ID : 予約明細ID
      * @param reservationDetailId The value of the column 'reservation_detail_id'. (basically NotNull if update: for the constraint)
      */
     public void setReservationDetailId(Long reservationDetailId) {
@@ -261,6 +270,7 @@ public abstract class BsTReservationDetail extends AbstractEntity implements Dom
 
     /**
      * [get] reservation_id: {int8(19), FK to t_reservation} <br>
+     * 予約ID : 予約ID
      * @return The value of the column 'reservation_id'. (NullAllowed even if selected: for no constraint)
      */
     public Long getReservationId() {
@@ -270,6 +280,7 @@ public abstract class BsTReservationDetail extends AbstractEntity implements Dom
 
     /**
      * [set] reservation_id: {int8(19), FK to t_reservation} <br>
+     * 予約ID : 予約ID
      * @param reservationId The value of the column 'reservation_id'. (NullAllowed: null update allowed for no constraint)
      */
     public void setReservationId(Long reservationId) {
@@ -279,6 +290,7 @@ public abstract class BsTReservationDetail extends AbstractEntity implements Dom
 
     /**
      * [get] course_id: {int4(10), FK to m_course} <br>
+     * コースID : コースID
      * @return The value of the column 'course_id'. (NullAllowed even if selected: for no constraint)
      */
     public Integer getCourseId() {
@@ -288,6 +300,7 @@ public abstract class BsTReservationDetail extends AbstractEntity implements Dom
 
     /**
      * [set] course_id: {int4(10), FK to m_course} <br>
+     * コースID : コースID
      * @param courseId The value of the column 'course_id'. (NullAllowed: null update allowed for no constraint)
      */
     public void setCourseId(Integer courseId) {
@@ -297,6 +310,7 @@ public abstract class BsTReservationDetail extends AbstractEntity implements Dom
 
     /**
      * [get] hist_course_name: {text(2147483647)} <br>
+     * 履歴用コース名 : 履歴用コース名
      * @return The value of the column 'hist_course_name'. (NullAllowed even if selected: for no constraint)
      */
     public String getHistCourseName() {
@@ -306,6 +320,7 @@ public abstract class BsTReservationDetail extends AbstractEntity implements Dom
 
     /**
      * [set] hist_course_name: {text(2147483647)} <br>
+     * 履歴用コース名 : 履歴用コース名
      * @param histCourseName The value of the column 'hist_course_name'. (NullAllowed: null update allowed for no constraint)
      */
     public void setHistCourseName(String histCourseName) {
@@ -315,6 +330,7 @@ public abstract class BsTReservationDetail extends AbstractEntity implements Dom
 
     /**
      * [get] delete_flag: {NotNull, bool(1), default=[false]} <br>
+     * 削除フラグ
      * @return The value of the column 'delete_flag'. (basically NotNull if selected: for the constraint)
      */
     public Boolean getDeleteFlag() {
@@ -324,6 +340,7 @@ public abstract class BsTReservationDetail extends AbstractEntity implements Dom
 
     /**
      * [set] delete_flag: {NotNull, bool(1), default=[false]} <br>
+     * 削除フラグ
      * @param deleteFlag The value of the column 'delete_flag'. (basically NotNull if update: for the constraint)
      */
     public void setDeleteFlag(Boolean deleteFlag) {
@@ -332,7 +349,28 @@ public abstract class BsTReservationDetail extends AbstractEntity implements Dom
     }
 
     /**
+     * [get] version_no: {NotNull, int4(10), default=[1]} <br>
+     * version_no
+     * @return The value of the column 'version_no'. (basically NotNull if selected: for the constraint)
+     */
+    public Integer getVersionNo() {
+        checkSpecifiedProperty("versionNo");
+        return _versionNo;
+    }
+
+    /**
+     * [set] version_no: {NotNull, int4(10), default=[1]} <br>
+     * version_no
+     * @param versionNo The value of the column 'version_no'. (basically NotNull if update: for the constraint)
+     */
+    public void setVersionNo(Integer versionNo) {
+        registerModifiedProperty("versionNo");
+        _versionNo = versionNo;
+    }
+
+    /**
      * [get] register_datetime: {NotNull, timestamp(26, 3), default=[now()]} <br>
+     * 登録日時
      * @return The value of the column 'register_datetime'. (basically NotNull if selected: for the constraint)
      */
     public java.time.LocalDateTime getRegisterDatetime() {
@@ -342,6 +380,7 @@ public abstract class BsTReservationDetail extends AbstractEntity implements Dom
 
     /**
      * [set] register_datetime: {NotNull, timestamp(26, 3), default=[now()]} <br>
+     * 登録日時
      * @param registerDatetime The value of the column 'register_datetime'. (basically NotNull if update: for the constraint)
      */
     public void setRegisterDatetime(java.time.LocalDateTime registerDatetime) {
@@ -351,6 +390,7 @@ public abstract class BsTReservationDetail extends AbstractEntity implements Dom
 
     /**
      * [get] update_datetime: {timestamp(26, 3)} <br>
+     * 更新日時
      * @return The value of the column 'update_datetime'. (NullAllowed even if selected: for no constraint)
      */
     public java.time.LocalDateTime getUpdateDatetime() {
@@ -360,6 +400,7 @@ public abstract class BsTReservationDetail extends AbstractEntity implements Dom
 
     /**
      * [set] update_datetime: {timestamp(26, 3)} <br>
+     * 更新日時
      * @param updateDatetime The value of the column 'update_datetime'. (NullAllowed: null update allowed for no constraint)
      */
     public void setUpdateDatetime(java.time.LocalDateTime updateDatetime) {

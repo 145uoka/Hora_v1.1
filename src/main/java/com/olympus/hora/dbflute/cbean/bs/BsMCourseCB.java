@@ -344,6 +344,11 @@ public class BsMCourseCB extends AbstractConditionBean {
          */
         public SpecifiedColumn columnDeleteFlag() { return doColumn("delete_flag"); }
         /**
+         * version_no: {NotNull, int4(10), default=[1]}
+         * @return The information object of specified column. (NotNull)
+         */
+        public SpecifiedColumn columnVersionNo() { return doColumn("version_no"); }
+        /**
          * register_datetime: {NotNull, timestamp(26, 3), default=[now()]}
          * @return The information object of specified column. (NotNull)
          */

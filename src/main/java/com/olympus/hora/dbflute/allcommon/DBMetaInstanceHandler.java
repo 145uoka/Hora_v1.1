@@ -31,6 +31,7 @@ public class DBMetaInstanceHandler implements DBMetaProvider {
     protected static final Map<String, String> _tableDbNameClassNameMap;
     static {
         final Map<String, String> tmpMap = newHashMap();
+        tmpMap.put("display_def_m", "com.olympus.hora.dbflute.bsentity.dbmeta.DisplayDefMDbm");
         tmpMap.put("m_code", "com.olympus.hora.dbflute.bsentity.dbmeta.MCodeDbm");
         tmpMap.put("m_company", "com.olympus.hora.dbflute.bsentity.dbmeta.MCompanyDbm");
         tmpMap.put("m_course", "com.olympus.hora.dbflute.bsentity.dbmeta.MCourseDbm");
@@ -43,6 +44,7 @@ public class DBMetaInstanceHandler implements DBMetaProvider {
         tmpMap.put("m_working_day_deff", "com.olympus.hora.dbflute.bsentity.dbmeta.MWorkingDayDeffDbm");
         tmpMap.put("m_working_day_detail_deff", "com.olympus.hora.dbflute.bsentity.dbmeta.MWorkingDayDetailDeffDbm");
         tmpMap.put("m_working_staff", "com.olympus.hora.dbflute.bsentity.dbmeta.MWorkingStaffDbm");
+        tmpMap.put("system_property_m", "com.olympus.hora.dbflute.bsentity.dbmeta.SystemPropertyMDbm");
         tmpMap.put("t_reservation", "com.olympus.hora.dbflute.bsentity.dbmeta.TReservationDbm");
         tmpMap.put("t_reservation_detail", "com.olympus.hora.dbflute.bsentity.dbmeta.TReservationDetailDbm");
         tmpMap.put("t_shift", "com.olympus.hora.dbflute.bsentity.dbmeta.TShiftDbm");

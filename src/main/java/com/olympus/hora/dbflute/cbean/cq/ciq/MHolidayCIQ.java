@@ -65,6 +65,7 @@ public class MHolidayCIQ extends AbstractBsMHolidayCQ {
     protected ConditionValue xgetCValueHolidayName() { return _myCQ.xdfgetHolidayName(); }
     protected ConditionValue xgetCValueHoliday() { return _myCQ.xdfgetHoliday(); }
     protected ConditionValue xgetCValueDeleteFlag() { return _myCQ.xdfgetDeleteFlag(); }
+    protected ConditionValue xgetCValueVersionNo() { return _myCQ.xdfgetVersionNo(); }
     protected ConditionValue xgetCValueRegisterDatetime() { return _myCQ.xdfgetRegisterDatetime(); }
     protected ConditionValue xgetCValueUpdateDatetime() { return _myCQ.xdfgetUpdateDatetime(); }
     protected Map<String, Object> xfindFixedConditionDynamicParameterMap(String pp) { return null; }
