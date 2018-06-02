@@ -294,8 +294,7 @@ public class WorkshopEditService {
 
                 MWorkingDay mWorkingDayEntity = new MWorkingDay();
 
-                createMWorkingDay(dto, mWorkingDayStoreList, shopHolidayList, mWorkingDayDetailDeff,
-                        weekFlagList, date, mWorkingDayEntity);
+                createMWorkingDay(mWorkingDayEntity, mWorkingDayDetailDeff, date, mWorkingDayStoreList, shopHolidayList, weekFlagList);
 
                 if(mWorkingDayEntity.getWorkingDate() != null){
                     //日付以外のカラムの値をセットする。
@@ -307,10 +306,8 @@ public class WorkshopEditService {
 
                     //同営業日で時間帯重複チェック.
                     checkOverlapTimeInterval(mWorkingDayEntity, mWorkingDayStoreList);
+                    mWorkingDayStoreList.add(mWorkingDayEntity);
                 }
-
-                mWorkingDayStoreList.add(mWorkingDayEntity);
-
             }
         }
 
@@ -324,9 +321,18 @@ public class WorkshopEditService {
     }
 
 
-    private void createMWorkingDay(MWorkingDayDeffDto dto, List<MWorkingDay> mWorkingDayStoreList,
-            List<LocalDate> shopHolidayList, MWorkingDayDetailDeff mWorkingDayDetailDeff, List<Boolean> weekFlagList,
-            LocalDate date, MWorkingDay mWorkingDayEntity) {
+    /**
+     * 営業日詳細マスタの条件に一致する日付を営業日にセットする。
+     *
+     * @param mWorkingDayEntity 営業日マスタentity
+     * @param mWorkingDayDetailDeff 営業日詳細マスタentity
+     * @param date 日付
+     * @param mWorkingDayStoreList 営業日登録リスト
+     * @param shopHolidayList 休日リスト
+     * @param weekFlagList 第ｘ週Flagのbooleanリスト
+     */
+    private void createMWorkingDay(MWorkingDay mWorkingDayEntity, MWorkingDayDetailDeff mWorkingDayDetailDeff,
+            LocalDate date, List<MWorkingDay> mWorkingDayStoreList, List<LocalDate> shopHolidayList, List<Boolean> weekFlagList) {
 
       //指定日//
         if(mWorkingDayDetailDeff.getSpecifiedDay() != null){
@@ -334,7 +340,7 @@ public class WorkshopEditService {
             if(date.isEqual(mWorkingDayDetailDeff.getSpecifiedDay())){
                 //指定日と一致した場合
                 if(mWorkingDayDetailDeff.getWorkingDayFlg()){
-                    //営業Flagがtrueの場合、entityに日付、他のカラムの値をセット。
+                    //営業Flagがtrueの場合、entityに日付をセット。
                     mWorkingDayEntity.setWorkingDate(date);
                     return;
 
@@ -352,7 +358,7 @@ public class WorkshopEditService {
             if(date.getDayOfMonth() == mWorkingDayDetailDeff.getDayOfMonth()){
                 //毎月指定日と一致した場合
                 if(mWorkingDayDetailDeff.getWorkingDayFlg()){
-                    //営業Flagがtrueの場合、entityに日付、他のカラムの値をセット。
+                    //営業Flagがtrueの場合、entityに日付をセット。
                     mWorkingDayEntity.setWorkingDate(date);
                     return;
 
@@ -372,7 +378,7 @@ public class WorkshopEditService {
             if(mHolidayEntity.isPresent()){
                 //祝日日と一致した場合
                 if(mWorkingDayDetailDeff.getWorkingDayFlg()){
-                    //営業Flagがtrueの場合、entityに日付、他のカラムの値をセット。
+                    //営業Flagがtrueの場合、entityに日付をセット。
                     mWorkingDayEntity.setWorkingDate(date);
                     return;
 
@@ -391,11 +397,11 @@ public class WorkshopEditService {
                 checkDayOfWeekInMonth(mWorkingDayDetailDeff, mWorkingDayEntity, date, (i+1), shopHolidayList);
 
                 if(mWorkingDayEntity.getWorkingDate() != null){
-                    //営業日がセットされている場合、第ｘ週Flagのチェックループを抜ける。
+                    //営業日がセットされている場合
                     return;
 
                 }else if(shopHolidayList.contains(date)){
-                  //休日リストに対象日がセットされている場合、第ｘ週Flagのチェックループを抜ける。
+                  //休日リストに対象日がセットされている場合
                     return;
                 }
             }
@@ -408,7 +414,7 @@ public class WorkshopEditService {
 
             if(mWorkingDayEntity.getWorkingDate() != null){
 
-                //営業Flagがtrueの場合、entityに日付、他のカラムの値をセット。
+                //営業Flagがtrueの場合、entityに日付をセット。
                 mWorkingDayEntity.setWorkingDate(date);
                 return;
 
@@ -545,6 +551,10 @@ public class WorkshopEditService {
      */
     private void checkOverlapTimeInterval(MWorkingDay mWorkingDayEntity, List<MWorkingDay> mWorkingDayStoreList)
             throws OverlapTimeIntervalException{
+
+        if(mWorkingDayStoreList.size() == 0){
+            return;
+        }
 
         for(MWorkingDay targetEntity : mWorkingDayStoreList){
             if((targetEntity.getWorkingDate()).isEqual(mWorkingDayEntity.getWorkingDate())){
