@@ -11,7 +11,7 @@
     -ms-appearance: none;
     -moz-appearance: none;
 
-    margin: 10px;
+    margin: 0px;
     width: 80px;
     height: 25px;
     border: 0px solid rgba(0,0,0,0.0);
@@ -28,10 +28,10 @@
 .toggle_button + label {
     position: relative;
     display: inline-block;
-    top: -5px;
-    left: -90px;
-    width: 35px;
-    height: 35px;
+    top: 5px;
+    left: -80px;
+    width: 25px;
+    height: 25px;
     border: 0px solid rgba(0,0,0,0.0);
     border-radius: 50%;
     background-color: #eee;
@@ -42,10 +42,10 @@
 	background-color: #bbb;
     position: relative;
     display: inline-block;
-    top: -5px;
-    left: -45px;
-    width: 35px;
-    height: 35px;
+    top: 5px;
+    left: -20px;
+    width: 25px;
+    height: 25px;
     border: 0px solid rgba(0,0,0,0.0);
     border-radius: 50%;
     background-color: #00bbd3;

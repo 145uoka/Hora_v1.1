@@ -19,7 +19,7 @@ public class ShopEditController {
      * @return
      * @throws RecordNotFoundException
      */
-    @RequestMapping(value = "shop/edit", method = RequestMethod.GET)
+    @RequestMapping(value = "/shop/edit", method = RequestMethod.GET)
     public String show() throws Exception {
 
 
@@ -27,17 +27,17 @@ public class ShopEditController {
         return "shop/edit";
     }
 
-    /**
-     * ショップ情報編集画面編集確定処理
-     * @return
-     * @throws RecordNotFoundException
-     */
-    @RequestMapping(value = "shop/edit", method = RequestMethod.GET)
-    public String edit() throws Exception {
-
-
-
-        return "shop/edit";
-    }
+//    /**
+//     * ショップ情報編集画面編集確定処理
+//     * @return
+//     * @throws RecordNotFoundException
+//     */
+//    @RequestMapping(value = "shop/edit", method = RequestMethod.GET)
+//    public String edit() throws Exception {
+//
+//
+//
+//        return "shop/edit";
+//    }
 
 }
