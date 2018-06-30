@@ -2,31 +2,31 @@
 <a id="index"></a>
 ## <a href="#index">目次</a>
 - [環境構築方法](#environment)
-  - [Eclipseにプロジェクトを作成する手順](#inport)
+  - [Eclipseにプロジェクトを作成する手順](#import)
   - [DB作成方法手順](#db)
   - [サーバ作成方法手順](#server)
 - [EclipseでのGit操作](#eclipse_git)
 - [manage.batの操作](#manage_bat)
 <a id="environment"></a>
 ## <a href="#environment">環境構築方法</a>  
-<a id="inport"></a>
-### <a href="#inport">Eclipseにプロジェクトを作成する手順</a>  
+<a id="import"></a>
+### <a href="#import">Eclipseにプロジェクトを作成する手順</a>  
 [手順]  
 1.Eclipse のメニューの 「ファイル」 > 「インポート」 あるいは、パッケージ・エクスプローラ で右クリックメニューから 「インポート」 を選択。  
 2.次に表示されるメニューから、「Git」 の中にある 「Gitからプロジェクト」 を選択し、「次へ」。  
-![インポート方法2](https://github.com/145uoka/Hora_v1.1/blob/Readme/README/inport/inport_1.png "インポート方法2")  
+![インポート方法2](https://github.com/145uoka/Hora_v1.1/blob/Readme/README/import/import_1.png "インポート方法2")  
 3. 「URIの複製」 を選択し、「次へ」。  
-![インポート方法3](https://github.com/145uoka/Hora_v1.1/blob/Readme/README/inport/inport_2.png "インポート方法3")  
+![インポート方法3](https://github.com/145uoka/Hora_v1.1/blob/Readme/README/import/import_2.png "インポート方法3")  
 4.「URI」を入力して、「次へ」。  
-![インポート方法4](https://github.com/145uoka/Hora_v1.1/blob/Readme/README/inport/inport_3.png "インポート方法4")  
+![インポート方法4](https://github.com/145uoka/Hora_v1.1/blob/Readme/README/import/import_3.png "インポート方法4")  
 5.チェックアウトするブランチを選択し、「次へ」。  
-![インポート方法4](https://github.com/145uoka/Hora_v1.1/blob/Readme/README/inport/inport_4.png "インポート方法4")  
+![インポート方法4](https://github.com/145uoka/Hora_v1.1/blob/Readme/README/import/import_4.png "インポート方法4")  
 6.任意のディレクトリを選択し、「次へ」。  
-![インポート方法5](https://github.com/145uoka/Hora_v1.1/blob/Readme/README/inport/inport_5.png "インポート方法5")  
+![インポート方法5](https://github.com/145uoka/Hora_v1.1/blob/Readme/README/import/import_5.png "インポート方法5")  
 7. 「Import existing Eclipse projects(E)」を選択し、「次へ」。  
-![インポート方法6](https://github.com/145uoka/Hora_v1.1/blob/Readme/README/inport/inport_7.png "インポート方法6")  
+![インポート方法6](https://github.com/145uoka/Hora_v1.1/blob/Readme/README/import/import_7.png "インポート方法6")  
 8.「完了」。  
-![インポート方法7](https://github.com/145uoka/Hora_v1.1/blob/Readme/README/inport/inport_8.png "インポート方法7")  
+![インポート方法7](https://github.com/145uoka/Hora_v1.1/blob/Readme/README/import/import_8.png "インポート方法7")  
 [目次に戻る](#index)  
 <a id="db"></a>
 ### <a href="#db">DB作成方法手順</a>  
@@ -47,7 +47,7 @@
 ![DB作成方法7](https://github.com/145uoka/Hora_v1.1/blob/Readme/README/DB/DB_7.png "DB作成方法7")  
 8.eclipse上の「hora」プロジェクトから「hora」の中にある「dbflute_hora」の中の「manage.bat」を選択。
 ![DB作成方法8](https://github.com/145uoka/Hora_v1.1/blob/Readme/README/DB/DB_8.png "DB作成方法8")  
-9.「0」を入力し、「enter」を押下。  
+9.「1」を入力し、「enter」を押下。  
 ![DB作成方法9](https://github.com/145uoka/Hora_v1.1/blob/Readme/README/DB/DB_9.png "DB作成方法9")  
 10.「y」を入力し、「enter」を押下。
 ![DB作成方法10](https://github.com/145uoka/Hora_v1.1/blob/Readme/README/DB/DB_10.png "DB作成方法10")  
@@ -71,24 +71,50 @@
 [目次に戻る](#index)  
 <a id="eclipse_git"></a>
 ## <a href="#eclipse_git">EclipseでのGit操作</a>  
-<新規ブランチの作成>  
+＜新規ブランチの作成＞  
 [手順]  
 1.プロジェクトを右クリック  
 2.チーム - 切り替え - 新規ブランチ  
 3.ブランチ名を入力後、「完了」  
   
-<ブランチのチェックアウト（切り替え）>  
+＜ブランチのチェックアウト（切り替え）＞  
 [手順]  
 1.プロジェクトを右クリック  
 2.チーム - 切り替え - 新規ブランチ  
 3.ブランチ名を入力後、「完了」  
-
+  
 ＜ブランチのマージ＞  
 [手順]  
 1.プロジェクトを右クリック  
 2.チーム - マージ  
 3.マージしたいブランチを選択後、「マージ」  
-[目次に戻る](#index)
+  
+[目次に戻る](#index)  
 <a id="manage_bat"></a>
 ## <a href="#manage_bat">manage.batの操作</a>  
-[目次に戻る](#index)  
+#### [DB Change] => after changing database, with replacing your database  
+- 0 : replace-schema => drop tables and re-create schema (needs settings)  
+- 1 : renewal        => replace-schema and generate all (call 0->21->22->23->25->24)  
+- 7 : save-previous  => save previous DDLs for AlterCheck  
+- 8 : alter-check    => check alter DDLs with previous and next DDLs  
+  
+#### [Generate] => generate class files and documents by schema meta data  
+-  2 : regenerate       => generate all (call 21->22->23->24->25)  
+- 21 : jdbc             => get meta data from schema (before doc and generate)  
+- 22 : doc              => generate documents e.g. SchemaHTML, HistoryHTML  
+- 23 : generate         => generate class files for tables  
+- 24 : sql2entity       => generate class files for OutsideSql  
+- 25 : outside-sql-test => check OutsideSql (execute SQLs, expect no error)  
+  
+#### [Utility] => various tasks  
+-  4 : load-data-reverse => reverse data to excel for e.g. ReplaceSchema  
+-  5 : schema-sync-check => check difference between two schemas  
+- 11 : refresh           => request refresh (F5) to IDE e.g. Eclipse  
+- 12 : freegen           => generate something by free template  
+- 13 : take-assert       => execute assertion SQL of TakeFinally  
+
+- 88 : intro   => boot DBFluteIntro that provides GUI control  
+- 94 : upgrade => upgrade DBFlute module to new version (except runtime)  
+- 97 : help    => show description of tasks  
+
+[目次に戻る](#index) 

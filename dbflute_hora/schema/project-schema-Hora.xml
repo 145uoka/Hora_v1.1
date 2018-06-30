@@ -626,17 +626,19 @@
     </table>
     <sequenceGroup>
         <sequence incrementSize="1" maximumValue="9223372036854775807"
-            minimumValue="1" name="m_course_group_course_group_id_seq" schema="postgres.hora"/>
-        <sequence incrementSize="1" maximumValue="9223372036854775807"
-            minimumValue="1" name="m_holiday_holiday_id_seq" schema="postgres.hora"/>
-        <sequence incrementSize="1" maximumValue="9223372036854775807"
             minimumValue="1" name="m_code_code_id_seq" schema="postgres.hora"/>
         <sequence incrementSize="1" maximumValue="9223372036854775807"
+            minimumValue="1" name="m_course_group_course_group_id_seq" schema="postgres.hora"/>
+        <sequence incrementSize="1" maximumValue="9223372036854775807"
             minimumValue="1" name="m_company_company_id_seq" schema="postgres.hora"/>
+        <sequence incrementSize="1" maximumValue="9223372036854775807"
+            minimumValue="1" name="m_holiday_holiday_id_seq" schema="postgres.hora"/>
         <sequence incrementSize="1" maximumValue="9223372036854775807"
             minimumValue="1" name="m_shop_shop_id_seq" schema="postgres.hora"/>
         <sequence incrementSize="1" maximumValue="9223372036854775807"
             minimumValue="1" name="m_staff_staff_id_seq" schema="postgres.hora"/>
+        <sequence incrementSize="1" maximumValue="9223372036854775807"
+            minimumValue="1" name="m_user_user_id_seq" schema="postgres.hora"/>
         <sequence incrementSize="1" maximumValue="9223372036854775807"
             minimumValue="1" name="m_working_day_working_day_id_seq" schema="postgres.hora"/>
         <sequence incrementSize="1" maximumValue="9223372036854775807"
@@ -647,8 +649,6 @@
             name="m_working_day_detail_deff_working_day_detail_deff_id_seq" schema="postgres.hora"/>
         <sequence incrementSize="1" maximumValue="9223372036854775807"
             minimumValue="1" name="m_working_staff_working_staff_id_seq" schema="postgres.hora"/>
-        <sequence incrementSize="1" maximumValue="9223372036854775807"
-            minimumValue="1" name="m_user_user_id_seq" schema="postgres.hora"/>
         <sequence incrementSize="1" maximumValue="9223372036854775807"
             minimumValue="1" name="t_reservation_reservation_id_seq" schema="postgres.hora"/>
         <sequence incrementSize="1" maximumValue="9223372036854775807"
