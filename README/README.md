@@ -92,29 +92,10 @@
 [目次に戻る](#index)  
 <a id="manage_bat"></a>
 ## <a href="#manage_bat">manage.batの操作</a>  
-#### [DB Change] => after changing database, with replacing your database  
-- 0 : replace-schema => drop tables and re-create schema (needs settings)  
-- 1 : renewal        => replace-schema and generate all (call 0->21->22->23->25->24)  
-- 7 : save-previous  => save previous DDLs for AlterCheck  
-- 8 : alter-check    => check alter DDLs with previous and next DDLs  
-  
-#### [Generate] => generate class files and documents by schema meta data  
--  2 : regenerate       => generate all (call 21->22->23->24->25)  
-- 21 : jdbc             => get meta data from schema (before doc and generate)  
-- 22 : doc              => generate documents e.g. SchemaHTML, HistoryHTML  
-- 23 : generate         => generate class files for tables  
-- 24 : sql2entity       => generate class files for OutsideSql  
-- 25 : outside-sql-test => check OutsideSql (execute SQLs, expect no error)  
-  
-#### [Utility] => various tasks  
--  4 : load-data-reverse => reverse data to excel for e.g. ReplaceSchema  
--  5 : schema-sync-check => check difference between two schemas  
-- 11 : refresh           => request refresh (F5) to IDE e.g. Eclipse  
-- 12 : freegen           => generate something by free template  
-- 13 : take-assert       => execute assertion SQL of TakeFinally  
+- 0 :  スキーマとテーブルを新規作成してテーブルに初期値を入力します。テーブルに入力する初期値を変更したり、テーブル名やテーブルの項目を変更した場合は実行してください。  
+- 1 :  ' 0 ' と ' 2 ' 両方の処理を実行します。  
+- 2 :   DBの操作をするクラスファイルの作成やテーブルのドキュメントを作成します。テーブル名やテーブルの項目を変更した場合は実行してください。  
 
-- 88 : intro   => boot DBFluteIntro that provides GUI control  
-- 94 : upgrade => upgrade DBFlute module to new version (except runtime)  
-- 97 : help    => show description of tasks  
+その他の操作は、 ' 97 ' のヘルプを確認してください。  
 
 [目次に戻る](#index) 
