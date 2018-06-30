@@ -67,7 +67,7 @@
 4.「Hello world!」が表示されればOK  
 ![サーバ作成方法手順4](https://github.com/145uoka/Hora_v1.1/blob/Readme/README/server/server_4.png "サーバ作成方法手順4")  
 ※次回からは、Eclipseの下部にある「サーバー」から作成したサーバーの上で右クリックしサーバを開始するには「開始」、サーバを停止するには「停止」を選択してください。  
-![サーバ作成方法手順4](https://github.com/145uoka/Hora_v1.1/blob/Readme/README/server/server_4.png "サーバ作成方法手順4")  
+![サーバ作成方法手順5](https://github.com/145uoka/Hora_v1.1/blob/Readme/README/server/server_5.png "サーバ作成方法手順5")  
 [目次に戻る](#index)  
 <a id="eclipse_git"></a>
 ## <a href="#eclipse_git">EclipseでのGit操作</a>  
