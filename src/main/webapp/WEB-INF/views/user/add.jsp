@@ -2,6 +2,7 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ page session="false"%>
 <%@include file="/WEB-INF/fragment/taglib-includes.jspf"%>
 
 <html>
@@ -21,7 +22,7 @@
 
 <body>
   <jsp:include page="../common/header.jsp" />
-  <form id="form" name="form" action="/RSV" method="post" class="form-horizontal">
+  <form:form modelAttribute="form" method="post" name="form" action="${pageContext.request.contextPath}" class="form-horizontal">
 
     <div class="container">
 
@@ -38,14 +39,12 @@
             <div class="panel-body sub-background-color">
 
               <div class="form-group ">
-                <label class="col-md-3 control-label">氏名<span class="label label-danger"
-                  style="margin-left: 5px">必須</span>
+                <label class="col-md-3 control-label">氏名<span class="label label-danger" style="margin-left: 5px">必須</span>
                 </label>
                 <div class="col-md-6">
-                  <input id="familyName" name="familyName" class="form-control form-inline"
-                    type="text" value="" maxlength="10" style="width: 45%;" /> <input
-                    id="givenName" name="givenName" class="form-control form-inline" type="text"
-                    value="" maxlength="10" style="width: 45%;" /> <span class="help-block"></span>
+                  <form:input path="familyName" class="form-control form-inline" maxlength="10" style="width: 45%;" />
+                  <form:input path="givenName" class="form-control form-inline" maxlength="10" style="width: 45%;" />
+                  <span class="help-block"></span>
                 </div>
               </div>
               <div class="form-group ">
@@ -53,11 +52,16 @@
                   style="margin-left: 5px">必須</span>
                 </label>
                 <div class="col-md-6">
-                  <input id="familyNameKana" name="familyNameKana" class="form-control form-inline"
-                    type="text" value="" maxlength="10" style="width: 45%;" /> <input
-                    id="givenNameKana" name="givenNameKana" class="form-control form-inline"
-                    type="text" value="" maxlength="10" style="width: 45%;" /> <span
-                    class="help-block"></span>
+                  <form:input path="familyNameKana" class="form-control form-inline" maxlength="30" style="width: 45%;" />
+                  <form:input path="givenNameKana" class="form-control form-inline" maxlength="30" style="width: 45%;" />
+                  <span class="help-block"></span>
+                </div>
+              </div>
+              <div class="form-group ">
+                <label class="col-md-3 control-label">性別 </label>
+                <div class="col-md-3">
+                  <form:select path="sex" class="form-control" items="${form.sexList}" itemLabel="name" itemValue="code1" />
+                  <span class="help-block"></span>
                 </div>
               </div>
               <div class="form-group ">
@@ -223,7 +227,7 @@
         </table>
       </div>
     </div>
-  </form>
+  </form:form>
 
   <jsp:include page="../common/footer.jsp" />
   <script src="<c:url value="/resources/js/user/add.js" />"></script>

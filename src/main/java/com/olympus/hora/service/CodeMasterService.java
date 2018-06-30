@@ -1,5 +1,6 @@
 package com.olympus.hora.service;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -11,7 +12,6 @@ import com.olympus.hora.constants.code.CodeGroup;
 import com.olympus.hora.dbflute.cbean.MCodeCB;
 import com.olympus.hora.dbflute.exbhv.MCodeBhv;
 import com.olympus.hora.dbflute.exentity.MCode;
-import com.olympus.hora.form.Pulldown;
 
 /**
  * コードマスタ操作用サービスクラス
@@ -29,20 +29,17 @@ public class CodeMasterService {
      * @return コードリスト
      * @throws RecordNotFoundException
      */
-    public Pulldown searchPulldown(CodeGroup codeGroup) throws RecordNotFoundException{
+    public List<MCode> searchPulldown(CodeGroup codeGroup, boolean hasBlank) throws RecordNotFoundException{
         MCodeCB cb = new MCodeCB();
-        cb.query().setGroupCode_Equal(codeGroup.code());
+        cb.query().setGroupCode_Equal(codeGroup.groupCode());
         cb.query().addOrderBy_Code1_Asc();
         List<MCode> codeList = mCodeBhv.readList(cb);
         if (codeList.size() == 0)
-            throw new RecordNotFoundException("group code: " + codeGroup.code() + " has not any codes.");
+            throw new RecordNotFoundException("group code: " + codeGroup.groupCode() + " has not any codes.");
 
-        Pulldown pulldown = new Pulldown();
-        for (MCode code : codeList) {
-            Pulldown.Record record = new Pulldown.Record();
-            record.setCode(code.getCode1());
-            record.setName(code.getName());
-        }
+        List<MCode> pulldown = new ArrayList<MCode>();
+        if (hasBlank) pulldown.add(new MCode());
+        pulldown.addAll(codeList);
         return pulldown;
     }
 

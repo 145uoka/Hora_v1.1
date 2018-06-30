@@ -1,14 +1,22 @@
 package com.olympus.hora.constants.code;
 
+/**
+ * コードマスタ　コードグループ
+ * @author majo_k
+ */
 public enum CodeGroup {
-    SEX(1), PREFECTURE(2);
+    /** 性別 */
+    SEX(1),
+    /** 都道府県 */
+    PREFECTURE(2),
+    ;
     private final int groupCode;
-    private CodeGroup(int groupCode) {
+    CodeGroup(int groupCode) {
         this.groupCode = groupCode;
     }
     /**
      * コードマスタのグループコードを返却
      * @return グループコード
      */
-    public int code() { return groupCode; }
+    public int groupCode() { return groupCode; }
 }

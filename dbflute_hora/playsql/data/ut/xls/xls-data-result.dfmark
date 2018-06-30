@@ -6,5 +6,8 @@
 * * * * * * * * * *
 data-directory: playsql/data/ut/xls
 
+[m_code_data.xls]
+  m_code (49)
+
 [m_holiday_data.xls]
   m_holiday (39)
