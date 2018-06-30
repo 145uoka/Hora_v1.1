@@ -1,10 +1,12 @@
 # Hora_v1.1
-## 目次
+<a id="index"></a>
+## <a href="#index">目次</a>
 - [環境構築方法](#environment)
   - [Eclipseにプロジェクトを作成する手順](#inport)
   - [DB作成方法手順](#db)
   - [サーバ作成方法手順](#server)
 - [EclipseでのGit操作](#eclipse_git)
+- [manage.batの操作](#manage_bat)
 <a id="environment"></a>
 ## <a href="#environment">環境構築方法</a>  
 <a id="inport"></a>
@@ -25,7 +27,7 @@
 ![インポート方法6](https://github.com/145uoka/Hora_v1.1/blob/Readme/README/inport/inport_7.png "インポート方法6")  
 8.「完了」。  
 ![インポート方法7](https://github.com/145uoka/Hora_v1.1/blob/Readme/README/inport/inport_8.png "インポート方法7")  
-
+[目次に戻る](#index)  
 <a id="db"></a>
 ### <a href="#db">DB作成方法手順</a>  
 [手順]  
@@ -49,12 +51,16 @@
 ![DB作成方法9](https://github.com/145uoka/Hora_v1.1/blob/Readme/README/DB/DB_9.png "DB作成方法9")  
 10.「y」を入力し、「enter」を押下。
 ![DB作成方法10](https://github.com/145uoka/Hora_v1.1/blob/Readme/README/DB/DB_10.png "DB作成方法10")  
-
+[目次に戻る](#index)  
 <a id="server"></a>
 ### <a href="#server">サーバ作成方法手順</a>  
 [手順]  
-1.  
-
+1.Eclipse上の「hora」プロジェクトの上で右クリックし、「実行」 > 「1サーバで実行(1)」を選択。  
+![サーバ作成方法手順1](https://github.com/145uoka/Hora_v1.1/blob/Readme/README/server/server_1.png "サーバ作成方法手順1")    
+2.  
+3.  
+4.  
+[目次に戻る](#index)  
 <a id="eclipse_git"></a>
 ## <a href="#eclipse_git">EclipseでのGit操作</a>  
 <新規ブランチの作成>  
@@ -74,4 +80,7 @@
 1.プロジェクトを右クリック  
 2.チーム - マージ  
 3.マージしたいブランチを選択後、「マージ」  
-
+[目次に戻る](#index)
+<a id="manage_bat"></a>
+## <a href="#manage_bat">manage.batの操作</a>  
+[目次に戻る](#index)  
