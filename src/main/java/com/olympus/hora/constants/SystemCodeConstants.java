@@ -1,6 +1,8 @@
 package com.olympus.hora.constants;
 
-import org.apache.commons.lang3.StringUtils;
+import java.util.Arrays;
+import java.util.Optional;
+import java.util.function.Predicate;
 
 public class SystemCodeConstants {
 
@@ -38,74 +40,68 @@ public class SystemCodeConstants {
         ON("1", 1, true),
         OFF("0", 0, false);
 
-        final String stringValue;
-        final Integer integerValue;
-        final boolean boolValue;
-        private Flag(String stringValue, Integer integerValue, boolean boolValue) {
+        private final String stringValue;
+        private final Integer integerValue;
+        private final boolean boolValue;
+        Flag(String stringValue, Integer integerValue, boolean boolValue) {
             this.stringValue = stringValue;
             this.integerValue = integerValue;
             this.boolValue = boolValue;
         }
 
-        public static Flag getFlagByIntegerValue(Integer integerValue){
-
-            for(Flag flag : Flag.values()) {
-                if (flag.getIntegerValue().compareTo(integerValue) == 0) {
-                    return flag;
-                }
-            }
-
-            return OFF;
-        }
-
-        public static Flag getFlagByStringValue(String value){
-
-            for(Flag flag : Flag.values()) {
-                if (StringUtils.equals(flag.getStringValue(), value)) {
-                    return flag;
-                }
-            }
-
-            return null;
-        }
-        public static Flag getFlagByBooleanValue(Boolean value){
-
-            if (value == null) {
-                return null;
-            }
-
-            for(Flag flag : Flag.values()) {
-                if (flag.boolValue == value) {
-                    return flag;
-                }
-            }
-
-            return null;
+        /**
+         * 数値からフラグからフラグ定数に変換
+         * @param value 数値
+         * @return フラグ定数
+         */
+        public static Optional<Flag> fromInteger(Integer value) {
+            return findFirst(flag -> flag.integerValue.equals(value));
         }
 
         /**
-         * stringValueを取得。
-         * @return stringValue
+         * 文字列フラグからフラグ定数に変換
+         * @param value 文字列
+         * @return フラグ定数
          */
-        public String getStringValue() {
+        public static Optional<Flag> fromString(String value) {
+            return findFirst(flag -> flag.stringValue.equals(value));
+        }
+
+        /**
+         * 真偽値からフラグ定数に変換
+         * @param value 真偽値
+         * @return フラグ定数
+         */
+        public static Optional<Flag> getFlagByBooleanValue(Boolean value) {
+            return findFirst(flag -> flag.boolValue == value.booleanValue());
+        }
+
+        private static Optional<Flag> findFirst(Predicate<? super Flag> predicate) {
+            return Arrays.stream(values()).filter(predicate).findFirst();
+        }
+
+        /**
+         * 文字列形式を取得。
+         * @return 文字列形式
+         */
+        public String string() {
             return stringValue;
         }
         /**
-         * integerValueを取得。
-         * @return integerValue
+         * 数値形式を取得。
+         * @return 数値形式
          */
-        public Integer getIntegerValue() {
+        public Integer integer() {
             return integerValue;
         }
         /**
-         * boolValueを取得。
-         * @return boolValue
+         * 真偽値を取得。
+         * @return 真偽値
          */
-        public boolean isBoolValue() {
+        public boolean bool() {
             return boolValue;
         }
     }
-
 
     /**
      * メッセージタイプ。

@@ -3,7 +3,7 @@ package  com.olympus.hora.form.user;
 import java.io.Serializable;
 import java.util.List;
 
-import com.olympus.hora.dbflute.exentity.MCode;
+import com.olympus.hora.dto.CodeDto;
 
 /**
  * ユーザ情報登録画面フォーム。
@@ -32,7 +32,7 @@ public class UserAddForm implements Serializable {
     private String sex;
 
     /** 性別プルダウン */
-    private List<MCode> sexList;
+    private List<CodeDto> sexPulldown;
 
     /** 生年月日 */
     private String birthday;
@@ -68,7 +68,7 @@ public class UserAddForm implements Serializable {
     private String prefecture;
 
     /** 都道府県プルダウン */
-    private List<MCode> prefectureList;
+    private List<CodeDto> prefecturePulldown;
 
     /** 市区町村 */
     private String city;
@@ -170,6 +170,24 @@ public class UserAddForm implements Serializable {
      */
     public void setSex(String sex) {
         this.sex = sex;
+    }
+
+    /**
+     * 性別プルダウンの取得。
+     *
+     * @return 性別プルダウン
+     */
+    public List<CodeDto> getSexPulldown() {
+        return this.sexPulldown;
+    }
+
+    /**
+     * 性別プルダウンを設定。
+     *
+     * @param sexPulldown 性別プルダウン
+     */
+    public void setSexPulldown(List<CodeDto> sexPulldown) {
+        this.sexPulldown = sexPulldown;
     }
 
     /**
@@ -371,6 +389,24 @@ public class UserAddForm implements Serializable {
     }
 
     /**
+     * 都道府県プルダウンの取得。
+     *
+     * @return 都道府県プルダウン
+     */
+    public List<CodeDto> getPrefecturePulldown() {
+        return this.prefecturePulldown;
+    }
+
+    /**
+     * 都道府県プルダウンを設定。
+     *
+     * @param prefecturePulldown 都道府県プルダウン
+     */
+    public void setPrefecturePulldown(List<CodeDto> prefecturePulldown) {
+        this.prefecturePulldown = prefecturePulldown;
+    }
+
+    /**
      * 市区町村の取得。
      *
      * @return 市区町村
@@ -440,22 +476,6 @@ public class UserAddForm implements Serializable {
      */
     public void setRemarks(String remarks) {
         this.remarks = remarks;
-    }
-
-    public List<MCode> getSexList() {
-        return sexList;
-    }
-
-    public void setSexList(List<MCode> sexList) {
-        this.sexList = sexList;
-    }
-
-    public List<MCode> getPrefectureList() {
-        return prefectureList;
-    }
-
-    public void setPrefectureList(List<MCode> prefectureList) {
-        this.prefectureList = prefectureList;
     }
 
 }

@@ -6,8 +6,6 @@
 * * * * * * * * * *
 data-directory: playsql/data/ut/xls
 
-[m_code_data.xls]
-  m_code (49)
-
-[m_holiday_data.xls]
+[INIT_DATA.xls]
   m_holiday (39)
+  m_code (49)

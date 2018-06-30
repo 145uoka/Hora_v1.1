@@ -11,7 +11,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 
 import com.olympus.hora.Exception.RecordNotFoundException;
 import com.olympus.hora.constants.code.CodeGroup;
-import com.olympus.hora.dbflute.exentity.MCode;
+import com.olympus.hora.dto.CodeDto;
 import com.olympus.hora.form.user.UserAddForm;
 import com.olympus.hora.service.CodeMasterService;
 import com.olympus.hora.service.user.UserService;
@@ -39,11 +39,12 @@ public class UserAddController {
      */
     @RequestMapping(value = "/user/add", method = RequestMethod.GET)
     public String index(@ModelAttribute("form") UserAddForm form, Model model) throws RecordNotFoundException {
-        List<MCode> sexList = codeMasterService.searchPulldown(CodeGroup.SEX, true);
-        List<MCode> prefectureList = codeMasterService.searchPulldown(CodeGroup.PREFECTURE, true);
-        form.setSexList(sexList);
-        form.setPrefectureList(prefectureList);
+        List<CodeDto> sexList = codeMasterService.searchPulldown(CodeGroup.SEX, true);
+        List<CodeDto> prefectureList = codeMasterService.searchPulldown(CodeGroup.PREFECTURE, true);
+        form.setSexPulldown(sexList);
+        form.setPrefecturePulldown(prefectureList);
         model.addAttribute("form", form);
         return "user/add";
     }
+
 }

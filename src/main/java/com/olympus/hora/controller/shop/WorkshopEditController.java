@@ -468,49 +468,49 @@ public class WorkshopEditController {
                 dto.setDeleteFlag(false);
 
                 if(StringUtils.isNotEmpty(form.getEffectiveFlag()[i])){
-                    dto.setEffectiveFlag(form.getEffectiveFlag()[i].equals(Flag.ON.getStringValue()));
+                    dto.setEffectiveFlag(form.getEffectiveFlag()[i].equals(Flag.ON.string()));
                 }
                 if(StringUtils.isNotEmpty(form.getWorkingDayFlg()[i])){
-                    dto.setWorkingDayFlg(form.getWorkingDayFlg()[i].equals(Flag.ON.getStringValue()));
+                    dto.setWorkingDayFlg(form.getWorkingDayFlg()[i].equals(Flag.ON.string()));
                 }
                 if(StringUtils.isNotEmpty(form.getWeek1Flag()[i])){
-                    dto.setWeek1Flag(form.getWeek1Flag()[i].equals(Flag.ON.getStringValue()));
+                    dto.setWeek1Flag(form.getWeek1Flag()[i].equals(Flag.ON.string()));
                 }
                 if(StringUtils.isNotEmpty(form.getWeek2Flag()[i])){
-                    dto.setWeek2Flag(form.getWeek2Flag()[i].equals(Flag.ON.getStringValue()));
+                    dto.setWeek2Flag(form.getWeek2Flag()[i].equals(Flag.ON.string()));
                 }
                 if(StringUtils.isNotEmpty(form.getWeek3Flag()[i])){
-                    dto.setWeek3Flag(form.getWeek3Flag()[i].equals(Flag.ON.getStringValue()));
+                    dto.setWeek3Flag(form.getWeek3Flag()[i].equals(Flag.ON.string()));
                 }
                 if(StringUtils.isNotEmpty(form.getWeek4Flag()[i])){
-                    dto.setWeek4Flag(form.getWeek4Flag()[i].equals(Flag.ON.getStringValue()));
+                    dto.setWeek4Flag(form.getWeek4Flag()[i].equals(Flag.ON.string()));
                 }
                 if(StringUtils.isNotEmpty(form.getWeek5Flag()[i])){
-                    dto.setWeek5Flag(form.getWeek5Flag()[i].equals(Flag.ON.getStringValue()));
+                    dto.setWeek5Flag(form.getWeek5Flag()[i].equals(Flag.ON.string()));
                 }
                 if(StringUtils.isNotEmpty(form.getMonFlg()[i])){
-                    dto.setMonFlg(form.getMonFlg()[i].equals(Flag.ON.getStringValue()));
+                    dto.setMonFlg(form.getMonFlg()[i].equals(Flag.ON.string()));
                 }
                 if(StringUtils.isNotEmpty(form.getTueFlg()[i])){
-                    dto.setTueFlg(form.getTueFlg()[i].equals(Flag.ON.getStringValue()));
+                    dto.setTueFlg(form.getTueFlg()[i].equals(Flag.ON.string()));
                 }
                 if(StringUtils.isNotEmpty(form.getWebFlg()[i])){
-                    dto.setWebFlg(form.getWebFlg()[i].equals(Flag.ON.getStringValue()));
+                    dto.setWebFlg(form.getWebFlg()[i].equals(Flag.ON.string()));
                 }
                 if(StringUtils.isNotEmpty(form.getThuFlg()[i])){
-                    dto.setThuFlg(form.getThuFlg()[i].equals(Flag.ON.getStringValue()));
+                    dto.setThuFlg(form.getThuFlg()[i].equals(Flag.ON.string()));
                 }
                 if(StringUtils.isNotEmpty(form.getFriFlg()[i])){
-                    dto.setFriFlg(form.getFriFlg()[i].equals(Flag.ON.getStringValue()));
+                    dto.setFriFlg(form.getFriFlg()[i].equals(Flag.ON.string()));
                 }
                 if(StringUtils.isNotEmpty(form.getSatFlg()[i])){
-                    dto.setSatFlg(form.getSatFlg()[i].equals(Flag.ON.getStringValue()));
+                    dto.setSatFlg(form.getSatFlg()[i].equals(Flag.ON.string()));
                 }
                 if(StringUtils.isNotEmpty(form.getSunFlg()[i])){
-                    dto.setSunFlg(form.getSunFlg()[i].equals(Flag.ON.getStringValue()));
+                    dto.setSunFlg(form.getSunFlg()[i].equals(Flag.ON.string()));
                 }
                 if(StringUtils.isNotEmpty(form.getHolidayFlg()[i])){
-                    dto.setHolidayFlg(form.getHolidayFlg()[i].equals(Flag.ON.getStringValue()));
+                    dto.setHolidayFlg(form.getHolidayFlg()[i].equals(Flag.ON.string()));
                 }
 
                 if (StringUtils.isNotEmpty(form.getDayOfMonth()[i])) {
