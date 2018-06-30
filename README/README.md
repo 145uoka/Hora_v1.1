@@ -32,9 +32,9 @@
 2.左の欄の「PostgreSQL 9.3(localhost 9.3)」上でダブルクリック あるいは 右クリックし、「接続」を選択。  
 ![DB作成方法2](https://github.com/145uoka/Hora_v1.1/blob/Readme/README/DB/DB_2.png "DB作成方法2")  
 3.パスワードの入力を求められるのでパスワード入力。(パスワード保存がされていればパスワードは求められません。)  
-![DB作成方法3](https://github.com/145uoka/Hora_v1.1/blob/Readme/README/DB/DB_3.png "DB作成方法3")    
-4.左の欄のデータベースに「postgres」がなければ、左の欄のデータベース上で 右クリックし、「新しいデータベース...」を選択。 
-![DB作成方法4](https://github.com/145uoka/Hora_v1.1/blob/Readme/README/DB/DB_4.png "DB作成方法4")   
+![DB作成方法3](https://github.com/145uoka/Hora_v1.1/blob/Readme/README/DB/DB_3.png "DB作成方法3")  
+4.左の欄のデータベースに「postgres」がなければ、左の欄のデータベース上で 右クリックし、「新しいデータベース...」を選択。  
+![DB作成方法4](https://github.com/145uoka/Hora_v1.1/blob/Readme/README/DB/DB_4.png "DB作成方法4")  
 5.名前に「postgres」を入力し、「OK」を選択。  
 ![DB作成方法5](https://github.com/145uoka/Hora_v1.1/blob/Readme/README/DB/DB_5.png "DB作成方法5")   
 6.左の欄の「postgres」のスキーマに「hora」がなければ「postgres」 > 「スキーマ」上で右クリックし、「新しいデータベース...」を選択。  
