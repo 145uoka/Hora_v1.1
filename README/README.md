@@ -12,18 +12,18 @@
 <a id="inport"></a>
 ### <a href="#inport">Eclipseにプロジェクトを作成する手順</a>  
 [手順]  
-1.Eclipse のメニューの 「ファイル」 > 「インポート」 あるいは、パッケージ・エクスプローラ で右クリックメニューから インポート を選択。  
-2.次に表示されるメニューから、Git の中にある Gitからプロジェクト を選択し、次へ。  
+1.Eclipse のメニューの 「ファイル」 > 「インポート」 あるいは、パッケージ・エクスプローラ で右クリックメニューから 「インポート」 を選択。  
+2.次に表示されるメニューから、「Git」 の中にある 「Gitからプロジェクト」 を選択し、「次へ」。  
 ![インポート方法2](https://github.com/145uoka/Hora_v1.1/blob/Readme/README/inport/inport_1.png "インポート方法2")  
-3. URIの複製 を選択し、次へ。  
+3. 「URIの複製」 を選択し、「次へ」。  
 ![インポート方法3](https://github.com/145uoka/Hora_v1.1/blob/Readme/README/inport/inport_2.png "インポート方法3")  
-4.URIを入力して、次へ。  
+4.「URI」を入力して、「次へ」。  
 ![インポート方法4](https://github.com/145uoka/Hora_v1.1/blob/Readme/README/inport/inport_3.png "インポート方法4")  
-5.チェックアウトするブランチを選択し、次へ。  
+5.チェックアウトするブランチを選択し、「次へ」。  
 ![インポート方法4](https://github.com/145uoka/Hora_v1.1/blob/Readme/README/inport/inport_4.png "インポート方法4")  
-6.任意のディレクトリを選択し、次へ。  
+6.任意のディレクトリを選択し、「次へ」。  
 ![インポート方法5](https://github.com/145uoka/Hora_v1.1/blob/Readme/README/inport/inport_5.png "インポート方法5")  
-7. Import existing Eclipse projects(E)を選択し、次へ。  
+7. 「Import existing Eclipse projects(E)」を選択し、「次へ」。  
 ![インポート方法6](https://github.com/145uoka/Hora_v1.1/blob/Readme/README/inport/inport_7.png "インポート方法6")  
 8.「完了」。  
 ![インポート方法7](https://github.com/145uoka/Hora_v1.1/blob/Readme/README/inport/inport_8.png "インポート方法7")  
@@ -45,21 +45,29 @@
 ![DB作成方法6](https://github.com/145uoka/Hora_v1.1/blob/Readme/README/DB/DB_6.png "DB作成方法6")   
 7.名前に「hora」を入力し、「OK」を選択。  
 ![DB作成方法7](https://github.com/145uoka/Hora_v1.1/blob/Readme/README/DB/DB_7.png "DB作成方法7")  
-8.eclipse上の「hora」プロジェクトから「hora」 > 「dbflute_hora」 > 「manage.bat」を選択。
+8.eclipse上の「hora」プロジェクトから「hora」の中にある「dbflute_hora」の中の「manage.bat」を選択。
 ![DB作成方法8](https://github.com/145uoka/Hora_v1.1/blob/Readme/README/DB/DB_8.png "DB作成方法8")  
 9.「0」を入力し、「enter」を押下。  
 ![DB作成方法9](https://github.com/145uoka/Hora_v1.1/blob/Readme/README/DB/DB_9.png "DB作成方法9")  
 10.「y」を入力し、「enter」を押下。
 ![DB作成方法10](https://github.com/145uoka/Hora_v1.1/blob/Readme/README/DB/DB_10.png "DB作成方法10")  
+11.「enter」を押下。  
+![DB作成方法11](https://github.com/145uoka/Hora_v1.1/blob/Readme/README/DB/DB_11.png "DB作成方法11")  
+※manage.batの使い方は、 [manage.batの操作](#manage_bat)を参考にしてください。  
 [目次に戻る](#index)  
 <a id="server"></a>
 ### <a href="#server">サーバ作成方法手順</a>  
 [手順]  
 1.Eclipse上の「hora」プロジェクトの上で右クリックし、「実行」 > 「1サーバで実行(1)」を選択。  
-![サーバ作成方法手順1](https://github.com/145uoka/Hora_v1.1/blob/Readme/README/server/server_1.png "サーバ作成方法手順1")    
-2.  
-3.  
-4.  
+![サーバ作成方法手順1](https://github.com/145uoka/Hora_v1.1/blob/Readme/README/server/server_1.png "サーバ作成方法手順1")  
+2.「手動で新規サーバを定義」を選択し、「サーバのタイプを選択」で「Apache」の中にある「Tomcat v8.0サーバー」を選択、「次へ」。  
+![サーバ作成方法手順2](https://github.com/145uoka/Hora_v1.1/blob/Readme/README/server/server_2.png "サーバ作成方法手順2")  
+3.「完了」を選択。  
+![サーバ作成方法手順3](https://github.com/145uoka/Hora_v1.1/blob/Readme/README/server/server_3.png "サーバ作成方法手順3")  
+4.「Hello world!」が表示されればOK  
+![サーバ作成方法手順4](https://github.com/145uoka/Hora_v1.1/blob/Readme/README/server/server_4.png "サーバ作成方法手順4")  
+※次回からは、Eclipseの下部にある「サーバー」から作成したサーバーの上で右クリックしサーバを開始するには「開始」、サーバを停止するには「停止」を選択してください。  
+![サーバ作成方法手順4](https://github.com/145uoka/Hora_v1.1/blob/Readme/README/server/server_4.png "サーバ作成方法手順4")  
 [目次に戻る](#index)  
 <a id="eclipse_git"></a>
 ## <a href="#eclipse_git">EclipseでのGit操作</a>  
