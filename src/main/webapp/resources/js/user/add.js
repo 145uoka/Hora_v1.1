@@ -1,7 +1,7 @@
 // 登録処理
 $('#register').click(function(){
     if(confirm('登録します。よろしいですか？')) {
-        document.form.action = "../reservation/add.html";
+        document.form.action += "/user/add/register";
         document.form.submit();
     } else {
         return false;
