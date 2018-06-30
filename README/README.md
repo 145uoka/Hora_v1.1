@@ -60,7 +60,7 @@
 [手順]  
 1.Eclipse上の「hora」プロジェクトの上で右クリックし、「実行」 > 「1サーバで実行(1)」を選択。  
 ![サーバ作成方法手順1](https://github.com/145uoka/Hora_v1.1/blob/Readme/README/server/server_1.png "サーバ作成方法手順1")  
-2.「手動で新規サーバを定義」を選択し、「サーバのタイプを選択」で「Apache」の中にある「Tomcat v8.0サーバー」を選択、「次へ」。  
+2.「手動で新規サーバを定義」を選択し、「サーバのタイプを選択」で「Apache」の中にある「Tomcat v8.0サーバー」を選択、「サーバー名」に任意の名前を入力(画像では「hora」を入力)、「次へ」。  
 ![サーバ作成方法手順2](https://github.com/145uoka/Hora_v1.1/blob/Readme/README/server/server_2.png "サーバ作成方法手順2")  
 3.「完了」を選択。  
 ![サーバ作成方法手順3](https://github.com/145uoka/Hora_v1.1/blob/Readme/README/server/server_3.png "サーバ作成方法手順3")  
