@@ -38,13 +38,16 @@
           <div class="panel panel-default main-border-color">
             <div class="panel-body sub-background-color">
 
-              <div class="form-group ">
+              <div class="form-group <ext:isErrors path='familyName' value='has-error'/>">
                 <label class="col-md-3 control-label">氏名<span class="label label-danger" style="margin-left: 5px">必須</span>
                 </label>
                 <div class="col-md-6">
                   <form:input path="familyName" class="form-control form-inline" maxlength="10" style="width: 45%;" />
                   <form:input path="givenName" class="form-control form-inline" maxlength="10" style="width: 45%;" />
-                  <span class="help-block"></span>
+                  <span class="help-block">
+                    <form:errors path="familyName" element="div" cssClass="text-danger" />
+                    <form:errors path="givenName" element="div" cssClass="text-danger" />
+                  </span>
                 </div>
               </div>
               <div class="form-group ">
@@ -89,9 +92,9 @@
                 <div class="form-group ">
                   <label class="col-md-3 control-label">電話番号2 </label>
                   <div class="col-md-5">
-                    <form:input path="phone1_1" class="form-control form-inline" maxlength="4" style="width: 30%;" />
-                    <form:input path="phone1_2" class="form-control form-inline" maxlength="4" style="width: 30%;" />
-                    <form:input path="phone1_3" class="form-control form-inline" maxlength="4" style="width: 30%;" />
+                    <form:input path="phone2_1" class="form-control form-inline" maxlength="4" style="width: 30%;" />
+                    <form:input path="phone2_2" class="form-control form-inline" maxlength="4" style="width: 30%;" />
+                    <form:input path="phone2_3" class="form-control form-inline" maxlength="4" style="width: 30%;" />
                     <span class="help-block"></span>
                   </div>
                 </div>

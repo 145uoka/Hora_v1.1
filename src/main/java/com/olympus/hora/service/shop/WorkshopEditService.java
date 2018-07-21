@@ -1,4 +1,4 @@
-package com.olympus.hora.service;
+package com.olympus.hora.service.shop;
 
 import java.time.LocalDate;
 import java.util.ArrayList;
@@ -31,6 +31,7 @@ import com.olympus.hora.dbflute.exentity.MWorkingDayDetailDeff;
 import com.olympus.hora.dto.LabelValueDto;
 import com.olympus.hora.dto.shop.MWorkingDayDeffDto;
 import com.olympus.hora.dto.shop.MWorkingDayDetailDeffDto;
+import com.olympus.hora.service.LoggerService;
 
 /**
  * 営業日設定のサービスクラス．

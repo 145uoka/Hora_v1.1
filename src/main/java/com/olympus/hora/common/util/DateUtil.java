@@ -99,7 +99,7 @@ public class DateUtil {
     public static LocalDate convertToLocalDater(Calendar calendar){
         SimpleDateFormat simpleDateFormat = new SimpleDateFormat(DATE_TIME_FORMAT_YYYYMMDD);
         String sDate = simpleDateFormat.format(calendar.getTime());
-        return convertToLocalDate(sDate);
+        return toLocalDate(sDate);
     }
 
     /**
@@ -109,7 +109,7 @@ public class DateUtil {
      * @param sDate 文字列日付(yyyy/MM/dd)
      * @return LocalDate型日付
      */
-    public static LocalDate convertToLocalDate(String sDate) {
+    public static LocalDate toLocalDate(String sDate) {
         return convertToLocalDate(sDate, DATE_TIME_FORMAT_YYYYMMDD);
     }
 
@@ -121,7 +121,7 @@ public class DateUtil {
      * @param sDate
      * @return
      */
-    public static LocalDate convertToLocalDateOrNull(String sDate){
+    public static LocalDate toNullableLocalDate(String sDate){
         if(StringUtils.isEmpty(sDate)){
             return null;
         } else {

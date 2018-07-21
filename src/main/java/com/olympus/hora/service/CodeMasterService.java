@@ -20,16 +20,18 @@ import com.olympus.hora.dto.CodeDto;
  * @author majo_k
  */
 @Service
-@Transactional(rollbackFor = Exception.class)
+@Transactional(readOnly = true, rollbackFor = Exception.class)
 public class CodeMasterService {
 
     @Autowired
     MCodeBhv mCodeBhv;
 
     /**
-     * コードグループに紐づくコード・名称リストを取得
+     * コードグループに紐づくコード・名称リストを取得する。
+     * @param codeGroup コードグループ
+     * @param hasBlank リストにブランクを含めるか
      * @return コードリスト
-     * @throws RecordNotFoundException
+     * @throws RecordNotFoundException {@code codeGroup}に対応するレコードが存在しない場合
      */
     public List<CodeDto> searchPulldown(CodeGroup codeGroup, boolean hasBlank) throws RecordNotFoundException{
         MCodeCB cb = new MCodeCB();
@@ -44,9 +46,31 @@ public class CodeMasterService {
         return pulldown;
     }
 
+    /**
+     * コードマスタにコードIDのデータが存在するかを判定する。
+     * @param id コードID
+     * @return データが存在するときtrue、それ以外false
+     */
+    public boolean existsCodeItem(int id) {
+        MCodeCB cb = new MCodeCB();
+        cb.query().setCodeId_Equal(id);
+        return mCodeBhv.readCount(cb) == 1;
+    }
+
+    /**
+     * エンティティのリストをDTOのリストに変換する。
+     * @param codeList エンティティリスト
+     * @return DTOリスト
+     */
     private static List<CodeDto> toDtoList(List<MCode> codeList) {
         return codeList.stream().map(CodeMasterService::toDto).collect(Collectors.toList());
     }
+
+    /**
+     * エンティティをDTOに変換する。
+     * @param entity エンティティ
+     * @return DTO
+     */
     private static CodeDto toDto(MCode entity) {
         CodeDto dto = new CodeDto();
         dto.setCodeId(entity.getCodeId().toString());

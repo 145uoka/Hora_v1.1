@@ -40,7 +40,7 @@ import com.olympus.hora.dto.shop.MWorkingDayDeffDto;
 import com.olympus.hora.dto.shop.MWorkingDayDetailDeffDto;
 import com.olympus.hora.form.WorkshopEditFrom;
 import com.olympus.hora.service.LoggerService;
-import com.olympus.hora.service.WorkshopEditService;
+import com.olympus.hora.service.shop.WorkshopEditService;
 
 /**
  * 営業日設定のコントローラークラス．
@@ -522,7 +522,7 @@ public class WorkshopEditController {
                 }
 
                 // 指定日に 入力有：型変換を行いdtoにセット。 未入力：nullをdtoにセット。
-                dto.setSpecifiedDay(DateUtil.convertToLocalDateOrNull(form.getSpecifiedDay()[i]));
+                dto.setSpecifiedDay(DateUtil.toNullableLocalDate(form.getSpecifiedDay()[i]));
 
                 // 開始時刻に 入力有：型変換を行いdtoにセット。 未入力：nullをdtoにセット。
                 dto.setStartTime(TimeUtils.convertToLocalTimeOrNull(form.getStartTime()[i]));
@@ -548,7 +548,7 @@ public class WorkshopEditController {
         //営業日定義マスタのdtoにform情報をセット
         BeanUtils.copyProperties(form, dto);
         dto.setShopId(Integer.parseInt(form.getShopId()));
-        dto.setStartDay(DateUtil.convertToLocalDate(form.getStartDay()));
+        dto.setStartDay(DateUtil.toLocalDate(form.getStartDay()));
         dto.setDeleteFlag(false);
 
         return dto;

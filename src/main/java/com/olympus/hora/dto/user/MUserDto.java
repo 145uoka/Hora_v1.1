@@ -1,96 +1,69 @@
-package  com.olympus.hora.form.user;
+package  com.olympus.hora.dto.user;
 
 import java.io.Serializable;
-import java.util.List;
-
-import org.hibernate.validator.constraints.Email;
-import org.hibernate.validator.constraints.NotEmpty;
-
-import com.olympus.hora.common.beanvalidation.DateFormat;
-import com.olympus.hora.common.beanvalidation.FullwidthKatakana;
-import com.olympus.hora.common.beanvalidation.Numeric;
-import com.olympus.hora.common.beanvalidation.SizeEqual;
-import com.olympus.hora.constants.MessageKeyConstants;
-import com.olympus.hora.dto.CodeDto;
+import java.time.LocalDate;
 
 /**
- * ユーザDTO。
+ * ユーザマスタDTO。
  *
  * @author majo_k
  * $Id:$
  */
-public class UserAddForm implements Serializable {
+public class MUserDto implements Serializable {
 
     /** serialVersionUID */
     private static final long serialVersionUID = 1L;
 
+    /** ユーザID */
+    private Integer userId;
+
     /** 姓 */
-    @NotEmpty
     private String familyName;
 
     /** 名 */
-    @NotEmpty
     private String givenName;
 
     /** 姓（カナ） */
-    @NotEmpty
-    @FullwidthKatakana
     private String familyNameKana;
 
     /** 名（カナ） */
-    @NotEmpty
-    @FullwidthKatakana
     private String givenNameKana;
 
     /** 性別 */
-    private String sex;
-
-    /** 性別プルダウン */
-    private List<CodeDto> sexPulldown;
+    private Integer sex;
 
     /** 生年月日 */
-    @DateFormat
-    private String birthday;
+    private LocalDate birthday;
 
     /** 電話番号1_1 */
-    @NotEmpty
-    private String phone1_1;
+    private String phoneFirst1;
 
     /** 電話番号1_2 */
-    @NotEmpty
-    private String phone1_2;
+    private String phoneFirst2;
 
     /** 電話番号1_3 */
-    @NotEmpty
-    private String phone1_3;
+    private String phoneFirst3;
 
     /** 電話番号2_1 */
-    private String phone2_1;
+    private String phoneSecond1;
 
     /** 電話番号2_2 */
-    private String phone2_2;
+    private String phoneSecond2;
 
     /** 電話番号2_3 */
-    private String phone2_3;
+    private String phoneSecond3;
 
     /** メールアドレス1 */
-    @Email
     private String email1;
 
     /** メールアドレス2 */
-    @Email
     private String email2;
 
     /** 郵便番号 */
-    @Numeric(length = 7, name = "郵便番号", message = MessageKeyConstants.GlueNetValidator.NUMERIC_WITH_FIELD)
-    @SizeEqual(length = 7, name = "郵便番号", message = MessageKeyConstants.GlueNetValidator.CONSTRAINTS_FIXEDLENGTH_WITH_FIELD)
     private String postalCode;
 
     /** 都道府県 */
-    private String prefecture;
-
-    /** 都道府県プルダウン */
-    private List<CodeDto> prefecturePulldown;
+    private Integer prefecture;
 
     /** 市区町村 */
     private String city;
@@ -103,6 +76,36 @@ public class UserAddForm implements Serializable {
 
     /** 備考 */
     private String remarks;
+
+    /** 削除フラグ */
+    private Boolean deleteFlag;
+
+    /** version_no */
+    private Integer versionNo;
+
+    /** 登録日時 */
+    private LocalDate registerDatetime;
+
+    /** 更新日時 */
+    private LocalDate updateDatetime;
+
+    /**
+     * ユーザIDの取得。
+     *
+     * @return ユーザID
+     */
+    public Integer getUserId() {
+        return this.userId;
+    }
+
+    /**
+     * ユーザIDを設定。
+     *
+     * @param userId ユーザID
+     */
+    public void setUserId(Integer userId) {
+        this.userId = userId;
+    }
 
     /**
      * 姓の取得。
@@ -181,7 +184,7 @@ public class UserAddForm implements Serializable {
      *
      * @return 性別
      */
-    public String getSex() {
+    public Integer getSex() {
         return this.sex;
     }
 
@@ -190,26 +193,8 @@ public class UserAddForm implements Serializable {
      *
      * @param sex 性別
      */
-    public void setSex(String sex) {
+    public void setSex(Integer sex) {
         this.sex = sex;
-    }
-
-    /**
-     * 性別プルダウンの取得。
-     *
-     * @return 性別プルダウン
-     */
-    public List<CodeDto> getSexPulldown() {
-        return this.sexPulldown;
-    }
-
-    /**
-     * 性別プルダウンを設定。
-     *
-     * @param sexPulldown 性別プルダウン
-     */
-    public void setSexPulldown(List<CodeDto> sexPulldown) {
-        this.sexPulldown = sexPulldown;
     }
 
     /**
@@ -217,7 +202,7 @@ public class UserAddForm implements Serializable {
      *
      * @return 生年月日
      */
-    public String getBirthday() {
+    public LocalDate getBirthday() {
         return this.birthday;
     }
 
@@ -226,7 +211,7 @@ public class UserAddForm implements Serializable {
      *
      * @param birthday 生年月日
      */
-    public void setBirthday(String birthday) {
+    public void setBirthday(LocalDate birthday) {
         this.birthday = birthday;
     }
 
@@ -235,17 +220,17 @@ public class UserAddForm implements Serializable {
      *
      * @return 電話番号1_1
      */
-    public String getPhone1_1() {
-        return this.phone1_1;
+    public String getPhoneFirst1() {
+        return this.phoneFirst1;
     }
 
     /**
      * 電話番号1_1を設定。
      *
-     * @param phone1_1 電話番号1_1
+     * @param phoneFirst1 電話番号1_1
      */
-    public void setPhone1_1(String phone1_1) {
-        this.phone1_1 = phone1_1;
+    public void setPhoneFirst1(String phoneFirst1) {
+        this.phoneFirst1 = phoneFirst1;
     }
 
     /**
@@ -253,17 +238,17 @@ public class UserAddForm implements Serializable {
      *
      * @return 電話番号1_2
      */
-    public String getPhone1_2() {
-        return this.phone1_2;
+    public String getPhoneFirst2() {
+        return this.phoneFirst2;
     }
 
     /**
      * 電話番号1_2を設定。
      *
-     * @param phone1_2 電話番号1_2
+     * @param phoneFirst2 電話番号1_2
      */
-    public void setPhone1_2(String phone1_2) {
-        this.phone1_2 = phone1_2;
+    public void setPhoneFirst2(String phoneFirst2) {
+        this.phoneFirst2 = phoneFirst2;
     }
 
     /**
@@ -271,17 +256,17 @@ public class UserAddForm implements Serializable {
      *
      * @return 電話番号1_3
      */
-    public String getPhone1_3() {
-        return this.phone1_3;
+    public String getPhoneFirst3() {
+        return this.phoneFirst3;
     }
 
     /**
      * 電話番号1_3を設定。
      *
-     * @param phone1_3 電話番号1_3
+     * @param phoneFirst3 電話番号1_3
      */
-    public void setPhone1_3(String phone1_3) {
-        this.phone1_3 = phone1_3;
+    public void setPhoneFirst3(String phoneFirst3) {
+        this.phoneFirst3 = phoneFirst3;
     }
 
     /**
@@ -289,17 +274,17 @@ public class UserAddForm implements Serializable {
      *
      * @return 電話番号2_1
      */
-    public String getPhone2_1() {
-        return this.phone2_1;
+    public String getPhoneSecond1() {
+        return this.phoneSecond1;
     }
 
     /**
      * 電話番号2_1を設定。
      *
-     * @param phone2_1 電話番号2_1
+     * @param phoneSecond1 電話番号2_1
      */
-    public void setPhone2_1(String phone2_1) {
-        this.phone2_1 = phone2_1;
+    public void setPhoneSecond1(String phoneSecond1) {
+        this.phoneSecond1 = phoneSecond1;
     }
 
     /**
@@ -307,17 +292,17 @@ public class UserAddForm implements Serializable {
      *
      * @return 電話番号2_2
      */
-    public String getPhone2_2() {
-        return this.phone2_2;
+    public String getPhoneSecond2() {
+        return this.phoneSecond2;
     }
 
     /**
      * 電話番号2_2を設定。
      *
-     * @param phone2_2 電話番号2_2
+     * @param phoneSecond2 電話番号2_2
      */
-    public void setPhone2_2(String phone2_2) {
-        this.phone2_2 = phone2_2;
+    public void setPhoneSecond2(String phoneSecond2) {
+        this.phoneSecond2 = phoneSecond2;
     }
 
     /**
@@ -325,17 +310,17 @@ public class UserAddForm implements Serializable {
      *
      * @return 電話番号2_3
      */
-    public String getPhone2_3() {
-        return this.phone2_3;
+    public String getPhoneSecond3() {
+        return this.phoneSecond3;
     }
 
     /**
      * 電話番号2_3を設定。
      *
-     * @param phone2_3 電話番号2_3
+     * @param phoneSecond3 電話番号2_3
      */
-    public void setPhone2_3(String phone2_3) {
-        this.phone2_3 = phone2_3;
+    public void setPhoneSecond3(String phoneSecond3) {
+        this.phoneSecond3 = phoneSecond3;
     }
 
     /**
@@ -397,7 +382,7 @@ public class UserAddForm implements Serializable {
      *
      * @return 都道府県
      */
-    public String getPrefecture() {
+    public Integer getPrefecture() {
         return this.prefecture;
     }
 
@@ -406,26 +391,8 @@ public class UserAddForm implements Serializable {
      *
      * @param prefecture 都道府県
      */
-    public void setPrefecture(String prefecture) {
+    public void setPrefecture(Integer prefecture) {
         this.prefecture = prefecture;
-    }
-
-    /**
-     * 都道府県プルダウンの取得。
-     *
-     * @return 都道府県プルダウン
-     */
-    public List<CodeDto> getPrefecturePulldown() {
-        return this.prefecturePulldown;
-    }
-
-    /**
-     * 都道府県プルダウンを設定。
-     *
-     * @param prefecturePulldown 都道府県プルダウン
-     */
-    public void setPrefecturePulldown(List<CodeDto> prefecturePulldown) {
-        this.prefecturePulldown = prefecturePulldown;
     }
 
     /**
@@ -498,6 +465,78 @@ public class UserAddForm implements Serializable {
      */
     public void setRemarks(String remarks) {
         this.remarks = remarks;
+    }
+
+    /**
+     * 削除フラグの取得。
+     *
+     * @return 削除フラグ
+     */
+    public Boolean getDeleteFlag() {
+        return this.deleteFlag;
+    }
+
+    /**
+     * 削除フラグを設定。
+     *
+     * @param deleteFlag 削除フラグ
+     */
+    public void setDeleteFlag(Boolean deleteFlag) {
+        this.deleteFlag = deleteFlag;
+    }
+
+    /**
+     * version_noの取得。
+     *
+     * @return version_no
+     */
+    public Integer getVersionNo() {
+        return this.versionNo;
+    }
+
+    /**
+     * version_noを設定。
+     *
+     * @param versionNo version_no
+     */
+    public void setVersionNo(Integer versionNo) {
+        this.versionNo = versionNo;
+    }
+
+    /**
+     * 登録日時の取得。
+     *
+     * @return 登録日時
+     */
+    public LocalDate getRegisterDatetime() {
+        return this.registerDatetime;
+    }
+
+    /**
+     * 登録日時を設定。
+     *
+     * @param registerDatetime 登録日時
+     */
+    public void setRegisterDatetime(LocalDate registerDatetime) {
+        this.registerDatetime = registerDatetime;
+    }
+
+    /**
+     * 更新日時の取得。
+     *
+     * @return 更新日時
+     */
+    public LocalDate getUpdateDatetime() {
+        return this.updateDatetime;
+    }
+
+    /**
+     * 更新日時を設定。
+     *
+     * @param updateDatetime 更新日時
+     */
+    public void setUpdateDatetime(LocalDate updateDatetime) {
+        this.updateDatetime = updateDatetime;
     }
 
 }
