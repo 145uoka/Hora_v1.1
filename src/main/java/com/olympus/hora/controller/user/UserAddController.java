@@ -35,6 +35,10 @@ import com.olympus.hora.service.user.UserService;
 @Controller
 public class UserAddController {
 
+    private static final String MODEL_KEY_FORM = "form";
+    private static final String SUBPATH_INIT = "/user/add";
+    private static final String SUBPATH_REGISTER = "/user/add/register";
+
     @Autowired
     protected MessageSource messageSource;
 
@@ -61,10 +65,6 @@ public class UserAddController {
         model.addAttribute("form", form);
         return "user/add";
     }
-
-    private static final String MODEL_KEY_FORM = "form";
-    private static final String SUBPATH_INIT = "/user/add";
-    private static final String SUBPATH_REGISTER = "/user/add/register";
 
     /**
      * ユーザ登録

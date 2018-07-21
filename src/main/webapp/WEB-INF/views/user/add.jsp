@@ -50,23 +50,26 @@
                   </span>
                 </div>
               </div>
-              <div class="form-group ">
+              <div class="form-group <ext:isErrors path='familyNameKana' value='has-error'/>">
                 <label class="col-md-3 control-label">氏名（カナ）<span class="label label-danger" style="margin-left: 5px">必須</span>
                 </label>
                 <div class="col-md-6">
                   <form:input path="familyNameKana" class="form-control form-inline" maxlength="30" style="width: 45%;" />
                   <form:input path="givenNameKana" class="form-control form-inline" maxlength="30" style="width: 45%;" />
-                  <span class="help-block"></span>
+                  <span class="help-block">
+                    <form:errors path="familyNameKana" element="div" cssClass="text-danger" />
+                    <form:errors path="givenNameKana" element="div" cssClass="text-danger" />
+                  </span>
                 </div>
               </div>
-              <div class="form-group ">
+              <div class="form-group <ext:isErrors path='sex' value='has-error'/>">
                 <label class="col-md-3 control-label">性別 </label>
                 <div class="col-md-2">
                   <form:select path="sex" class="form-control" items="${form.sexPulldown}" itemLabel="name" itemValue="code1" />
-                  <span class="help-block"></span>
+                  <span class="help-block"><form:errors path="sex" element="div" cssClass="text-danger" /></span>
                 </div>
               </div>
-              <div class="form-group ">
+              <div class="form-group <ext:isErrors path='birthday' value='has-error'/>">
                 <label class="col-md-3 control-label">生年月日 </label>
                 <div class="col-md-3">
                   <div class="input-group date date-ymd" style="width: 180px;">
@@ -75,15 +78,15 @@
                     </span>
                   </div>
                 </div>
-                <span class="help-block"></span>
+                <span class="help-block"><form:errors path="birthday" element="div" cssClass="text-danger" /></span>
               </div>
-              <div class="form-group ">
+              <div class="form-group <ext:isErrors path='phone1_1' value='has-error'/>">
                 <label class="col-md-3 control-label">電話番号1 <span class="label label-danger" style="margin-left: 5px">必須</span></label>
                 <div class="col-md-5">
                   <form:input path="phone1_1" class="form-control form-inline" maxlength="4" style="width: 30%;" />
                   <form:input path="phone1_2" class="form-control form-inline" maxlength="4" style="width: 30%;" />
                   <form:input path="phone1_3" class="form-control form-inline" maxlength="4" style="width: 30%;" />
-                  <span class="help-block"></span>
+                  <span class="help-block"><form:errors path="phone1_1" element="div" cssClass="text-danger" /></span>
                 </div>
               </div>
               <button type="button" class="btn btn-default btn-s syncer-acdn center-block" data-target="syncer-acdn-1" style="margin-bottom: 15px">詳細内容を開く</button>
